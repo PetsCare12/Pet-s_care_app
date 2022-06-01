@@ -1,0 +1,44 @@
+
+#p1Registro{
+    padding: 0;
+    font-size: 15px;
+    color: #606770;
+}
+
+#registro_column1{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+#registro_cuenta_existente{
+    cursor: pointer;
+    color: #1877f2;
+    text-decoration: none;
+}
+
+.registro_sexo{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+#p2Registro{
+    padding: 0;
+    font-size: 13px;
+    color: #606770;
+}
+
+#registro_sexo_select{
+    height: 43px;
+    border: 1px solid #dddfe2;
+    border-radius: 6px;
+    color: #1d2129;
+}
+#registro_sexo_select:focus{
+    outline: 1px solid #dddfe2;
+}
+
+#registro_sexo_select option{
+    color: #1d2129;
+    padding: 10px;
+}

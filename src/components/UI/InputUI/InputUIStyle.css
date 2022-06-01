@@ -1,0 +1,23 @@
+
+.inputLogin{
+    width: 100%;
+    height: 50px;
+    padding: 14px 16px;
+    border: 1px solid #dddfe2;
+    border-radius: 6px;
+    font-size: 17px;
+    color: #1d2129;
+}
+
+.inputLogin:focus{
+    outline: 1px solid #dddfe2;
+}
+
+.inputLogin:focus::placeholder{
+    color: #1d212961;
+}
+
+.inputRegistro{
+    padding: 11px;
+    height: 43px;
+}
