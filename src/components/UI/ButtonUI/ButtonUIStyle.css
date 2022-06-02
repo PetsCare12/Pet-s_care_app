@@ -6,7 +6,7 @@ button{
 
 .btnLogin{
     color: white;
-    background-color: #1877f2;
+    background-color: #61bbd6;
     font-size: 20px;
     height: 50px;
     padding: 14px 16px;
@@ -16,12 +16,12 @@ button{
 
 .btnLogin:hover{
     transition: .4s;
-    background-color: #166fe5;
+    background-color: #0089b3;
 }
 
 .btnLoginCrear{
     color: white;
-    background-color: #42b72a;
+    background-color: #0089b3;
     font-size: 17px;
     height: 50px;
     padding: 14px 16px;
@@ -31,15 +31,16 @@ button{
 
 .btnLoginCrear:hover{
     transition: .4s;
-    background-color: #36a420;
+    background-color: #00779b;
 }
 
 .btnRegistroRegistrate{
     height: 35px;
     padding: 0px 16px;
-    background-color: #36a420;
+    background-color: #0089b3;
 }
 
 .btnRegistroRegistrate:hover{
-    background-color: #42b72a;
+    transition: .4s;
+    background-color: #00779b;
 }

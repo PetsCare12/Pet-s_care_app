@@ -28,17 +28,25 @@
     color: #606770;
 }
 
-#registro_sexo_select{
-    height: 43px;
+.registro_checkbox{
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
     border: 1px solid #dddfe2;
     border-radius: 6px;
-    color: #1d2129;
-}
-#registro_sexo_select:focus{
-    outline: 1px solid #dddfe2;
 }
 
-#registro_sexo_select option{
-    color: #1d2129;
-    padding: 10px;
+.registro_checkbox p{
+    font-size: 15px;
+    padding: 0;
 }
+
+.cont_registro_checkbox{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+

@@ -38,11 +38,27 @@ export const Registro = () => {
             />
             <div className="registro_sexo">
             <p id='p2Registro'>Sexo:</p>
-                <select name="sexo" id="registro_sexo_select">
-                    <option value="1" >Hombre</option>
-                    <option value="2" >Mujer</option>
-                    <option value="3" >Prefiero no decirlo</option>
-                </select>
+                <div className="cont_registro_checkbox">
+                    <div className="registro_checkbox">
+
+                        <p>Hombre</p>
+                        <InputUI type='radio'/>
+                        
+                    </div>
+                    <div className="registro_checkbox">
+
+                        <p>Mujer</p>
+                        <InputUI type='radio'/>
+
+                    </div>
+                    <div className="registro_checkbox">
+
+                        <p>Personalizado</p>
+                        <InputUI type='radio'/>
+
+                    </div>
+                </div>
+                
             </div>
             
             
