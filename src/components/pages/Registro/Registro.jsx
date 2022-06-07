@@ -6,8 +6,8 @@ import './RegistroStyle.css'
 
 export const Registro = () => {
   return (
-    <div className="loginContainer">
-        <ImagenUI />
+    <div className="register_container">
+            <ImagenUI />
         <div className="loginData">
             <h2>Crea una cuenta</h2>
             <p id='p1Registro'>Es rápido y fácil</p>

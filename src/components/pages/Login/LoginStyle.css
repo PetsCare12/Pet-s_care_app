@@ -5,7 +5,39 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap-reverse;
+    gap: 5%;
+}
+
+.login_cont_dr{
+    display: flex;
     flex-direction: column;
+    align-items: center;
+    width: auto;
+}
+
+.login_cont_iz{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+    justify-content: center;
+    width: 396px;
+    text-align: center;
+}
+
+.login_cont_iz img{
+    width: 400px;
+}
+
+.login_cont_iz p{
+    padding: 10px 20px;
+    margin-top: 10px;
+    font-size: 20px;
+    border-left: 4px double #a9a9a9;
+    border-right: 4px double #a9a9a9;
+    color: #000052;
+    width: 80%;
 }
 
 .loginData{
