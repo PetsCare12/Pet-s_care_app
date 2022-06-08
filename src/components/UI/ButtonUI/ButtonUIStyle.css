@@ -35,9 +35,10 @@ button{
 }
 
 .btnRegistroRegistrate{
-    height: 35px;
+    height: 45px;
     padding: 0px 16px;
     background-color: #0089b3;
+    margin: 12px 0px;
 }
 
 .btnRegistroRegistrate:hover{
