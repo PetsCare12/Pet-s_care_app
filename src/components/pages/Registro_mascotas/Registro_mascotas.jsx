@@ -5,34 +5,37 @@ import { InputUI } from '../../UI/InputUI/InputUI'
 import { TbGenderMale, TbGenderFemale } from 'react-icons/tb';
 import { FaInfoCircle } from 'react-icons/fa';
 import './Registro_mascotas.css'
-import imagePerro from './img/perro.png'
-import imageGato from './img/gato.png'
-import imageLupa from './img/lupa.png'
-import imageLoro from './img/loro.png'
-import imageOtro from './img/varios.png'
-import titulo from './img/titulo.png'
+import { pets_images } from '../../../helpers/Pets_care_images';
 
 
 
 
 export const Registro_mascotas = () => {
 
-    const [type_pet, setType_pet] = useState(imageLupa)
+    const [type_pet, setType_pet] = useState(pets_images('./registro_mascotas/lupa.png'))
     const [gender, setGender] = useState("")
 
     const handlePet = ( {target} ) => {
 
+        const option_type = document.getElementById('otro_type');
+        option_type.classList.add('option_hidden')
+
         if ( target.value === "perro" ) {
-            setType_pet( imagePerro );
+            setType_pet( pets_images('./registro_mascotas/perro.png') );
         }
         else if ( target.value === "gato" ) {
-            setType_pet( imageGato )
-        } else if ( target.value === "loro") {
-            setType_pet( imageLoro )
-        } else if ( target.value === "otro") {
-            setType_pet( imageOtro )
-        } else {
-            setType_pet( imageLupa )
+            setType_pet( pets_images('./registro_mascotas/gato.png') );
+        } 
+        else if ( target.value === "loro") {
+            setType_pet( pets_images('./registro_mascotas/loro.png') );
+        } 
+        else if ( target.value === "otro") {
+
+            option_type.classList.remove('option_hidden');
+            setType_pet( pets_images('./registro_mascotas/varios.png') );
+        } 
+        else {
+            setType_pet( pets_images('./registro_mascotas/lupa.png') );
         }
         
     }
@@ -85,12 +88,12 @@ export const Registro_mascotas = () => {
                 <img id='type_animal' src={type_pet} alt="" />
             </div>
             <div className='login_cont_dr'>
-                <img src={titulo} className='img_registro_mascotas' />
+                <img src={pets_images('./registro_mascotas/titulo.png')} className='img_registro_mascotas' />
                 <div className="loginData registro_mascota">
                     <p><b>¡</b> Registra tu mascota <b>!</b></p>
                     <div className='div_registro_mascotas_select'>
                         <p id='p_registro_mascotas'>Tipo</p>
-                        <select onChange={ handlePet } name="type" id="select_type">
+                        <select onChange={handlePet} name="type" id="select_type">
                             <option id="option_disabled">Selecciona el tipo de mascota</option>
                             <option value="perro">Perro</option>
                             <option value="gato">Gato</option>
@@ -98,6 +101,13 @@ export const Registro_mascotas = () => {
                             <option value="otro">Otro</option>
                         </select>
                     </div>
+
+                    <InputUI 
+                        type='text'
+                        style='inputLogin option_hidden'
+                        txt='Especifica tu mascota'
+                        id='otro_type'
+                    />
                     
                     <InputUI 
                         type='text'
