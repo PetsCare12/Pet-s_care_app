@@ -9,6 +9,10 @@
     gap: 5%;
 }
 
+#eslogan{
+    width: 280px;
+}
+
 .login_cont_dr{
     display: flex;
     flex-direction: column;

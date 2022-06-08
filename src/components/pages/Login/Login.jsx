@@ -3,6 +3,7 @@ import { ButtonUI } from '../../UI/ButtonUI/ButtonUI'
 import { ImagenUI } from '../../UI/ImagenUI/ImagenUI'
 import { InputUI } from '../../UI/InputUI/InputUI'
 import image from './perro_gato_animado.png'
+import { pets_images } from '../../../helpers/Pets_care_images'
 
 import './LoginStyle.css'
 
@@ -11,7 +12,8 @@ export const Login = () => {
     <div className="loginContainer">
         <div className="login_cont_iz">
             <img src={image} alt="" />
-            <p><b>¡</b> Sé la persona que tu perro cree que eres <b>!</b></p>
+            <img id='eslogan' src={ pets_images("./login/eslogan.png")} alt="" />
+            {/* <p><b>¡</b> Sé la persona que tu perro cree que eres <b>!</b></p> */}
         </div>
         <div className='login_cont_dr'>
             <ImagenUI />
