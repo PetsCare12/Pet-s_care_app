@@ -47,23 +47,24 @@
 #register_steps{
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 50px;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
-#step{
-    width: 35px;
-    height: 35px;
+.step{
     border: 2px solid #bababa;
     color: #bababa;
+    width: 35px;
+    height: 35px;
     border-radius: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#linea_step{
+.linea_step{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -72,9 +73,15 @@
     color: #bababa;
 }
 
-.color_step{
+.color_linea_step{
     color: #1877f2;
-    border:  2px solid #1877f2;
+
+}
+
+.color_step{
+    color: #ffffff;
+    border: 2px solid #006fff;
+    background-color: #1877f2;
 }
 
 #p1Registro{

@@ -1,21 +1,38 @@
 import { Link } from 'react-router-dom'
 import { ButtonUI } from '../../UI/ButtonUI/ButtonUI'
-import { ImagenUI } from '../../UI/ImagenUI/ImagenUI'
-import { MdOutlineCancel, MdNavigateNext } from 'react-icons/md';
+import { MdOutlineCancel } from 'react-icons/md';
 import { InputUI } from '../../UI/InputUI/InputUI'
 import { Login } from '../Login/Login'
-import './RegistroStyle.css'
 import { useEffect, useState } from 'react';
+import './RegistroStyle.css'
 
 export const Registro = () => {
 
     const [steps, setSteps] = useState(1);
 
     const step_change = () => {
-        const step_div = document.getElementById('step');
 
-        if ( steps == 1 ) {
-            step_div.classList.add('color_step');
+        const step1 = document.getElementById('step1');
+        const step2 = document.getElementById('step2');
+        const step3 = document.getElementById('step3');
+        const line1 = document.getElementById('linea_step1');
+        const line2 = document.getElementById('linea_step2');
+        
+
+        if ( steps === 1 ) {
+            step1.classList.add('color_step');
+        }
+        else if ( steps === 2 ){
+            step1.classList.add('color_step');
+            step2.classList.add('color_step');
+            line1.classList.add('color_linea_step');
+        }
+        else if ( steps === 3 ){
+            step1.classList.add('color_step');
+            step2.classList.add('color_step');
+            step3.classList.add('color_step');
+            line1.classList.add('color_linea_step');
+            line2.classList.add('color_linea_step');
         }
     }
 
@@ -43,15 +60,15 @@ export const Registro = () => {
                 </div>
                 
                 <div id='register_steps'>
-                    <div id='step'>
+                    <div className='step' id='step1'>
                         1
                     </div >
-                    <div id='linea_step'><MdNavigateNext /></div>
-                    <div id='step'>
+                    <div className='linea_step' id='linea_step1'>————</div>
+                    <div className='step' id='step2'>
                         2
                     </div>
-                    <div id='linea_step'><MdNavigateNext /></div>
-                    <div id='step'>
+                    <div className='linea_step' id='linea_step2'>————</div>
+                    <div className='step' id='step3'>
                         3
                     </div>
                 </div>
