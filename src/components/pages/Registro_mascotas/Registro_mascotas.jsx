@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ButtonUI } from '../../UI/ButtonUI/ButtonUI'
 import { InputUI } from '../../UI/InputUI/InputUI'
@@ -16,6 +16,20 @@ export const Registro_mascotas = () => {
     const [gender, setGender] = useState("")
 
     // TODO - Agregar una función para hacer un setTimeout y minimizar lineas de codigo
+    const image_animation = useRef(null);
+
+    const imageChoose = ( img ) => {
+        
+        image_animation.current.classList.remove( 'animate__fadeInLeftBig' );
+        
+        setTimeout( () => {
+            
+            setType_pet( pets_images( `./registro_mascotas/${img}.png` ));
+            image_animation.current.classList.add( 'animate__fadeInLeftBig' );
+        }, 1)
+
+        image_animation.current.classList.remove( 'animate__fadeInLeftBig' );
+    }
 
     const handlePet = ( {target} ) => {
 
@@ -23,21 +37,21 @@ export const Registro_mascotas = () => {
         option_type.classList.add('option_hidden')
 
         if ( target.value === "perro" ) {
-            setType_pet( pets_images('./registro_mascotas/perro.png') );
+            imageChoose( target.value )
         }
         else if ( target.value === "gato" ) {
-            setType_pet( pets_images('./registro_mascotas/gato.png') );
+            imageChoose( target.value )
         } 
         else if ( target.value === "loro") {
-            setType_pet( pets_images('./registro_mascotas/loro.png') );
+            imageChoose( target.value )
         } 
-        else if ( target.value === "otro") {
+        else if ( target.value === "varios") {
 
             option_type.classList.remove('option_hidden');
-            setType_pet( pets_images('./registro_mascotas/varios.png') );
+            imageChoose( target.value )
         } 
         else {
-            setType_pet( pets_images('./registro_mascotas/lupa.png') );
+            imageChoose( "lupa" )
         }
         
     }
@@ -58,11 +72,13 @@ export const Registro_mascotas = () => {
 
     return (
         <div className="loginContainer animate__animated animate__fadeIn">
-            <div className="login_cont_iz animate__animated animate__fadeInLeftBig">
+            <div ref={image_animation} className="login_cont_iz animate__animated animate__fadeInLeftBig">
                 <img id='type_animal' src={type_pet} alt="" />
             </div>
             <div className='login_cont_dr'>
+
                 <img src={pets_images('./registro_mascotas/titulo.png')} className='img_registro_mascotas' />
+
                 <div className="loginData registro_mascota">
                     <div className='div_registro_mascotas_select'>
                         <div className='div_select_type'>
@@ -72,7 +88,7 @@ export const Registro_mascotas = () => {
                                 <option value="perro">Perro</option>
                                 <option value="gato">Gato</option>
                                 <option value="loro">Ave</option>
-                                <option value="otro">Otro</option>
+                                <option value="varios">Otro</option>
                             </select>
                         </div>
                         <InputUI 
