@@ -47,12 +47,13 @@
 #register_steps{
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 15px;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
-#step{
+.step{
     width: 35px;
     height: 35px;
     border: 2px solid #bababa;
@@ -63,18 +64,25 @@
     align-items: center;
 }
 
-#linea_step{
+.linea_step{
     display: flex;
     align-items: center;
     justify-content: center;
     width: 25px;
+    margin-top: -4px;
     font-size: 21px;
     color: #bababa;
+    height: 100%;
 }
 
 .color_step{
-    color: #1877f2;
-    border:  2px solid #1877f2;
+    color: white;
+    border:  2px solid #0089b3;
+    background-color: #0089b3;
+}
+
+.color_linea{
+    color: #0089b3;
 }
 
 #p1Registro{
@@ -129,3 +137,44 @@
     gap: 10px;
 }
 
+
+/* ------------- DISEÑO TARJETAS STEP 1 ------------- */
+
+.types_users{
+    justify-content: space-between;
+    display: flex;
+    width: 100%;
+}
+
+.card_type_user{
+    align-items: center;
+    border: 3px double #0089b2;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    justify-content: space-between;
+    padding: 10px;
+    text-align: center;
+    width: 170px;
+}
+
+.card_type_user:hover{
+    transition: background-color .5s ease;
+    border: 3px solid #0089b2;
+    background-color: #0089b233;
+    cursor: pointer;
+}
+
+.card_type_user h3{
+    font-size: 20px;
+}
+
+.img_type_register{
+    font-size: 40px;
+    color: rgb(195, 195, 195);
+}
+
+.color_img_type_register{
+    color: #0089b2;
+}
