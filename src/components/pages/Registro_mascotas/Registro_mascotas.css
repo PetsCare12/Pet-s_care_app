@@ -11,10 +11,23 @@
 .div_registro_mascotas_select{
     width: 100%;
     height: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: flex-end;
+}
+
+.div_registro_mascotas_select_gender{
+    width: 100%;
+    height: auto;
 }
 
 #select_type,#select_gender:focus-visible{
     outline: none;
+}
+
+.div_select_type{
+    width: 100%;
 }
 
 #option_disabled{
@@ -29,8 +42,8 @@
     color: rgb(99, 99, 99);
     display: flex;
     width: 100%;
-    justify-content: space-between;
     align-items: center;
+    height: 15px;
 }
 
 .div_registro_mascotas_input{
@@ -41,26 +54,17 @@
 }
 
 #genderMale{
-    font-size: 40px;
+    font-size: 25px;
     color: #2b87d5;
     font-weight: bold;
 }
 
 #genderFemale{
-    font-size: 40px;
+    font-size: 25px;
     color: #e66afd;
     font-weight: bold;
 }
 
-#recomendacion_registro_mascotas {
-    font-size: 13px;
-    width: 100%;
-    border-left: 2px solid #61bbd6;
-    padding: 5px 10px 5px 10px;
-    color: #005872;
-    background-color: #f7f7f7;
-    border-radius: 6px;
-}
 
 .ocultar_elemento{
     display: none;

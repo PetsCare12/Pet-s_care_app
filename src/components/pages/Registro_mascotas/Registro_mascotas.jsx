@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ButtonUI } from '../../UI/ButtonUI/ButtonUI'
 import { InputUI } from '../../UI/InputUI/InputUI'
@@ -15,27 +15,43 @@ export const Registro_mascotas = () => {
     const [type_pet, setType_pet] = useState(pets_images('./registro_mascotas/lupa.png'))
     const [gender, setGender] = useState("")
 
+    // TODO - Agregar una función para hacer un setTimeout y minimizar lineas de codigo
+    const image_animation = useRef(null);
+
+    const imageChoose = ( img ) => {
+        
+        image_animation.current.classList.remove( 'animate__fadeInLeftBig' );
+        
+        setTimeout( () => {
+            
+            setType_pet( pets_images( `./registro_mascotas/${img}.png` ));
+            image_animation.current.classList.add( 'animate__fadeInLeftBig' );
+        }, 1)
+
+        image_animation.current.classList.remove( 'animate__fadeInLeftBig' );
+    }
+
     const handlePet = ( {target} ) => {
 
         const option_type = document.getElementById('otro_type');
         option_type.classList.add('option_hidden')
 
         if ( target.value === "perro" ) {
-            setType_pet( pets_images('./registro_mascotas/perro.png') );
+            imageChoose( target.value )
         }
         else if ( target.value === "gato" ) {
-            setType_pet( pets_images('./registro_mascotas/gato.png') );
+            imageChoose( target.value )
         } 
         else if ( target.value === "loro") {
-            setType_pet( pets_images('./registro_mascotas/loro.png') );
+            imageChoose( target.value )
         } 
-        else if ( target.value === "otro") {
+        else if ( target.value === "varios") {
 
             option_type.classList.remove('option_hidden');
-            setType_pet( pets_images('./registro_mascotas/varios.png') );
+            imageChoose( target.value )
         } 
         else {
-            setType_pet( pets_images('./registro_mascotas/lupa.png') );
+            imageChoose( "lupa" )
         }
         
     }
@@ -54,80 +70,41 @@ export const Registro_mascotas = () => {
 
     }
 
-    const handleFcInfo = () => {
-        console.log("ENTRA");
-        const recomendacion = document.getElementById('recomendacion_registro_mascotas');
-        const fcInfo = document.getElementById('FcInfo');
-
-        fcInfo.classList.add('deshabilitar')
-
-        
-        recomendacion.classList.remove('animate__backOutRight');
-        recomendacion.classList.remove('ocultarElemento');
-        recomendacion.classList.add('animate__fadeInRight');
-        recomendacion.classList.add('mostrar_elemento');
-
-        setTimeout( () => {
-            
-            recomendacion.classList.remove('animate__fadeInRight');
-            recomendacion.classList.add('animate__backOutRight');
-        }, 9470);
-        setTimeout( () => {
-
-            recomendacion.classList.remove('mostrar_elemento');
-            recomendacion.classList.add('ocultarElemento');
-            fcInfo.classList.remove('deshabilitar');
-        }, 10000);
-
-
-    }
-
     return (
         <div className="loginContainer animate__animated animate__fadeIn">
-            <div className="login_cont_iz animate__animated animate__fadeInLeftBig">
+            <div ref={image_animation} className="login_cont_iz animate__animated animate__fadeInLeftBig">
                 <img id='type_animal' src={type_pet} alt="" />
             </div>
             <div className='login_cont_dr'>
+
                 <img src={pets_images('./registro_mascotas/titulo.png')} className='img_registro_mascotas' />
+
                 <div className="loginData registro_mascota">
-                    <p><b>¡</b> Registra tu mascota <b>!</b></p>
                     <div className='div_registro_mascotas_select'>
-                        <p id='p_registro_mascotas'>Tipo</p>
-                        <select onChange={handlePet} name="type" id="select_type">
-                            <option id="option_disabled">Selecciona el tipo de mascota</option>
-                            <option value="perro">Perro</option>
-                            <option value="gato">Gato</option>
-                            <option value="loro">Ave</option>
-                            <option value="otro">Otro</option>
-                        </select>
+                        <div className='div_select_type'>
+                            <p id='p_registro_mascotas'>Tipo</p>
+                            <select onChange={handlePet} name="type" id="select_type">
+                                <option id="option_disabled">Selecciona el tipo de mascota</option>
+                                <option value="perro">Perro</option>
+                                <option value="gato">Gato</option>
+                                <option value="loro">Ave</option>
+                                <option value="varios">Otro</option>
+                            </select>
+                        </div>
+                        <InputUI 
+                            type='text'
+                            style='inputLogin option_hidden'
+                            txt='Especifica el tipo'
+                            id='otro_type'
+                        />
                     </div>
 
-                    <InputUI 
-                        type='text'
-                        style='inputLogin option_hidden'
-                        txt='Especifica tu mascota'
-                        id='otro_type'
-                    />
                     
                     <InputUI 
                         type='text'
                         style = 'inputLogin'
                         txt = 'Nombre mascota'
                     />
-                    <div className="div_registro_mascotas_input">
-                        <InputUI 
-                            type='text'
-                            style = 'inputLogin'
-                            txt = 'ID '
-                        />
-                        <p id='recomendacion_registro_mascotas' className='ocultar_elemento animate__animated'>
-                            <b>sugerencia:</b> el ID de tu mascota podría ser tu documento y el nombre de tu mascota. ej.18xxxxfirulais
-                        </p>
-                        <div>
-                            <a onClick={handleFcInfo} id="FcInfo"><FaInfoCircle /></a>
-                        </div>
-                        
-                    </div>
                     <div className='div_registro_mascotas_input'>
                         <InputUI 
                             type='text'
@@ -141,12 +118,12 @@ export const Registro_mascotas = () => {
                         />
 
                     </div>
-                    <div className='div_registro_mascotas_select'>
+                    <div className='div_registro_mascotas_select_gender'>
                         {
                             (gender === "macho")
-                            ? <p id='p_registro_mascotas'>Sexo <span id='genderMale'><TbGenderMale /></span></p>
+                            ? <p id='p_registro_mascotas'>Sexo <span className='animate__animated animate__fadeInDown' id='genderMale'><TbGenderMale /></span></p>
                             : ( gender === "hembra") 
-                            ? <p id='p_registro_mascotas'>Sexo <span id='genderFemale'><TbGenderFemale /></span></p>
+                            ? <p id='p_registro_mascotas'>Sexo <span className='animate__animated animate__fadeInUp' id='genderFemale'><TbGenderFemale /></span></p>
                             : <p id='p_registro_mascotas'>Sexo</p>
                         }
                         
@@ -160,11 +137,6 @@ export const Registro_mascotas = () => {
                         style='btnLogin'
                         text='Registrar'
                     />
-                    <div className='hr'>
-                        <hr />
-                        o
-                        <hr />
-                    </div>
                     <Link to="/registro"className='enlaceBtn'>
                         <ButtonUI 
                             style='btnLoginCrear'
