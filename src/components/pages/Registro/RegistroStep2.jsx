@@ -4,7 +4,12 @@ import { MdOutlineCancel, MdNavigateNext } from 'react-icons/md';
 import { InputUI } from '../../UI/InputUI/InputUI'
 import { Login } from '../Login/Login'
 
-export const RegistroStep2 = () => {
+export const RegistroStep2 = ( {step_change} ) => {
+
+    const handleChangeStep = () => {
+        step_change(1)
+    }
+
     return (
         <>
           
@@ -81,15 +86,24 @@ export const RegistroStep2 = () => {
                         
                     </div>
                     
-                    
-                    <ButtonUI 
-                        style='btnLoginCrear btnRegistroRegistrate'
-                        text='Registrase'
-                    />
+                    <div style={{
+                        alignItems: 'center',
+                        display:'flex',
+                        flexDirection: 'column',
+                        width: '100%'
+                    }}>
+                        <ButtonUI 
+                            style='btnLoginCrear btnRegistroRegistrate'
+                            text='Registrase'
+                        />
 
-                    <Link id="registro_cuenta_existente" to={"/login"}>
-                        ¿Ya tienes una cuenta?
-                    </Link>
+                        <ButtonUI
+                            style={'btnShort'}
+                            text={'Volver'}
+                            event={handleChangeStep}
+                        />
+                    </div>
+                    
 
                 </div>
             </div>

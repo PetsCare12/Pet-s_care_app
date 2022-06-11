@@ -45,3 +45,18 @@ button{
     transition: .4s;
     background-color: #00779b;
 }
+
+.btnShort{
+    color: white;
+    background-color: #61bbd6;
+    font-size: 16px;
+    height: 35px;
+    padding: 5px 5px;
+    width: 20%;
+    font-weight: 100;
+}
+
+.btnShort:hover{
+    transition: .4s;
+    background-color: #0089b3;
+}

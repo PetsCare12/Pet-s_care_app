@@ -18,8 +18,8 @@ export const Registro = () => {
 
             {
                 ( steps == 1 )
-                ? <RegistroStep1 />
-                : <RegistroStep2 />
+                ? <RegistroStep1 step_change={setSteps}/>
+                : <RegistroStep2 step_change={setSteps}/>
             }
             <Login />
         </div>

@@ -13,7 +13,7 @@
 .registerData{
     background-color: rgb(255, 255, 255);
     width: 550px;
-    height: auto;
+    height: 520px;
     padding: 30px 10px;
     display: flex;
     flex-direction: column;
@@ -165,19 +165,59 @@
 .card_type_user:hover{
     transition: background-color .5s ease;
     border: 3px solid #0089b2;
-    background-color: #0089b233;
+    background-color: #0089b21a;
     cursor: pointer;
 }
 
 .card_type_user h3{
     font-size: 20px;
+    color: #0089b1;
+}
+
+#p_type_user {
+    line-height: 25px;
+    color: #6a6a6a;
 }
 
 .img_type_register{
     font-size: 40px;
     color: rgb(195, 195, 195);
+    height: 50px;
 }
 
 .color_img_type_register{
+    transition: .7s;
+    font-size: 50px;
     color: #0089b2;
+}
+
+.color_card_type_user{
+    background-color: #0089b21a;
+    border: 3px solid #0089b2;
+}
+
+
+/*  WARNING CHECK   */ 
+
+.warn_check{
+    align-items: center;
+    background-color: #ffba5b66;
+    border: 2px solid #bfb939d1;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    gap: 10px;
+    width: 100%;
+
+}
+
+.hidden{
+    display: none;
+}
+
+#ImWarning{
+    color: #b98436;
+    font-size: 20px;
+    margin-bottom: -2px;
 }
