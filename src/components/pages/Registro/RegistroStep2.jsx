@@ -3,22 +3,32 @@ import { ButtonUI } from '../../UI/ButtonUI/ButtonUI'
 import { MdOutlineCancel, MdNavigateNext } from 'react-icons/md';
 import { InputUI } from '../../UI/InputUI/InputUI'
 import { Login } from '../Login/Login'
+import { RegisterClinica } from './Register_data_fprm/RegisterClinica';
+import { useEffect, useState } from 'react';
+import { RegisterUser } from './Register_data_fprm/RegisterUser';
+import { RegisterVeterinario } from './Register_data_fprm/RegisterVeterinario';
 
-export const RegistroStep2 = ( {step_change} ) => {
+export const RegistroStep2 = ( {steps, step_change} ) => {
 
-    const handleChangeStep = () => {
+
+    const handleChangeStepBack = () => {
         step_change(1)
     }
+
+    const ele = JSON.parse(localStorage.getItem('user_type'))
+    console.log(ele);
+
+
 
     return (
         <>
           
             <div className="register_container">
-                <div className="registerData animate__animated animate__fadeIn">
+                <div className="registerDataAuto animate__animated animate__fadeIn">
                     <div id='titulo_MdOutlineCancel'>
                         
                         <h2 >
-                            Crea una cuesp2
+                            Ingresa los datos
                         </h2>
                         <Link to='/login'>
                             <div id='MdOutlineCancel'>
@@ -26,83 +36,16 @@ export const RegistroStep2 = ( {step_change} ) => {
                             </div>
                         </Link>
                     </div>
-                    
-                    <div id='register_steps'>
-                        <div className='step color_step'>
-                            1
-                        </div >
-                        <div className='linea_step color_linea' >——</div>
-                        <div className='step color_step'>
-                            2
-                        </div>
-                    </div>
-                    <div className='hr'>
-                        <hr />
-                    </div>
-                    <div id='registro_column1'>
-                        <InputUI 
-                            type='text'
-                            style = 'inputLogin inputRegistro'
-                            txt = 'Nombre'
-                        />
-                        <InputUI 
-                            type='text'
-                            style = 'inputLogin inputRegistro'
-                            txt = 'Apellido'
-                        />
-                    </div>
-                    <InputUI 
-                        type='email'
-                        style = 'inputLogin inputRegistro'
-                        txt = 'Correo electrónico nuevo'
-                    />
-                    <InputUI 
-                        type='password'
-                        style = 'inputLogin inputRegistro'
-                        txt = 'Contraseña'
-                    />
-                    <div className="registro_sexo">
-                    <p id='p2Registro'>Sexo:</p>
-                        <div className="cont_registro_checkbox">
-                            <div className="registro_checkbox">
 
-                                <p>Hombre</p>
-                                <InputUI type='radio'/>
-                                
-                            </div>
-                            <div className="registro_checkbox">
+                    {
 
-                                <p>Mujer</p>
-                                <InputUI type='radio'/>
-
-                            </div>
-                            <div className="registro_checkbox">
-
-                                <p>Personalizado</p>
-                                <InputUI type='radio'/>
-
-                            </div>
-                        </div>
+                        ( ele === "clinica" )
+                        ? <RegisterClinica change_step={handleChangeStepBack}/>
+                        : console.log()
                         
-                    </div>
+                    }
                     
-                    <div style={{
-                        alignItems: 'center',
-                        display:'flex',
-                        flexDirection: 'column',
-                        width: '100%'
-                    }}>
-                        <ButtonUI 
-                            style='btnLoginCrear btnRegistroRegistrate'
-                            text='Registrase'
-                        />
-
-                        <ButtonUI
-                            style={'btnShort'}
-                            text={'Volver'}
-                            event={handleChangeStep}
-                        />
-                    </div>
+                    
                     
 
                 </div>

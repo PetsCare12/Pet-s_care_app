@@ -10,7 +10,6 @@ export const Registro = () => {
 
     const [steps, setSteps] = useState(1);
 
-
     return (
       
         <div>
@@ -19,7 +18,7 @@ export const Registro = () => {
             {
                 ( steps == 1 )
                 ? <RegistroStep1 step_change={setSteps}/>
-                : <RegistroStep2 step_change={setSteps}/>
+                : <RegistroStep2 steps={steps} step_change={setSteps}/>
             }
             <Login />
         </div>

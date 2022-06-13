@@ -23,6 +23,19 @@
     gap: 15px;
 }
 
+.registerDataAuto{
+    background-color: rgb(255, 255, 255);
+    width: 550px;
+    height: auto;
+    padding: 30px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    gap: 15px;
+}
+
 #MdOutlineCancel {
     font-size: 33px;
     color: #ff7d7d;
@@ -40,7 +53,15 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    gap: 149px;
+    gap: 135px;
+    justify-content: flex-end;
+}
+
+#titulo_MdOutlineCancel1 {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 215px;
     justify-content: flex-end;
 }
 
@@ -220,4 +241,18 @@
     color: #b98436;
     font-size: 20px;
     margin-bottom: -2px;
+}
+
+/* --------------------------------- */
+
+.rows_register{
+    font-size: 40px;
+    cursor: pointer;
+    color: #0089b3;
+}
+
+.rows_register:hover{
+    transform: scale(1.1);
+    transition: .4s;
+    color: #005f7c;
 }

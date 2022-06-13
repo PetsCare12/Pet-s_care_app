@@ -1,0 +1,40 @@
+
+.days_register{
+    display: flex;
+    width: 63%;
+    justify-content: space-between;
+    color: #1d2129;
+}
+
+.div_select_days_register{
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    height: auto;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.day_option_register{
+    align-items: center;
+    background-color: #0089b240;
+    border-radius: 6px;
+    color: #1d2129;
+    cursor: pointer;
+    display: flex;
+    height: 30px;
+    justify-content: center;
+    letter-spacing: 1px;
+    width: 30%;
+}
+
+.day_option_register:hover{
+    border: 2px solid #009bc9;
+}
+
+.day_register_active{
+    background-color: #61bbd6;
+    border: 2px solid #009bc9;
+}
