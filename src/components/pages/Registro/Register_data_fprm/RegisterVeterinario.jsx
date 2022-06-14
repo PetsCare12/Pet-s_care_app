@@ -1,11 +1,36 @@
 import React from 'react'
-import { InputUI } from '../../../UI/InputUI/InputUI'
+import { ButtonUI } from '../../../UI/ButtonUI/ButtonUI';
+import { InputUI } from '../../../UI/InputUI/InputUI';
+import { GoArrowSmallLeft } from 'react-icons/go';
+import { FaUserNurse } from 'react-icons/fa';
 
-export const RegisterVeterinario = () => {
+export const RegisterVeterinario = ( {change_step} ) => {
     return (
-        <div>
+        <>
 
-            {/* ----- REGISTRO COMO VETERINARIO ----- */}
+            {/* ----- REGISTRO COMO USUARIO ----- */}
+            <div id='register_steps'>
+                <div className='step color_step'>
+                    1
+                </div >
+                <div className='linea_step color_linea' >——</div>
+                <div className='step color_step'>
+                    2
+                </div>
+            </div>
+            <div className='hr'>
+                <hr />
+            </div>
+            <div className="cont_icon">
+                <div onClick={change_step} className='rows_register'>
+                    <GoArrowSmallLeft />
+                </div>
+                <div className="user_icon">
+                    <FaUserNurse />
+                </div>
+            </div>
+            
+            
             <div id='registro_column1'>
                 <InputUI 
                     type='text'
@@ -18,40 +43,40 @@ export const RegisterVeterinario = () => {
                     txt = 'Apellido'
                 />
             </div>
-            <InputUI 
-                type='email'
-                style = 'inputLogin inputRegistro'
-                txt = 'Correo electrónico nuevo'
-            />
+            <div className="registro_sexo">
+                <select name="" id="select">
+                    <option selected={true} disabled={true} value="none">Sexo</option>
+                    <option value="male">Masculino</option>
+                    <option value="female">Femenino</option>
+                    <option value="personalizado">Otro</option>
+                </select>
+                
+            </div>
+            <div id="registro_column1">
+                <InputUI 
+                    type='email'
+                    style = 'inputLogin inputRegistro'
+                    txt = 'Correo electrónico'
+                />
+                <InputUI 
+                    type='text'
+                    style = 'inputLogin inputRegistro'
+                    txt = 'Especialidad'
+                />
+
+            </div>
+
+
             <InputUI 
                 type='password'
                 style = 'inputLogin inputRegistro'
                 txt = 'Contraseña'
             />
-            <div className="registro_sexo">
-            <p id='p2Registro'>Sexo:</p>
-                <div className="cont_registro_checkbox">
-                    <div className="registro_checkbox">
 
-                        <p>Hombre</p>
-                        <InputUI type='radio'/>
-                        
-                    </div>
-                    <div className="registro_checkbox">
-
-                        <p>Mujer</p>
-                        <InputUI type='radio'/>
-
-                    </div>
-                    <div className="registro_checkbox">
-
-                        <p>Personalizado</p>
-                        <InputUI type='radio'/>
-
-                    </div>
-                </div>
-                
-            </div>
-        </div>
+            <ButtonUI 
+                text="Registrar"
+                style="btnLogin"
+            />
+        </>
     )
 }

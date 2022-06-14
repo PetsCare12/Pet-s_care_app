@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { InputUI } from '../../../UI/InputUI/InputUI'
-import { GoArrowSmallLeft, GoArrowSmallRight } from 'react-icons/go';
+import { GoArrowSmallLeft } from 'react-icons/go';
+import { FaHospital } from 'react-icons/fa';
 import './type_registers.css';
 import { ButtonUI } from '../../../UI/ButtonUI/ButtonUI';
 import { RegisterClinica2 } from './RegisterClinica2';
@@ -40,6 +41,15 @@ export const RegisterClinica = ( {change_step} ) => {
                         <hr />
                     </div>
 
+                    <div className="cont_icon">
+                        <div onClick={change_step} className='rows_register'>
+                            <GoArrowSmallLeft />
+                        </div>
+                        <div className="user_icon">
+                            <FaHospital />
+                        </div>
+                    </div>
+
                     <InputUI 
                         type='number'
                         style = 'inputLogin inputRegistro'
@@ -73,12 +83,12 @@ export const RegisterClinica = ( {change_step} ) => {
                         
                     </div>
 
-                    <div id='register_steps'>
-                        <div onClick={change_step} className="rows_register">
-                            <GoArrowSmallLeft />
-                        </div>
-                        <div onClick={step_3} className="rows_register">
-                            <GoArrowSmallRight />
+                    <div id='div_100'>
+                        <div onClick={step_3} style={{width:"40%"}}>
+                            <ButtonUI 
+                                text="Siguiente"
+                                style="btnLogin"
+                            />
                         </div>
                         
                     </div>

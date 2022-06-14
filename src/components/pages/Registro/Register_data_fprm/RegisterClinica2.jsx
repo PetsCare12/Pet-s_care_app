@@ -71,6 +71,18 @@ export const RegisterClinica2 = () => {
                 <div onClick={active_day} ref={btn_domingo} className="day_option_register">Domingo</div>
                 <div onClick={active_day} ref={btn_festivo} className="day_option_register">Festivos</div>
             </div>
+            <div className="days_time_register">
+                <p>Lunes</p>
+                <div className='time_register'>
+                    Apertura
+                    <input type="time" />
+                </div>
+                <div className='time_register'>
+                    Cierre
+                    <input type="time"/>
+                </div>
+            </div>
+            
         </>
     )
 }

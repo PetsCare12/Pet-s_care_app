@@ -15,9 +15,7 @@ export const RegistroStep2 = ( {steps, step_change} ) => {
         step_change(1)
     }
 
-    const ele = JSON.parse(localStorage.getItem('user_type'))
-    console.log(ele);
-
+    const ele = JSON.parse(localStorage.getItem('user_type'));
 
 
     return (
@@ -41,8 +39,9 @@ export const RegistroStep2 = ( {steps, step_change} ) => {
 
                         ( ele === "clinica" )
                         ? <RegisterClinica change_step={handleChangeStepBack}/>
-                        : console.log()
-                        
+                        : ( ele === "veterinario" )
+                        ? <RegisterVeterinario change_step={handleChangeStepBack}/>
+                        : <RegisterUser change_step={handleChangeStepBack}/>
                     }
                     
                     
