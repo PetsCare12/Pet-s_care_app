@@ -24,6 +24,7 @@ export const RegistroStep1 = ( {step_change} ) => {
     const type3 = useRef(null);
 
     const handleButton = () => {
+
         step_change(2)
     }
 
@@ -39,14 +40,13 @@ export const RegistroStep1 = ( {step_change} ) => {
     }
 
     useEffect( () => {
+        localStorage.setItem('user_type',JSON.stringify(user_type));
         ( user_type != "none" )
         ? warn.current.classList.add('hidden')
         : warn.current.classList.remove('hidden');
     }, [user_type])
 
     const handleType = ( {target} ) => {
-
-        const div_card = document.getElementById(target.id);
 
         
         if ( target.id == 'type1' ){
@@ -90,10 +90,10 @@ export const RegistroStep1 = ( {step_change} ) => {
           
             <div className="register_container">
                 <div className="registerData animate__animated animate__fadeIn">
-                    <div id='titulo_MdOutlineCancel'>
+                    <div id='titulo_MdOutlineCancel1'>
                         
                         <h2 >
-                            Selecciona tu Rol
+                            Rol       
                         </h2>
                         <Link to='/login'>
                             <div id='MdOutlineCancel'>
@@ -154,6 +154,8 @@ export const RegistroStep1 = ( {step_change} ) => {
                         style={'btnLoginCrear'}
                         event={check_type}
                     />
+
+                    {/* ---------------- WARNING ---------------- */}
 
                     <p ref={warn} className='warn_check hidden'>
                         <div id='ImWarning'>
