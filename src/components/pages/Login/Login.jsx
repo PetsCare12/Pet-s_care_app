@@ -16,7 +16,10 @@ export const Login = () => {
             {/* <p><b>¡</b> Sé la persona que tu perro cree que eres <b>!</b></p> */}
         </div>
         <div className='login_cont_dr'>
-            <ImagenUI />
+            <ImagenUI 
+
+                img={pets_images("./login/title.png")}
+            />
             <div className="loginData">
                 <p>Iniciar sesión en Pet's Care</p>
                 <InputUI 
