@@ -11,7 +11,11 @@ import { useEffect } from 'react';
 
 export const RegistroStep1 = ( {step_change} ) => {
 
-    const [user_type, setUser_type] = useState("none")
+    const user = JSON.parse(localStorage.getItem('user_type'));
+
+    const [user_type, setUser_type] = useState(user);
+
+    console.log(user_type);
 
     const warn = useRef(null);
 
@@ -41,7 +45,7 @@ export const RegistroStep1 = ( {step_change} ) => {
 
     useEffect( () => {
         localStorage.setItem('user_type',JSON.stringify(user_type));
-        ( user_type != "none" )
+        ( user_type !== "none" )
         ? warn.current.classList.add('hidden')
         : warn.current.classList.remove('hidden');
     }, [user_type])
@@ -49,7 +53,8 @@ export const RegistroStep1 = ( {step_change} ) => {
     const handleType = ( {target} ) => {
 
         
-        if ( target.id == 'type1' || target.className == "type1" ){
+        if ( target.id === 'type1' || target.className === "type1" ){
+            localStorage.setItem('user_type',JSON.stringify("usuario"));
             setUser_type( "usuario" );
             type2.current.classList.remove('color_card_type_user');
             type3.current.classList.remove('color_card_type_user');
@@ -60,7 +65,8 @@ export const RegistroStep1 = ( {step_change} ) => {
             img1.current.classList.add('color_img_type_register');
 
         }
-        else if ( target.id == 'type2' || target.className == "type2" ) {
+        else if ( target.id === 'type2' || target.className === "type2" ) {
+            localStorage.setItem('user_type',JSON.stringify("veterinario"));
             setUser_type( "veterinario" );
             type1.current.classList.remove('color_card_type_user');
             type3.current.classList.remove('color_card_type_user');
@@ -71,7 +77,8 @@ export const RegistroStep1 = ( {step_change} ) => {
             img2.current.classList.add('color_img_type_register');
 
         }
-        else if ( target.id == 'type3' || target.className == "type3" ) {
+        else if ( target.id === 'type3' || target.className === "type3" ) {
+            localStorage.setItem('user_type',JSON.stringify("clinica"));
             setUser_type( "clinica" );
             type1.current.classList.remove('color_card_type_user');
             type2.current.classList.remove('color_card_type_user');
