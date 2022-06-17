@@ -14,6 +14,9 @@ export const RegisterClinica = ( {change_step} ) => {
     const step_3 = () => {
         setStep_cli(2)
     }
+    const step_2 = () => {
+        setStep_cli(1)
+    }
 
     return (
         <>
@@ -94,7 +97,7 @@ export const RegisterClinica = ( {change_step} ) => {
                     </div>
                 </>
 
-                : <RegisterClinica2 />
+                : <RegisterClinica2 change_step={step_2}/>
             }
                
             
