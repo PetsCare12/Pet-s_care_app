@@ -3,6 +3,13 @@ button{
     border-radius: 6px;
     cursor: pointer;
 }
+.btn{
+    color: #61bbd6;
+}
+.btn:hover{
+    transition: .4s;
+    color: #0089b3;
+}
 
 .btnLogin{
     color: white;
@@ -61,6 +68,38 @@ button{
     background-color: #0089b3;
 }
 
+.btnVermas {
+    color: #1d2129;
+    background-color: #ffffff;
+    font-size: 15px;
+    height: 35px;
+    padding: 3px 0px;
+    width: 100%;
+    border: 1px solid #61bbd6;
+    font-weight: 100;
+}
+
+.btnVermas:hover{
+    transition:.4s;
+    background-color: #61bbd6;
+    color: #ffffff;
+}
+
+.btnCalendar{
+    color: #ffffff;
+    background-color: #61bbd69c;
+    font-size: 23px;
+    height: 35px;
+    padding: 6px 5px;
+    width: 15%;
+}
+
+.btnCalendar:hover{
+    transition:.4s;
+    background-color: #61bbd6;
+    color: #ffffff;
+}
+
 .mt-1{
     margin-top: 5px;
 }
@@ -71,4 +110,16 @@ button{
 
 .mt-5{
     margin-top: 20px;
+}
+
+.ml-1{
+    margin-left: 5px;
+}
+
+.ml-3{
+    margin-left: 10px;
+}
+
+.ml-5{
+    margin-left: 20px;
 }

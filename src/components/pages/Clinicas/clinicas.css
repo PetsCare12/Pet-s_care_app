@@ -1,0 +1,208 @@
+.contenedor__clinicas{
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+    height: auto;
+    padding: 100px 9%;
+    width: 100%;
+}
+
+#tilte__clinicas{
+    font-family: 'Nunito', sans-serif;
+    font-weight: 100;
+    font-size: 50px;
+    height: 130px;
+    text-align: center;
+    width: 100%;
+}
+
+#tilte__clinicas span{
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+}
+
+.animated_arrow{
+    position: relative;
+    color: #88cce0;
+    animation-name: mover;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes mover{
+    0% {
+        top: 0;
+    }
+
+    50%{
+        top: 10px;
+    }
+
+    100%{
+        top: 0;
+    }
+}
+/* --------------  CARDS -------------- */ 
+.card__cli{
+    color: #26272a;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 310px;
+}
+
+.card__cli img {
+    width: 100%;
+    height: 350px;
+    border-radius: 10px;
+}
+
+.card__cli h1{
+    font-family: 'Nunito', sans-serif;
+    font-size: 30px;
+}
+
+.card__cli h2{
+    align-items: center;
+    display: flex;
+    font-size: 17px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+    gap: 10px;
+}
+
+.card__cli h3{
+    align-items: center;
+    display: flex;
+    font-size: 17px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+    gap: 10px;
+}
+
+.card__cli h3 b{
+    font-family: 'Nunito', sans-serif;
+}
+
+.card__cli p{
+    font-size: 13px;
+    font-family: 'Nunito', sans-serif;
+}
+
+.card__cli span{
+    color: #0089b3;
+    font-size: 23px;
+    font-weight: bold;
+    margin-bottom: -5px;
+}
+
+.hr__clinicas{
+    background-color: #77889966;
+    border: none;
+    border-radius: 100%;
+    height: 1px;
+}
+
+.buttons_clinicas{
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+/* -------------- CARTA INDIVIDUAL -------------- */
+.contenedor__clinica_individual{
+    display: flex;
+    padding: 9%;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.clinica__data h1,h2,h3,p,span {
+    font-family: 'Nunito', sans-serif;
+}
+
+.clinica__data span {
+    color: #0089b3;
+    font-size: 30px;
+    margin-bottom: -10px;
+}
+
+.clinica__data h1{
+    display: flex;
+    font-size: 50px;
+    justify-content: space-between;
+}
+
+.clinica__data h2{
+    align-items: center;
+    display: flex;
+    font-size: 25px;
+    font-weight: 100;
+    gap: 20px;
+}
+
+.clinica__data h3 b {
+    font-weight: 200;
+}
+
+.clinica__data h3{
+    align-items: center;
+    display: flex;
+    font-size: 25px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 100;
+    gap: 20px;
+}
+
+.clinica__img{
+    width: 50%;
+    height: 430px;
+}
+
+.clinica__img img {
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+.clinica__data{
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    padding: 0px 30px;
+    width: 50%;
+}
+
+.cli__schedule{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px 10px;
+    width: 400px;
+    font-size: 13px;
+}
+
+.contenedor__clinica_individual summary{
+    align-items: center;
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    font-size: 25px;
+    gap: 20px;
+    width: 190px;
+}
+
+.cli__schedule:nth-child(2n - 1){
+    background-color: #77889966;
+}
+
+#clinica__summary-icon{
+    color: #0089b3;
+}
+
+.clinica__enlace{
+    font-size: 25px;
+    text-decoration: none;
+}
