@@ -60,3 +60,15 @@ button{
     transition: .4s;
     background-color: #0089b3;
 }
+
+.mt-1{
+    margin-top: 5px;
+}
+
+.mt-3{
+    margin-top: 10px;
+}
+
+.mt-5{
+    margin-top: 20px;
+}

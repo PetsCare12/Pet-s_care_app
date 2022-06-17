@@ -1,3 +1,11 @@
+.contenedor__schedules{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    overflow-y: scroll;
+    width: 100%;
+}
 
 .days_register{
     display: flex;
@@ -27,7 +35,7 @@
     height: 30px;
     justify-content: center;
     letter-spacing: 1px;
-    width: 30%;
+    width: 20%;
 }
 
 .day_option_register:hover{
@@ -43,8 +51,16 @@
     border-bottom: 1px solid #009bc9;
     display: flex;
     justify-content: space-between;
-    height: 21px;
-    width: 70%;
+    height: 40px;
+    width: 100%;
+}
+
+.days_time_register:nth-child(2n - 1) {
+    background-color: aliceblue;
+}
+
+.days_time_register input {
+    background-color: #ffffff00;
 }
 
 .days_time_register p{
@@ -79,6 +95,17 @@
     justify-content: center;
     display: flex;
     width: 100%;
+}
+
+.h4_register_clinica{
+    align-self: flex-start;
+    align-items: center;
+    display: flex;
+    font-size: 20px;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    width: 68%;
+    color: #004f66;
 }
 
 .cont_icon{
