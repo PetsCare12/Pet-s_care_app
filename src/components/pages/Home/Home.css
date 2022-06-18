@@ -1,0 +1,37 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.sectionTop{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+}
+.sectionLeft{
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    width: 45%;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 10px;
+    height: 600px;
+    border-radius: 6px;
+}
+.sectionRight{
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    width: 45%;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 10px;
+    height: 600px;
+    border-radius: 6px; 
+}
+.sectionBottom{
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    border-radius: 6px;
+    margin-top: 15px;
+    width: 91%;
+    height: 600px;
+}
