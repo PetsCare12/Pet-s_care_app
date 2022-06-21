@@ -151,5 +151,18 @@ export const clinicas = [
             "Domingo": "9:00 - 16:00",
             "Festivo": "9:00 - 12:00"
         }]
+    },
+    {
+        "id" : 10,
+        "img" : "https://e.rpp-noticias.io/normal/2022/06/17/343634_1274440.jpg",
+        "nombre": "Bicho",
+        "direccion": "Cra 27 #15-29",
+        "valor_consulta": 1000000,
+        "horarios" : [{
+            "Lunes": "8:00 - 18:00",
+            "Martes": "8:00 - 18:00",
+            "Miercoles": "8:00 - 18:00"
+        }]
     }
+    
 ]

@@ -1,19 +1,15 @@
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { ButtonUI } from '../../UI/ButtonUI/ButtonUI'
 import { MdOutlineCancel } from 'react-icons/md';
 import { AiOutlineUser } from 'react-icons/ai';
 import { FaUserNurse, FaHospitalUser } from 'react-icons/fa';
 import { ImWarning } from 'react-icons/im';
-import { useRef } from 'react';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 
 export const RegistroStep1 = ( {step_change} ) => {
 
-    const user = JSON.parse(localStorage.getItem('user_type'));
-
-    const [user_type, setUser_type] = useState(user);
+    const [user_type, setUser_type] = useState("none");
 
     console.log(user_type);
 
@@ -26,6 +22,15 @@ export const RegistroStep1 = ( {step_change} ) => {
     const type1 = useRef(null);
     const type2 = useRef(null);
     const type3 = useRef(null);
+
+    const navigate = useNavigate();
+
+
+    const handleExit = () => {
+        console.log("sasas");
+        localStorage.removeItem("user_type")
+        navigate ( -1 );
+    }
 
     const handleButton = () => {
 
@@ -102,11 +107,11 @@ export const RegistroStep1 = ( {step_change} ) => {
                         <h2 >
                             Rol       
                         </h2>
-                        <Link to='/login'>
-                            <div id='MdOutlineCancel'>
+                        {/* <Link to='/login'> */}
+                            <div id='MdOutlineCancel' onClick={handleExit}>
                                 <MdOutlineCancel />
                             </div>
-                        </Link>
+                        {/* </Link> */}
                     </div>
                     
                     
