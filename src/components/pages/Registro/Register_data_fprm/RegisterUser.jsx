@@ -1,13 +1,42 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { InputUI } from '../../../UI/InputUI/InputUI'
 import { AiOutlineUserAdd } from 'react-icons/ai';
 import { GoArrowSmallLeft } from 'react-icons/go';
 import { ButtonUI } from "../../../UI/ButtonUI/ButtonUI";
+import { registro_user } from '../../../../helpers/dataAPI';
 
 export const RegisterUser = ( {change_step} ) => {
 
+
+
+    const handleSubmit = ( e ) => {
+        e.preventDefault();
+        
+        const data_user={
+            "documento": e.target[0].value,
+            "nombre": e.target[1].value,
+            "apellido": e.target[2].value,
+            "telefono": e.target[3].value,
+            "correo": e.target[4].value,
+            "sexo": e.target[5].value,
+            "password": e.target[6].value
+        }
+        console.log(data_user);
+
+        registro_user( 
+            "usuarios", 
+            data_user["documento"],
+            data_user["nombre"],
+            data_user["apellido"],
+            data_user["telefono"],
+            data_user["sexo"],
+            data_user["correo"],
+            data_user["password"],
+        )
+    }
+
     return (
-        <>
+        <form onSubmit={handleSubmit} style={{height:"200px"}}>
 
             {/* ----- REGISTRO COMO USUARIO ----- */}
             <div id='register_steps'>
@@ -31,7 +60,11 @@ export const RegisterUser = ( {change_step} ) => {
                 </div>
             </div>
             
-            
+            <InputUI 
+                type='text'
+                style = 'inputLogin inputRegistro'
+                txt = 'Documento'
+            />
             <div id='registro_column1'>
                 <InputUI 
                     type='text'
@@ -45,17 +78,22 @@ export const RegisterUser = ( {change_step} ) => {
                 />
             </div>
             <InputUI 
+                type='text'
+                style = 'inputLogin inputRegistro'
+                txt = 'Teléfono'
+            />
+            <InputUI 
                 type='email'
                 style = 'inputLogin inputRegistro'
                 txt = 'Correo electrónico'
             />
             <div className="registro_sexo">
 
-                <select name="" id="select">
+                <select name="sexo" id="select">
                     <option selected={true} disabled={true} value="none">Selecciona el sexo</option>
-                    <option value="male">Hombre</option>
-                    <option value="female">Mujer</option>
-                    <option value="personalizado">Personalizado</option>
+                    <option value="hombre">Hombre</option>
+                    <option value="mujer">Mujer</option>
+                    <option value="otro">Otro</option>
                 </select>
                 
             </div>
@@ -64,12 +102,13 @@ export const RegisterUser = ( {change_step} ) => {
                 type='password'
                 style = 'inputLogin inputRegistro'
                 txt = 'Contraseña'
+
             />
 
             <ButtonUI 
             text="Registrar"
             style="btnLogin"
             />
-        </>
+        </form>
     )
 }

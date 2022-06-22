@@ -113,6 +113,22 @@ export const RegisterClinica2 = ( {change_step} ) => {
                         }
                         data_schedules.push(sabado)
                         break;
+                    case "domingo":
+                        let domingo = {
+                            "day"      : "Domingo",
+                            "apertura" : apertura_domingo.current.value,
+                            "cierre"   : cierre_domingo.current.value
+                        }
+                        data_schedules.push(domingo)
+                        break;
+                    case "festivo":
+                        let festivo = {
+                            "day"      : "Festivo",
+                            "apertura" : apertura_festivo.current.value,
+                            "cierre"   : cierre_festivo.current.value
+                        }
+                        data_schedules.push(festivo)
+                        break;
                     default:
                         break;
                     
