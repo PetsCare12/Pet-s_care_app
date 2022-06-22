@@ -50,8 +50,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-around; 
-    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);   
-    border-radius: 0 0px 10px 10px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(68 171 220);    border-radius: 0 0px 10px 10px;
     margin-bottom: 20px;
 }
 .nav_Home{
