@@ -18,10 +18,30 @@ export const registro_user = ( endpoint, documento, nombre, apellido, telefono, 
             sexoUs : sexo,
             correoUs : correo,
             passwordUs : password,
-            imagenUsuario : "empty",
+            imagenUsu : "empty",
             rolUs : 2
         })
     })
     .then( response => response )
     .then((data) => console.log(data))
+}
+
+export const validate_user = ( endpoint, documento ) => {
+
+    let validacion = true;
+
+    fetch( URL+endpoint+`/${documento}` )
+    .then( response => response.json() )
+    .then((data) => {
+        if ( data == null ) {
+            console.log("good");
+            validacion = false;
+        }
+        else {
+            console.log("error");
+            validacion = true;
+        }
+    })
+
+    return validacion;
 }

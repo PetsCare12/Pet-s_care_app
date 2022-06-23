@@ -1,3 +1,10 @@
+form{
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
 .contenedor__schedules{
     align-items: center;
     display: flex;
