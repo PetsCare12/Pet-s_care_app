@@ -1,3 +1,16 @@
+# RUTAS PARA LA VISUALIZACIÓN DE LAS VISTAS
+
+_En la mayoría de las vistas ya hay una interacción con los botones como en registro_
+
+## Rutas 🚀
+
+_/login_
+_/registro_
+### /registro_mascotas
+_/clinicas_
+_/perfil_
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
