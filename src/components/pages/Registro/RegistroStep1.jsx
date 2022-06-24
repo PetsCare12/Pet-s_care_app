@@ -1,21 +1,15 @@
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { ButtonUI } from '../../UI/ButtonUI/ButtonUI'
 import { MdOutlineCancel } from 'react-icons/md';
 import { AiOutlineUser } from 'react-icons/ai';
 import { FaUserNurse, FaHospitalUser } from 'react-icons/fa';
 import { ImWarning } from 'react-icons/im';
-import { useRef } from 'react';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 
 export const RegistroStep1 = ( {step_change} ) => {
 
-    const user = JSON.parse(localStorage.getItem('user_type'));
-
-    const [user_type, setUser_type] = useState(user);
-
-    console.log(user_type);
+    const [user_type, setUser_type] = useState("none");
 
     const warn = useRef(null);
 
@@ -27,27 +21,33 @@ export const RegistroStep1 = ( {step_change} ) => {
     const type2 = useRef(null);
     const type3 = useRef(null);
 
+    const navigate = useNavigate();
+
+
+    const handleExit = () => {
+        localStorage.removeItem("user_type")
+        navigate ( -1 );
+    }
+
     const handleButton = () => {
 
-        step_change(2)
+        step_change(2);
     }
 
-    const check_type = () => {
-        if ( user_type === "none" ) {
-
-            warn.current.classList.remove('hidden');
-        }
-        else {
-            handleButton();
-            warn.current.classList.add('hidden');
-        }
-    }
 
     useEffect( () => {
         localStorage.setItem('user_type',JSON.stringify(user_type));
-        ( user_type !== "none" )
-        ? warn.current.classList.add('hidden')
-        : warn.current.classList.remove('hidden');
+        const btnCrear = document.getElementById('btnType');
+
+        if ( user_type !== "none" ){
+            warn.current.classList.add('hidden');
+            btnCrear.classList.remove('btnBlocked');
+        }
+        else {
+            btnCrear.classList.add('btnBlocked');
+            warn.current.classList.remove('hidden');
+        } 
+        
     }, [user_type])
 
     const handleType = ( {target} ) => {
@@ -102,11 +102,11 @@ export const RegistroStep1 = ( {step_change} ) => {
                         <h2 >
                             Rol       
                         </h2>
-                        <Link to='/login'>
-                            <div id='MdOutlineCancel'>
+                        {/* <Link to='/login'> */}
+                            <div id='MdOutlineCancel' onClick={handleExit}>
                                 <MdOutlineCancel />
                             </div>
-                        </Link>
+                        {/* </Link> */}
                     </div>
                     
                     
@@ -155,21 +155,22 @@ export const RegistroStep1 = ( {step_change} ) => {
                         o
                         <hr />
                     </div>
-
-                    <ButtonUI 
-                        text={'Siguiente'}
-                        style={'btnLoginCrear'}
-                        event={check_type}
-                    />
-
-                    {/* ---------------- WARNING ---------------- */}
-
                     <p ref={warn} className='warn_check hidden'>
                         <div id='ImWarning'>
                             <ImWarning />
                         </div>
                         Por favor, selecciona un rol antes de continuar
                     </p>
+
+                    <ButtonUI 
+                        text={'Siguiente'}
+                        style={'btnLoginCrear btnBlocked'}
+                        event={handleButton}
+                        id={"btnType"}
+                    />
+
+                    {/* ---------------- WARNING ---------------- */}
+
 
                 </div>
             </div>

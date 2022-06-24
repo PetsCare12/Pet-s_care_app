@@ -249,6 +249,7 @@
     font-size: 40px;
     cursor: pointer;
     color: #0089b3;
+    height: 25px;
 }
 
 .rows_register:hover{
