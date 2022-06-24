@@ -1,0 +1,96 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.sectionTop{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+}
+.sectionLeft{
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    width: 45%;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 10px;
+    height: 600px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.sectionRight{
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    width: 45%;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 10px;
+    height: 600px;
+    border-radius: 6px; 
+}
+.sectionBottom{
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    border-radius: 6px;
+    margin-top: 15px;
+    width: 91%;
+    height: 600px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    padding: 15px;
+}
+.sectionBottom div h1{
+    font-size: 35px;
+    font-weight: 400;
+    color: #0089b3;
+}
+.cardBottom{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    border-radius: 6px;
+}
+/* //////////////////////////////////////////// */
+.imgPresentation{
+    margin: 0;
+    width: 835px;
+    height: 560px;
+    border-radius: 6px;
+    z-index: 0;
+}
+.imgPresentationCont{
+    width: 835px;
+    height: 560px;
+}
+.contentSlide{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.titlePresentation{
+    margin-top: -80px; 
+    margin-bottom: 0;   
+    font-size: 45px;
+    font-weight: 400;
+    z-index: 1;
+    color: white;
+    background-color: #0089b3;
+    width: 835px;
+    text-align: center;
+}
+.color1{
+    color: white;
+}
+.color2{
+    color: rgb(68 171 220);
+}
