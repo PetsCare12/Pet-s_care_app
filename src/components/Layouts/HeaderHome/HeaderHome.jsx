@@ -9,7 +9,8 @@ export const Header = () => {
     <div className='headerHome'>
         <div className="logo">
           <ImagenUI img={pets_images('./home/logo.png')} style="logoHome"></ImagenUI>
-          <ImagenUI img={pets_images('./home/titulo.png')} style="tituloHome"></ImagenUI>
+          <h1>Pet's Care</h1>
+          {/* <ImagenUI img={pets_images('./home/titulo.png')} style="tituloHome"></ImagenUI> */}
         </div>
 
         <div className="options">

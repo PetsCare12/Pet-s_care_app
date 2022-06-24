@@ -1,10 +1,5 @@
 export const presentation = [
     {
-        "id" : 1,
-        "img" : "https://www.avenidahospitalveterinario.es/wp-content/uploads/2015/10/1.jpg",
-        "nombre": "Servicio 24/7"
-    },
-    {
         "id" : 2,
         "img" : "https://zootecniasl.com/blog/wp-content/uploads/2020/03/guia-visitas-clinica-veterinaria-2.jpg",
         "nombre": "Calidad para ellos, facilidad para ti."
