@@ -2,12 +2,9 @@ import React from 'react'
 import { Profile_nav } from "../Profile/Profile_nav";
 import { Profile_photo } from "./Profile_photo";
 import './Profile.css'
-import { CardsPets } from '../../Layouts/ContPets/CardsPets';
 import { ButtonUI } from "../../UI/ButtonUI/ButtonUI";
 import { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ImagenUI } from '../../UI/ImagenUI/ImagenUI';
-import { pets_images } from '../../../helpers/Pets_care_images';
 
 
 export const Profile = () => {
@@ -32,7 +29,6 @@ export const Profile = () => {
           <Link to="/registro_mascotas" className='a am'><ButtonUI event={printPets} text="Agregar Mascota" style="btnLoginCrear btnAgregarMascota"></ButtonUI></Link>
           <br />
           <hr />
-          <CardsPets text="Mascotas aqui..." arr={testArr}></CardsPets> {/* Renderizado de las mascotas   relacionadas */}
         </div>
     </div>
   )
