@@ -4,11 +4,11 @@ _En la mayoría de las vistas ya hay una interacción con los botones como en re
 
 ## Rutas 🚀
 
-_/login_
-_/registro_
-### /registro_mascotas
-_/clinicas_
-_/perfil_
+/login                         -- (1 vista)
+/registro                   -- (5 vistas)
+/registro_mascotas -- (1 vista)
+/clinicas                    -- (2 vistas)
+/perfil                       -- (1 vista)
 
 
 # Getting Started with Create React App
