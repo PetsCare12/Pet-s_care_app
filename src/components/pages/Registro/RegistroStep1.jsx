@@ -11,8 +11,6 @@ export const RegistroStep1 = ( {step_change} ) => {
 
     const [user_type, setUser_type] = useState("none");
 
-    console.log(user_type);
-
     const warn = useRef(null);
 
     const img1 = useRef(null);
@@ -27,32 +25,29 @@ export const RegistroStep1 = ( {step_change} ) => {
 
 
     const handleExit = () => {
-        console.log("sasas");
         localStorage.removeItem("user_type")
         navigate ( -1 );
     }
 
     const handleButton = () => {
 
-        step_change(2)
+        step_change(2);
     }
 
-    const check_type = () => {
-        if ( user_type === "none" ) {
-
-            warn.current.classList.remove('hidden');
-        }
-        else {
-            handleButton();
-            warn.current.classList.add('hidden');
-        }
-    }
 
     useEffect( () => {
         localStorage.setItem('user_type',JSON.stringify(user_type));
-        ( user_type !== "none" )
-        ? warn.current.classList.add('hidden')
-        : warn.current.classList.remove('hidden');
+        const btnCrear = document.getElementById('btnType');
+
+        if ( user_type !== "none" ){
+            warn.current.classList.add('hidden');
+            btnCrear.classList.remove('btnBlocked');
+        }
+        else {
+            btnCrear.classList.add('btnBlocked');
+            warn.current.classList.remove('hidden');
+        } 
+        
     }, [user_type])
 
     const handleType = ( {target} ) => {
@@ -160,21 +155,22 @@ export const RegistroStep1 = ( {step_change} ) => {
                         o
                         <hr />
                     </div>
-
-                    <ButtonUI 
-                        text={'Siguiente'}
-                        style={'btnLoginCrear'}
-                        event={check_type}
-                    />
-
-                    {/* ---------------- WARNING ---------------- */}
-
                     <p ref={warn} className='warn_check hidden'>
                         <div id='ImWarning'>
                             <ImWarning />
                         </div>
                         Por favor, selecciona un rol antes de continuar
                     </p>
+
+                    <ButtonUI 
+                        text={'Siguiente'}
+                        style={'btnLoginCrear btnBlocked'}
+                        event={handleButton}
+                        id={"btnType"}
+                    />
+
+                    {/* ---------------- WARNING ---------------- */}
+
 
                 </div>
             </div>

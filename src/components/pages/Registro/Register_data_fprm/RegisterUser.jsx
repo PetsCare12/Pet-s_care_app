@@ -109,7 +109,8 @@ export const RegisterUser = ( {change_step} ) => {
 
                 <ButtonUI 
                 text="Registrar"
-                style="btnLogin"
+                style="btnLogin btnBlocked"
+                id={"btnEnviar"}
                 />
             </form>
         </>
