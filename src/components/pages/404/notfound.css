@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+}
+
+#h1NotFound{
+    color: #008dcf;
+    font-size: 100px;
+    font-family: 'Nunito', sans-serif;
+}
+#h2NotFound{
+    font-size: 40px;
+    font-family: 'Nunito', sans-serif;
+}
+img{
+    border-radius: 30px;
+    width: 50%;
+}

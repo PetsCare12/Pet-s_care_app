@@ -222,8 +222,8 @@
 
 .warn_check{
     align-items: center;
-    background-color: #ffba5b66;
-    border: 2px solid #bfb939d1;
+    background-color: #0089b24f;
+    border: 2px solid #0089b2;
     border-radius: 6px;
     display: flex;
     flex-direction: row;
@@ -237,10 +237,9 @@
     display: none;
 }
 
-#ImWarning{
-    color: #b98436;
-    font-size: 20px;
-    margin-bottom: -2px;
+#ImWarning {
+    font-size: 25px;
+    margin-bottom: -7px;
 }
 
 /* --------------------------------- */

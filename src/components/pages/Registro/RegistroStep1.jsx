@@ -3,7 +3,7 @@ import { ButtonUI } from '../../UI/ButtonUI/ButtonUI'
 import { MdOutlineCancel } from 'react-icons/md';
 import { AiOutlineUser } from 'react-icons/ai';
 import { FaUserNurse, FaHospitalUser } from 'react-icons/fa';
-import { ImWarning } from 'react-icons/im';
+import { FcInfo } from 'react-icons/fc';
 import { useRef, useState, useEffect } from 'react';
 
 
@@ -150,14 +150,9 @@ export const RegistroStep1 = ( {step_change} ) => {
                         </div>
                     </div>
 
-                    <div className='hr'>
-                        <hr />
-                        o
-                        <hr />
-                    </div>
                     <p ref={warn} className='warn_check hidden'>
                         <div id='ImWarning'>
-                            <ImWarning />
+                            <FcInfo />
                         </div>
                         Por favor, selecciona un rol antes de continuar
                     </p>

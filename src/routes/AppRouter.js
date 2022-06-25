@@ -1,4 +1,5 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { NotFound } from '../components/pages/404/NotFound';
 import { Clinica } from '../components/pages/Clinicas/Clinica';
 import { Clinicas } from '../components/pages/Clinicas/Clinicas';
 import { Home } from '../components/pages/Home/Home';
@@ -22,6 +23,7 @@ export const AppRouter = () => {
                 <Route path='/registroTest' element={<RegistroTest />} />
                 <Route path='clinicas' element={<Clinicas />} />
                 <Route path='clinica/:id' element={<Clinica />} />
+                <Route path="/*" element={ <NotFound />  } />
                 <Route path="/" element={ <Home />  } />
 
             </Routes>
