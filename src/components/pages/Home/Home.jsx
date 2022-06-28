@@ -1,5 +1,5 @@
-import { Header } from "../../Layouts/HeaderHome/HeaderHome";
-import { FooterHome } from "../../Layouts/FooterHome/FooterHome";
+import { Header } from "../../layout/HeaderHome/HeaderHome";
+import { FooterHome } from "../../layout/FooterHome/FooterHome";
 import { Slide } from 'react-slideshow-image';
 import { presentation } from "./data"
 import { ImagenUI } from "../../UI/ImagenUI/ImagenUI";
