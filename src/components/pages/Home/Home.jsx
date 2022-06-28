@@ -3,10 +3,10 @@ import { FooterHome } from "../../layout/FooterHome/FooterHome";
 import { Slide } from 'react-slideshow-image';
 import { presentation } from "./data"
 import { ImagenUI } from "../../UI/ImagenUI/ImagenUI";
-//import { useEffect, useState } from "react";
+import { pets_images } from "../../../helpers/Pets_care_images";
 import './styles.css'
 import './Home.css'
-import { pets_images } from "../../../helpers/Pets_care_images";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
 
@@ -33,13 +33,16 @@ export const Home = () => {
                       </Slide>
                     </div>
                   </div>
-                <div className="sectionRight"></div>
+                <div className="sectionRight">
+                  <h1>Derecha</h1>
+                  <Link className="aRHome" to={""}>Comienza Ahora!</Link>
+                </div>
               </div>
             <div className="sectionBottom">
               <div className="cardBottom">
-                <ImagenUI img={pets_images('./home/historia-clinica.png')} style="imgCards"></ImagenUI>
+                <ImagenUI img={pets_images('./home/hombre.png')} style="imgCards"></ImagenUI>
                 <div>
-                  <h1>Historia Clinica</h1>
+                  <h1>Para Usuarios</h1>
                   <br />
                   <p>Sube la Historia clinica de tus mascotas para no volver a llevar papeles a tus citas.</p>
                 </div>
