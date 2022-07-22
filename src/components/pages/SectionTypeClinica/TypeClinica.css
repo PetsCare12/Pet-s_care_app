@@ -1,0 +1,14 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+header{
+    background-color: #0089b3;
+    height: 20%;
+    color: white;
+}
+footer{
+    background-color: #0089b3;
+    height: 20%;
+    color: white;
+}

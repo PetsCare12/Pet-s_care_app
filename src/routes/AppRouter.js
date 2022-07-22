@@ -1,4 +1,4 @@
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Routes, Route, BrowserRouter} from 'react-router-dom';
 import { NotFound } from '../components/pages/404/NotFound';
 import { Clinica } from '../components/pages/Clinicas/Clinica';
 import { Clinicas } from '../components/pages/Clinicas/Clinicas';
@@ -7,27 +7,24 @@ import { Login } from '../components/pages/Login/Login';
 import { Profile } from '../components/pages/Profile/Profile';
 import { Registro } from '../components/pages/Registro/Registro';
 import { Registro_mascotas } from '../components/pages/Registro_mascotas/Registro_mascotas';
+import { TypeClinica } from '../components/pages/SectionTypeClinica/TypeClinica';
 import { RegistroTest } from '../components/pages/testRegister/RegistroTest';
-
 
 export const AppRouter = () => {
     return (
         <BrowserRouter>
-            
-            <Routes>
-                
-                <Route path="/login" element={<Login />} />
-                <Route path="/registro" element={<Registro />} />
-                <Route path="/registro_mascotas" element={<Registro_mascotas />} />
-                <Route path='/perfil' element={<Profile />} />
-                <Route path='/registroTest' element={<RegistroTest />} />
-                <Route path='clinicas' element={<Clinicas />} />
-                <Route path='clinica/:id' element={<Clinica />} />
-                <Route path="/*" element={ <NotFound />  } />
-                <Route path="/" element={ <Home />  } />
-
-            </Routes>
-            
+                <Routes>
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/registro" element={<Registro />} />
+                        <Route path="/registro_mascotas" element={<Registro_mascotas />} />
+                        <Route path='/perfil' element={<Profile />} />
+                        <Route path='/registroTest' element={<RegistroTest />} />
+                        <Route path='clinicas' element={<Clinicas />} />
+                        <Route path='clinica/:id' element={<Clinica />} />
+                        <Route path="/*" element={ <NotFound />  } />
+                        <Route path="/" element={ <Home />  } />
+                        <Route path="/clinica" element={ <TypeClinica />  } />
+                </Routes>
         </BrowserRouter>
     )
 }
