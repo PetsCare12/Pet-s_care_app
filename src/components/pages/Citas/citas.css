@@ -1,0 +1,11 @@
+/* ---------------- CITAS ---------------- */
+.typePage {
+    background-color: #61bbd6;
+    border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+    color: white;
+    height: 60px;
+    padding: 10px;
+    text-align: center;
+    width: 200px;
+}
