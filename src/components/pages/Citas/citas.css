@@ -1,3 +1,36 @@
+.citaCard__contenedor h1,p {
+    font-family: 'Ruda', sans-serif;
+}
+
+.citaCard__contenedor{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    height: 150px;
+    width: 400px;
+}
+.citaCard__contenedor-izquierdo{
+    height: 100%;
+    text-align: left;
+    width: 45%;
+}
+.citaCard__contenedor-derecho{
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 55%;
+    overflow: hidden;
+}
+
+.citaCard__contenedor-derecho img{
+    border-radius: 6px;
+    width: 100%;
+}
+
+
 /* ---------------- CITAS ---------------- */
 .typePage {
     background-color: #61bbd6;
@@ -8,4 +41,8 @@
     padding: 10px;
     text-align: center;
     width: 200px;
+}
+
+.citas__contenedor{
+    padding: 30px;
 }

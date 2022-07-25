@@ -1,4 +1,5 @@
 import React from 'react'
+import { BsGenderMale, BsGenderFemale } from 'react-icons/bs'
 
 export const CitaCard = ( {
 
@@ -15,18 +16,19 @@ export const CitaCard = ( {
 } ) => {
 
     return (
-        <>
-            <div className="citaCard__contenedor">
+        <button className="citaCard__contenedor">
+
                 <div className="citaCard__contenedor-izquierdo">
                     <div className="citaCard__contenedor-mascota">
                         <h1>
                             {nombreMc} 
+
                             {
-                                ( gender === "male" ) ?
-                                <img src={""} alt="petImg" />
-                                : <img src={""} alt="petImg" />
+                                ( gender === "Masculino" ) ?
+                                <BsGenderMale style={{color:"#0072ff"}}/>
+                                : <BsGenderFemale style={{color:"#d661cf"}}/>
                             }
-                            
+
                         </h1>
                         <p className='citaCard__p-mascota'> {raza} </p>
                         <p className='citaCard__p-mascota'> {anios} Año(s)</p>
@@ -39,7 +41,7 @@ export const CitaCard = ( {
                 <div className="citaCard__contenedor-derecho">
                     <img src={imgUrl} alt="" />
                 </div>
-            </div>
-        </>
+
+        </button>
     )
 }
