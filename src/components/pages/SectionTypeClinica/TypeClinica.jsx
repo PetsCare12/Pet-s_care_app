@@ -3,14 +3,12 @@ import "./TypeClinica.css";
 
 export const TypeClinica = () => {
   return (
-    <>
-        <header> Header </header>
-
-            <nav></nav>
-            <div></div>
-            <div></div>
-
-        <footer> Footer </footer>
-    </>
+    <div className='st1'>
+      <div className='st2'>
+          <div className='titleClin'>
+            <h1>Admisnista tu Clinica</h1>
+          </div>
+      </div>
+    </div>
   )
 }
