@@ -1,6 +1,10 @@
 *{
+    font-family: 'Nunito', sans-serif;
     margin: 0;
     padding: 0;
+}
+h1,h2,h3,h4,h5,h6,p{
+    font-family: 'Nunito', sans-serif;
 }
 .st1{
     display: flex;
@@ -9,11 +13,10 @@
     align-items: center;
     width: 100%;
     height: 100vh;
-    background-color: #0089b3;
+    background-color: #03a9db;
 }
 .st2{
-
-    background-color: #f0f2f5;
+    background-color: #e9e9e9;
     border-radius: 6px;
     width: 95%;
     height: 95%;
@@ -23,4 +26,121 @@
     display: flex;
     justify-content: center;
     margin-top: 25px;
+}
+.st3{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+}
+.st4{
+    overflow-y: scroll;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    width: 30%;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 10px;
+    height: 805px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+span{
+    color: #34007985;
+}
+#imgVet{
+    width: 105px;
+}
+.liVetSpaceFem{
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    background-color: #f957ff3a;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 6px;
+    width: 450px;
+}
+.liVetSpaceMas{
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    background-color: #35c8f53d;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 6px;
+    width: 450px;
+}
+.liVetSpaceInclusive{
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    background: linear-gradient(45deg, rgba(255, 0, 0, 0.472), rgba(255, 166, 0, 0.472), rgba(255, 255, 0, 0.472), rgba(0, 128, 0, 0.472), rgba(0, 0, 255, 0.472), rgba(76, 0, 130, 0.472), rgba(238, 130, 238, 0.472), rgba(255, 0, 0, 0.472));
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 6px;
+    width: 450px;
+}
+.liVetSpace{
+    color: #616161;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 6px;
+    width: 450px;
+}
+.liVetSpaceFem:hover{
+    transition: 0.5s;
+    background-color: #e081cb77;
+}
+.liVetSpaceMas:hover{
+    transition: 0.5s;
+    background-color: #76bad485;
+}
+.liVet{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.liVetA{
+    margin-left: 20px;
+}
+.st5{
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    width: 45%;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 10px;
+    height: 805px;
+    border-radius: 6px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
 }
