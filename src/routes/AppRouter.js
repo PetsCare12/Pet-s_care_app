@@ -1,5 +1,6 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { NotFound } from '../components/pages/404/NotFound';
+import { CitaEspecifica } from '../components/pages/Citas/CitaEspecifica';
 import { Citas } from '../components/pages/Citas/Citas';
 import { Clinica } from '../components/pages/Clinicas/Clinica';
 import { Clinicas } from '../components/pages/Clinicas/Clinicas';
@@ -26,6 +27,7 @@ export const AppRouter = () => {
                 <Route path='clinica/:id' element={<Clinica />} />
                 <Route path="/*" element={ <NotFound />  } />
                 <Route path="/citas" element={ <Citas />  } />
+                <Route path="/cita/:id" element={ <CitaEspecifica />  } />
                 <Route path="/" element={ <Home />  } />
 
             </Routes>

@@ -7,7 +7,6 @@ export const Header = () => {
   return (
     <div className='headerHome'>
         <div className="logo">
-          <img src={pets_images('./home/logotitlenone.png')} alt="logo" id='header__logo' />
           <img src={pets_images('./varios/title_white.png')} alt="logo" id='header__title' />
         </div>
 

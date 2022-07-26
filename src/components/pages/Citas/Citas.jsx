@@ -1,24 +1,11 @@
 import React from 'react'
 import { Header } from '../../layout/HeaderHome/HeaderHome'
-import { CitaCard } from './CitaCard'
+import { CitaCard } from './CitaCard';
 
 import './citas.css'
+import { citas } from './dataCitas';
 
 export const Citas = () => {
-
-    const citas = [
-        {
-            dateTime : "22 JUL",
-            nombreMc : "Rocco",
-            nombreDn : "Pepito Perez",
-            telDn : "(+57) 301 2105346",
-            raza : "Pug",
-            anios : 2,
-            veterinario : "Vt. Carlos Gaviria",
-            gender : "Masculino",
-            imgUrl : "https://ichef.bbci.co.uk/news/640/cpsprodpb/14EC6/production/_124820758_pug1.jpg"
-        }
-    ]
 
     return (
         <>
@@ -31,8 +18,10 @@ export const Citas = () => {
                     citas.map( cita => (
 
                         <CitaCard
-                            key={cita.telDn}
-                            dateTime = {cita.dateTime}
+                            key={cita.id}
+                            id={cita.id}
+                            date = {cita.date}
+                            time = {cita.time}
                             nombreMc = {cita.nombreMc}
                             nombreDn = {cita.nombreDn}
                             telDn = {cita.telDn}
@@ -45,6 +34,7 @@ export const Citas = () => {
                     ))
                 }
             </div>
+
         </>
     )
 }
