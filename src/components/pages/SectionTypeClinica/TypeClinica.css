@@ -60,7 +60,12 @@ span{
 #imgVet{
     width: 105px;
 }
+#imgLi{
+    width: 65px;
+    padding-right: 10px;
+}
 .liVetSpaceFem{
+    transition: 0.5s;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
     background-color: #f957ff3a;
     margin-top: 10px;
@@ -74,6 +79,7 @@ span{
     width: 450px;
 }
 .liVetSpaceMas{
+    transition: 0.5s;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
     background-color: #35c8f53d;
     margin-top: 10px;
@@ -86,9 +92,11 @@ span{
     border-radius: 6px;
     width: 450px;
 }
-.liVetSpaceInclusive{
+    /* box-shadow: linear-gradient(45deg, rgba(255, 0, 0, 0.472), rgba(255, 166, 0, 0.472), rgba(255, 255, 0, 0.472), rgba(0, 128, 0, 0.472), rgba(0, 0, 255, 0.472), rgba(76, 0, 130, 0.472), rgba(238, 130, 238, 0.472), rgba(255, 0, 0, 0.472)); */
+.liVetSpace{
+    transition: 0.5s;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-    background: linear-gradient(45deg, rgba(255, 0, 0, 0.472), rgba(255, 166, 0, 0.472), rgba(255, 255, 0, 0.472), rgba(0, 128, 0, 0.472), rgba(0, 0, 255, 0.472), rgba(76, 0, 130, 0.472), rgba(238, 130, 238, 0.472), rgba(255, 0, 0, 0.472));
+    color: #616161;
     margin-top: 10px;
     margin-bottom: 10px;
     padding-left: 40px;
@@ -99,7 +107,9 @@ span{
     border-radius: 6px;
     width: 450px;
 }
-.liVetSpace{
+.liVetSpaceDef{
+    transition: 0.5s;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
     color: #616161;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -114,6 +124,10 @@ span{
 .liVetSpaceFem:hover{
     transition: 0.5s;
     background-color: #e081cb77;
+}
+.liVetSpaceDef:hover{
+    transition: 0.5s;
+    background-color: #81808177;
 }
 .liVetSpaceMas:hover{
     transition: 0.5s;
