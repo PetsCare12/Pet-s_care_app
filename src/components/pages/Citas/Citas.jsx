@@ -10,10 +10,10 @@ export const Citas = () => {
     return (
         <>
             <Header />
-            <div className="typePage">
+            <div className="typePage animate__animated animate__fadeIn">
                 <h1>Citas</h1>
             </div>
-            <div className="citas__contenedor">
+            <div className="citas__contenedor animate__animated animate__fadeIn">
                 {
                     citas.map( cita => (
 

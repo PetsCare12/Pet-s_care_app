@@ -73,6 +73,20 @@ button{
     transition: .4s;
     background-color: #0089b3;
 }
+.btnShort-pink{
+    color: white;
+    background-color: #d89fe1;
+    font-size: 16px;
+    height: 35px;
+    padding: 5px 5px;
+    width: 20%;
+    font-weight: 100;
+}
+
+.btnShort-pink:hover{
+    transition: .4s;
+    background-color: #ce56e1;
+}
 
 .btnVermas {
     color: #1d2129;

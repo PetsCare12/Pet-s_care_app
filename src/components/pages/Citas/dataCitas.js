@@ -65,5 +65,31 @@ export const citas = [
         veterinario : "Carlos Gaviria",
         gender : "Femenino",
         imgUrl : "https://cdn.pixabay.com/photo/2019/09/01/18/32/coker-4445774__480.jpg"
+    },
+    {
+        id: "6",
+        date : "15 AGO",
+        time : "5:00pm",
+        nombreMc : "Lucas",
+        nombreDn : "Pepito Perez",
+        telDn : "(+57) 301 2105346",
+        raza : "Coker",
+        anios : 15,
+        veterinario : "Carlos Gaviria",
+        gender : "Masculino",
+        imgUrl : "https://images.ecestaticos.com/NSdsXs-kz5VcYb5DT4ttnHfmdiU=/0x62:2268x1339/1600x900/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F623%2F31c%2Fc6d%2F62331cc6d9bd7269799b562dd5657f09.jpg"
+    },
+    {
+        id: "7",
+        date : "15 AGO",
+        time : "5:00pm",
+        nombreMc : "Mockito",
+        nombreDn : "Pepito Perez",
+        telDn : "(+57) 301 2105346",
+        raza : "Coker",
+        anios : 15,
+        veterinario : "Carlos Gaviria",
+        gender : "Masculino",
+        imgUrl : "https://ichef.bbci.co.uk/news/640/amz/worldservice/live/assets/images/2013/03/04/130304124318_kissing_chimp_624x351_anupshahnaturepl.com_nocredit.jpg"
     }
 ]
