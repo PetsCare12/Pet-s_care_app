@@ -1,13 +1,37 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { pets_images } from '../../../helpers/Pets_care_images';
 import "./TypeClinica.css";
-import { vet } from "./vetData.js"
+import { vet } from "./vetData.js";
+import { ButtonUI } from "./../../UI/ButtonUI/ButtonUI";
 
 export const TypeClinica = () => {
 
   const arr = vet;
   const [useVet, setVet] = useState({});
   const getVet = (e) => {setVet(e);}
+  const [useForm, setuseForm] = useState({documento:"",nombre:"",apellido:"",telefono:"",correo:"",sexo:"",especialidad:""})
+  const i1  = useRef();
+  const i2  = useRef();
+  const i3  = useRef();
+  const i4  = useRef();
+  const i5  = useRef();
+  const handleSubmit = (e) => {e.preventDefault(); console.log(useForm);}
+  const handleChangeVet = (e) => {
+    let tempObj = useForm;
+      tempObj.documento = useVet.documento;
+    if (e.currentTarget.id === 'i1') {
+      tempObj.apellido = e.target.value;
+    }else if (e.currentTarget.id === 'i2') {
+      tempObj.nombre = e.target.value;
+    }else if (e.currentTarget.id === 'i3') {
+      tempObj.sexo = e.target.value;
+    }else if (e.currentTarget.id === 'i4') {
+      tempObj.especialidad = e.target.value;
+    }else if (e.currentTarget.id === 'i5') {
+      tempObj.correo = e.target.value;
+    }
+    setuseForm(tempObj);
+  }
 
   return (
     <div className='st1'>
@@ -78,14 +102,14 @@ export const TypeClinica = () => {
               {
                 (JSON.stringify(useVet) !== '{}')
                 ? 
-                  <div className='formVet'>
+                  <form onSubmit={handleSubmit} className='formVet'>
                     {
                         (useVet.sexo === "Masculino")
                         ?
                             <div className="imgForm">
                               <img src={pets_images("./veterinarios/perfil-masculino.png")} alt="Masculino" id='imgForm'/>
                               <div className="idSection">
-                                <h3>Documento: </h3>
+                                <h3>ID: </h3>
                                 <h3>{useVet.documento}</h3>
                               </div>
                           </div> 
@@ -95,7 +119,7 @@ export const TypeClinica = () => {
                             <div className="imgForm">
                               <img src={pets_images("./veterinarios/perfil-femenino.png")} alt="Femenino" id='imgForm'/>
                               <div className="idSection">
-                                <h3>Documento: </h3>
+                                <h3>ID: </h3>
                                 <h3>{useVet.documento}</h3>
                               </div>
                             </div>
@@ -103,7 +127,7 @@ export const TypeClinica = () => {
                           <div className="imgForm">
                             <img src={pets_images("./veterinarios/usuario.png")} alt="" id='imgForm'/>
                             <div className="idSection">
-                                <h3>Documento: </h3>
+                                <h3>ID: </h3>
                                 <h3>{useVet.documento}</h3>
                               </div>
                           </div>
@@ -114,18 +138,24 @@ export const TypeClinica = () => {
                         <h3>Nombre:       </h3>
                         <h3>Sexo:         </h3>
                         <h3>Especialidad: </h3>
+                        <h3>Correo: </h3>
                       </div>
                       <div className="inputsVet">
-                        <input type="text" placeholder={useVet.apellido} onChange={""}     className="iVet"/>
-                        <input type="text" placeholder={useVet.nombre} onChange={""}       className="iVet"/>
-                        <input type="text" placeholder={useVet.sexo} onChange={""}         className="iVet"/>
-                        <input type="text" placeholder={useVet.especialidad} onChange={""} className="iVet"/>
+                        <input ref={i1} id="i1" type="text" placeholder={useVet.apellido}      onChange={handleChangeVet}className="iVet"/>
+                        <input ref={i2} id="i2" type="text" placeholder={useVet.nombre}        onChange={handleChangeVet}className="iVet"/>
+                        <input ref={i3} id="i3" type="text" placeholder={useVet.sexo}          onChange={handleChangeVet}className="iVet"/>
+                        <input ref={i4} id="i4" type="text" placeholder={useVet.especialidad}  onChange={handleChangeVet}className="iVet"/>
+                        <input ref={i5} id="i4" type="text" placeholder={useVet.correo}        onChange={handleChangeVet}className="iVet"/>
                       </div>
                     </div>
-                  </div>
+                    <div className="btnSection">
+                      <ButtonUI text="Actualizar"  type="submit" style="btn btnActualizar">    </ButtonUI>
+                      <ButtonUI text="Deshabilitar" event={""} style="btn btnDeshabilitar">    </ButtonUI>
+                    </div>
+                  </form>
                 : 
                   <div>
-                    <h1>Por favor selecciona un veterinario de tu planta!</h1>
+                    <h1 id='titleValidation'>Por favor selecciona un veterinario de tu planta!</h1>
                   </div>
               }
             </div>

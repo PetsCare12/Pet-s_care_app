@@ -29,7 +29,7 @@ export const vet = [
         apellido:"Zamora",
         telefono:"66666",
         correo:"zamora@gmail.com",
-        sexo:"Femenino",
+        sexo:"LGBT",
         especialidad:"Especialista Veterinaria",
         imagen:"xxx",
         clinica:"Perrito 64"
