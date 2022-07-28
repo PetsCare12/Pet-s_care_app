@@ -19,13 +19,10 @@
     font-size: 15px;
     width: 100px;
     height: 40px;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    border-radius: 4px;
 }
 .logIn{
-    background-color: white;
-    border: solid 1px #1b9eda;
-    color: #1b9eda;
+    color: #ffffff;
     font-weight: 600;
 }
 .signIn{
@@ -35,9 +32,9 @@
     /* border: solid 1px #024c6e; */
 }
 .logIn:hover{
-    transition: 0.5s;
-    background-color: #008dcfbb;
-    color: #ffffff;
+    transition: .7s;
+    background-color: white;
+    color: #61BBD6;
     border: none;
 }
 .signIn:hover{
@@ -47,7 +44,7 @@
 }
 .headerHome{
     background-color: #61BBD6;
-    padding: 10px 35px;
+    padding: 10px 100px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -62,7 +59,7 @@
 
 #header__title{
     border-radius: 0;
-    width: 250px;
+    width: 180px;
 }
 .nav_Home{
     display: flex;

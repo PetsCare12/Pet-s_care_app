@@ -33,7 +33,6 @@ export const Home = () => {
                       </Slide>
                     </div>
                   </div>
-                <div className="sectionRight"></div>
               </div>
             <div className="sectionBottom">
               <div className="cardBottom">
