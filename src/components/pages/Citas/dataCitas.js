@@ -91,5 +91,18 @@ export const citas = [
         veterinario : "Carlos Gaviria",
         gender : "Masculino",
         imgUrl : "https://ichef.bbci.co.uk/news/640/amz/worldservice/live/assets/images/2013/03/04/130304124318_kissing_chimp_624x351_anupshahnaturepl.com_nocredit.jpg"
+    },
+    {
+        id: "8",
+        date : "15 AGO",
+        time : "5:00pm",
+        nombreMc : "Guacala",
+        nombreDn : "Pepito Perez",
+        telDn : "(+57) 301 2105346",
+        raza : "Coker",
+        anios : 15,
+        veterinario : "Carlos Gaviria",
+        gender : "Femenino",
+        imgUrl : "https://www.infobae.com/new-resizer/qHIIzx8rH0_XrwOg-PH3jeYsyMo=/1200x900/filters:format(webp):quality(85)//s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2017/02/08170733/guacamaya-roja.jpg"
     }
 ]

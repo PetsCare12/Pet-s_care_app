@@ -1,5 +1,5 @@
 import React from 'react'
-import { BsGenderMale, BsGenderFemale } from 'react-icons/bs'
+import { BsGenderMale, BsGenderFemale } from 'react-icons/bs';
 import { Link } from 'react-router-dom'
 
 export const CitaCard = ( {
@@ -27,7 +27,7 @@ export const CitaCard = ( {
                     <div className="citaCard__contenedor-izquierdo">
                         <div className="citaCard__contenedor-mascota">
                             <h1>
-                                <strong style={{color:"black",fontWeight:"100"}}>{nombreMc} </strong>
+                                <strong style={{color:"black",fontWeight:"100",fontSize:"25px"}}>{nombreMc} </strong>
 
                                 {
                                     ( gender === "Masculino" ) ?

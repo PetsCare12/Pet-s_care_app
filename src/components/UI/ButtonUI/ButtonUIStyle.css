@@ -88,6 +88,35 @@ button{
     background-color: #ce56e1;
 }
 
+.btnFilter-macho {
+    background-color: white;
+    color: #585858;
+    font-size: 20px;
+    height: 35px;
+    padding: 5px 5px;
+    width: 40px;
+    font-weight: 800;
+}
+.btnFilter-macho:hover{
+    background-color: #dcf7ff;
+    color: #005eb6;
+    transition: .4s;
+}
+.btnFilter-hembra {
+    background-color: white;
+    color: #585858;
+    font-size: 20px;
+    height: 35px;
+    padding: 5px 5px;
+    width: 40px;
+    font-weight: 800;
+}
+.btnFilter-hembra:hover{
+    background-color: #fce9ff;
+    color: #ae00ff;
+    transition: .6s;
+}
+
 .btnVermas {
     color: #1d2129;
     background-color: #ffffff;

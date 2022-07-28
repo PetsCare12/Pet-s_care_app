@@ -1,22 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Header } from '../../layout/HeaderHome/HeaderHome'
 import { CitaCard } from './CitaCard';
 
 import './citas.css'
 import { citas } from './dataCitas';
+import { VeterinarioFilter } from './filtros/VeterinarioFilter';
 
 export const Citas = () => {
+
+    const [gender, setGender] = useState("");
+    const [citasAll, setCitasAll] = useState( citas )
+    
 
     return (
         <>
             <Header />
-            <div className="typePage animate__animated animate__fadeIn">
-                <h1>Citas</h1>
-            </div>
+            <VeterinarioFilter 
+                setGender={setGender}
+            />   
             <div className="citas__contenedor animate__animated animate__fadeIn">
                 {
-                    citas.map( cita => (
-
+                    citasAll.map( cita => (
                         <CitaCard
                             key={cita.id}
                             id={cita.id}
