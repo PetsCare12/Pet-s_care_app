@@ -7,11 +7,8 @@ export const TypeClinica = () => {
 
   const arr = vet;
   const [useVet, setVet] = useState({});
-  
-  const getVet = (e) => {
-    setVet(e);
-    console.log(e);
-  }
+  const getVet = (e) => {setVet(e);}
+
   return (
     <div className='st1'>
       <div className='st2'>
@@ -24,12 +21,13 @@ export const TypeClinica = () => {
               <ul>
                 {
                   arr.map((item) =>(
-                    <li className={`liVetSpace 
-                      ${ (item.sexo === "Femenino")
-                      ? 'liVetSpaceFem' 
-                      : (item.sexo === "Masculino")
-                      ? 'liVetSpaceMas'
-                      : 'liVetSpaceDef'
+                    <li className={
+                      `liVetSpace 
+                        ${ (item.sexo === "Femenino")
+                        ? 'liVetSpaceFem' 
+                        : (item.sexo === "Masculino")
+                        ? 'liVetSpaceMas'
+                        : 'liVetSpaceDef'
                     }`
                       }>
                         <div className='liVet'>
@@ -42,21 +40,21 @@ export const TypeClinica = () => {
                             ?
                               <img src={pets_images("./veterinarios/perfil-femenino.png")} alt="Femenino" id='imgVet'/>
                             :
-                             <img src={pets_images("./veterinarios/perfil-masculino.png")} alt="" id='imgVet'/>
+                             <img src={pets_images("./veterinarios/usuario.png")} alt="" id='imgVet'/>
                           }
                           <div className='liVetA'>
                             <h4>
-                              <span>Nombre: </span>
+                              <span>Nombre:       </span>
                               {item.nombre}
                             </h4>
 
                             <h4>
-                              <span>Apellido: </span>
+                              <span>Apellido:     </span>
                               {item.apellido}
                             </h4>
 
                             <h4>
-                              <span>Sexo: </span>
+                              <span>Sexo:         </span>
                               {item.sexo}
                             </h4>
 
@@ -78,29 +76,56 @@ export const TypeClinica = () => {
             </div>
             <div className='st5'>
               {
-                (useVet.documento !== "")
+                (JSON.stringify(useVet) !== '{}')
                 ? 
-                  <form action="">
+                  <div className='formVet'>
                     {
                         (useVet.sexo === "Masculino")
                         ?
-                            <img src={pets_images("./veterinarios/perfil-masculino.png")} alt="Masculino" id='imgVet'/>
+                            <div className="imgForm">
+                              <img src={pets_images("./veterinarios/perfil-masculino.png")} alt="Masculino" id='imgForm'/>
+                              <div className="idSection">
+                                <h3>Documento: </h3>
+                                <h3>{useVet.documento}</h3>
+                              </div>
+                          </div> 
                         :
                           (useVet.sexo === "Femenino")
                         ?
-                            <img src={pets_images("./veterinarios/perfil-femenino.png")} alt="Femenino" id='imgVet'/>
+                            <div className="imgForm">
+                              <img src={pets_images("./veterinarios/perfil-femenino.png")} alt="Femenino" id='imgForm'/>
+                              <div className="idSection">
+                                <h3>Documento: </h3>
+                                <h3>{useVet.documento}</h3>
+                              </div>
+                            </div>
                         :
-                          <img src={pets_images("./veterinarios/perfil-masculino.png")} alt="" id='imgVet'/>
+                          <div className="imgForm">
+                            <img src={pets_images("./veterinarios/usuario.png")} alt="" id='imgForm'/>
+                            <div className="idSection">
+                                <h3>Documento: </h3>
+                                <h3>{useVet.documento}</h3>
+                              </div>
+                          </div>
                     }
-                    <input type="text" value={useVet.documento}/>
-                    <input type="text" value={useVet.apellido}/>
-                    <input type="text" value={useVet.nombre}/>
-                    <input type="text" value={useVet.sexo}/>
-                    <input type="text" value={useVet.especialidad}/>
-                  </form>
+                    <div className="bottomForm">
+                      <div className="labelsVet">
+                        <h3>Apellido:     </h3>
+                        <h3>Nombre:       </h3>
+                        <h3>Sexo:         </h3>
+                        <h3>Especialidad: </h3>
+                      </div>
+                      <div className="inputsVet">
+                        <input type="text" placeholder={useVet.apellido} onChange={""}     className="iVet"/>
+                        <input type="text" placeholder={useVet.nombre} onChange={""}       className="iVet"/>
+                        <input type="text" placeholder={useVet.sexo} onChange={""}         className="iVet"/>
+                        <input type="text" placeholder={useVet.especialidad} onChange={""} className="iVet"/>
+                      </div>
+                    </div>
+                  </div>
                 : 
                   <div>
-
+                    <h1>Por favor selecciona un veterinario de tu planta!</h1>
                   </div>
               }
             </div>
