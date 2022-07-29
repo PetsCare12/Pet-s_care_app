@@ -13,6 +13,7 @@ export const TypeClinica = () => {
   const getVet = (e) => {setVet(e);}
 
   const initialForm = {
+    documento: "",
     apellido: "",nombre: "",
     sexo: "",especialidad: "",
     telefono: "",correo: ""
@@ -26,7 +27,7 @@ export const TypeClinica = () => {
 
          if (!form.apellido.trim()) {errors.apellido = "El campo 'Apellido:' es requerido!";}
     else if (!form.nombre.trim()) {errors.nombre = "El campo 'Nombre:' es requerido!";}
-    else if (!form.sexo.trim()) {errors.sexo = "El campo 'sexo:' es requerido!";}
+    else if (!form.sexo.trim()) {errors.sexo = "El campo 'Sexo:' es requerido!";}
     else if (!form.especialidad.trim()) {errors.especialidad = "EL campo 'Especialidad:' es requerido!";}
     else if (!form.telefono.trim()) {errors.telefono = "El campo 'Telefono:' es requerido!";}
     else if (!form.correo.trim()) {errors.correo = "El campo 'Correo:' es requerido!";}
@@ -42,7 +43,7 @@ export const TypeClinica = () => {
 
   const {
         form,errors,
-        // loading,
+        loading,
         response,handleChangeVet,
         handleBlur,handleSubmit
 
@@ -111,7 +112,7 @@ export const TypeClinica = () => {
                               <img src={pets_images("./veterinarios/perfil-masculino.png")} alt="Masculino" id='imgForm'/>
                               <div className="idSection">
                                 <h3>ID: </h3>
-                                <h3>{useVet.documento}</h3>
+                                <h3>{form.documento = useVet.documento}</h3>
                               </div>
                           </div> 
                         :
@@ -121,7 +122,7 @@ export const TypeClinica = () => {
                               <img src={pets_images("./veterinarios/perfil-femenino.png")} alt="Femenino" id='imgForm'/>
                               <div className="idSection">
                                 <h3>ID: </h3>
-                                <h3>{useVet.documento}</h3>
+                                <h3>{form.documento = useVet.documento}</h3>
                               </div>
                             </div>
                         :
@@ -129,19 +130,21 @@ export const TypeClinica = () => {
                             <img src={pets_images("./veterinarios/usuario.png")} alt="" id='imgForm'/>
                             <div className="idSection">
                                 <h3>ID: </h3>
-                                <h3>{useVet.documento}</h3>
+                                <h3>{form.documento = useVet.documento}</h3>
                             </div>
                           </div>
                     }
+                    <div className="messages">
+                      {errors.apellido &&             <p id='warningP'>{errors.apellido}</p>}
+                      {errors.nombre &&               <p id='warningP'>{errors.nombre}</p>}
+                      {errors.sexo &&                 <p id='warningP'>{errors.sexo}</p>}
+                      {errors.especialidad &&         <p id='warningP'>{errors.especialidad}</p>}
+                      {errors.correo &&               <p id='warningP'>{errors.correo}</p>}
+                      {errors.telefono &&             <p id='warningP'>{errors.telefono}</p>}
+                      {loading && <Loader></Loader>}
+                      {response ? <p>Simulacion de Envio terminada</p> : <p></p>}
+                    </div>
                     <div className="bottomForm">
-
-                    {errors.apellido && <p id='warningP'>     {errors.apellido}</p>}
-                    {errors.nombre && <p id='warningP'>       {errors.nombre}</p>}
-                    {errors.sexo && <p id='warningP'>         {errors.sexo}</p>}
-                    {errors.especialidad && <p id='warningP'> {errors.especialidad}</p>}
-                    {errors.correo && <p id='warningP'>       {errors.correo}</p>}
-                    {errors.telefono && <p id='warningP'>     {errors.telefono}</p>}
-
                       <div className="labelsVet">
                         <h3>Apellido:     </h3>
                         <h3>Nombre:       </h3>
@@ -155,39 +158,38 @@ export const TypeClinica = () => {
                         name='apellido' type="text" 
                         placeholder={useVet.apellido} onChange={handleChangeVet}
                         value={form.apellido} onBlur={handleBlur}
-                        required className="iVet"/>
+                        required className={`iVet ${(errors.apellido) ? 'iWarning' : 'iVal'}`}></input>
 
                         <input 
                         name='nombre' type="text" 
                         placeholder={useVet.nombre} onChange={handleChangeVet}
                         value={form.nombre} onBlur={handleBlur}
-                        required className="iVet"/>
+                        required className={`iVet ${(errors.name) ? 'iWarning' : 'iVal'}`}/>
 
                         <input 
                         name='sexo' type="text" 
                         placeholder={useVet.sexo} onChange={handleChangeVet}
                         value={form.sexo} onBlur={handleBlur}
-                        equired className="iVet"/>
+                        equired className={`iVet ${(errors.sexo) ? 'iWarning' : 'iVal'}`}/>
 
                         <input 
                         name='especialidad' type="text" 
                         placeholder={useVet.especialidad} onChange={handleChangeVet}
                         value={form.especialidad} onBlur={handleBlur}
-                        required className="iVet"/>
+                        required className={`iVet ${(errors.especialidad) ? 'iWarning' : 'iVal'}`}/>
 
                         <input 
                         name='correo'  type="email" 
                         placeholder={useVet.correo} onChange={handleChangeVet}
                         value={form.correo} onBlur={handleBlur}
-                        required className="iVet"/>
+                        required className={`iVet ${(errors.correo) ? 'iWarning' : 'iVal'}`}/>
 
                         <input 
                         name='telefono' type="text" 
                         placeholder={useVet.telefono} onChange={handleChangeVet}
                         value={form.telefono} onBlur={handleBlur}
-                        required className="iVet"/>
+                        required className={`iVet ${(errors.telefono) ? 'iWarning' : 'iVal'}`}/>
 
-                      {response ? <Loader></Loader> : <p>Construccion hechas</p>}
                       </div>
                     </div>
                     <div className="btnSection">

@@ -2,6 +2,8 @@
     font-family: 'Nunito', sans-serif;
     margin: 0;
     padding: 0;
+    scrollbar-color: #03a9db rgba(0, 0, 0, 0);
+    scrollbar-width: thin;
 }
 h1,h2,h3,h4,h5,h6,p,input,button{
     font-family: 'Nunito', sans-serif;
@@ -50,9 +52,33 @@ h1,h2,h3,h4,h5,h6,p,input,button{
     justify-content: space-between;
     background-color: #ffffff;
 }
-.st4::-webkit-scrollbar {
-    display: none;
+/* --------------------------------- */
+::-webkit-scrollbar {
+    -webkit-appearance: none;
 }
+
+::-webkit-scrollbar:vertical {
+    width:10px;
+}
+
+::-webkit-scrollbar-button:increment,::-webkit-scrollbar-button {
+    display: none;
+} 
+
+::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #03a9db;
+    border-radius: 20px;
+    border: 2px solid #f1f2f3;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;  
+}
+/* --------------------------------- */
 span{
     color: #34007985;
 }
@@ -164,6 +190,9 @@ span{
     margin-top: 5vh;
 }
 .formVet{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-top: 5vh;
     height: 85vh;
     align-items:  center;
@@ -180,12 +209,32 @@ span{
     font-size: 25px;
 }
 .iVet{
+    transition: 0.5s;
     border-radius: 10px;
     text-align: center;
     font-size: 30px;
     border: 1px solid #03a9db;
     color: #00779b;
-    width: 35vh;
+    width: 45vh;
+}
+.iVal{
+    transition: 0.5s;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 30px;
+    border: 1px solid #03a9db;
+    color: #00779b;
+    width: 45vh;
+}
+.iWarning{
+    transition: 0.5s;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 30px;
+    border: 1px solid #db0303;
+    color: #9b0000;
+    background-color: #db030327;
+    width: 45vh;
 }
 .imgForm{
     display: flex;
@@ -211,6 +260,7 @@ span{
 }
 .btnSection{
     margin-top: 5vh;
+    margin-bottom: 5vh;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -238,7 +288,8 @@ span{
     color: #e9e9e9;
 }
 #warningP{
-    font-size: 15px;
+    font-size: 25px;
+    font-weight: bold;
     color: #ff0000;
     margin: 0;
     padding: 0;

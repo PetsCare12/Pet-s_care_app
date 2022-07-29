@@ -25,13 +25,15 @@ export const useForm = (initialForm , validateForm) => {
         if (Object.keys(errors).length === 0) {
             // Envio de formulario de actualizacion
             setLoading(true);
-            setResponse(true);
             // Simulacion de Envio de objeto construido
             console.log(form);
             setTimeout(() => {
-                setResponse(false);
+                setResponse(true);
                 setLoading(false);
             } , 2000);
+            setTimeout(() => {
+                setResponse(false);
+            } , 7000);
         }else{
             return;
         }
