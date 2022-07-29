@@ -5,6 +5,8 @@ import { useForm } from '../../../helpers/useForm';
 import { ButtonUI } from "./../../UI/ButtonUI/ButtonUI";
 import { Loader } from '../../UI/Loader/Loader';
 import "./TypeClinica.css";
+import { useModal } from '../../../helpers/useModal';
+import { Modal } from '../../UI/Modals/Modal';
 
 export const TypeClinica = () => {
 
@@ -12,6 +14,9 @@ export const TypeClinica = () => {
   const [useVet, setVet] = useState({});
   const getVet = (e) => {setVet(e);}
 
+  const disableVet = (e) => {};
+
+  const [isOpenModal1,openModal1,closeModal1] = useModal(false);
   const initialForm = {
     documento: "",
     apellido: "",nombre: "",
@@ -58,6 +63,12 @@ export const TypeClinica = () => {
           <div className='st3'>
             <div className='st4'>
               <h1>Veterinarios</h1>
+              <ButtonUI text="Registrar" type="button" style="btn btnRes" event={openModal1}></ButtonUI>
+                <Modal isOpen={isOpenModal1} closeModal={closeModal1}><p>Lo abrio perro hijuepputa.</p></Modal>
+              <div className="search">
+                <input type="text" className="iVet iSearch" placeholder='ID del Veterinario...'/>
+                <ButtonUI text="Buscar" type="button" style="btn btnSear" event={""}></ButtonUI>
+              </div>
               <ul>
                 {
                   arr.map((item) =>(
@@ -192,8 +203,8 @@ export const TypeClinica = () => {
                       </div>
                     </div>
                     <div className="btnSection">
-                      <ButtonUI text="Actualizar"  type="submit" style="btn btnActualizar">    </ButtonUI>
-                      <ButtonUI text="Deshabilitar" event={""} style="btn btnDeshabilitar">    </ButtonUI>
+                      <ButtonUI text="Actualizar"  type="submit" style="btn btnActualizar"></ButtonUI>
+                      <ButtonUI text="Deshabilitar" event={disableVet} type="button" style="btn btnDeshabilitar"></ButtonUI>
                     </div>
                   </form>
                 : 

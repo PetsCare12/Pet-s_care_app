@@ -6,6 +6,7 @@ import { ImagenUI } from "../../UI/ImagenUI/ImagenUI";
 import { pets_images } from "../../../helpers/Pets_care_images";
 import './styles.css'
 import './Home.css'
+import { Link } from "react-router-dom";
 
 export const Home = () => {
 
@@ -32,6 +33,10 @@ export const Home = () => {
                       </Slide>
                     </div>
                   </div>
+                  <div className="sectionRight">
+                  <ImagenUI img={pets_images('./home/pasear-al-perro.png')} style="imgLoginSectionRight"></ImagenUI>
+                  <Link className="aRHome" to={"/login"}>Comienza Ahora!</Link>
+                </div>
               </div>
             <div className="sectionBottom">
               <div className="cardBottom">
