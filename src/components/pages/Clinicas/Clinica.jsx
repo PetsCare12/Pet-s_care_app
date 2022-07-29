@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { useNavigate, useParams } from 'react-router';
-import { getClinicaId } from '../../../helpers/getClinicaById';
+import { getClinicaId } from '../../../helpers/getItemsByID';
 import {IoLocationOutline} from "react-icons/io5";
 import {AiOutlineDollarCircle} from "react-icons/ai";
 import {MdOutlineSchedule} from "react-icons/md";
@@ -18,7 +18,7 @@ export const Clinica = (  ) => {
     
     const { img, nombre, direccion, valor_consulta, horarios} = getClinicaId( parseInt(id) );
 
-    const handleReturn = () => navigate( -1 )
+    const handleReturn = () => navigate( -1 );
 
     return (
         <>
