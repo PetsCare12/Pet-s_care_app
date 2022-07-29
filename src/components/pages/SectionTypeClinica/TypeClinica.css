@@ -117,7 +117,6 @@ span{
     border-radius: 6px;
     width: 50vh;
 }
-    /* box-shadow: linear-gradient(45deg, rgba(255, 0, 0, 0.472), rgba(255, 166, 0, 0.472), rgba(255, 255, 0, 0.472), rgba(0, 128, 0, 0.472), rgba(0, 0, 255, 0.472), rgba(76, 0, 130, 0.472), rgba(238, 130, 238, 0.472), rgba(255, 0, 0, 0.472)); */
 .liVetSpace{
     transition: 0.5s;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
@@ -293,4 +292,16 @@ span{
     color: #ff0000;
     margin: 0;
     padding: 0;
+}
+#succesP{
+    font-size: 25px;
+    font-weight: bold;
+    color: #0ead00;
+    margin: 0;
+    padding: 0;
+}
+.messages{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }

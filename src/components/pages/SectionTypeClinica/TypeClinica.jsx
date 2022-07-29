@@ -142,7 +142,7 @@ export const TypeClinica = () => {
                       {errors.correo &&               <p id='warningP'>{errors.correo}</p>}
                       {errors.telefono &&             <p id='warningP'>{errors.telefono}</p>}
                       {loading && <Loader></Loader>}
-                      {response ? <p>Simulacion de Envio terminada</p> : <p></p>}
+                      {response ? <p id='succesP'>Simulacion de Envio terminada!</p> : <p></p>}
                     </div>
                     <div className="bottomForm">
                       <div className="labelsVet">
