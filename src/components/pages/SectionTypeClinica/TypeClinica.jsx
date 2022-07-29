@@ -189,7 +189,6 @@ export const TypeClinica = () => {
                         placeholder={useVet.telefono} onChange={handleChangeVet}
                         value={form.telefono} onBlur={handleBlur}
                         required className={`iVet ${(errors.telefono) ? 'iWarning' : 'iVal'}`}/>
-
                       </div>
                     </div>
                     <div className="btnSection">
