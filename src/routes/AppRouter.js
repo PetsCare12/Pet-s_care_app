@@ -23,7 +23,7 @@ export const AppRouter = () => {
                         <Route path='clinica/:id' element={<Clinica />} />
                         <Route path="/*" element={ <NotFound />  } />
                         <Route path="/" element={ <Home />  } />
-                        <Route path="/clinica" element={ <TypeClinica />  } />
+                        <Route path="/gestionClinica" element={ <TypeClinica />  } />
                 </Routes>
         </BrowserRouter>
     )
