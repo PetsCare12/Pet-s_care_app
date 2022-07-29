@@ -1,37 +1,52 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { pets_images } from '../../../helpers/Pets_care_images';
-import "./TypeClinica.css";
 import { vet } from "./vetData.js";
+import { useForm } from '../../../helpers/useForm';
 import { ButtonUI } from "./../../UI/ButtonUI/ButtonUI";
+import { Loader } from '../../UI/Loader/Loader';
+import "./TypeClinica.css";
 
 export const TypeClinica = () => {
 
   const arr = vet;
   const [useVet, setVet] = useState({});
   const getVet = (e) => {setVet(e);}
-  const [useForm, setuseForm] = useState({documento:"",nombre:"",apellido:"",telefono:"",correo:"",sexo:"",especialidad:""})
-  const i1  = useRef();
-  const i2  = useRef();
-  const i3  = useRef();
-  const i4  = useRef();
-  const i5  = useRef();
-  const handleSubmit = (e) => {e.preventDefault(); console.log(useForm);}
-  const handleChangeVet = (e) => {
-    let tempObj = useForm;
-      tempObj.documento = useVet.documento;
-    if (e.currentTarget.id === 'i1') {
-      tempObj.apellido = e.target.value;
-    }else if (e.currentTarget.id === 'i2') {
-      tempObj.nombre = e.target.value;
-    }else if (e.currentTarget.id === 'i3') {
-      tempObj.sexo = e.target.value;
-    }else if (e.currentTarget.id === 'i4') {
-      tempObj.especialidad = e.target.value;
-    }else if (e.currentTarget.id === 'i5') {
-      tempObj.correo = e.target.value;
-    }
-    setuseForm(tempObj);
+
+  const initialForm = {
+    apellido: "",nombre: "",
+    sexo: "",especialidad: "",
+    telefono: "",correo: ""
+  };
+
+  const validationsForm = (form) => {
+    let errors = {};
+    let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
+    let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
+    let regexNumbers = /^\d+$/;
+
+         if (!form.apellido.trim()) {errors.apellido = "El campo 'Apellido:' es requerido!";}
+    else if (!form.nombre.trim()) {errors.nombre = "El campo 'Nombre:' es requerido!";}
+    else if (!form.sexo.trim()) {errors.sexo = "El campo 'sexo:' es requerido!";}
+    else if (!form.especialidad.trim()) {errors.especialidad = "EL campo 'Especialidad:' es requerido!";}
+    else if (!form.telefono.trim()) {errors.telefono = "El campo 'Telefono:' es requerido!";}
+    else if (!form.correo.trim()) {errors.correo = "El campo 'Correo:' es requerido!";}
+    else if (!regexName.test(form.apellido.trim())) {errors.apellido = "El campo 'Apellido:' solo acepta letras!"}
+    else if (!regexName.test(form.nombre.trim())) {errors.nombre = "El campo 'Nombre:' solo acepta letras!"}
+    else if (!regexName.test(form.sexo.trim())) {errors.sexo = "El campo 'Sexo:' solo acepta letras!"}
+    else if (!regexName.test(form.especialidad.trim())) {errors.especialidad = "El campo 'Especialidad:' solo acepta letras!"}
+    else if (!regexNumbers.test(form.telefono.trim())) {errors.telefono = "El campo 'Telefono:' solo acepta numeros!"}
+    else if (!regexEmail.test(form.correo.trim())) {errors.correo = "El campo 'Correo:' es Incorrecto!"}
+
+    return errors;
   }
+
+  const {
+        form,errors,
+        // loading,
+        response,handleChangeVet,
+        handleBlur,handleSubmit
+
+  } = useForm(initialForm,validationsForm);
 
   return (
     <div className='st1'>
@@ -67,25 +82,10 @@ export const TypeClinica = () => {
                              <img src={pets_images("./veterinarios/usuario.png")} alt="" id='imgVet'/>
                           }
                           <div className='liVetA'>
-                            <h4>
-                              <span>Nombre:       </span>
-                              {item.nombre}
-                            </h4>
-
-                            <h4>
-                              <span>Apellido:     </span>
-                              {item.apellido}
-                            </h4>
-
-                            <h4>
-                              <span>Sexo:         </span>
-                              {item.sexo}
-                            </h4>
-
-                            <h4>
-                              <span>Especialidad: </span>
-                              {item.especialidad}
-                            </h4>
+                            <h4><span>Nombre:</span>            {item.nombre}</h4>
+                            <h4><span>Apellido:</span>        {item.apellido}</h4>
+                            <h4><span>Sexo:</span>                {item.sexo}</h4>
+                            <h4><span>Especialidad:</span>{item.especialidad}</h4>
                           </div>
                         </div> 
                         <div className='idc'>
@@ -98,6 +98,7 @@ export const TypeClinica = () => {
                 }
               </ul>
             </div>
+
             <div className='st5'>
               {
                 (JSON.stringify(useVet) !== '{}')
@@ -129,23 +130,64 @@ export const TypeClinica = () => {
                             <div className="idSection">
                                 <h3>ID: </h3>
                                 <h3>{useVet.documento}</h3>
-                              </div>
+                            </div>
                           </div>
                     }
                     <div className="bottomForm">
+
+                    {errors.apellido && <p id='warningP'>     {errors.apellido}</p>}
+                    {errors.nombre && <p id='warningP'>       {errors.nombre}</p>}
+                    {errors.sexo && <p id='warningP'>         {errors.sexo}</p>}
+                    {errors.especialidad && <p id='warningP'> {errors.especialidad}</p>}
+                    {errors.correo && <p id='warningP'>       {errors.correo}</p>}
+                    {errors.telefono && <p id='warningP'>     {errors.telefono}</p>}
+
                       <div className="labelsVet">
                         <h3>Apellido:     </h3>
                         <h3>Nombre:       </h3>
                         <h3>Sexo:         </h3>
                         <h3>Especialidad: </h3>
-                        <h3>Correo: </h3>
+                        <h3>Correo:       </h3>
+                        <h3>Telefono:     </h3>
                       </div>
                       <div className="inputsVet">
-                        <input ref={i1} id="i1" type="text" placeholder={useVet.apellido}      onChange={handleChangeVet}className="iVet"/>
-                        <input ref={i2} id="i2" type="text" placeholder={useVet.nombre}        onChange={handleChangeVet}className="iVet"/>
-                        <input ref={i3} id="i3" type="text" placeholder={useVet.sexo}          onChange={handleChangeVet}className="iVet"/>
-                        <input ref={i4} id="i4" type="text" placeholder={useVet.especialidad}  onChange={handleChangeVet}className="iVet"/>
-                        <input ref={i5} id="i4" type="text" placeholder={useVet.correo}        onChange={handleChangeVet}className="iVet"/>
+                        <input 
+                        name='apellido' type="text" 
+                        placeholder={useVet.apellido} onChange={handleChangeVet}
+                        value={form.apellido} onBlur={handleBlur}
+                        required className="iVet"/>
+
+                        <input 
+                        name='nombre' type="text" 
+                        placeholder={useVet.nombre} onChange={handleChangeVet}
+                        value={form.nombre} onBlur={handleBlur}
+                        required className="iVet"/>
+
+                        <input 
+                        name='sexo' type="text" 
+                        placeholder={useVet.sexo} onChange={handleChangeVet}
+                        value={form.sexo} onBlur={handleBlur}
+                        equired className="iVet"/>
+
+                        <input 
+                        name='especialidad' type="text" 
+                        placeholder={useVet.especialidad} onChange={handleChangeVet}
+                        value={form.especialidad} onBlur={handleBlur}
+                        required className="iVet"/>
+
+                        <input 
+                        name='correo'  type="email" 
+                        placeholder={useVet.correo} onChange={handleChangeVet}
+                        value={form.correo} onBlur={handleBlur}
+                        required className="iVet"/>
+
+                        <input 
+                        name='telefono' type="text" 
+                        placeholder={useVet.telefono} onChange={handleChangeVet}
+                        value={form.telefono} onBlur={handleBlur}
+                        required className="iVet"/>
+
+                      {response ? <Loader></Loader> : <p>Construccion hechas</p>}
                       </div>
                     </div>
                     <div className="btnSection">
@@ -154,8 +196,8 @@ export const TypeClinica = () => {
                     </div>
                   </form>
                 : 
-                  <div>
-                    <h1 id='titleValidation'>Por favor selecciona un veterinario de tu planta!</h1>
+                  <div id='titleValidation'>
+                    <h1>Por favor selecciona un veterinario de tu planta!</h1>
                   </div>
               }
             </div>
