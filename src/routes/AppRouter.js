@@ -1,11 +1,7 @@
 import { Routes, Route, BrowserRouter} from 'react-router-dom';
 import { NotFound } from '../components/pages/404/NotFound';
-<<<<<<< HEAD
-import { Agenda } from '../components/pages/Agenda/Agenda';
-=======
 import { CitaEspecifica } from '../components/pages/Citas/CitaEspecifica';
 import { Citas } from '../components/pages/Citas/Citas';
->>>>>>> main
 import { Clinica } from '../components/pages/Clinicas/Clinica';
 import { Clinicas } from '../components/pages/Clinicas/Clinicas';
 import { Home } from '../components/pages/Home/Home';
