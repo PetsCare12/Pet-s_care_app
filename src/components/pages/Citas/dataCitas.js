@@ -4,7 +4,7 @@ export const citas = [
     {
         id: "1",
         date : "22 JUL",
-        time : "9:00am",
+        time : "9:00",
         nombreMc : "Rocco",
         nombreDn : "Pepito Perez",
         telDn : "(+57) 301 2105346",
@@ -17,7 +17,7 @@ export const citas = [
     {
         id: "2",
         date : "23 JUL",
-        time : "10:00am",
+        time : "10:00",
         nombreMc : "Luna",
         nombreDn : "Katalina Perez",
         telDn : "(+57) 301 2105346",
@@ -30,7 +30,7 @@ export const citas = [
     {
         id: "3",
         date : "22 JUL",
-        time : "9:00am",
+        time : "9:00",
         nombreMc : "Rocco",
         nombreDn : "Pepito Perez",
         telDn : "(+57) 301 2105346",
@@ -43,7 +43,7 @@ export const citas = [
     {
         id: "4",
         date : "22 JUL",
-        time : "12:00am",
+        time : "12:00",
         nombreMc : "Drako",
         nombreDn : "Pepito Perez",
         telDn : "(+57) 301 2105346",
@@ -56,7 +56,7 @@ export const citas = [
     {
         id: "5",
         date : "5 AGO",
-        time : "5:00pm",
+        time : "17:00",
         nombreMc : "Lulú",
         nombreDn : "Pepito Perez",
         telDn : "(+57) 301 2105346",
@@ -69,7 +69,7 @@ export const citas = [
     {
         id: "6",
         date : "15 AGO",
-        time : "5:00pm",
+        time : "17:00",
         nombreMc : "Lucas",
         nombreDn : "Pepito Perez",
         telDn : "(+57) 301 2105346",
@@ -82,7 +82,7 @@ export const citas = [
     {
         id: "7",
         date : "15 AGO",
-        time : "5:00pm",
+        time : "17:00",
         nombreMc : "Mockito",
         nombreDn : "Pepito Perez",
         telDn : "(+57) 301 2105346",
@@ -95,7 +95,7 @@ export const citas = [
     {
         id: "8",
         date : "15 AGO",
-        time : "5:00pm",
+        time : "5:00",
         nombreMc : "Guacala",
         nombreDn : "Pepito Perez",
         telDn : "(+57) 301 2105346",
