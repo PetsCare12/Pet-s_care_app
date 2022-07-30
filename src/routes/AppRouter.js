@@ -19,8 +19,8 @@ export const AppRouter = () => {
                 <Route path="/registro" element={<Registro />} />
                 <Route path="/registro_mascotas" element={<Registro_mascotas />} />
                 <Route path='/perfil' element={<Profile />} />
-                <Route path='/clinicas' element={<Clinicas />} />
-                <Route path='/clinica/:id' element={<Clinica />} />
+                <Route path='clinicas' element={<Clinicas />} />
+                <Route path='clinica/:id' element={<Clinica />} />
                 <Route path="/*" element={ <NotFound />  } />
                 <Route path="/citas" element={ <Citas />  } />
                 <Route path="/cita/:id" element={ <CitaEspecifica />  } />
