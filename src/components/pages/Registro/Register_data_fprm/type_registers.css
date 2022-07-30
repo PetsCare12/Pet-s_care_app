@@ -147,3 +147,10 @@ form{
 #select:focus{
     outline: none;
 }
+
+/* WARNINGS USER-REGISTER */
+.warn__password-user{
+    height: 10px;
+    margin-top: -15px;
+    color: tomato;
+}
