@@ -42,15 +42,13 @@
     background-color: #004463;
     color: aliceblue;
 }
-.headerHome{
+.headerHome {
     background-color: #61BBD6;
     padding: 10px 100px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between; 
-    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);    
-    margin-bottom: 20px;
+    justify-content: space-between;
 }
 #header__logo{
     border-radius: 0;
