@@ -10,7 +10,7 @@ export const Home = () => {
         <Header />
         <header>
           <div className="headerHome__left">
-              <h1>Tu <span className="headerHome__span">mascota</span><br/> es nuestra<br/> prioridad</h1>
+              <h1>TU <span className="headerHome__span">MASCOTA</span><br/> ES NUESTRA<br/> PRIORIDAD</h1>
               <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores, ea!voluptatibus fuodi, adipisci natus deleniti? Nemo, quis?</p>
           </div>
           <div className="headerHome__right">
@@ -61,18 +61,18 @@ export const Home = () => {
           </div>
           <div className="home__contactUs-card-info">
             <div className="home__contactUs-card-info-personal">
-              <h1>Nombre de la persona</h1>
+              <h1>Samuel Rodríguez</h1>
               <br/>
-              <p>(+57) ### #######</p>
-              <p>Full Stack</p>
+              <p>(+57) 301 2105346</p>
+              <p>Frontend</p>
               <br/>
               <img src={pets_images("./home/colombia.png")} alt="" />
               
             </div>
             <div className="home__contactUs-card-info-media">
               <a href="https://www.facebook.com/" target={"blank"}><img src={pets_images("./home/facebook.png")} alt="facebook" /></a>
-              <a href=""><img src={pets_images("./home/correo-electronico.png")} alt="gmail" /></a>
-              <a href=""><img src={pets_images("./home/instagram.png")} alt="instagram" /></a>
+              <a href="mailto:samuelrm20025@gmail.com" target={"blank"}><img src={pets_images("./home/correo-electronico.png")} alt="gmail" /></a>
+              <a href="https://github.com/samuelrm5" target={"blank"}><img src={pets_images("./home/github.png")} alt="github" /></a>
             </div>
           </div>
         </div>
@@ -83,18 +83,18 @@ export const Home = () => {
           </div>
           <div className="home__contactUs-card-info">
             <div className="home__contactUs-card-info-personal">
-              <h1>Nombre de la persona</h1>
+              <h1>Kevyn Santiago Pineda</h1>
               <br/>
-              <p>(+57) ### #######</p>
-              <p>Full Stack</p>
+              <p>(+57) 315 3303056</p>
+              <p>Backend</p>
               <br/>
               <img src={pets_images("./home/colombia.png")} alt="" />
               
             </div>
             <div className="home__contactUs-card-info-media">
-              <a href="https://www.facebook.com/" target={"blank"}><img src={pets_images("./home/facebook.png")} alt="facebook" /></a>
-              <a href=""><img src={pets_images("./home/correo-electronico.png")} alt="gmail" /></a>
-              <a href=""><img src={pets_images("./home/instagram.png")} alt="instagram" /></a>
+              <a href="https://web.facebook.com/kevin.montenegro.50" target={"blank"}><img src={pets_images("./home/facebook.png")} alt="facebook" /></a>
+              <a href="mailto:pinedamontenegro1234@gmail.com" target={"blank"}><img src={pets_images("./home/correo-electronico.png")} alt="gmail" /></a>
+              <a href="https://github.com/kevynpinedasena" target={"blank"}><img src={pets_images("./home/github.png")} alt="github" /></a>
             </div>
           </div>
         </div>
@@ -105,18 +105,17 @@ export const Home = () => {
           </div>
           <div className="home__contactUs-card-info">
             <div className="home__contactUs-card-info-personal">
-              <h1>Nombre de la persona</h1>
+              <h1>Juan David Marín</h1>
               <br/>
-              <p>(+57) ### #######</p>
-              <p>Full Stack</p>
+              <p>(+57) 323 3617844</p>
+              <p>Backend</p>
               <br/>
               <img src={pets_images("./home/colombia.png")} alt="" />
               
             </div>
             <div className="home__contactUs-card-info-media">
-              <a href="https://www.facebook.com/" target={"blank"}><img src={pets_images("./home/facebook.png")} alt="facebook" /></a>
-              <a href=""><img src={pets_images("./home/correo-electronico.png")} alt="gmail" /></a>
-              <a href=""><img src={pets_images("./home/instagram.png")} alt="instagram" /></a>
+              <a href="mailto:juaanmarin2007@gmail.com" target={"blank"}><img src={pets_images("./home/correo-electronico.png")} alt="gmail" /></a>
+              <a href="https://github.com/juaanmarin" target={"blank"}><img src={pets_images("./home/github.png")} alt="github" /></a>
             </div>
           </div>
         </div>
@@ -127,18 +126,18 @@ export const Home = () => {
           </div>
           <div className="home__contactUs-card-info">
             <div className="home__contactUs-card-info-personal">
-              <h1>Nombre de la persona</h1>
+              <h1>Andres Felipe Alvarez</h1>
               <br/>
-              <p>(+57) ### #######</p>
-              <p>Full Stack</p>
+              <p>(+57) 305 8115383</p>
+              <p>Backend</p>
               <br/>
               <img src={pets_images("./home/colombia.png")} alt="" />
               
             </div>
             <div className="home__contactUs-card-info-media">
-              <a href="https://www.facebook.com/" target={"blank"}><img src={pets_images("./home/facebook.png")} alt="facebook" /></a>
-              <a href=""><img src={pets_images("./home/correo-electronico.png")} alt="gmail" /></a>
-              <a href=""><img src={pets_images("./home/instagram.png")} alt="instagram" /></a>
+              <a href="https://web.facebook.com/pipe.alvarez.129" target={"blank"}><img src={pets_images("./home/facebook.png")} alt="facebook" /></a>
+              <a href="mailto:andresfelipealvarezchavez5@gmail.com" target={"blank"}><img src={pets_images("./home/correo-electronico.png")} alt="gmail" /></a>
+              <a href="https://github.com/Andresito18" target={"blank"}><img src={pets_images("./home/github.png")} alt="github" /></a>
             </div>
           </div>
         </div>
@@ -149,18 +148,18 @@ export const Home = () => {
           </div>
           <div className="home__contactUs-card-info">
             <div className="home__contactUs-card-info-personal">
-              <h1>Nombre de la persona</h1>
+              <h1>Juan José Vera</h1>
               <br/>
-              <p>(+57) ### #######</p>
-              <p>Full Stack</p>
+              <p>(+57) 316 8270074</p>
+              <p>Frontend</p>
               <br/>
               <img src={pets_images("./home/colombia.png")} alt="" />
               
             </div>
             <div className="home__contactUs-card-info-media">
-              <a href="https://www.facebook.com/" target={"blank"}><img src={pets_images("./home/facebook.png")} alt="facebook" /></a>
-              <a href=""><img src={pets_images("./home/correo-electronico.png")} alt="gmail" /></a>
-              <a href=""><img src={pets_images("./home/instagram.png")} alt="instagram" /></a>
+              <a href="https://web.facebook.com/profile.php?id=100004381028074" target={"blank"}><img src={pets_images("./home/facebook.png")} alt="facebook" /></a>
+              <a href="mailto:josejuanchov@gmail.com" target={"blank"}><img src={pets_images("./home/correo-electronico.png")} alt="gmail" /></a>
+              <a href="https://github.com/juanvera326" target={"blank"}><img src={pets_images("./home/github.png")} alt="github" /></a>
             </div>
           </div>
         </div>
