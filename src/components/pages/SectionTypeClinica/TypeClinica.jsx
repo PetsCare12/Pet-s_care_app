@@ -16,7 +16,7 @@ export const TypeClinica = () => {
 
   const disableVet = (e) => {};
 
-  // const [isOpenModal1,openModal1,closeModal1] = useModal(false);
+  const [isOpenModal1,openModal1,closeModal1] = useModal(false);
   const initialForm = {
     documento: "",
     apellido: "",nombre: "",
@@ -67,12 +67,12 @@ export const TypeClinica = () => {
             <div className='st4'>
               <h1 className='titleP2 -margin'>Veterinarios</h1>
               <hr className='hrVet'/>
-                            {/* <ButtonUI text="Registrar" type="button" style="btn btnRes" event={openModal1}></ButtonUI>
-                            <Modal isOpen={isOpenModal1} closeModal={closeModal1}><p>Lo abrio perro hijuepputa.</p></Modal>
-                            <div className="search">
-                              <input type="text" className="iVet iSearch" placeholder='ID del Veterinario...'/>
-                              <ButtonUI text="Buscar" type="button" style="btn btnSear" event={""}></ButtonUI>
-                            </div> */}
+                    {/* <ButtonUI text="Registrar" type="button" style="btn btnRes" event={openModal1}></ButtonUI> */}
+                    <Modal isOpen={isOpenModal1} closeModal={closeModal1}><p>Lo abrio perro hijuepputa.</p></Modal>
+                    <div className="search">
+                      <input type="text" className="input iSearch" placeholder='ID del Veterinario...'/>
+                      <a onClick={""} href=""><img src={pets_images('./veterinarios/lupa.png')} alt="" id='searchIcon' /></a>
+                    </div>
               <ul>
                 {
                   arr.map((item) =>(
