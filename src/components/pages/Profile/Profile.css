@@ -14,40 +14,42 @@
     display: flex;
     background: #f1f1f1;
     flex-direction: column;
-    gap: 50px;
+    gap: 20px;
     height: 90vh;
     padding: 50px;
-    width: 70%;
+    width: 80%;
 }
 .profile__section{
     color: #61bbd6;
 }
 .profile__left{
     align-items: center;
-    background-color: #c8e1f3;
+    background-color: #f0f0f0;
     border-radius: 4px;
     display: flex;
     flex-direction: column;
     height: 90vh;
-    width: 30%;
+    width: 20%;
 }
 
 
 
 /* .......... MASCOTAS .......... */
 .profile__misMascotas {
-    border-bottom: 1px solid #c8e1f3;
+    border-bottom: 2px solid #61bbd6;
     border-radius: 3px;
-    background: linear-gradient(0deg, #0095ff36, transparent 2%);
     display: flex;
     flex-wrap: wrap;
-    gap: 40px;
-    height: 46%;
+    gap: 15px;
+    height: 210px;
     width: 100%;
     scroll-behavior: auto;
     overflow-y: scroll;
 }
-
+.mascotaCard__button{
+    height: 190;
+    width: auto;
+}
 .mascotaCard__mascota:hover{
     transition: .7s;
     background-color: #00000000;

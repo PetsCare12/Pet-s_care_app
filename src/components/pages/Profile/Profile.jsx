@@ -15,36 +15,39 @@ const data = [
 export const Profile = () => {
 
     return (
-        <div className='profile'>
-            <div className="profile__left">
+        <div className='profile__contenedor'>
+            <div className='profile'>
+                <div className="profile__left">
 
-                <PhotoProfile 
-                    img={"https://media.gq.com.mx/photos/6165c414e1224bdb3d42c49b/3:2/w_1998,h_1332,c_limit/habitos-de-un-hombre-con-estilo-como-se-comporta.jpg"}
-                />
+                    <PhotoProfile 
+                        img={"https://cdn1.matadornetwork.com/blogs/2/2019/03/frases-sobre-mujeres-shutterstock_400610314-560x420.jpg"}
+                    />
 
-            </div>
-            <div className="profile__right">
-
-                <h1 className='profile__section'>Mis mascotas</h1>
-                <button className='btnShort'>Agregar mascota</button>
-                <div className="profile__misMascotas">
-                    {
-                        data.map( pet => (
-
-                            <MascotasCard
-                            key={pet.id}
-                            name={pet.name}
-                            age={pet.age}
-                            raza={pet.raza}
-                            image={pet.image}
-                            />
-
-                        ))
-                    }
                 </div>
-                
-            </div>     
+                <div className="profile__right">
+
+                    <h1 className='profile__section'>Mis mascotas</h1>
+                    <button className='btnAgregarMascota'>Crear mascota</button>
+                    <div className="profile__misMascotas">
+                        {
+                            data.map( pet => (
+
+                                <MascotasCard
+                                key={pet.id}
+                                name={pet.name}
+                                age={pet.age}
+                                raza={pet.raza}
+                                image={pet.image}
+                                />
+
+                            ))
+                        }
+                    </div>
+                    
+                </div>     
+            </div> 
         </div>
+        
     )
 }
 

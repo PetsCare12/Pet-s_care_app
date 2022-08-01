@@ -26,10 +26,10 @@ header {
 }
 .headerHome__left h1 {
     color: white;
-    font-size: 7rem;
+    font-size: 8rem;
     font-family: 'Bebas Neue', cursive;
     margin-bottom: 7%;
-    letter-spacing: 4px;
+    letter-spacing: 10px;
     width: 90%;
 }
 
