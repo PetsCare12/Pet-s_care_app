@@ -3,11 +3,12 @@
     font-family: 'Nunito', sans-serif;
     margin: 0;
     padding: 0;
-    scrollbar-color: #005c79 rgba(0, 0, 0, 0);
+    scrollbar-color: #61bbd6 rgba(0, 0, 0, 0);
     scrollbar-width: thin;
 }
 h1,h2,h3,h4,h5,h6,p,input,button,span{
     font-family: 'Ruda', sans-serif;
+    color: #61bbd6;
 }
 .titles{
     display: flex;
@@ -21,18 +22,16 @@ h1,h2,h3,h4,h5,h6,p,input,button,span{
     align-items: flex-start;
 }
 #titleP1{
-    color: #e9e9e9;
     font-family: 'Ruda', sans-serif;
     font-size:  7vh;
 }
 #titleP2{
-    color: #e9e9e9;
+    color: #61bbd6;
     font-family: 'Ruda', sans-serif;
     font-size:  3vh;
     margin-left: 25px;
 }
 #titleP2-margin{
-    color: #000000;
     font-size:  3vh;
 }
 .titleP2-margin{
@@ -48,7 +47,7 @@ h1,h2,h3,h4,h5,h6,p,input,button,span{
     align-items: center;
     width: 100%;
     height: 100vh;
-    background-color: #e9e9e9;
+    background-color: #61bbd6;
 }
 .st2{
     display: flex;
@@ -59,7 +58,7 @@ h1,h2,h3,h4,h5,h6,p,input,button,span{
     width: 99%;
     height: 98%;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-    background-color: #0d89af;
+    background-color: #ffffff;
 }
 .st3{
     margin-top: 20px;
@@ -92,7 +91,7 @@ h1,h2,h3,h4,h5,h6,p,input,button,span{
     margin-right: 5px;
     padding: 10px;
     width: 55%;
-    height: 75vh;
+    height: 80vh;
     border-radius: 6px; 
     display: flex;
     flex-direction: column;
@@ -118,7 +117,7 @@ h1,h2,h3,h4,h5,h6,p,input,button,span{
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #005c79;
+    background-color: #61bbd6;
     border-radius: 20px;
     border: 2px solid #f1f2f3;
 }
@@ -200,19 +199,16 @@ span{
     margin-top: 30px;
 }
 .input {
-    background-color: #ffffff;
+    width: 70vh;
+    height: 50px;
+    padding: 14px 16px;
+    border: 1px solid #dddfe2;
     border-radius: 6px;
-    border: 0.5px solid black;
-    box-sizing: border-box;
-    color: rgb(3, 3, 3);
-    font-size: 25px;
-    height: 85%;
-    outline: 0;
-    padding: 4px 20px 0;
-    width: 85vh;
+    font-size: 17px;
+    color: #1d2129;
 }
 .cut {
-    background-color: #acd7e4;
+    background-color: #ffffff;
     border-radius: 10px;
     height: 20px;
     right: 20px;
@@ -240,7 +236,7 @@ span{
     width: 250px;
     text-align: center;
     font-family: 'Ruda', sans-serif;
-    font-size: 2.3vh;
+    font-size: 15px;
 }
 .input:focus ~ .placeholder,
 .input:not(:placeholder-shown) ~ .placeholder{
@@ -249,11 +245,13 @@ span{
   
 .input:not(:placeholder-shown) ~ .placeholder {
     color: #272727;
+    font-size: 25px;
 }
   
 .input:focus ~ .placeholder {
     font-weight: bold;
-    color: #0084ff;
+    font-size: 25px;
+    color: #61bbd6;
 }
 #id{
     background-color: #00779b44;
@@ -316,18 +314,19 @@ span{
     color: #ffffff;
     background-color: #ff04041f;
 }
-.imgForm{
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    gap: 10vh;
-    justify-content: space-evenly;
-}
 #titleValidation{
     margin-top: 35vh;
 }
 #imgForm{
-    width: 180px;
+    width: 200px;
+}
+.imgForm{
+    width: 70vh;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 2rem;
 }
 .idSection{
     width: 20vh;
@@ -369,4 +368,10 @@ span{
     display: flex;
     align-items: center;
     flex-direction: column;
+}
+.hrVet{
+    width: 60vh;
+    border-radius: 100%;
+    height: 2px;
+    color: #61bbd6;
 }

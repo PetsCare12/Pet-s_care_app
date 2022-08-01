@@ -65,8 +65,8 @@ export const TypeClinica = () => {
           </div>
           <div className='st3'>
             <div className='st4'>
-              <h1 className='titleP2-margin'>Veterinarios</h1>
-              <hr />
+              <h1 className='titleP2 -margin'>Veterinarios</h1>
+              <hr className='hrVet'/>
                             {/* <ButtonUI text="Registrar" type="button" style="btn btnRes" event={openModal1}></ButtonUI>
                             <Modal isOpen={isOpenModal1} closeModal={closeModal1}><p>Lo abrio perro hijuepputa.</p></Modal>
                             <div className="search">
@@ -92,7 +92,7 @@ export const TypeClinica = () => {
                           <div className='liVetA'>
                             <h4><span>Nombre:</span>            {item.nombre}</h4>
                             <h4><span>Apellido:</span>        {item.apellido}</h4>
-                            <h4><span>ID:</span>                {item.documento}</h4>
+                            <h4><span>ID:</span>             {item.documento}</h4>
                             <h4><span>Especialidad:</span>{item.especialidad}</h4>
                           </div>
                         </div> 
@@ -116,17 +116,12 @@ export const TypeClinica = () => {
                         (useVet.sexo === "Masculino")
                         ?
                           <div className="imgForm">
-                              <img src={pets_images("./veterinarios/perfil-masculino.png")} alt="Masculino" id='imgForm'/>
-                              <div className="input-container">
-                                <input 
-                                name='id' type="text" 
-                                placeholder=' ID Uneditable ='
-                                disabled={true}
-                                id='id'
-                                className='inputID'
-                                />
-                                <div class="cut"></div>
-                                <label for="id" class="placeholder"> {form.documento = useVet.documento} </label>
+                            <img src={pets_images("./veterinarios/perfil-masculino.png")} alt="Masculino" id='imgForm'/>
+                              <div className='liVetA'>
+                                <h1>{useVet.especialidad}</h1>
+                                <hr className='hrVet'/>
+                                <h2>{useVet.nombre} {useVet.apellido}</h2>
+                                <h4>ID: {useVet.documento}</h4>
                               </div>
                           </div> 
                         :
@@ -134,31 +129,25 @@ export const TypeClinica = () => {
                         ?
                             <div className="imgForm">
                               <img src={pets_images("./veterinarios/perfil-femenino.png")} alt="Femenino" id='imgForm'/>
-                              <div className="input-container">
-                                <input 
-                                name='id' type="text" 
-                                placeholder=' ID Uneditable ='
-                                disabled={true}
-                                id='id'
-                                className='inputID'
-                                />
-                                <div class="cut"></div>
-                                <label for="id" class="placeholder"> {form.documento = useVet.documento} </label>
+                              <div className="imgForm">
+                                <div className='liVetA'>
+                                  <h1>{useVet.especialidad}</h1>
+                                  <hr className='hrVet'/>
+                                  <h2>{useVet.nombre} {useVet.apellido}</h2>
+                                  <h4>ID: {useVet.documento}</h4>
+                                </div>
                               </div>
                             </div>
                         :
                           <div className="imgForm">
                             <img src={pets_images("./veterinarios/usuario.png")} alt="" id='imgForm'/>
-                            <div className="input-container">
-                                <input 
-                                name='id' type="text" 
-                                placeholder=' ID Uneditable ='
-                                disabled={true}
-                                id='id'
-                                className='inputID'
-                                />
-                                <div class="cut"></div>
-                                <label for="id" class="placeholder"> {form.documento = useVet.documento} </label>
+                            <div className="imgForm">
+                              <div className='liVetA'>
+                                  <h1>{useVet.especialidad}</h1>
+                                  <hr className='hrVet'/>
+                                  <h2>{useVet.nombre} {useVet.apellido}</h2>
+                                  <h4>ID: {useVet.documento}</h4>
+                              </div>
                               </div>
                           </div>
                     }

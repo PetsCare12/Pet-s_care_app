@@ -90,7 +90,7 @@ export const vet = [
         telefono:"101010",
         correo:"diana@gmail.com",
         sexo:"Femenino",
-        especialidad:"Farmacia",
+        especialidad:"Farmaceuta",
         imagen:"xxx",
         clinica:"Perrito 64"
     }
