@@ -1,12 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&family=Ruda:wght@400;900&display=swap');
 *{
     font-family: 'Nunito', sans-serif;
     margin: 0;
     padding: 0;
-    scrollbar-color: #03a9db rgba(0, 0, 0, 0);
+    scrollbar-color: #005c79 rgba(0, 0, 0, 0);
     scrollbar-width: thin;
 }
-h1,h2,h3,h4,h5,h6,p,input,button{
-    font-family: 'Nunito', sans-serif;
+h1,h2,h3,h4,h5,h6,p,input,button,span{
+    font-family: 'Ruda', sans-serif;
+}
+.titles{
+    display: flex;
+    flex-direction: column;
+}
+.title-container{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 85%;
+    align-items: flex-start;
+}
+#titleP1{
+    color: #e9e9e9;
+    font-family: 'Ruda', sans-serif;
+    font-size:  7vh;
+}
+#titleP2{
+    color: #e9e9e9;
+    font-family: 'Ruda', sans-serif;
+    font-size:  3vh;
+    margin-left: 25px;
+}
+#titleP2-margin{
+    color: #000000;
+    font-size:  3vh;
+}
+.titleP2-margin{
+    color: #e9e9e9;
+    font-family: 'Ruda', sans-serif;
+    font-size:  4vh;
+    padding: 2rem;
 }
 .st1{
     display: flex;
@@ -15,18 +48,18 @@ h1,h2,h3,h4,h5,h6,p,input,button{
     align-items: center;
     width: 100%;
     height: 100vh;
-    background-color: #03a9db;
+    background-color: #e9e9e9;
 }
 .st2{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #e9e9e9;
     border-radius: 6px;
-    width: 95%;
-    height: 95%;
+    width: 99%;
+    height: 98%;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    background-color: #0d89af;
 }
 .st3{
     margin-top: 20px;
@@ -43,14 +76,29 @@ h1,h2,h3,h4,h5,h6,p,input,button{
     margin-left: 5px;
     margin-right: 5px;
     padding: 10px;
-    width: 30%;
-    height: 70vh;
+    width: 35%;
+    height: 75vh;
     border-radius: 6px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    background-color: #ffffff;
+    background-color: #ffffff73;
+}
+
+.st5{
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 10px;
+    width: 55%;
+    height: 75vh;
+    border-radius: 6px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffffa8;
+    overflow-y: scroll;
 }
 /* --------------------------------- */
 ::-webkit-scrollbar {
@@ -70,7 +118,7 @@ h1,h2,h3,h4,h5,h6,p,input,button{
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #03a9db;
+    background-color: #005c79;
     border-radius: 20px;
     border: 2px solid #f1f2f3;
 }
@@ -86,38 +134,16 @@ span{
     width: 105px;
 }
 #imgLi{
+    transition: 0.2s;
     width: 65px;
     padding-right: 10px;
 }
-.liVetSpaceFem{
-    transition: 0.5s;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-    background-color: #f957ff3a;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding-left: 40px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 6px;
-    width: 50vh;
-}
-.liVetSpaceMas{
-    transition: 0.5s;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-    background-color: #35c8f53d;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding-left: 40px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 6px;
-    width: 50vh;
+#imgLi:hover{
+    transition: 0.2s;
+    filter: brightness(50%); 
 }
 .liVetSpace{
+    background-color: rgb(255, 255, 255);
     transition: 0.5s;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
     color: #616161;
@@ -129,33 +155,7 @@ span{
     justify-content: space-between;
     align-items: center;
     border-radius: 6px;
-    width: 50vh;
-}
-.liVetSpaceDef{
-    transition: 0.5s;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-    color: #616161;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding-left: 40px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 6px;
-    width: 50vh;
-}
-.liVetSpaceFem:hover{
-    transition: 0.5s;
-    background-color: #e081cb77;
-}
-.liVetSpaceDef:hover{
-    transition: 0.5s;
-    background-color: #81808177;
-}
-.liVetSpaceMas:hover{
-    transition: 0.5s;
-    background-color: #76bad485;
+    width: 60vh;
 }
 .liVet{
     padding-top: 5px;
@@ -167,20 +167,6 @@ span{
 }
 .liVetA{
     margin-left: 20px;
-}
-.st5{
-    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-    margin-left: 5px;
-    margin-right: 5px;
-    padding: 10px;
-    width: 45%;
-    height: 75vh;
-    border-radius: 6px; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #ffffff;
-    overflow-y: scroll;
 }
 .bottomForm{
     display: flex;
@@ -196,16 +182,116 @@ span{
     height: 85vh;
     align-items:  center;
 }
+
+/* ------------------- */
+.input-container{
+    height: 50px;
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.ic1 {
+    margin-top: 40px;
+}
+.ic2 {
+    margin-top: 30px;
+}
+.input {
+    background-color: #ffffff;
+    border-radius: 6px;
+    border: 0.5px solid black;
+    box-sizing: border-box;
+    color: rgb(3, 3, 3);
+    font-size: 25px;
+    height: 85%;
+    outline: 0;
+    padding: 4px 20px 0;
+    width: 85vh;
+}
+.cut {
+    background-color: #acd7e4;
+    border-radius: 10px;
+    height: 20px;
+    right: 20px;
+    position: absolute;
+    top: -20px;
+    transform: translateY(0);
+    transition: transform 200ms;
+    width: 250px;
+    text-align: center;
+}
+.input:focus ~ .cut,
+.input:not(:placeholder-shown) ~ .cut {
+    transform: translateY(8px);
+}
+  
+.placeholder {
+    color: #65657b;
+    line-height: 14px;
+    right: 0;
+    pointer-events: none;
+    position: absolute;
+    transform-origin: 0 50%;
+    transition: transform 200ms, color 200ms;
+    top: 20px;
+    width: 250px;
+    text-align: center;
+    font-family: 'Ruda', sans-serif;
+    font-size: 2.3vh;
+}
+.input:focus ~ .placeholder,
+.input:not(:placeholder-shown) ~ .placeholder{
+    transform: translateY(-30px) translateX(10px) scale(0.75);
+}
+  
+.input:not(:placeholder-shown) ~ .placeholder {
+    color: #272727;
+}
+  
+.input:focus ~ .placeholder {
+    font-weight: bold;
+    color: #0084ff;
+}
+#id{
+    background-color: #00779b44;
+}
+.submit {
+    background-color: #08d;
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    color: #eee;
+    cursor: pointer;
+    font-size: 18px;
+    height: 50px;
+    margin-top: 38px;
+    text-align: center;
+    width: 20vh;
+}
+  
+.submit:active {
+    background-color: #06b;
+}
+.inputID{
+    background-color: #ffffff;
+    border-radius: 12px;
+    border: 0.5px solid black;
+    box-sizing: border-box;
+    color: rgb(3, 3, 3);
+    font-size: 25px;
+    height: 100%;
+    outline: 0;
+    padding: 4px 20px 0;
+    width: 40vh;
+}
+/* ------------------ */
 .inputsVet{
     display: flex;
     flex-direction: column; 
     gap: 20px;
-}
-.labelsVet{
-    display: flex;
-    flex-direction: column; 
-    gap: 25px;
-    font-size: 25px;
 }
 .iVet{
     transition: 0.5s;
@@ -226,26 +312,22 @@ span{
     width: 45vh;
 }
 .iWarning{
-    transition: 0.5s;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 30px;
-    border: 1px solid #db0303;
-    color: #9b0000;
-    background-color: #db030327;
-    width: 45vh;
+    border: 2px solid #ff0000;
+    color: #ffffff;
+    background-color: #ff04041f;
 }
 .imgForm{
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
+    gap: 10vh;
     justify-content: space-evenly;
 }
 #titleValidation{
     margin-top: 35vh;
 }
 #imgForm{
-    width: 30%;
+    width: 180px;
 }
 .idSection{
     width: 20vh;
@@ -258,28 +340,11 @@ span{
     color: #03a9db;
 }
 .btnSection{
-    margin-top: 5vh;
     margin-bottom: 5vh;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     gap: 20vh;
-}
-.btnActualizar{
-    transition: 0.3s;
-    width: 25vh;
-    font-size: 25px;
-    padding: 3px 10px 3px 10px;
-    background-color: #1f9b00;
-    color: #ffffff;
-}
-.btnDeshabilitar{
-    transition: 0.3s;
-    width: 25vh;
-    font-size: 25px;
-    padding: 3px 10px 3px 10px;
-    background-color: #9b0000;
-    color: #ffffff;
 }
 .btn:hover{
     transition: 0.3s;
