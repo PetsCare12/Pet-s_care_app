@@ -3,103 +3,32 @@ import { InputUI } from '../../../UI/InputUI/InputUI'
 import { AiOutlineUserAdd } from 'react-icons/ai';
 import { GoArrowSmallLeft } from 'react-icons/go';
 import { ButtonUI } from "../../../UI/ButtonUI/ButtonUI";
-import { registro_user, validate_user } from '../../../../helpers/dataAPI';
-import { containsSpecialChars, checkUppercase, checkSize } from '../../../../helpers/validacionesInput/validacionCaracteresEspeciales';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 export const RegisterUser = ( {change_step} ) => {
 
-    const slcSexo = useRef(null);
-    const warnPassword = useRef(null);
-    const warnEmail = useRef(null);
-    const [validateDoc, setValidateDoc] = useState(false);
-    const [validatePass, setValidatePass] = useState(false);
+    const [counter, setCounter] = useState(3);
+    const registerSuccess = useRef(null);
+
+    const countdown = () => {
+        registerSuccess.current.classList.remove("hidden");
+        setTimeout(()=> {
+            setCounter(2);
+        }, 1000);
+        setTimeout(()=> {
+            setCounter(1);
+        }, 2000);
+        setTimeout(()=> {
+            setCounter(0);
+        }, 3000);
+        setTimeout(()=> {
+            setCounter(3);
+            registerSuccess.current.classList.add("hidden");
+        }, 4000);
+    }
 
     const handleSubmit = ( e ) => {
         e.preventDefault();
-
-        const validacion = validate_user( "usuarios", e.target[0].value )
-
-        console.log(validacion);
-        const data_user={
-            "documento": e.target[0].value,
-            "nombre": e.target[1].value,
-            "apellido": e.target[2].value,
-            "correo": e.target[3].value,
-            "telefono": e.target[4].value,
-            "sexo": e.target[5].value,
-            "password": e.target[6].value
-        }
-
-        // registro_user( 
-        //     "usuarios", 
-        //     data_user["documento"],
-        //     data_user["nombre"],
-        //     data_user["apellido"],
-        //     data_user["telefono"],
-        //     data_user["sexo"],
-        //     data_user["correo"],
-        //     data_user["password"],
-        // )
-    }
-
-    const emptyInput = ( {target} ) => {
-
-        let validacion = false;
-
-        const inpDoc  = document.getElementById("inpDocumento").value;
-        const inpNom  = document.getElementById("inpNombre").value;
-        const inpApe  = document.getElementById("inpApellido").value;
-        const inpCorr = document.getElementById("inpCorreo").value;
-        const inpTel  = document.getElementById("inpTelefono").value;
-        const inpPass = document.getElementById("inpPassword").value;
-        const btn     = document.getElementById("btnEnviar");
-
-
-        if ( target.id === "inpPassword") {
-            if (! checkSize( inpPass, 8) ){
-            warnPassword.current.textContent = "Debe contener por lo menos 8 caracteres *";
-            } 
-            else if (! checkUppercase( inpPass ) ) {
-                warnPassword.current.textContent = "Incluye por lo menos una letra capitalizada *";
-            } else if (! containsSpecialChars( inpPass ) ){
-                warnPassword.current.textContent = "Incluye caracteres especiales *";
-            } else {
-                warnPassword.current.textContent = "";
-                setValidatePass(true);
-            }
-        }
-
-        if ( target.id === "inpDocumento" ) {
-
-            if (! checkSize( inpDoc, 4) ){
-                warnEmail.current.textContent = "Debe contener por lo menos 4 caracteres *";
-            }
-            else{
-                warnEmail.current.textContent = "";
-                setValidateDoc(true);
-            }
-        }
-
-
-        if ( (validateDoc === true) && (inpNom.length > 0 )  && (inpApe.length > 0 ) && (inpCorr.length > 0 ) && (inpTel.length > 0 ) && (inpPass.length > 0 ) && (validatePass === true) ) {
-            validacion = true
-
-        }
-        else {
-            validacion = false;
-        }
-
-        ( validacion === true )
-        ? btn.classList.remove("btnBlocked")
-        : btn.classList.add("btnBlocked");
-
-        
-        
-        
-        
-        
-
-        
 
     }
 
@@ -127,71 +56,129 @@ export const RegisterUser = ( {change_step} ) => {
                     <AiOutlineUserAdd />
                 </div>
             </div>
-            <form onSubmit={handleSubmit}>
-                <InputUI 
-                    type='text'
-                    style = 'inputLogin inputRegistro'
-                    txt = 'Documento'
-                    id={"inpDocumento"}
-                    eventChange={emptyInput}
-                />
-                <p className='animate__animated animate__fadeIn warn__password-user' ref={warnEmail}></p>
-                <div id='registro_column1'>
-                    <InputUI 
-                        type='text'
-                        style = 'inputLogin inputRegistro'
-                        txt = 'Nombre'
-                        id={"inpNombre"}
-                        eventChange={emptyInput}
-                    />
-                    <InputUI 
-                        type='text'
-                        style = 'inputLogin inputRegistro'
-                        txt = 'Apellido'
-                        id={"inpApellido"}
-                        eventChange={emptyInput}
-                    />
-                </div>
-                
-                <InputUI 
-                    type='email'
-                    style = 'inputLogin inputRegistro'
-                    txt = 'Correo electrónico'
-                    id={"inpCorreo"}
-                    eventChange={emptyInput}
-                />
-                <div className="registro_sexo " id='registro_column1'>
-                    <InputUI 
-                        type='text'
-                        style = 'inputLogin inputRegistro'
-                        txt = 'Teléfono'
-                        id={"inpTelefono"}
-                        eventChange={emptyInput}
-                    />
-                    <select ref={slcSexo} name="sexo" id="select" onChange={emptyInput}>
-                        <option selected={true} disabled={true} value="none">Selecciona el sexo</option>
-                        <option value="hombre">Hombre</option>
-                        <option value="mujer">Mujer</option>
-                        <option value="otro">Otro</option>
-                    </select>
-                    
-                </div>
+            <Formik
+                initialValues={{
+                    documento:"",
+                    nombre:"",
+                    apellido:"",
+                    correo:"",
+                    telefono:"",
+                    sexo:"none",
+                    password:""
+                }}
+                validate={(valores) => {
 
-                <InputUI 
-                    type='password'
-                    style = 'inputLogin inputRegistro'
-                    txt = 'Contraseña'
-                    id={"inpPassword"}
-                    eventChange={emptyInput}
-                />
-                <p className='animate__animated animate__fadeIn warn__password-user' ref={warnPassword}></p>
+                    let errores = {};
 
-                <ButtonUI 
-                text="Registrar"
-                style="btnLogin btnBlocked"
-                id={"btnEnviar"}
-                />
-            </form>
+                         if (!valores.documento.trim()) {errores.documento = 'Por favor ingrese un documento';}
+                    else if (!/^\d{7,}$/.test(valores.documento)) {errores.documento = 'Requiere mín. 7 caracteres y solo números';}
+
+                    else if (!valores.nombre.trim()) {errores.nombre = 'Por favor ingrese un nombre';}
+                    else if (!/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(valores.nombre)) {errores.nombre = 'El nombre debe contener letras';}
+
+                    else if (!valores.apellido.trim()) {errores.apellido = 'Por favor ingrese un apellido';}
+                    else if (!/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(valores.apellido)) {errores.apellido = 'El apellido debe contener solo letras';}
+
+                    else if (!valores.correo.trim()) {errores.correo = 'Por favor ingrese un correo';}
+                    else if (!/^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/.test(valores.correo)) {errores.correo = 'El correo no es válido';}
+
+                    else if (!valores.telefono.trim()) {errores.telefono = 'Por favor ingresa un teléfono';}
+                    else if (!/^\d{10,10}$/.test(valores.telefono)) {errores.telefono = 'El número telefonico debe contener solo números';}
+
+                    else if (valores.sexo==="none") {errores.sexo = 'Por favor ingrese el sexo';}
+
+                    else if (!valores.password.trim()) {errores.password = 'Por favor ingrese una contaseña';}
+                    else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}/.test(valores.password)) {errores.password = 'Debes incluir minúsculas, mayúsculas, números y caracteres especiales';}
+
+                    return errores;
+                }}
+                onSubmit={( valores, {resetForm} ) => {
+                    resetForm();
+                    countdown();
+                    console.log(valores);
+                }}
+            >   
+                {({ errors }) => (
+                    <Form>
+                        <Field 
+                            type='text'
+                            className = 'inputLogin inputRegistro'
+                            placeholder = 'Documento'
+                            name="documento"
+                            id="documento"
+                        />
+                        <ErrorMessage name='documento' component={() => (<p className='warn__password-user'>{errors.documento}</p>)} />
+
+                        <div id='registro_column1'>
+                            <Field 
+                                type='text'
+                                className = 'inputLogin inputRegistro'
+                                placeholder = 'Nombre'
+                                name="nombre"
+                                id="nombre"
+                            />
+                            <Field 
+                                type='text'
+                                className = 'inputLogin inputRegistro'
+                                placeholder = 'Apellido'
+                                name="apellido"
+                                id="apellido"
+                                />
+                        </div>
+
+                        <ErrorMessage name='nombre' component={()   => (<p className='warn__password-user' style={{textAlign:"left"}}>{errors.nombre}</p>)} />
+                        <ErrorMessage name='apellido' component={() => (<p className='warn__password-user' style={{textAlign:"right"}}>{errors.apellido}</p>)} />
+
+                        <Field 
+                            type='text'
+                            className = 'inputLogin inputRegistro'
+                            placeholder = 'Correo electrónico'
+                            name="correo"
+                            id="correo"
+                        />
+                        <ErrorMessage name='correo' component={() => (<p className='warn__password-user'>{errors.correo}</p>)} />
+
+                        <div className="registro_sexo " id='registro_column1'>
+                            <Field 
+                                type='text'
+                                className = 'inputLogin inputRegistro'
+                                placeholder = 'Teléfono'
+                                name="telefono"
+                                id="telefono"
+
+                            />
+
+                            <Field name="sexo" as="select" id="select">
+                                <option selected={true} disabled={true} value="none">Selecciona el sexo</option>
+                                <option value="hombre">Hombre</option>
+                                <option value="mujer">Mujer</option>
+                                <option value="otro">Otro</option>
+                            </Field>
+                        </div>
+                        <ErrorMessage name='telefono' component={()   => (<p className='warn__password-user' style={{textAlign:"left"}}>{errors.telefono}</p>)} />
+                        <ErrorMessage name='sexo' component={() => (<p className='warn__password-user' style={{textAlign:"right"}}>{errors.sexo}</p>)} />
+
+                        <Field 
+                            type='password'
+                            className = 'inputLogin inputRegistro'
+                            placeholder = 'Contraseña'
+                            name="password"
+                            id="password"
+                        />
+                        <ErrorMessage name='password' component={() => (<p className='warn__password-user'>{errors.password}</p>)} />
+                        <ButtonUI 
+                            text="Registrar"
+                            style="btnLogin"
+                            type={"submit"}
+                        />
+                    </Form>
+                )}
+            </Formik>
+            <div ref={registerSuccess} className="regiter-succesfuly hidden">
+                <p className='register__counter'>{counter}</p>
+                <div className='spiner'></div>
+                <p>Registro Exitoso</p>
+            </div>
         </>
     )
 }
