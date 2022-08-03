@@ -2,7 +2,7 @@ import { NavLink, Link } from 'react-router-dom'
 import { ButtonUI } from '../../UI/ButtonUI/ButtonUI'
 import { ImagenUI } from '../../UI/ImagenUI/ImagenUI'
 import { InputUI } from '../../UI/InputUI/InputUI'
-import image from './perro_gato_animado.png'
+import image from './perro_gato_animadoNew.png'
 import { pets_images } from '../../../helpers/Pets_care_images';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
@@ -17,13 +17,13 @@ export const Login = () => {
     <div className="loginContainer">
         <div className="login_cont_iz">
             <img src={image} alt="" />
-            <img id='eslogan' src={ pets_images("./login/eslogan.png")} alt="" />
+            <img id='eslogan' src={ pets_images("./login/esloganNew.png")} alt="" />
             {/* <p><b>¡</b> Sé la persona que tu perro cree que eres <b>!</b></p> */}
         </div>
         <div className='login_cont_dr'>
             <ImagenUI 
 
-                img={pets_images("./login/title.png")}
+                img={pets_images("./login/titleAzul.png")}
             />
             <div className="loginData">
                 <p>Iniciar sesión en Pet's Care</p>

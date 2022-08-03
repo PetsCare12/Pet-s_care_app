@@ -13,7 +13,7 @@ button{
 
 .btnLogin{
     color: white;
-    background-color: #61bbd6;
+    background-color: #008eff;
     font-size: 20px;
     height: 50px;
     padding: 14px 16px;
@@ -23,12 +23,12 @@ button{
 
 .btnLogin:hover{
     transition: .4s;
-    background-color: #0089b3;
+    background-color: #0064b3;
 }
 
 .btnLoginCrear{
     color: white;
-    background-color: #00779b;
+    background-color: #72baf3;
     font-size: 17px;
     height: 50px;
     padding: 14px 16px;
@@ -38,7 +38,7 @@ button{
 
 .btnLoginCrear:hover{
     transition: .4s;
-    background-color: #005872;
+    background-color: #3a6f99;
 }
 
 .btnBlocked{
