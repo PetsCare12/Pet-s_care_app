@@ -185,3 +185,11 @@ button{
 .ml-5{
     margin-left: 20px;
 }
+
+.hidden{
+    display: none;
+}
+
+.perfil_active{
+    background-color: #ce56e1;
+}
