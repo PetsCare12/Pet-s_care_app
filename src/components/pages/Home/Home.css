@@ -186,7 +186,7 @@ header .wave.wave4{
 }
 .home__contactUs{
     align-items: center;
-    background-color: #61bbd6;
+    background-color: #0072ff;
     display: flex;
     flex-wrap: wrap;
     gap: 50px;
@@ -195,7 +195,7 @@ header .wave.wave4{
     width: 100%;
 }
 .home__contactUs-title {
-    background-color: #61bbd6;
+    background-color: #0072ff;
     color: white;
     font-size: 4rem;
     height: 200px;
