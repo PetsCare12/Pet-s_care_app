@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useRef } from 'react';
 import { MascotasCard } from './MascotasCard';
 import { PhotoProfile } from './PhotoProfile';
 import './Profile.css';
@@ -14,6 +15,8 @@ const data = [
 
 export const Profile = () => {
 
+    const [activeBtn, setActiveBtn] = useState("")
+
     return (
         <div className='profile__contenedor'>
             <div className='profile'>
@@ -23,6 +26,9 @@ export const Profile = () => {
                         img={"https://cdn1.matadornetwork.com/blogs/2/2019/03/frases-sobre-mujeres-shutterstock_400610314-560x420.jpg"}
                     />
 
+                    <button onClick={() => {setActiveBtn("perfil")}} className={`btnLogin mt-5 ${(activeBtn === "perfil") && "perfil_active"}`}>Perfil</button>
+                    <button onClick={() => {setActiveBtn("mascotas")}} className={`btnLogin ${(activeBtn === "mascotas") && "perfil_active"}`}>Mascotas</button>
+                    <button onClick={() => {setActiveBtn("clinicas")}} className={`btnLogin ${(activeBtn === "clinicas") && "perfil_active"}`}>Clinicas</button>
                 </div>
                 <div className="profile__right">
 
