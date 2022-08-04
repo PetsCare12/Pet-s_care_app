@@ -258,10 +258,6 @@ header .wave.wave4{
     transition: .8s;
     z-index: 2;
 }
-
-.home__contactUs-card-info-personal{
-
-}
 .home__contactUs-card-info-type{
     height: 30px;
     text-align: center;
