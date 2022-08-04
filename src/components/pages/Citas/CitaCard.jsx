@@ -27,7 +27,7 @@ export const CitaCard = ( {
                     <div className="citaCard__contenedor-izquierdo">
                         <div className="citaCard__contenedor-mascota">
                             <h1>
-                                <strong style={{color:"black",fontWeight:"100",fontSize:"25px",marginLeft:"-30px"}}>{nombreMc} </strong>
+                                <strong style={{color:"#303030",fontSize:"25px",marginLeft:"-30px"}}>{nombreMc} </strong>
 
                                 {
                                     ( gender === "Masculino" ) ?

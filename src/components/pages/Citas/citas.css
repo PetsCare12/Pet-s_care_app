@@ -13,14 +13,14 @@
 }
 
 .citaCard__macho{
-    background-color: #61bbd63b;
+    background-color: #0072ff2b;
 }
 
 .citaCard__hembra{
     background-color: #d661c53b;
 }
 .citaCard__macho-date{
-    background-color: #61bbd6;
+    background-color: #0072ff;
 }
 
 .citaCard__hembra-date{
@@ -29,7 +29,7 @@
 
 .citaCard__macho:hover ~ .citaCard__veterinario{
     transition: .4s;
-    background-color: #006988;
+    background-color: #004aa6;
 }
 .citaCard__hembra:hover ~ .citaCard__veterinario{
     transition: .4s;
@@ -134,8 +134,8 @@
     border: 4px solid #d89fe1;
 }
 .citaEspecifica__macho-border {
-    background-color: #daeff6;
-    border: 4px solid #61bbd6;
+    background-color: #0072ff2b;
+    border: 4px solid #0072ff;
 }
 .citaEspecifica__hembra-description {
     background-color: #d661c517;
@@ -179,6 +179,9 @@
     border-radius: 6px;
     padding: 20px;
     width:35%;
+}
+.citaEspecifica__description p{
+    color: #4c4c4c;
 }
 
 /* h1 */

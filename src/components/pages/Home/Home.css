@@ -1,4 +1,6 @@
-
+.home__contenedor h1, p{
+    font-family: 'Nunito', sans-serif;
+}
 header h1,p{
     font-family: 'Nunito', sans-serif;
 }
@@ -119,6 +121,7 @@ header .wave.wave4{
 }
 .home__aboutUs span{
     color: #0072ff;
+    font-family: 'Nunito', sans-serif;
 }
 .home__aboutUs-img {
     display: flex;
@@ -142,6 +145,7 @@ header .wave.wave4{
     width: 100%;
 }
 .home__aboutUs p{
+    color: #363636;
     font-size: 20px;
     width: 85%;
 }

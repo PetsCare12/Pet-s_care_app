@@ -61,7 +61,7 @@ button{
 
 .btnShort{
     color: white;
-    background-color: #61bbd6;
+    background-color: #0072ff;
     font-size: 16px;
     height: 35px;
     padding: 5px 5px;
@@ -71,7 +71,7 @@ button{
 
 .btnShort:hover{
     transition: .4s;
-    background-color: #0089b3;
+    background-color: #004292;
 }
 .btnAgregarMascota {
     color: white;
