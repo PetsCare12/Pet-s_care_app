@@ -10,6 +10,7 @@ import { Profile } from '../components/pages/Profile/Profile';
 import { Registro } from '../components/pages/Registro/Registro';
 import { Registro_mascotas } from '../components/pages/Registro_mascotas/Registro_mascotas';
 import { TypeClinica } from '../components/pages/SectionTypeClinica/TypeClinica';
+import { Agenda } from '../components/pages/Agenda/Agenda'
 
 export const AppRouter = () => {
     return (
@@ -19,13 +20,14 @@ export const AppRouter = () => {
                 <Route path="/registro" element={<Registro />} />
                 <Route path="/registro_mascotas" element={<Registro_mascotas />} />
                 <Route path='/perfil' element={<Profile />} />
-                <Route path='/clinicas' element={<Clinicas />} />
-                <Route path='/clinica/:id' element={<Clinica />} />
+                <Route path='clinicas' element={<Clinicas />} />
+                <Route path='clinica/:id' element={<Clinica />} />
                 <Route path="/*" element={ <NotFound />  } />
                 <Route path="/citas" element={ <Citas />  } />
                 <Route path="/cita/:id" element={ <CitaEspecifica />  } />
                 <Route path="/" element={ <Home />  } />
                 <Route path="/gestionClinica" element={ <TypeClinica />  } />
+                <Route path="/agenda" element={ <Agenda />  } />
             </Routes>
         </BrowserRouter>
     )

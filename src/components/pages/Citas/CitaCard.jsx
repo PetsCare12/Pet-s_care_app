@@ -22,12 +22,12 @@ export const CitaCard = ( {
 
             <button className={`citaCard__contenedor ${ (gender === "Femenino") ?  "citaCard__hembra" : "citaCard__macho"}`}>
                     <div className={`citaCard__datetime ${ (gender === "Femenino") ?  "citaCard__hembra-date" : "citaCard__macho-date"}`}>
-                        <h1>{date} <span>{time}</span></h1>
+                        <h1 style={{fontWeight:"400"}}>{date} <span>{time}</span></h1>
                     </div>
                     <div className="citaCard__contenedor-izquierdo">
                         <div className="citaCard__contenedor-mascota">
                             <h1>
-                                <strong style={{color:"black",fontWeight:"100",fontSize:"25px"}}>{nombreMc} </strong>
+                                <strong style={{color:"black",fontWeight:"100",fontSize:"25px",marginLeft:"-30px"}}>{nombreMc} </strong>
 
                                 {
                                     ( gender === "Masculino" ) ?
@@ -36,8 +36,8 @@ export const CitaCard = ( {
                                 }
 
                             </h1>
-                            <p className='citaCard__p-mascota'> {raza} </p>
-                            <p className='citaCard__p-mascota'> {anios} Año(s)</p>
+                            <p className='citaCard__p-mascota' style={{marginLeft:"-30px"}}> {raza} </p>
+                            <p className='citaCard__p-mascota' style={{marginLeft:"-30px"}}> {anios} Año(s)</p>
                         </div>
                         <div className="citaCard__contenedor-duenio">
                             <p className='citaCard__p-duenio'> {nombreDn} </p>

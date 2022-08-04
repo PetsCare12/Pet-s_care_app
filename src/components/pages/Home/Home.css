@@ -1,137 +1,294 @@
-*{
-    margin: 0;
-    padding: 0;
+
+header h1,p{
+    font-family: 'Nunito', sans-serif;
 }
-.sectionTop{
+
+header {
+    background: linear-gradient(360deg, #61bbd6,#0072ff);
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-wrap: wrap;
     justify-content: center;
-    width: 100%;
-    gap: 10px;
+    position: relative;
+    padding: 3% 6% 7%;
+    overflow: hidden;
 }
-.sectionLeft{
-    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-    width: 45%;
-    margin-left: 5px;
-    margin-right: 5px;
-    padding: 10px;
-    height: 60vh;
-    border-radius: 6px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.sectionBottom{
-    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-    border-radius: 6px;
-    margin-top: 15px;
-    width: 91%;
-    height: 600px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 100px;
-    padding: 15px;
-}
-.sectionRight{
-    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-    width: 45%;
-    margin-left: 5px;
-    margin-right: 5px;
-    padding: 10px;
-    height: 60vh;
-    border-radius: 6px; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.sectionBottom div h1{
-    font-size: 35px;
-    font-weight: 400;
-    color: #0089b3;
-}
-.sectionBottom div p{
-    color: dimgray;
-    font-size: 20px;
-}
-.cardBottom{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    text-align: center;
-    padding: 15px;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-    border-radius: 6px;
-    width: 400px;
-    height: 515px;
-}
-.imgCards{
+.headerHome__left{
     width: 50%;
 }
-.imgLoginSectionRight{
-    width: 40%;
+.headerHome__left p {
+    font-size: 19px;
+    color: white;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    line-height: 31px;
+    width: 80%;
 }
-/* //////////////////////////////////////////// */
-.imgPresentation{
-    margin: 0;
-    width: 91vh;
-    height: 60vh;
-    border-radius: 6px;
-    z-index: 0;
+.headerHome__left h1 {
+    color: white;
+    font-size: 7rem;
+    font-family: 'Bebas Neue', cursive;
+    margin-bottom: 1%;
+    letter-spacing: 5px;
+    width: 90%;
 }
-.imgPresentationCont{
-    
-    border-radius: 6px;
+
+.headerHome__right{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+}
+
+
+.headerHome__right img{
+    position: relative;
     width: 100%;
-    height: 60vh;
 }
-.contentSlide{
+
+.headerHome__span{
+    color: #70b0ff;
+    font-family: 'Bebas Neue', cursive;
+    text-shadow: 5px 5px #333;
+}
+
+/* ................ WAVES ................ */
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: url(../../../assets/images/home/wave.png);
+    background-size: 1000px 70px;
+}
+header .wave.wave1{
+    animation: animate 30s linear infinite;
+    z-index: 1000;
+    opacity: 1;
+    animation-delay: 0s;
+    bottom: 0;
+}
+header .wave.wave2{
+    animation: animate2 10s linear infinite;
+    z-index: 999;
+    opacity: 0.5;
+    animation-delay: -5s;
+    bottom: 10px;
+}
+header .wave.wave3{
+    animation: animate 30s linear infinite;
+    z-index: 997;
+    opacity: 0.7;
+    animation-delay: -5s;
+    bottom: 20px;
+}
+header .wave.wave4{
+    animation: animate2 5s linear infinite;
+    z-index: 998;
+    opacity: 0.2;
+    animation-delay: -2s;
+    bottom: 15px;
+}
+
+
+@keyframes animate {
+    0%{
+        background-position-x: 0;
+    }
+    100%{
+        background-position-x: 1000px;
+    }
+}
+@keyframes animate2 {
+    0%{
+        background-position-x: 0;
+    }
+    100%{
+        background-position-x: -1000px;
+    }
+}
+
+
+/* ...................... ABOUT US ...................... */
+.home__aboutUs{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5%;
+    padding: 7%;
+    width: 100%;
+}
+.home__aboutUs span{
+    color: #0072ff;
+}
+.home__aboutUs-img {
+    display: flex;
+    justify-content: flex-end;
+    height: 400px;
+    width: 45%;
+}
+.home__aboutUs-img img{
+    border-radius: 5px;
+    height: auto;
+    width: 85%;
+}
+.home__aboutUs-text{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    width: 50%;
 }
-.titlePresentation{
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
-    margin-top: -80px; 
-    margin-bottom: 0;   
-    font-size: 45px;
-    font-weight: 400;
-    z-index: 1;
-    color: white;
-    background-color: #0089b3;
+.home__aboutUs h1{
+    font-size: 4rem;
+    margin-bottom: 50px;
     width: 100%;
+}
+.home__aboutUs p{
+    font-size: 20px;
+    width: 85%;
+}
+
+/* ...................... Proyecto Pet's Care ...................... */
+.home__proyecto{
+    background-color: aliceblue;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5%;
+    padding: 7%;
+    width: 100%;
+}
+.home__proyecto span{
+    color: #0072ff;
+}
+.home__proyecto-text{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+.home__proyecto-img{
+    display: flex;
+    justify-content: flex-start;
+    width: 40%;
+}
+.home__proyecto-img img{
+    border-radius: 5px;
+    height: auto;
+    width: 80%;
+}
+
+.home__tiempo{
+    height: auto;
+}
+
+/* CONTACT US */
+.wave__contactUs{
+    margin-top: -190px;
+    width: 100%;
+}
+.home__contactUs{
+    align-items: center;
+    background-color: #0072ff;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+    padding: 0px 7%;
+    width: 100%;
+}
+.home__contactUs-title {
+    background-color: #0072ff;
+    color: white;
+    font-size: 4rem;
+    height: 200px;
+    margin-top: -10px;
+    text-align: center;
+    width: 100%;
+}
+.home__contactUs-card {
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0px 0px 9px 0px #4c4c4c;
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    margin-bottom: 50px;
+    width: 250px;
+}
+.home__contactUs-card-img{
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+.home__contactUs-card-img img{
+    border-radius: 6px;
+    width: 100%;
+    height: auto;
+}
+@supports(object-fit: cover){
+    .home__contactUs-card-img img, .home__contactUs-card-img img{
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+}
+
+.home__contactUs-card-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 350px;
+    padding: 30px 20px;
+    position: absolute;
+    width: 250px;
+    z-index: 0;
+}
+.home__contactUs-card-info h1{
+    color: white;
+    font-size: 25px;
+}
+.home__contactUs-card-info img{
+    border-radius: 0px;
+    width: 30px;
+}
+.home__contactUs-card-info p{
+    color: rgb(164, 164, 164);
+}
+
+.home__contactUs-card:hover .home__contactUs-card-info{
+    background-color: #000000bb;
+    border-radius: 6px;
+    transition: .8s;
+    z-index: 2;
+}
+
+.home__contactUs-card-info-personal{
+
+}
+.home__contactUs-card-info-type{
+    height: 30px;
     text-align: center;
 }
-.color1{
+.home__contactUs-card-info-type p{
     color: white;
 }
-.color2{
-    color: rgb(68 171 220);
-}
-.aRHome{
-    font-weight: 600;
-    color: #1b9eda;
-    border: solid 1px #1b9eda;
-    transition: 0.5s;
-    display: flex;
-    text-decoration: none;
+.home__contactUs-card-info-media{
     align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
     justify-content: center;
-    font-size: 30px;
-    width: 300px;
-    height: 80px;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
 }
-.aRHome:hover{
-    transition: 0.5s;
-    background-color: #2fbdff;
-    color: #ffffff;
-    border: none;
+.home__contactUs-card-info-media a{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 20%;
 }
+.home__contactUs-card-info-media img{
+    border-radius: 100%;
+    filter: brightness(50%);
+    width: 100%;
+}
+.home__contactUs-card-info-media img:hover{
+    filter: none;
+    transition: .5s;
+}
+

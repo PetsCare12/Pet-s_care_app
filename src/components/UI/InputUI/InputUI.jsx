@@ -1,14 +1,16 @@
 import './InputUIStyle.css';
 
-export const InputUI = ( { type, style, txt, id, ref, eventChange, event, req } ) => {
+export const InputUI = ( { name, type, style, txt, id, eventChange, eventBlur, value, event, req } ) => {
   return (
     <input 
       type={type} 
       className={style}
       placeholder={txt}
       onChange={eventChange}
+      onBlur={eventBlur}
       id={id}
-      ref={ref}
+      value={value}
+      name={name}
     />
   )
 }

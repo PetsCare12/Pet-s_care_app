@@ -13,7 +13,7 @@ button{
 
 .btnLogin{
     color: white;
-    background-color: #61bbd6;
+    background-color: #008eff;
     font-size: 20px;
     height: 50px;
     padding: 14px 16px;
@@ -23,12 +23,12 @@ button{
 
 .btnLogin:hover{
     transition: .4s;
-    background-color: #0089b3;
+    background-color: #0064b3;
 }
 
 .btnLoginCrear{
     color: white;
-    background-color: #00779b;
+    background-color: #005191;
     font-size: 17px;
     height: 50px;
     padding: 14px 16px;
@@ -38,7 +38,7 @@ button{
 
 .btnLoginCrear:hover{
     transition: .4s;
-    background-color: #005872;
+    background-color: #4278a3;
 }
 
 .btnBlocked{
@@ -72,6 +72,19 @@ button{
 .btnShort:hover{
     transition: .4s;
     background-color: #0089b3;
+}
+.btnAgregarMascota {
+    color: white;
+    background-color: #006eff;
+    font-size: 16px;
+    height: 35px;
+    padding: 5px 5px;
+    width: 120px;
+    font-weight: 100;
+}
+.btnAgregarMascota:hover{
+    transition: .4s;
+    background-color: #00469b;
 }
 .btnShort-pink{
     color: white;
@@ -171,4 +184,12 @@ button{
 
 .ml-5{
     margin-left: 20px;
+}
+
+.hidden{
+    display: none;
+}
+
+.perfil_active{
+    background-color: #ce56e1;
 }

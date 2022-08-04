@@ -34,7 +34,7 @@ form{
 
 .day_option_register{
     align-items: center;
-    background-color: #0089b240;
+    background-color: #bfe2ff;
     border-radius: 6px;
     color: #1d2129;
     cursor: pointer;
@@ -46,12 +46,15 @@ form{
 }
 
 .day_option_register:hover{
-    border: 2px solid #009bc9;
+    background-color: #008eff;
+    color: white;
+    border: 2px solid #008eff;
 }
 
 .day_register_active{
-    background-color: #61bbd6;
-    border: 2px solid #009bc9;
+    background-color: #008eff;
+    color: white;
+    border: 2px solid #008eff;
 }
 
 .days_time_register {
@@ -112,7 +115,7 @@ form{
     justify-content: space-between;
     margin-bottom: 10px;
     width: 68%;
-    color: #004f66;
+    color: #008eff;
 }
 
 .cont_icon{
@@ -123,7 +126,7 @@ form{
 
 .user_icon{
     align-items: center;
-    background-color: #0089b2;
+    background-color: #008eff;
     border-radius: 6px;
     color: white;
     display: flex;
@@ -149,8 +152,59 @@ form{
 }
 
 /* WARNINGS USER-REGISTER */
-.warn__password-user{
-    height: 10px;
+.warn__password-user {
+    height: 20px;
     margin-top: -15px;
-    color: tomato;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #ff0000;
+}
+
+.spiner {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border-bottom: 2px solid green;
+    border-left: 2px solid green;
+    animation: spin 1.5s infinite linear;
+}
+
+@keyframes spin {
+    to{
+        transform: rotate(1turn);
+    }
+}
+.regiter-succesfuly{
+    position: absolute;
+    align-items: center;
+    border: 2px solid green;
+    border-bottom-right-radius: 10px;
+    background-color: rgb(194, 255, 194);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 50px;
+    padding: 10px 20px;
+    top: 0px;
+    left: 0px;
+    width: 200px;
+}
+.regiter-succesfuly p {
+    color: green;
+    margin-left: 10px;
+}
+
+.hidden{
+    display: none;
+}
+
+
+#register_spiner{
+    position: relative;
+}
+.register__loading-div{
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
 }

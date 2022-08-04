@@ -9,6 +9,16 @@
     gap: 5%;
 }
 
+.formLogin {
+    align-items: center;
+    display: flex;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    height: auto;
+    width: 100%;
+}
+
 #eslogan{
     width: 280px;
 }
@@ -84,4 +94,20 @@
     display: flex;
     justify-content: center;
     text-decoration: none;
+}
+
+#warn-login {
+    color: red;
+    font-size: 15px;
+    margin-top: -10px;
+    padding: 0px;
+    width: 100%;
+}
+
+#login-spin {
+    border-bottom: 2px solid #61bbd6;
+    border-left: 2px solid #61bbd6;
+    position: relative;
+    width: 20px;
+    height: 20px;
 }

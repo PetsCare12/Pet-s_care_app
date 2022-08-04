@@ -27,30 +27,28 @@
 }
 .signIn{
     font-weight: 600;
-    background-color: #008dcfbb;
+    background-color: #00376c;
     color: aliceblue;
     /* border: solid 1px #024c6e; */
 }
 .logIn:hover{
     transition: .7s;
     background-color: white;
-    color: #61BBD6;
+    color: #0072ff;
     border: none;
 }
 .signIn:hover{
-    transition: 0.5s;
-    background-color: #004463;
-    color: aliceblue;
+    transition: .7s;
+    background-color: white;
+    color: #0072ff;
 }
-.headerHome{
-    background-color: #61BBD6;
+.headerHome {
+    background-color: #0072ff;
     padding: 10px 100px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between; 
-    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);    
-    margin-bottom: 20px;
+    justify-content: space-between;
 }
 #header__logo{
     border-radius: 0;
