@@ -34,7 +34,7 @@ form{
 
 .day_option_register{
     align-items: center;
-    background-color: #0089b240;
+    background-color: #bfe2ff;
     border-radius: 6px;
     color: #1d2129;
     cursor: pointer;
@@ -46,12 +46,15 @@ form{
 }
 
 .day_option_register:hover{
-    border: 2px solid #009bc9;
+    background-color: #008eff;
+    color: white;
+    border: 2px solid #008eff;
 }
 
 .day_register_active{
-    background-color: #61bbd6;
-    border: 2px solid #009bc9;
+    background-color: #008eff;
+    color: white;
+    border: 2px solid #008eff;
 }
 
 .days_time_register {
@@ -112,7 +115,7 @@ form{
     justify-content: space-between;
     margin-bottom: 10px;
     width: 68%;
-    color: #004f66;
+    color: #008eff;
 }
 
 .cont_icon{
@@ -123,7 +126,7 @@ form{
 
 .user_icon{
     align-items: center;
-    background-color: #0089b2;
+    background-color: #008eff;
     border-radius: 6px;
     color: white;
     display: flex;
@@ -194,4 +197,14 @@ form{
 
 .hidden{
     display: none;
+}
+
+
+#register_spiner{
+    position: relative;
+}
+.register__loading-div{
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
 }

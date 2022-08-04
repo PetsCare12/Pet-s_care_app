@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import { PhotoProfile } from './PhotoProfile';
-import './Profile.css';
 import { SectionMascotas } from './sections/SectionMascotas';
 import { SectionPerfil } from './sections/SectionPerfil';
 import { FaHome } from 'react-icons/fa';
-import { Citas } from "../Citas/Citas";
+import { citas } from '../Citas/dataCitas';
+import { CitaCard } from "../Citas/CitaCard";
+import './Profile.css';
 
 export const Profile = () => {
 
     const [activeBtn, setActiveBtn] = useState("perfil");
+    const [citasAll, setCitasAll] = useState( citas );
 
     return (
         <div className='profile__contenedor'>
@@ -32,7 +34,7 @@ export const Profile = () => {
                         <div className='profile__titleBtn'>Mascotas</div>
                     </button>
                     <button onClick={() => {setActiveBtn("citas")}} className={`profile__btnProfile ${(activeBtn === "citas") && "perfil_active"}`}>
-                        <div className='profile__titleBtn'>Citas</div>
+                        <div className='profile__titleBtn'>Citas pendientes</div>
                     </button>
                 </div>
                 <div className="profile__right">
@@ -46,8 +48,31 @@ export const Profile = () => {
                 {
                     ( activeBtn === "perfil" ) && <SectionPerfil />
                 }    
-                {
-                    ( activeBtn === "citas" ) && <Citas />
+                { 
+                    ( activeBtn === "citas" ) &&
+                    <>
+                    <h1 className='profile__section' style={{marginBottom:"50px"}}>Citas pendientes</h1>
+                    <div className='profile__citas'>
+                        {
+                        citasAll.map( cita => (
+                            <CitaCard
+                                key={cita.id}
+                                id={cita.id}
+                                date = {cita.date}
+                                time = {cita.time}
+                                nombreMc = {cita.nombreMc}
+                                nombreDn = {cita.nombreDn}
+                                telDn = {cita.telDn}
+                                raza = {cita.raza}
+                                anios = {cita.anios}
+                                veterinario = {cita.veterinario}
+                                gender = {cita.gender}
+                                imgUrl = {cita.imgUrl}
+                            />
+                        ))
+                        }
+                    </div>
+                    </>
                 }
                 </div>     
             </div> 

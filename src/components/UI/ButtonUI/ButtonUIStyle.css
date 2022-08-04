@@ -28,7 +28,7 @@ button{
 
 .btnLoginCrear{
     color: white;
-    background-color: #72baf3;
+    background-color: #005191;
     font-size: 17px;
     height: 50px;
     padding: 14px 16px;
@@ -38,7 +38,7 @@ button{
 
 .btnLoginCrear:hover{
     transition: .4s;
-    background-color: #3a6f99;
+    background-color: #4278a3;
 }
 
 .btnBlocked{
@@ -75,7 +75,7 @@ button{
 }
 .btnAgregarMascota {
     color: white;
-    background-color: #61bbd6;
+    background-color: #006eff;
     font-size: 16px;
     height: 35px;
     padding: 5px 5px;
@@ -84,7 +84,7 @@ button{
 }
 .btnAgregarMascota:hover{
     transition: .4s;
-    background-color: #0089b3;
+    background-color: #00469b;
 }
 .btnShort-pink{
     color: white;
