@@ -49,8 +49,8 @@ export const Home = () => {
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat similique sint consequatur odio officiis, quisquam pariatur necessitatibus nisi, optio tempore perspiciatis debitis consectetur! Consequuntur incidunt adipisci voluptate assumenda nihil ex.</p>
           </div>
       </div>
-      <svg className="wave__contactUs" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path fill="#61bbd6" fill-opacity="1" d="M0,256L60,218.7C120,181,240,107,360,112C480,117,600,203,720,213.3C840,224,960,160,1080,149.3C1200,139,1320,181,1380,202.7L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path fill="#0072ff" fill-opacity="1" d="M0,256L48,250.7C96,245,192,235,288,208C384,181,480,139,576,144C672,149,768,203,864,218.7C960,235,1056,213,1152,197.3C1248,181,1344,171,1392,165.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
       </svg>
       <h1 className="home__contactUs-title">Contáctanos</h1>
       <div className="home__contactUs">
@@ -166,7 +166,7 @@ export const Home = () => {
 
       </div>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path fill="#61bbd6" fill-opacity="1" d="M0,96L34.3,106.7C68.6,117,137,139,206,144C274.3,149,343,139,411,154.7C480,171,549,213,617,208C685.7,203,754,149,823,133.3C891.4,117,960,139,1029,160C1097.1,181,1166,203,1234,197.3C1302.9,192,1371,160,1406,144L1440,128L1440,0L1405.7,0C1371.4,0,1303,0,1234,0C1165.7,0,1097,0,1029,0C960,0,891,0,823,0C754.3,0,686,0,617,0C548.6,0,480,0,411,0C342.9,0,274,0,206,0C137.1,0,69,0,34,0L0,0Z"></path>
+        <path fill="#0072ff" fill-opacity="1" d="M0,256L48,250.7C96,245,192,235,288,208C384,181,480,139,576,144C672,149,768,203,864,218.7C960,235,1056,213,1152,197.3C1248,181,1344,171,1392,165.3L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
       </svg>
     </div>
     
