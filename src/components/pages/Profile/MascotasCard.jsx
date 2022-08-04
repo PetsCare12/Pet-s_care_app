@@ -14,8 +14,8 @@ export const MascotasCard = ({ name, age, raza, image }) => {
                 <div className="mascotaCard__mascota">
                 <div className="mascotaCard__info">
                     <h1>{name}</h1>
-                    <h2>{raza}</h2>
-                    <h2>{age} años</h2>
+                    <h2 style={{color:"white"}}>{raza}</h2>
+                    <h2 style={{color:"white"}}>{age} años</h2>
                 </div>
                 </div>
 

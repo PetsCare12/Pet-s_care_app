@@ -1,4 +1,9 @@
-
+.profile p {
+    color: #2c2c2c;
+}
+.profile *{
+    font-family: 'Nunito', sans-serif;
+}
 
 .profile{
     align-items: center;
