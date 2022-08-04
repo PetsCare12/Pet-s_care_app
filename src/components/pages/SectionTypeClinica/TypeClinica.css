@@ -5,7 +5,11 @@
     scrollbar-color: #0072ff rgba(0, 0, 0, 0);
     scrollbar-width: thin;
 }
+<<<<<<< HEAD
 .st1 h1,h2,h3,h4,h5,h6,input,p,button,span{
+=======
+.st2 h1,h2,h3,h4,h5,h6,p,input,button,span{
+>>>>>>> main
     font-family: 'Ruda', sans-serif;
     color: #0072ff;
 }

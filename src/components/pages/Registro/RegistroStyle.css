@@ -56,6 +56,9 @@
     gap: 135px;
     justify-content: flex-end;
 }
+#titulo_MdOutlineCancel h2 {
+    color: #008eff;
+}
 
 #titulo_MdOutlineCancel1 {
     width: 100%;
@@ -63,6 +66,9 @@
     flex-direction: row;
     gap: 215px;
     justify-content: flex-end;
+}
+#titulo_MdOutlineCancel1 h2 {
+    color: #008eff;
 }
 
 #register_steps{
@@ -225,6 +231,7 @@
     background-color: #97d1ff;
     border: 2px solid #008eff;
     border-radius: 6px;
+    color: black;
     display: flex;
     flex-direction: row;
     padding: 10px;

@@ -52,6 +52,13 @@
     color: #000052;
     width: 80%;
 }
+.loginData button{
+    font-family: 'Nunito', sans-serif;
+}
+
+.loginData p{
+    color: black;
+}
 
 .loginData{
     background-color: rgb(255, 255, 255);
