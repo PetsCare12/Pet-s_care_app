@@ -6,7 +6,7 @@
     scrollbar-color: #61bbd6 rgba(0, 0, 0, 0);
     scrollbar-width: thin;
 }
-h1,h2,h3,h4,h5,h6,p,input,button,span{
+.st1 h1,h2,h3,h4,h5,h6,p,input,button,span{
     font-family: 'Ruda', sans-serif;
     color: #61bbd6;
 }
