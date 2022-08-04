@@ -151,16 +151,8 @@ export const TypeClinica = () => {
                               </div>
                           </div>
                     }
-                    <div className="messages">
-                      {errors.apellido &&             <p id='warningP'>{errors.apellido}</p>}
-                      {errors.nombre &&               <p id='warningP'>{errors.nombre}</p>}
-                      {errors.sexo &&                 <p id='warningP'>{errors.sexo}</p>}
-                      {errors.especialidad &&         <p id='warningP'>{errors.especialidad}</p>}
-                      {errors.correo &&               <p id='warningP'>{errors.correo}</p>}
-                      {errors.telefono &&             <p id='warningP'>{errors.telefono}</p>}
                       {loading && <Loader></Loader>}
                       {response ? <p id='succesP'>Simulacion de Envio terminada!</p> : <p></p>}
-                    </div>
                     <div className="bottomForm">
                       <div className="inputsVet">
                         <div className='input-container'>
@@ -176,6 +168,7 @@ export const TypeClinica = () => {
                           <div class="cut"></div>
                           <label for="apellido" class="placeholder"> {useVet.apellido} </label>
                         </div>
+                        {errors.apellido &&             <p id='warningP'>{errors.apellido}</p>}
 
                         <div className="input-container">
                           <input 
@@ -190,6 +183,7 @@ export const TypeClinica = () => {
                           <div class="cut"></div>
                           <label for="nombre" class="placeholder"> {useVet.nombre} </label>
                         </div>
+                        {errors.nombre &&               <p id='warningP'>{errors.nombre}</p>}
 
                         <div className="input-container">
                           <input 
@@ -203,6 +197,7 @@ export const TypeClinica = () => {
                           <div class="cut"></div>
                           <label for="sexo" class="placeholder"> {useVet.sexo} </label>
                         </div>
+                        {errors.sexo &&                 <p id='warningP'>{errors.sexo}</p>}
 
                         <div className="input-container">
                           <input 
@@ -217,6 +212,7 @@ export const TypeClinica = () => {
                           <div class="cut"></div>
                           <label for="especialidad" class="placeholder"> {useVet.especialidad} </label>
                         </div>
+                        {errors.especialidad &&         <p id='warningP'>{errors.especialidad}</p>}
 
                         <div className="input-container">
                           <input 
@@ -230,6 +226,7 @@ export const TypeClinica = () => {
                           <div class="cut"></div>
                           <label for="correo" class="placeholder"> {useVet.correo} </label>
                         </div>
+                        {errors.correo &&               <p id='warningP'>{errors.correo}</p>}
 
                        <div className="input-container">
                         <input 
@@ -243,6 +240,7 @@ export const TypeClinica = () => {
                           <div class="cut"></div>
                           <label for="telefono" class="placeholder"> {useVet.telefono} </label>
                         </div>
+                        {errors.telefono &&             <p id='warningP'>{errors.telefono}</p>}
                       </div>
                     </div>
                     <div className="btnSection">
