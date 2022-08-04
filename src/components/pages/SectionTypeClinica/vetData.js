@@ -18,7 +18,7 @@ export const vet = [
         telefono:"55555",
         correo:"alvarez@gmail.com",
         sexo:"Gay",
-        especialidad:"Enfermer@ Veterinari@",
+        especialidad:"Enfermero",
         imagen:"xxx",
         clinica:"Perrito 64"
     }
@@ -30,7 +30,7 @@ export const vet = [
         telefono:"66666",
         correo:"zamora@gmail.com",
         sexo:"LGBT",
-        especialidad:"Especialista Veterinaria",
+        especialidad:"Veterinaria",
         imagen:"xxx",
         clinica:"Perrito 64"
     }
@@ -90,7 +90,7 @@ export const vet = [
         telefono:"101010",
         correo:"diana@gmail.com",
         sexo:"Femenino",
-        especialidad:"Farmacia",
+        especialidad:"Farmaceuta",
         imagen:"xxx",
         clinica:"Perrito 64"
     }

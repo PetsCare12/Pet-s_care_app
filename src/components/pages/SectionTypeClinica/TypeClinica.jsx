@@ -5,6 +5,8 @@ import { useForm } from '../../../helpers/useForm';
 import { ButtonUI } from "./../../UI/ButtonUI/ButtonUI";
 import { Loader } from '../../UI/Loader/Loader';
 import "./TypeClinica.css";
+import { useModal } from '../../../helpers/useModal';
+import { Modal } from '../../UI/Modals/Modal';
 
 export const TypeClinica = () => {
 
@@ -12,6 +14,9 @@ export const TypeClinica = () => {
   const [useVet, setVet] = useState({});
   const getVet = (e) => {setVet(e);}
 
+  const disableVet = (e) => {};
+
+  const [isOpenModal1,openModal1,closeModal1] = useModal(false);
   const initialForm = {
     documento: "",
     apellido: "",nombre: "",
@@ -25,13 +30,13 @@ export const TypeClinica = () => {
     let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
     let regexNumbers = /^\d+$/;
 
-         if (!form.apellido.trim()) {errors.apellido = "El campo 'Apellido:' es requerido!";}
-    else if (!form.nombre.trim()) {errors.nombre = "El campo 'Nombre:' es requerido!";}
-    else if (!form.sexo.trim()) {errors.sexo = "El campo 'Sexo:' es requerido!";}
-    else if (!form.especialidad.trim()) {errors.especialidad = "EL campo 'Especialidad:' es requerido!";}
-    else if (!form.telefono.trim()) {errors.telefono = "El campo 'Telefono:' es requerido!";}
-    else if (!form.correo.trim()) {errors.correo = "El campo 'Correo:' es requerido!";}
-    else if (!regexName.test(form.apellido.trim())) {errors.apellido = "El campo 'Apellido:' solo acepta letras!"}
+         if (!form.apellido.trim()) {errors.apellido = "El 'Apellido:' es requerido!";}
+    else if (!form.nombre.trim()) {errors.nombre = "El 'Nombre:' es requerido!";}
+    else if (!form.sexo.trim()) {errors.sexo = "El 'Sexo:' es requerido!";}
+    else if (!form.especialidad.trim()) {errors.especialidad = "El 'Especialidad:' es requerido!";}
+    else if (!form.telefono.trim()) {errors.telefono = "El 'Telefono:' es requerido!";}
+    else if (!form.correo.trim()) {errors.correo = "El 'Correo:' es requerido!";}
+    else if (!regexName.test(form.apellido.trim())) {errors.apellido = "El 'Apellido:' solo acepta letras!"}
     else if (!regexName.test(form.nombre.trim())) {errors.nombre = "El campo 'Nombre:' solo acepta letras!"}
     else if (!regexName.test(form.sexo.trim())) {errors.sexo = "El campo 'Sexo:' solo acepta letras!"}
     else if (!regexName.test(form.especialidad.trim())) {errors.especialidad = "El campo 'Especialidad:' solo acepta letras!"}
@@ -52,24 +57,26 @@ export const TypeClinica = () => {
   return (
     <div className='st1'>
       <div className='st2'>
-          <div className='titleClin'>
-            <h1>Administra tu Clinica</h1>
+          <div className="title-container">
+            <div className='titles'>
+              <h1 id='titleP1'>{"Pet's Care"}</h1>
+              <spam id='titleP2'>{"Para Veterinarias †"}</spam>
+            </div>
           </div>
           <div className='st3'>
             <div className='st4'>
-              <h1>Veterinarios</h1>
+              <h1 className='titleP2 -margin'>Veterinarios</h1>
+              <hr className='hrVet'/>
+                    {/* <ButtonUI text="Registrar" type="button" style="btn btnRes" event={openModal1}></ButtonUI> */}
+                    <Modal isOpen={isOpenModal1} closeModal={closeModal1}><p>Lo abrio perro hijuepputa.</p></Modal>
+                    <div className="search">
+                      <input type="text" className="input iSearch" placeholder='ID del Veterinario...'/>
+                      <a onClick={""} href=""><img src={pets_images('./veterinarios/lupa.png')} alt="" id='searchIcon' /></a>
+                    </div>
               <ul>
                 {
                   arr.map((item) =>(
-                    <li className={
-                      `liVetSpace 
-                        ${ (item.sexo === "Femenino")
-                        ? 'liVetSpaceFem' 
-                        : (item.sexo === "Masculino")
-                        ? 'liVetSpaceMas'
-                        : 'liVetSpaceDef'
-                    }`
-                      }>
+                    <li className="liVetSpace">
                         <div className='liVet'>
                           {
                             (item.sexo === "Masculino")
@@ -85,7 +92,7 @@ export const TypeClinica = () => {
                           <div className='liVetA'>
                             <h4><span>Nombre:</span>            {item.nombre}</h4>
                             <h4><span>Apellido:</span>        {item.apellido}</h4>
-                            <h4><span>Sexo:</span>                {item.sexo}</h4>
+                            <h4><span>ID:</span>             {item.documento}</h4>
                             <h4><span>Especialidad:</span>{item.especialidad}</h4>
                           </div>
                         </div> 
@@ -108,11 +115,13 @@ export const TypeClinica = () => {
                     {
                         (useVet.sexo === "Masculino")
                         ?
-                            <div className="imgForm">
-                              <img src={pets_images("./veterinarios/perfil-masculino.png")} alt="Masculino" id='imgForm'/>
-                              <div className="idSection">
-                                <h3>ID: </h3>
-                                <h3>{form.documento = useVet.documento}</h3>
+                          <div className="imgForm">
+                            <img src={pets_images("./veterinarios/perfil-masculino.png")} alt="Masculino" id='imgForm'/>
+                              <div className='liVetA'>
+                                <h1>{useVet.especialidad}</h1>
+                                <hr className='hrVet'/>
+                                <h2>{useVet.nombre} {useVet.apellido}</h2>
+                                <h4>ID: {useVet.documento}</h4>
                               </div>
                           </div> 
                         :
@@ -120,18 +129,26 @@ export const TypeClinica = () => {
                         ?
                             <div className="imgForm">
                               <img src={pets_images("./veterinarios/perfil-femenino.png")} alt="Femenino" id='imgForm'/>
-                              <div className="idSection">
-                                <h3>ID: </h3>
-                                <h3>{form.documento = useVet.documento}</h3>
+                              <div className="imgForm">
+                                <div className='liVetA'>
+                                  <h1>{useVet.especialidad}</h1>
+                                  <hr className='hrVet'/>
+                                  <h2>{useVet.nombre} {useVet.apellido}</h2>
+                                  <h4>ID: {useVet.documento}</h4>
+                                </div>
                               </div>
                             </div>
                         :
                           <div className="imgForm">
                             <img src={pets_images("./veterinarios/usuario.png")} alt="" id='imgForm'/>
-                            <div className="idSection">
-                                <h3>ID: </h3>
-                                <h3>{form.documento = useVet.documento}</h3>
-                            </div>
+                            <div className="imgForm">
+                              <div className='liVetA'>
+                                  <h1>{useVet.especialidad}</h1>
+                                  <hr className='hrVet'/>
+                                  <h2>{useVet.nombre} {useVet.apellido}</h2>
+                                  <h4>ID: {useVet.documento}</h4>
+                              </div>
+                              </div>
                           </div>
                     }
                     <div className="messages">
@@ -145,60 +162,97 @@ export const TypeClinica = () => {
                       {response ? <p id='succesP'>Simulacion de Envio terminada!</p> : <p></p>}
                     </div>
                     <div className="bottomForm">
-                      <div className="labelsVet">
-                        <h3>Apellido:     </h3>
-                        <h3>Nombre:       </h3>
-                        <h3>Sexo:         </h3>
-                        <h3>Especialidad: </h3>
-                        <h3>Correo:       </h3>
-                        <h3>Telefono:     </h3>
-                      </div>
                       <div className="inputsVet">
-                        <input 
-                        name='apellido' type="text" 
-                        placeholder={useVet.apellido} onChange={handleChangeVet}
-                        value={form.apellido} onBlur={handleBlur}
-                        required className={`iVet ${(errors.apellido) ? 'iWarning' : 'iVal'}`}></input>
+                        <div className='input-container'>
+                          <input 
+                          name='apellido' type="text" 
+                          placeholder=' Apellido... '
+                          onChange={handleChangeVet}
+                          value={form.apellido} onBlur={handleBlur}
+                          required 
+                          id='apellido'
+                          className={`input ${(errors.apellido) ? 'iWarning' : 'input'}`}
+                          />
+                          <div class="cut"></div>
+                          <label for="apellido" class="placeholder"> {useVet.apellido} </label>
+                        </div>
 
-                        <input 
-                        name='nombre' type="text" 
-                        placeholder={useVet.nombre} onChange={handleChangeVet}
-                        value={form.nombre} onBlur={handleBlur}
-                        required className={`iVet ${(errors.name) ? 'iWarning' : 'iVal'}`}/>
+                        <div className="input-container">
+                          <input 
+                          name='nombre' type="text"
+                          placeholder=' Nombre... ' 
+                          onChange={handleChangeVet}
+                          value={form.nombre} onBlur={handleBlur}
+                          required 
+                          id='nombre'
+                          className={`input ${(errors.nombre) ? 'iWarning' : 'input'}`}
+                          />
+                          <div class="cut"></div>
+                          <label for="nombre" class="placeholder"> {useVet.nombre} </label>
+                        </div>
 
-                        <input 
-                        name='sexo' type="text" 
-                        placeholder={useVet.sexo} onChange={handleChangeVet}
-                        value={form.sexo} onBlur={handleBlur}
-                        equired className={`iVet ${(errors.sexo) ? 'iWarning' : 'iVal'}`}/>
+                        <div className="input-container">
+                          <input 
+                          name='sexo' type="text" 
+                          placeholder=' Sexo... ' onChange={handleChangeVet}
+                          value={form.sexo} onBlur={handleBlur}
+                          id='sexo'
+                          className={`input ${(errors.sexo) ? 'iWarning' : 'input'}`}
+                          required 
+                          />
+                          <div class="cut"></div>
+                          <label for="sexo" class="placeholder"> {useVet.sexo} </label>
+                        </div>
 
-                        <input 
-                        name='especialidad' type="text" 
-                        placeholder={useVet.especialidad} onChange={handleChangeVet}
-                        value={form.especialidad} onBlur={handleBlur}
-                        required className={`iVet ${(errors.especialidad) ? 'iWarning' : 'iVal'}`}/>
+                        <div className="input-container">
+                          <input 
+                          name='especialidad' type="text" 
+                          placeholder=' Especialidad... '
+                          onChange={handleChangeVet}
+                          value={form.especialidad} onBlur={handleBlur}
+                          required
+                          id='especialidad'
+                          className={`input ${(errors.especialidad) ? 'iWarning' : 'input'}`}
+                          />
+                          <div class="cut"></div>
+                          <label for="especialidad" class="placeholder"> {useVet.especialidad} </label>
+                        </div>
 
-                        <input 
-                        name='correo'  type="email" 
-                        placeholder={useVet.correo} onChange={handleChangeVet}
-                        value={form.correo} onBlur={handleBlur}
-                        required className={`iVet ${(errors.correo) ? 'iWarning' : 'iVal'}`}/>
+                        <div className="input-container">
+                          <input 
+                          name='correo'  type="email" 
+                          placeholder=' Correo... ' onChange={handleChangeVet}
+                          value={form.correo} onBlur={handleBlur}
+                          required 
+                          id='correo'
+                          className={`input ${(errors.correo) ? 'iWarning' : 'input'}`}
+                          />
+                          <div class="cut"></div>
+                          <label for="correo" class="placeholder"> {useVet.correo} </label>
+                        </div>
 
+                       <div className="input-container">
                         <input 
-                        name='telefono' type="text" 
-                        placeholder={useVet.telefono} onChange={handleChangeVet}
-                        value={form.telefono} onBlur={handleBlur}
-                        required className={`iVet ${(errors.telefono) ? 'iWarning' : 'iVal'}`}/>
+                          name='telefono' type="text" 
+                          placeholder=' Telefono... ' onChange={handleChangeVet}
+                          value={form.telefono} onBlur={handleBlur}
+                          required 
+                          id='telefono'
+                          className={`input ${(errors.telefono) ? 'iWarning' : 'input'}`}
+                          />
+                          <div class="cut"></div>
+                          <label for="telefono" class="placeholder"> {useVet.telefono} </label>
+                        </div>
                       </div>
                     </div>
                     <div className="btnSection">
-                      <ButtonUI text="Actualizar"  type="submit" style="btn btnActualizar">    </ButtonUI>
-                      <ButtonUI text="Deshabilitar" event={""} style="btn btnDeshabilitar">    </ButtonUI>
+                      <ButtonUI text="Actualizar"  type="submit" style="submit"></ButtonUI>
+                      <ButtonUI text="Deshabilitar" event={disableVet} type="button" style="submit"></ButtonUI>
                     </div>
                   </form>
                 : 
                   <div id='titleValidation'>
-                    <h1>Por favor selecciona un veterinario de tu planta!</h1>
+                    <h1 id='titleP2-margin'>Por favor selecciona un veterinario de tu planta!</h1>
                   </div>
               }
             </div>

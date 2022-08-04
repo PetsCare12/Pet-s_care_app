@@ -1,0 +1,30 @@
+.modal{
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgba(0, 0, 0, 0.63);
+    display: none;
+}
+.modal.modalOpen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modalContainer{
+    position: relative;
+    background-color: azure;
+    min-width: 400px;
+    max-width: 488px;
+    min-height: 200px;
+    max-height: 600px;
+    overflow-y: scroll;
+    padding: 1rem;
+}
+.modalClose{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
