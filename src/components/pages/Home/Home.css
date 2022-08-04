@@ -28,7 +28,7 @@ header {
     color: white;
     font-size: 7rem;
     font-family: 'Bebas Neue', cursive;
-    margin-bottom: 7%;
+    margin-bottom: 1%;
     letter-spacing: 5px;
     width: 90%;
 }
@@ -144,7 +144,7 @@ header .wave.wave4{
 }
 .home__aboutUs p{
     font-size: 20px;
-    width: 60%;
+    width: 85%;
 }
 
 /* ...................... Proyecto Pet's Care ...................... */

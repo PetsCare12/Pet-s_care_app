@@ -1,5 +1,6 @@
 import React from 'react'
 import { InputUI } from '../../../UI/InputUI/InputUI';
+import { ButtonUI } from '../../../UI/ButtonUI/ButtonUI';
 
 
 export const SectionPerfil = () => {
@@ -43,6 +44,16 @@ export const SectionPerfil = () => {
                         txt={"Contraseña actual"}
                         style={"inputLogin mt-5"}
                         name={"oldPassword"}
+                    />
+                    <InputUI 
+                        type={"text"}
+                        txt={"Contraseña nueva"}
+                        style={"inputLogin mt-3"}
+                        name={"newPassword"}
+                    />
+                    <ButtonUI 
+                        style={"btnAgregarMascota mt-5"}
+                        text={"Actualizar"}
                     />
                 </div>
             </div>
