@@ -3,10 +3,9 @@ import { pets_images } from '../../../helpers/Pets_care_images';
 import { vet } from "./vetData.js";
 import { useForm } from '../../../helpers/useForm';
 import { ButtonUI } from "./../../UI/ButtonUI/ButtonUI";
-import { Loader } from '../../UI/Loader/Loader';
-import "./TypeClinica.css";
 import { useModal } from '../../../helpers/useModal';
-import { Modal } from '../../UI/Modals/Modal';
+import "./TypeClinica.css";
+import { ModalRegisterVet } from './ModalRegisterVet';
 
 export const TypeClinica = () => {
 
@@ -71,14 +70,13 @@ export const TypeClinica = () => {
             <div className='st4'>
               <h1 className='titleP2 -margin'>Veterinarios</h1>
               <hr className='hrVet'/>
-                    {/* <ButtonUI text="Registrar" type="button" style="btn btnRes" event={openModal1}></ButtonUI> */}
-                    <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
+                    <ModalRegisterVet isOpen={isOpenModal1} closeModal={closeModal1} className="animate__animated animated_fadeIn">
                       <p>Lo abrio perro hijuepputa.</p>
-                    </Modal>
-                    
+                    </ModalRegisterVet>
                     <div className="search">
                       <input type="text" className="input iSearch" placeholder='ID del Veterinario...'/>
                       <a onClick={""} href=""><img src={pets_images('./veterinarios/lupa.png')} alt="" id='searchIcon' /></a>
+                      <ButtonUI text="Registrar" type="button" style="regs submit" event={openModal1}></ButtonUI>
                     </div>
               <ul>
                 {
@@ -103,12 +101,16 @@ export const TypeClinica = () => {
                 }
               </ul>
             </div>
-
+            
             <div className='st5'>
               {
                 (JSON.stringify(useVet) !== '{}')
                 ? 
                   <form onSubmit={handleSubmit} className='formVet'>
+
+                        {response ? <p id='succesP'>Simulacion de Envio terminada!</p> : <p></p>}
+
+
                       <div className="imgForm">
                         <img src={useVet.imagen} alt="" id='imgForm'/>
                         <div className="imgForm">
@@ -120,8 +122,9 @@ export const TypeClinica = () => {
                           </div>
                           </div>
                       </div>
-                      {loading && <Loader></Loader>}
-                      {response ? <p id='succesP'>Simulacion de Envio terminada!</p> : <p></p>}
+
+                      {loading && <div id='login-spin-clinic' className='spiner'></div>}
+                      
                     <div className="bottomForm">
                       <div className="inputsVet">
                         <div className='input-container'>
