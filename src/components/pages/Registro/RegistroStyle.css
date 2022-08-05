@@ -198,7 +198,7 @@
 
 .card_type_user h3{
     font-size: 20px;
-    color: #0089b1;
+    color: #008efe;
 }
 
 #p_type_user {
@@ -219,7 +219,7 @@
 }
 
 .color_card_type_user{
-    background-color: #0089b21a;
+    background-color: #daeeff;
     border: 3px solid #008eff;
 }
 

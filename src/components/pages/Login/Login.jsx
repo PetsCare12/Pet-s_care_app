@@ -8,10 +8,14 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 import './LoginStyle.css'
 import { useState } from 'react'
+import { parseJwt } from '../../../helpers/getPayLoad'
+import { inicioSesionUsuario } from '../../../helpers/API Consumer/test'
 
 export const Login = () => {
 
     const [loading, setLoading] = useState(false)
+    const [token, setToken] = useState("");
+    const [status, setStatus] = useState(0);
 
   return (
     <div className="loginContainer">
@@ -29,37 +33,56 @@ export const Login = () => {
                 <p>Iniciar sesión en Pet's Care</p>
                 <Formik
                     initialValues={{
-                        correo: "",
+                        nombreoCorreo: "",
                         password: ""
                     }}
                     validate={( valores ) => {
                         let errores = {};
 
-                        if (!valores.correo.trim()) {errores.correo = 'Por favor ingrese un correo';}
-                        else if (!/^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/.test(valores.correo)) {errores.correo = 'El correo no es un correo válido';}
+                        if (!valores.nombreoCorreo.trim()) {errores.nombreoCorreo = 'Por favor ingrese un correo';}
+                        else if (!/^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/.test(valores.nombreoCorreo)) {errores.nombreoCorreo = 'El correo no es un correo válido';}
                         else if (!valores.password.trim()) {errores.password = 'Por favor ingrese una contaseña';}
                         
                         return errores;
                     }}
                     onSubmit={( valores, {resetForm} ) => {
                         setLoading(true);
-                        setTimeout(()=>{
-                            setLoading(false);
-                            resetForm();
-                            window.location = '/perfil'
-                        },2000)
-                        console.log(valores);
+                        inicioSesionUsuario( valores ).then( info => {
+
+                            console.log( info.status );
+                            setStatus(info.status)
+                            
+                            if ( info.status === 200 ) {
+
+                                setToken(info.data.tokenDeAcceso);
+                                localStorage.setItem("token", token);
+                                localStorage.setItem("usuario", JSON.stringify(parseJwt( token )));
+
+                                setTimeout(()=>{
+                                    setLoading(false);
+                                    resetForm();
+                                    window.location = '/perfil'
+                                },2000);
+                            }
+                            if ( info.status === 500 ) {
+                                setLoading(false);
+                            }
+                        });
+
+
+                        
                     }}
                 >
                     {({ errors }) => (
                         <Form className='formLogin'>
+                            { ( status === 500 ) && <p>El correo o contraseña son incorrectos</p> }
                             <Field 
                                 type='text'
                                 className = 'inputLogin'
                                 placeholder = 'Correo electrónico'
-                                name = "correo"
+                                name = "nombreoCorreo"
                             />
-                            <ErrorMessage name='correo' component={() => (<p id='warn-login'>{errors.correo}</p>)} />
+                            <ErrorMessage name='nombreoCorreo' component={() => (<p id='warn-login'>{errors.nombreoCorreo}</p>)} />
                             <Field 
                                 type='password'
                                 className = 'inputLogin'

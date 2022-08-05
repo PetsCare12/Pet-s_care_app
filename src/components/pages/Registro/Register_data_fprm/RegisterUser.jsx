@@ -81,9 +81,9 @@ export const RegisterUser = ( {change_step} ) => {
                     postUsuario( valores );
                     setLoading(true);
                     setTimeout(()=>{
-                        // resetForm();
+                        resetForm();
                         setLoading(false);
-                        // window.location = "/login";
+                        window.location = "/login";
                     },1000)
                 }}
             >   
