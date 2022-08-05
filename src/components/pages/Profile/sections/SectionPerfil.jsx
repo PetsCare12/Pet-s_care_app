@@ -1,36 +1,42 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { InputUI } from '../../../UI/InputUI/InputUI';
 import { ButtonUI } from '../../../UI/ButtonUI/ButtonUI';
+import { monthDays } from '../../../../helpers/getDays';
 
 
 export const SectionPerfil = () => {
+
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem("usuario")));
+    
+    console.log(monthDays( 2022, 8 ));
+
     return (
         <div className='profile__right-perfil animate__animated animate__fadeIn'>
             <p className='profile__editarPerfil'>Información</p>
             <div className="profile__seccion1">
-                <div className='profile__img'><img src="https://cdn1.matadornetwork.com/blogs/2/2019/03/frases-sobre-mujeres-shutterstock_400610314-560x420.jpg" alt="" /></div>
+                <div className='profile__img'><img src={user.img} alt="" /></div>
                 <div className='profile__info'>
 
-                    <p>CC. 100 000 000000</p>
+                    <p>CC. {user.id}</p>
 
                     <label htmlFor='nombre' className='profile__perfil-label'>Nombre</label>
                     <InputUI 
                         type={"text"}
-                        value={"Sandra Luz"}
+                        value={user.name}
                         style={"inputLogin"}
                         name={"nombre"}
                     />
                     <label htmlFor='apellido' className='profile__perfil-label'>Apellido</label>
                     <InputUI 
                         type={"text"}
-                        value={"Castelar Martinez"}
+                        value={user.lastName}
                         style={"inputLogin"}
                         name={"apellido"}
                     />
                     <label htmlFor='telefono' className='profile__perfil-label'>Teléfono</label>
                     <InputUI 
                         type={"text"}
-                        value={"(+57) 301 2157828"}
+                        value={user.numberTel}
                         style={"inputLogin"}
                         name={"telefono"}
                     />
