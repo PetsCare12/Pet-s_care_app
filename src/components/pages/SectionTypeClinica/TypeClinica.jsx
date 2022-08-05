@@ -62,13 +62,20 @@ export const TypeClinica = () => {
               <h1 id='titleP1'>{"Pet's Care"}</h1>
               <spam id='titleP2'>{"Para Veterinarias †"}</spam>
             </div>
+            <div id='titleP3'>
+              <h1>{"Veterinaria Salud Canina"}</h1>
+              <hr className='hrVet'/>
+            </div>
           </div>
           <div className='st3'>
             <div className='st4'>
               <h1 className='titleP2 -margin'>Veterinarios</h1>
               <hr className='hrVet'/>
                     {/* <ButtonUI text="Registrar" type="button" style="btn btnRes" event={openModal1}></ButtonUI> */}
-                    <Modal isOpen={isOpenModal1} closeModal={closeModal1}><p>Lo abrio perro hijuepputa.</p></Modal>
+                    <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
+                      <p>Lo abrio perro hijuepputa.</p>
+                    </Modal>
+                    
                     <div className="search">
                       <input type="text" className="input iSearch" placeholder='ID del Veterinario...'/>
                       <a onClick={""} href=""><img src={pets_images('./veterinarios/lupa.png')} alt="" id='searchIcon' /></a>
@@ -78,17 +85,7 @@ export const TypeClinica = () => {
                   arr.map((item) =>(
                     <li className="liVetSpace">
                         <div className='liVet'>
-                          {
-                            (item.sexo === "Masculino")
-                            ?
-                              <img src={pets_images("./veterinarios/perfil-masculino.png")} alt="Masculino" id='imgVet'/>
-                            :
-                            (item.sexo === "Femenino")
-                            ?
-                              <img src={pets_images("./veterinarios/perfil-femenino.png")} alt="Femenino" id='imgVet'/>
-                            :
-                             <img src={pets_images("./veterinarios/usuario.png")} alt="" id='imgVet'/>
-                          }
+                          <img src={item.imagen} alt="" id='imgVet'/>
                           <div className='liVetA'>
                             <h4><span>Nombre:</span>            {item.nombre}</h4>
                             <h4><span>Apellido:</span>        {item.apellido}</h4>
@@ -112,45 +109,17 @@ export const TypeClinica = () => {
                 (JSON.stringify(useVet) !== '{}')
                 ? 
                   <form onSubmit={handleSubmit} className='formVet'>
-                    {
-                        (useVet.sexo === "Masculino")
-                        ?
-                          <div className="imgForm">
-                            <img src={pets_images("./veterinarios/perfil-masculino.png")} alt="Masculino" id='imgForm'/>
-                              <div className='liVetA'>
-                                <h1>{useVet.especialidad}</h1>
-                                <hr className='hrVet'/>
-                                <h2>{useVet.nombre} {useVet.apellido}</h2>
-                                <h4>ID: {useVet.documento}</h4>
-                              </div>
-                          </div> 
-                        :
-                          (useVet.sexo === "Femenino")
-                        ?
-                            <div className="imgForm">
-                              <img src={pets_images("./veterinarios/perfil-femenino.png")} alt="Femenino" id='imgForm'/>
-                              <div className="imgForm">
-                                <div className='liVetA'>
-                                  <h1>{useVet.especialidad}</h1>
-                                  <hr className='hrVet'/>
-                                  <h2>{useVet.nombre} {useVet.apellido}</h2>
-                                  <h4>ID: {useVet.documento}</h4>
-                                </div>
-                              </div>
-                            </div>
-                        :
-                          <div className="imgForm">
-                            <img src={pets_images("./veterinarios/usuario.png")} alt="" id='imgForm'/>
-                            <div className="imgForm">
-                              <div className='liVetA'>
-                                  <h1>{useVet.especialidad}</h1>
-                                  <hr className='hrVet'/>
-                                  <h2>{useVet.nombre} {useVet.apellido}</h2>
-                                  <h4>ID: {useVet.documento}</h4>
-                              </div>
-                              </div>
+                      <div className="imgForm">
+                        <img src={useVet.imagen} alt="" id='imgForm'/>
+                        <div className="imgForm">
+                          <div className='liVetA'>
+                              <h1>{useVet.especialidad}</h1>
+                              <hr className='hrVet'/>
+                              <h2>{useVet.nombre} {useVet.apellido}</h2>
+                              <h4>ID: {form.documento = useVet.documento}</h4>
                           </div>
-                    }
+                          </div>
+                      </div>
                       {loading && <Loader></Loader>}
                       {response ? <p id='succesP'>Simulacion de Envio terminada!</p> : <p></p>}
                     <div className="bottomForm">
@@ -250,7 +219,9 @@ export const TypeClinica = () => {
                   </form>
                 : 
                   <div id='titleValidation'>
+                    <img src="https://www.gifsanimados.org/data/media/202/perro-imagen-animada-0387.gif" border="0" alt="perro-imagen-animada-0387" className='imgWait'/>
                     <h1 id='titleP2-margin'>Por favor selecciona un veterinario de tu planta!</h1>
+                    <hr className='hrVet'/>
                   </div>
               }
             </div>

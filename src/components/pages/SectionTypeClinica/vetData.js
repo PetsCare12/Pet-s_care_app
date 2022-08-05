@@ -7,7 +7,7 @@ export const vet = [
         correo:"pineda@gmail.com",
         sexo:"Masculino",
         especialidad:"Cirujano",
-        imagen:"xxx",
+        imagen:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl6L58rz0gMfF4IuKtPvgPUwBK20Kf3aRy0Q&usqp=CAU",
         clinica:"Perrito 64"
     }
     ,
@@ -17,9 +17,9 @@ export const vet = [
         apellido:"Alvarez",
         telefono:"55555",
         correo:"alvarez@gmail.com",
-        sexo:"Gay",
+        sexo:"Otro",
         especialidad:"Enfermero",
-        imagen:"xxx",
+        imagen:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl6L58rz0gMfF4IuKtPvgPUwBK20Kf3aRy0Q&usqp=CAU",
         clinica:"Perrito 64"
     }
     ,
@@ -29,9 +29,9 @@ export const vet = [
         apellido:"Zamora",
         telefono:"66666",
         correo:"zamora@gmail.com",
-        sexo:"LGBT",
+        sexo:"Otro",
         especialidad:"Veterinaria",
-        imagen:"xxx",
+        imagen:"https://micarrerauniversitaria.com/wp-content/uploads/2018/03/veterinario-1.gif",
         clinica:"Perrito 64"
     }
     ,
@@ -43,7 +43,7 @@ export const vet = [
         correo:"ferrari@gmail.com",
         sexo:"Femenino",
         especialidad:"Veterinaria Auxiliar",
-        imagen:"xxx",
+        imagen:"https://micarrerauniversitaria.com/wp-content/uploads/2018/03/veterinario-1.gif",
         clinica:"Perrito 64"
     }
     ,
@@ -55,7 +55,7 @@ export const vet = [
         correo:"leon@gmail.com",
         sexo:"Masculino",
         especialidad:"Cirujana",
-        imagen:"xxx",
+        imagen:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl6L58rz0gMfF4IuKtPvgPUwBK20Kf3aRy0Q&usqp=CAU",
         clinica:"Perrito 64"
     }
     ,
@@ -67,7 +67,7 @@ export const vet = [
         correo:"daniela@gmail.com",
         sexo:"Femenino",
         especialidad:"Bandida",
-        imagen:"xxx",
+        imagen:"https://reggaetonsinlimite.b-cdn.net/wp-content/uploads/2022/05/Bandida.jpeg",
         clinica:"Perrito 64"
     }
     ,
@@ -79,7 +79,7 @@ export const vet = [
         correo:"carlos@gmail.com",
         sexo:"Masculino",
         especialidad:"Odontologo",
-        imagen:"xxx",
+        imagen:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl6L58rz0gMfF4IuKtPvgPUwBK20Kf3aRy0Q&usqp=CAU",
         clinica:"Perrito 64"
     }
     ,
@@ -91,7 +91,7 @@ export const vet = [
         correo:"diana@gmail.com",
         sexo:"Femenino",
         especialidad:"Farmaceuta",
-        imagen:"xxx",
+        imagen:"https://micarrerauniversitaria.com/wp-content/uploads/2018/03/veterinario-1.gif",
         clinica:"Perrito 64"
     }
 ];
