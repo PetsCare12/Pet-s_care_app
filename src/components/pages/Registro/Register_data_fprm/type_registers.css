@@ -208,3 +208,15 @@ form{
     justify-content: center;
     margin-top: 25px;
 }
+
+/* CLINICA */
+.registerClinica__form {
+    height: auto;
+}
+.registerClinica__info{
+    background-color: #ffe5a0;
+    border-radius: 3px;
+    color: #1d2129;
+    padding: 10px;
+    text-align: center;
+}

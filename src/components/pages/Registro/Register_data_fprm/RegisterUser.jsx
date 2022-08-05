@@ -138,7 +138,7 @@ export const RegisterUser = ( {change_step} ) => {
                             />
 
                             <Field name="sexoUs" as="select" id="select">
-                                <option selected={true} disabled={true} value="none">Selecciona el sexo</option>
+                                <option selected={true} value="none">Selecciona el sexo</option>
                                 <option value="hombre">Hombre</option>
                                 <option value="mujer">Mujer</option>
                                 <option value="otro">Otro</option>
