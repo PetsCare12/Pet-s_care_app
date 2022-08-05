@@ -4,19 +4,13 @@ import { GoArrowSmallLeft } from 'react-icons/go';
 import { FaHospital } from 'react-icons/fa';
 import './type_registers.css';
 import { ButtonUI } from '../../../UI/ButtonUI/ButtonUI';
-import { RegisterClinica2 } from './RegisterClinica2';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 export const RegisterClinica = ( {change_step} ) => {
 
     const [step_cli, setStep_cli] = useState(1)
+    const [loading, setLoading] = useState(false);
 
-
-    const step_3 = () => {
-        setStep_cli(2)
-    }
-    const step_2 = () => {
-        setStep_cli(1)
-    }
 
     return (
         <>
@@ -24,7 +18,7 @@ export const RegisterClinica = ( {change_step} ) => {
             {/* ----- REGISTRO COMO CLINICA ----- */}
 
             {
-                ( step_cli === 1 )?
+                ( step_cli === 1 ) &&
             
                 <>
                     <div id='register_steps'>
@@ -34,10 +28,6 @@ export const RegisterClinica = ( {change_step} ) => {
                         <div className='linea_step color_linea' >——</div>
                         <div className='step color_step'>
                             2
-                        </div>
-                        <div className='linea_step' >——</div>
-                        <div className='step'>
-                            3
                         </div>
                     </div>
                     <div className='hr'>
@@ -52,52 +42,85 @@ export const RegisterClinica = ( {change_step} ) => {
                             <FaHospital />
                         </div>
                     </div>
+                    <Formik
+                        initialValues={{
+                            nit:"",
+                            nombre:"",
+                            direccion:""
+                        }}
+                        validate={( valores ) => {
+                            let errores = {};
 
-                    <InputUI 
-                        type='number'
-                        style = 'inputLogin inputRegistro'
-                        txt = 'NIT'
-                    />
-                    <div id='registro_column1'>
-                        <InputUI 
-                            type='text'
-                            style = 'inputLogin inputRegistro'
-                            txt = 'Nombre'
-                        />
-                        <InputUI 
-                            type='text'
-                            style = 'inputLogin inputRegistro'
-                            txt = 'Dirección'
-                        />
-                    </div>
+                                 if( !valores.nombre.trim() ){ errores.nombre = "Por favor ingrese su nombre" }
+                            else if ( !valores.nit.trim()) { errores.nit = "Por favor ingrese su NIT" }
+                            else if( !valores.direccion.trim() ){ errores.direccion = "Por favor ingrese su dirección" }
+                                
+                           return errores; 
+                        }}
+                        onSubmit = {( valores, {resetForm} ) => {
+                            console.log( valores );
+                            setLoading(true);
+                            setTimeout(()=>{
 
-                    <InputUI 
-                        type='password'
-                        style = 'inputLogin inputRegistro'
-                        txt = 'Contraseña'
-                    />
+                                setLoading(false);
+                                resetForm();
+                            },2000)
+                        }}
+                    >
+                        {( {errors} ) => (
+                            <Form className='registerClinica__form'>
+                                <p className='registerClinica__info'>Ten en cuenta que al registrarte como clínica se enviará la petición de tu registro al administrador. Allí se revisarán tus credenciales</p>
+                                <Field 
+                                    type='text'
+                                    className = 'inputLogin inputRegistro'
+                                    placeholder = 'Nombre de la clínica'
+                                    name = "nombre"
+                                />
+                                <ErrorMessage name='nombre' component={() => (<p className='warn__password-user'>{errors.nombre}</p>)} />
+                                <div id='registro_column1'>
+                                    <Field 
+                                        type='text'
+                                        className = 'inputLogin inputRegistro'
+                                        placeholder = 'NIT'
+                                        name = "nit"
+                                    />
+                                    <Field 
+                                        type='text'
+                                        className = 'inputLogin inputRegistro'
+                                        placeholder = 'Dirección de la clínica'
+                                        name = "direccion"
+                                    />
+                                </div>
+                                <ErrorMessage name='nit' component={() => (<p className='warn__password-user'>{errors.nit}</p>)} />
+                                <ErrorMessage name='direccion' component={() => (<p className='warn__password-user'>{errors.direccion}</p>)} />
 
-                    <div style={{
-                        alignItems: 'center',
-                        display:'flex',
-                        flexDirection: 'column',
-                        width: '100%'
-                    }}>
-                        
-                    </div>
+                                <div style={{
+                                    alignItems: 'center',
+                                    display:'flex',
+                                    flexDirection: 'column',
+                                    width: '100%'
+                                }}>
+                                    
+                                </div>
+                                <div id='div_100'>
+                                    <div style={{width:"40%"}}>
+                                        <ButtonUI 
+                                            text="Enviar"
+                                            style={`btnLogin ${ loading && "hidden" }`}
+                                            type={"submit"}
+                                        />
+                                        {
+                                            ( loading ) && <div className='register__loading-div'><div className='spiner' id='login-spin'></div></div>
+                                        }
+                                    </div>
+                                </div>
 
-                    <div id='div_100'>
-                        <div onClick={step_3} style={{width:"40%"}}>
-                            <ButtonUI 
-                                text="Siguiente"
-                                style="btnLogin"
-                            />
-                        </div>
-                        
-                    </div>
+                            </Form>
+                        )}
+                    
+                    </Formik>
                 </>
 
-                : <RegisterClinica2 change_step={step_2}/>
             }
                
             
