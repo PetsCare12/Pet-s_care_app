@@ -193,3 +193,18 @@ button{
 .perfil_active{
     background-color: #ce56e1;
 }
+
+.btn200 {
+    color: white;
+    background-color: #008eff;
+    font-size: 20px;
+    height: 50px;
+    padding: 14px 16px;
+    width: 200px;
+    font-weight: bold;
+}
+
+.btn200:hover{
+    transition: .4s;
+    background-color: #0064b3;
+}
