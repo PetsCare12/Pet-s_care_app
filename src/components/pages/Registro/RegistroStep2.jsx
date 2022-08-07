@@ -8,14 +8,12 @@ import { useEffect, useState } from 'react';
 import { RegisterUser } from './Register_data_fprm/RegisterUser';
 import { RegisterVeterinario } from './Register_data_fprm/RegisterVeterinario';
 
-export const RegistroStep2 = ( {steps, step_change} ) => {
+export const RegistroStep2 = ( {steps, step_change, userType} ) => {
 
 
     const handleChangeStepBack = () => {
         step_change(1)
     }
-
-    const ele = JSON.parse(localStorage.getItem('user_type'));
 
 
     return (
@@ -37,10 +35,8 @@ export const RegistroStep2 = ( {steps, step_change} ) => {
 
                     {
 
-                        ( ele === "clinica" )
+                        ( userType === 3 )
                         ? <RegisterClinica change_step={handleChangeStepBack}/>
-                        : ( ele === "veterinario" )
-                        ? <RegisterVeterinario change_step={handleChangeStepBack}/>
                         : <RegisterUser change_step={handleChangeStepBack}/>
                     }
                     

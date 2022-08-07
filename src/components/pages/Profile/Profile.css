@@ -166,7 +166,33 @@
 
 }
 
+.perfil__mascotas-empty{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    height: 200px;
+    width: 100%;
+}
+.perfil__mascotas-empty img{
+    width: 20%;
+}
+.perfil__mascotas-empty a{
+    text-decoration: none;
+    color: #006eff;
+    font-weight: 800;
+}
+.perfil__mascotas-empty a:hover{
+    text-decoration: underline;
+    transition: .4s;
+    color: #003a85;
+}
+
 /* ....................... PHOTO ....................... */
+.photoProfile__background-img{
+    border-radius: 0;
+    height: auto;
+    width: 100%;
+}
 .photoProfile{
     background-color: #5a5a5a;
     border: 2px solid white;
@@ -182,7 +208,7 @@
     width: 100%;
 }
 @supports(object-fit: cover){
-    .photoProfile img, .profile__seccion1 .profile__img img {
+    .photoProfile img, .profile__seccion1 .profile__img img, .photoProfile__background-img {
       height: 100%;
       object-fit: cover;
       object-position: center center;
@@ -242,6 +268,8 @@
     top: 45vh;
     left: 60vw;
 }
+
+
 
 
 

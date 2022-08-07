@@ -44,7 +44,7 @@
 }
 .headerHome {
     background-color: #0072ff;
-    padding: 10px 100px;
+    padding: 10px 20px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -80,4 +80,31 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.home__autenticado {
+    align-items: center;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 50px;
+    gap: 10px;
+    padding: 5px 10px;
+    width: auto;
+}
+.home__autenticado:hover {
+    box-shadow: 0px 0px 5px 0px black;
+    transition: .4s;
+}
+.home__autenticado h1 {
+    color: rgb(39, 39, 39);
+    font-size: 17px;
+    font-weight: 500;
+    width: auto;
+}
+
+.home__autenticado img{
+    border-radius: 100%;
+    height: 100%;
 }

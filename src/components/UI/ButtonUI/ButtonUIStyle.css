@@ -41,7 +41,7 @@ button{
     background-color: #4278a3;
 }
 
-.btnBlocked{
+#btnBlocked{
     background-color: #8d8d8d;
     cursor: not-allowed;
     pointer-events: none;
@@ -207,4 +207,27 @@ button{
 .btn200:hover{
     transition: .4s;
     background-color: #0064b3;
+}
+
+.btnRegistroMascota-cancel{
+    align-items: center;
+    display: flex;
+    color: white;
+    background-color: #f32727;
+    font-size: 15px;
+    height: 50px;
+    justify-content: center;
+    padding: 5px 16px;
+    width: 25%;
+    font-weight: bold;
+}
+
+.btnRegistroMascota-cancel:hover{
+    transition: .4s;
+    background-color: #ce0000;
+}
+
+.h_35{
+    height: 35px;
+    padding: 0;
 }

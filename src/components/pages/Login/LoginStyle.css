@@ -112,8 +112,10 @@
 }
 
 #login-spin {
-    border-bottom: 2px solid #61bbd6;
-    border-left: 2px solid #61bbd6;
+    border-bottom: 2px solid #008eff;
+    border-top: 2px solid #008eff;
+    border-left: 2px solid #ffffff00;
+    border-right: 2px solid #ffffff00;
     position: relative;
     width: 20px;
     height: 20px;

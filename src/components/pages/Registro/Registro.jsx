@@ -9,16 +9,15 @@ import { RegistroStep2 } from './RegistroStep2';
 export const Registro = () => {
 
     const [steps, setSteps] = useState(1);
+    const [userType, setUserType] = useState(2);
 
     return (
       
         <div>
-
-
             {
                 ( steps == 1 )
-                ? <RegistroStep1 step_change={setSteps}/>
-                : <RegistroStep2 steps={steps} step_change={setSteps}/>
+                ? <RegistroStep1 setUserType={setUserType} step_change={setSteps}/>
+                : <RegistroStep2 userType={userType} steps={steps} step_change={setSteps}/>
             }
             <Login />
         </div>
