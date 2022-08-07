@@ -165,8 +165,6 @@ form{
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    border-bottom: 2px solid green;
-    border-left: 2px solid green;
     animation: spin 1.5s infinite linear;
 }
 
