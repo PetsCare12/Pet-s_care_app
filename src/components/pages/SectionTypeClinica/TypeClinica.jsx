@@ -4,23 +4,37 @@ import { vet } from "./vetData.js";
 import { useForm } from '../../../helpers/useForm';
 import { ButtonUI } from "./../../UI/ButtonUI/ButtonUI";
 import { useModal } from '../../../helpers/useModal';
-import "./TypeClinica.css";
 import { ModalRegisterVet } from './ModalRegisterVet';
+import { useSendImage } from '../../../helpers/Cloudinary_Images/useSendImages';
+import "./TypeClinica.css";
 
 export const TypeClinica = () => {
 
   const arr = vet;
   const [useVet, setVet] = useState({});
-  const getVet = (e) => {setVet(e);}
+  const [img, setimg] = useState("");
 
-  const disableVet = (e) => {};
+  const getVet = (e) => {
+    setVet(e);
+    setimg(useVet.imagen);
+  }
 
   const [isOpenModal1,openModal1,closeModal1] = useModal(false);
+  const disableVet = (e) => {};
+
+  const {myWidgetVeter,urlImage} = useSendImage();
+  const showWidget = () => {
+    setimg(!img);
+    myWidgetVeter.open();
+    setimg(urlImage);
+    console.log(urlImage);
+  };
+  
   const initialForm = {
     documento: "",
-    apellido: "",nombre: "",
-    sexo: "",especialidad: "",
-    telefono: "",correo: ""
+    nombre: "",apellido: "",
+    telefono: "",sexo: "",
+    especialidad: "",imagen: ""
   };
 
   const validationsForm = (form) => {
@@ -83,7 +97,9 @@ export const TypeClinica = () => {
                   arr.map((item) =>(
                     <li className="liVetSpace">
                         <div className='liVet'>
-                          <img src={item.imagen} alt="" id='imgVet'/>
+                          <div className='img_li_vet'>
+                            <img src={item.imagen} alt="" id='imgVet'/>
+                          </div>
                           <div className='liVetA'>
                             <h4><span>Nombre:</span>            {item.nombre}</h4>
                             <h4><span>Apellido:</span>        {item.apellido}</h4>
@@ -112,8 +128,16 @@ export const TypeClinica = () => {
 
 
                       <div className="imgForm">
-                        <img src={useVet.imagen} alt="" id='imgForm'/>
-                        <div className="imgForm">
+                        <div className="imagen_container">
+                          <div className="img_cont_vet">
+                              <img src={form.imagen = img} 
+                              alt="" id='imgForm'/>
+                              <a onClick={showWidget} className="a_uploadImage">
+                                <img src={pets_images('./veterinarios/subir.png')} alt="Subir Imagen" className='upload_Image'/>
+                              </a>
+                          </div>
+                      </div>
+                      <div className="imgForm">
                           <div className='liVetA'>
                               <h1>{useVet.especialidad}</h1>
                               <hr className='hrVet'/>

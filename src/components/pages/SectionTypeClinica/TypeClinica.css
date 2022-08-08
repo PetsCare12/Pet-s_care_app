@@ -138,8 +138,15 @@
 span{
     color: #34007985;
 }
+.img_li_vet{
+    height: 70px;
+    width: 70px;
+}
 #imgVet{
-    width: 105px;
+    height: 100%;
+    width: 100%;
+    border-radius: 360px;
+    object-fit: contain;
 }
 #imgLi{
     transition: 0.2s;
@@ -321,9 +328,6 @@ span{
 .imgWait{
     width: 180px;
 }
-#imgForm{
-    width: 200px;
-}
 #searchIcon{
     transition: 0.2s;
     width: 32px;
@@ -337,14 +341,6 @@ span{
 #searchIcon:hover{
     transition: 0.2s;
     filter: brightness(50%)
-}
-.imgForm{
-    width: 70vh;
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-evenly;
-    align-items: center;
-    gap: 2rem;
 }
 .search{
     display: flex;
@@ -401,5 +397,38 @@ span{
 .regs{
     margin: 0;
     padding: 0;
+}
+/* /////////////////////// */
+.upload_Image{
+    transition: 0.2s;
+    position: relative;
+    width: 64px;
+    z-index: 10;
+    padding-top: 10rem;
+    left: 50px;
+}
+.upload_Image:hover{
+    transition: 0.2s;
+    filter: brightness(50%)
+}
+#imgForm{
+    height: 100%;
+    width: 100%;
+    border-radius: 360px;
+    object-fit: contain;
+}
+.imgForm{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.img_cont_vet{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    height:200px;
+    width: 200px;
 }
 /* //////////////////// */
