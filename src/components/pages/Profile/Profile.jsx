@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import { PhotoProfile } from './PhotoProfile';
 import { SectionMascotas } from './sections/SectionMascotas';
 import { SectionPerfil } from './sections/SectionPerfil';
@@ -6,7 +6,7 @@ import { FaHome } from 'react-icons/fa';
 import { citas } from '../Citas/dataCitas';
 import { CitaCard } from "../Citas/CitaCard";
 import { NoAutenticado } from '../NoAutenticado/NoAutenticado';
-import { getUsuarioId } from '../../../helpers/API Consumer/test'
+import { getUsuarioId } from '../../../helpers/API Consumer/test';
 import './Profile.css';
 
 export const Profile = () => {
@@ -14,20 +14,31 @@ export const Profile = () => {
     const [activeBtn, setActiveBtn] = useState("perfil");
     const [citasAll, setCitasAll] = useState( citas );
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("usuario")));
+    const [token, setToken] = useState(localStorage.getItem("token"));
     const [userData, setUserData] = useState({}); 
 
-    useEffect(()=>{
+    console.log( user );
 
-        getUsuarioId( user.jti )
-        .then( data => setUserData( data.data ));
+    if ( !user ) {
+        console.log("Que pasa");
+    }
+
+
+    useEffect(()=>{
+        if ( !!user ) {
+            getUsuarioId( user.jti )
+            .then( data => setUserData( data.data ));
+        }
+        else {
+            console.log("No se ha autenticado");
+        }
         
     }, [user])
-
-    console.log( userData );
+    
     
     return (
         <div className='profile__contenedor animate__animated animate__fadeIn'>
-            { ( user ) &&
+            { ( !!token ) &&
                 <div className='profile'>
                     <div className="profile__left">
 
@@ -92,7 +103,7 @@ export const Profile = () => {
                 </div> 
             }
             {
-                ( !user ) &&
+                ( !token || !user ) &&
                 <NoAutenticado txt={"Al parecer no has iniciado sesión, te invitamos a hacerlo."} />
             }
         </div>
