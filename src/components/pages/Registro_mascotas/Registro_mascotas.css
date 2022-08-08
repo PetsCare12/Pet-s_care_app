@@ -86,6 +86,55 @@
 }
 
 .img_registro_mascotas {
+    border-radius: 0;
     width: 330px;
     margin-bottom: 20px;
+}
+.registroMascotas__button-div{
+    display: flex;
+    gap: 5px;
+    width: 100%;
+}
+
+.registroMascotas__div-peso{
+    color: rgb(99, 99, 99);
+    display: flex;
+    height: 20px;
+    gap: 10px;
+    width: 95%;
+}
+
+.registroMascotas__div-peso .peso{
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    width: 50%;
+}
+.registroMascotas__div-peso .peso input{
+    border: none;
+    border-bottom: 1px dashed gray;
+    border-radius: 0px;
+    padding: 0px 5px;
+    text-align: center;
+    width: 50px;
+}
+
+.registroMascotas__div-peso .discapacidad{
+    align-items: center;
+    display: flex;
+    gap: 10px;
+    width: 50%;
+}
+.registroMascotas__div-peso .discapacidad input{
+    width: 15px;
+    height: 15px;
+}
+
+#warn__password-mascota {
+    color: red;
+    font-size: 15px;
+    height: 15px;
+    margin-top: -15px;
+    padding: 0;
+    width: 95%;
 }

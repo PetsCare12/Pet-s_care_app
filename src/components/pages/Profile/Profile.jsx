@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { PhotoProfile } from './PhotoProfile';
 import { SectionMascotas } from './sections/SectionMascotas';
 import { SectionPerfil } from './sections/SectionPerfil';
@@ -6,6 +6,7 @@ import { FaHome } from 'react-icons/fa';
 import { citas } from '../Citas/dataCitas';
 import { CitaCard } from "../Citas/CitaCard";
 import { NoAutenticado } from '../NoAutenticado/NoAutenticado';
+import { getUsuarioId } from '../../../helpers/API Consumer/test'
 import './Profile.css';
 
 export const Profile = () => {
@@ -13,16 +14,25 @@ export const Profile = () => {
     const [activeBtn, setActiveBtn] = useState("perfil");
     const [citasAll, setCitasAll] = useState( citas );
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("usuario")));
-    console.log( user );
+    const [userData, setUserData] = useState({}); 
 
+    useEffect(()=>{
+
+        getUsuarioId( user.jti )
+        .then( data => setUserData( data.data ));
+        
+    }, [user])
+
+    console.log( userData );
+    
     return (
-        <div className='profile__contenedor'>
+        <div className='profile__contenedor animate__animated animate__fadeIn'>
             { ( user ) &&
                 <div className='profile'>
                     <div className="profile__left">
 
                         <PhotoProfile 
-                            img={"https://cdn1.matadornetwork.com/blogs/2/2019/03/frases-sobre-mujeres-shutterstock_400610314-560x420.jpg"}
+                            img={userData.imagenUsu}
                         />
                         <button onClick={() => {setActiveBtn("home") 
                                                 window.location = "/"
@@ -47,10 +57,10 @@ export const Profile = () => {
                         <div id='spiner-home' className='spiner'></div>
                     }
                     {
-                        ( activeBtn === "mascotas") && <SectionMascotas />
+                        ( activeBtn === "mascotas") && <SectionMascotas userData={userData}/>
                     }
                     {
-                        ( activeBtn === "perfil" ) && <SectionPerfil />
+                        ( activeBtn === "perfil" ) && <SectionPerfil userData={userData}/>
                     }    
                     { 
                         ( activeBtn === "citas" ) &&
@@ -83,7 +93,7 @@ export const Profile = () => {
             }
             {
                 ( !user ) &&
-                <NoAutenticado />
+                <NoAutenticado txt={"Al parecer no has iniciado sesión, te invitamos a hacerlo."} />
             }
         </div>
         

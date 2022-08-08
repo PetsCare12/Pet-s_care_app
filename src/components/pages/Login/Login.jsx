@@ -1,7 +1,6 @@
 import { NavLink, Link } from 'react-router-dom'
 import { ButtonUI } from '../../UI/ButtonUI/ButtonUI'
 import { ImagenUI } from '../../UI/ImagenUI/ImagenUI'
-import { InputUI } from '../../UI/InputUI/InputUI'
 import image from './perro_gato_animadoNew.png'
 import { pets_images } from '../../../helpers/Pets_care_images';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
@@ -14,7 +13,6 @@ import { inicioSesionUsuario } from '../../../helpers/API Consumer/test'
 export const Login = () => {
 
     const [loading, setLoading] = useState(false)
-    const [token, setToken] = useState("");
     const [status, setStatus] = useState(0);
 
   return (
@@ -54,7 +52,7 @@ export const Login = () => {
                             
                             if ( info.status === 200 ) {
 
-                                setToken(info.data.tokenDeAcceso);
+                                let token = info.data.tokenDeAcceso;
                                 localStorage.setItem("token", token);
                                 localStorage.setItem("usuario", JSON.stringify(parseJwt( token )));
 

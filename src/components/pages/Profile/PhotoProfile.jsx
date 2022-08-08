@@ -6,16 +6,11 @@ export const PhotoProfile = ( {img} ) => {
 
     return (
         <>
-            <div className='photoProfile__background'
-                style={{
-                    background:`url("${user.img}")`,
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "center top",
-                    backgroundSize: "cover",
-                }}  
-            ></div>
+            <div className='photoProfile__background'>
+                <img className='photoProfile__background-img' src={img} alt="" />
+            </div>
             <div className="photoProfile">
-                <img src={user.img} alt="foto-perfil" />
+                <img src={img} alt="foto-perfil" />
             </div>
         </>
     )

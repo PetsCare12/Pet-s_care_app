@@ -1,7 +1,23 @@
 import React from 'react'
+import { useEffect } from 'react'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { getUsuario_mascotas } from '../../../../helpers/API Consumer/test'
+import { pets_images } from '../../../../helpers/Pets_care_images'
 import { MascotasCard } from '../MascotasCard'
 
-export const SectionMascotas = () => {
+export const SectionMascotas = ( {userData} ) => {
+
+    const [mascotaData, setMascotaData] = useState([])
+
+    useEffect(()=>{
+
+        getUsuario_mascotas( userData.documentoUs )
+        .then( mascota => setMascotaData( mascota.mascotas ) )
+
+    }, [userData])
+
+    
 
     const data = [
         {id: 1, name:"Pepito", raza:"Dragón Barbudo", age:2, image:"https://d2devwt40at1e2.cloudfront.net/api/file/7q3dwheTZezbj5KDSJ0Z"},
@@ -15,20 +31,30 @@ export const SectionMascotas = () => {
     return (
         <div className='profile__right-mascotas animate__animated animate__fadeIn'>
             <h1 className='profile__section '>Mis mascotas</h1>
-            <button className='btnAgregarMascota'>Crear mascota</button>
+            <button onClick={()=> window.location = "/registro_mascotas"} className='btnAgregarMascota'>Crear mascota</button>
             <div className="profile__misMascotas">
                 {
-                    data.map( pet => (
+                    ( mascotaData ) &&
+                    mascotaData.map( pet => (
 
                         <MascotasCard
-                        key={pet.id}
-                        name={pet.name}
+                        key={pet.codigo}
+                        name={pet.nombre}
                         age={pet.age}
                         raza={pet.raza}
-                        image={pet.image}
+                        image={pet.imagenMascota}
                         />
 
                     ))
+                }
+                {
+                    ( mascotaData.length === 0 ) && 
+                        <div className='perfil__mascotas-empty'>
+                            <img src={pets_images("./perfil/perroempty.png")} alt="" />
+                            <p>¿Aún no tienes mascotas? <Link to={'/registro_mascotas'}>registra una aquí.</Link></p>
+                        </div>
+
+                    
                 }
             </div>
         </div>

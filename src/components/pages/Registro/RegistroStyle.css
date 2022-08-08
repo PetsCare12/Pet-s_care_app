@@ -169,84 +169,61 @@
 
 
 /* ------------- DISEÑO TARJETAS STEP 1 ------------- */
+#registerType{
+    height: auto;
+}
 
 .types_users{
-    justify-content: space-between;
+    justify-content: space-evenly;
     display: flex;
-    width: 100%;
+    margin: 15px 0px;
+    width: 60%;
 }
 
-.card_type_user{
-    align-items: center;
-    border: 3px double #008eff;
-    border-radius: 6px;
-    display: flex;
-    flex-direction: column;
-    height: 200px;
-    justify-content: space-between;
-    padding: 10px;
-    text-align: center;
-    width: 170px;
+.type__user-button:hover{
+    color: white;
+    background-color: #008eff;
+    transition: .5s;
+}
+.type__user-button:hover .type__user-button-icon{
+    color: white;
+}
+.type__user-button:hover .type__user-button-h1{
+    color: white;
 }
 
-.card_type_user:hover{
-    transition: background-color .5s ease;
-    border: 3px solid #008eff;
-    background-color: #daeeff;
-    cursor: pointer;
+#type__user-active{
+    color: white;
+    background-color: #008eff;
+    transition: .5s;
+}
+#type__user-active h1,.type__user-button-icon{
+    color: white;
+}
+#type__user-active .type__user-button-icon{
+    color: white;
 }
 
-.card_type_user h3{
-    font-size: 20px;
-    color: #008efe;
+.type__user-button{
+    background-color: white;
+    border: 2px solid #008eff;
+    border-radius: 100%;
+    height: 100px;
+    transition: .4s;
+    width: 100px;
 }
-
-#p_type_user {
-    line-height: 25px;
-    color: #6a6a6a;
-}
-
-.img_type_register{
-    font-size: 40px;
-    color: rgb(195, 195, 195);
-    height: 50px;
-}
-
-.color_img_type_register{
-    transition: .7s;
-    font-size: 50px;
+.type__user-button-icon{
     color: #008eff;
+    font-size: 40px;
 }
 
-.color_card_type_user{
-    background-color: #daeeff;
-    border: 3px solid #008eff;
+.type__user-button-h1{
+    color: #008eff;
+    font-size: 15px;
 }
-
-
-/*  WARNING CHECK   */ 
 
 .warn_check{
-    align-items: center;
-    background-color: #97d1ff;
-    border: 2px solid #008eff;
-    border-radius: 6px;
-    color: black;
-    display: flex;
-    flex-direction: row;
-    padding: 10px;
-    gap: 10px;
-    width: 100%;
-
-}
-
-.hidden{
-    display: none;
-}
-
-#ImWarning {
-    font-size: 25px;
-    margin-bottom: -7px;
+    color: #535353;
 }
 
 /* --------------------------------- */
