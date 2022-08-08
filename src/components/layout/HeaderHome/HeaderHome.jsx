@@ -3,14 +3,14 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getUsuarioId } from '../../../helpers/API Consumer/test';
-import { parseJwt } from '../../../helpers/getPayLoad';
 import { pets_images } from '../../../helpers/Pets_care_images';
 import './HeaderHome.css'
 
 export const Header = () => {
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("usuario")));
-  const [userData, setUserData] = useState({}); 
+  const [userData, setUserData] = useState({});
+  let token = localStorage.getItem("token"); 
 
     useEffect(()=>{
 
@@ -18,8 +18,7 @@ export const Header = () => {
         .then( data => setUserData( data.data ));
         
     }, [user])
-  
-    console.log( userData );
+    
 
   return (
     <div className='headerHome'>
@@ -29,7 +28,7 @@ export const Header = () => {
 
         <div className="options">
           {
-            ( userData ) ?
+            ( token.length > 2 ) ?
               <button onClick={()=> window.location = "/perfil"}>
                 <div className='home__autenticado'>
                   <h1>{ userData.nombreUs }</h1>
