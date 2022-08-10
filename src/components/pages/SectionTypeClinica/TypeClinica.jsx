@@ -9,49 +9,55 @@ import "./TypeClinica.css";
 import { getVeterinarioById, getVeterinarios } from '../../../helpers/API Consumer/useVeterinariosConsumer';
 
 export const TypeClinica = () => {
-  
-  let nit = 111;
+
+  let nit = 1010;
+  const [arrState, setarrState] = useState(true);
   const [arr, setarr] = useState([]);
-  
-  useEffect(() => {
-    getVeterinarios(nit).then( data => setarr(data))
-    console.log(arr);
-  }, []);
+  const [img, setimg] = useState("");
+  const {myWidgetVeter,urlImage} = useSendImage();
+  const [useVet, setVet] = useState({});
+  const [isOpenModal1,openModal1,closeModal1] = useModal(false);
 
   const getVeterId = (e) => {
-    if (e.target.value !== "") {
-      getVeterinarioById(e.target.value).then( data => console.log((data)))
+    if (e.keyCode == "13") {
+
+      if (e.target.value !== "") {
+        getVeterinarioById(e.target.value).then( data => setarr([data]));
+        console.log(arr);
+        setarrState(false);
+      }
+
+    }else if (e.target.value === "") {
+      setarrState(true);
+    }   
+  }
+
+  useEffect(() => {
+    if (arrState === true) {
+      getVeterinarios(nit).then( data => setarr(data))
       console.log(arr);
     }
-  }
-  
-  const [useVet, setVet] = useState({});
-
-  const [img, setimg] = useState("");
+  }, [arrState])
 
   const getVet = (e) => {
+    setimg(e.imagenVete)
     setVet(e);
-    // setimg(useVet.imagen);
   }
+
+  useEffect(() => {
+    setimg(urlImage);
+    console.log(urlImage);
+  }, [urlImage])
+  
+  const showWidget = () => {myWidgetVeter.open();};
 
   const disableVet = (e) => {};
 
-  const [isOpenModal1,openModal1,closeModal1] = useModal(false);
-
-  const {myWidgetVeter,urlImage} = useSendImage();
-  
-  const showWidget = () => {
-    setimg(!img);
-    myWidgetVeter.open();
-    setimg(urlImage);
-    console.log(urlImage);
-  };
-  
   const initialForm = {
     documento: "",
-    nombre: "",apellidos: "",
-    telefono: "",sexovt: "",
-    especialidad: "",imagen: ""
+    nombre: "",apellido: "",
+    telefono: "",sexo: "",
+    especialidad: "",imagenVete: ""
   };
 
   const validationsForm = (form) => {
@@ -60,7 +66,8 @@ export const TypeClinica = () => {
     let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
     let regexNumbers = /^\d+$/;
 
-         if (!form.apellido.trim()) {errors.apellido = "El 'Apellido:' es requerido!";}
+         if (form.imagenVete === "") {form.imagenVete = useVet.imagenVete}
+    else if (!form.apellido.trim()) {errors.apellido = "El 'Apellido:' es requerido!";}
     else if (!form.nombre.trim()) {errors.nombre = "El 'Nombre:' es requerido!";}
     else if (!form.sexo.trim()) {errors.sexo = "El 'Sexo:' es requerido!";}
     else if (!form.especialidad.trim()) {errors.especialidad = "El 'Especialidad:' es requerido!";}
@@ -85,7 +92,7 @@ export const TypeClinica = () => {
   } = useForm(initialForm,validationsForm);
 
   return (
-    <div className='st1'>
+    <div className='st1 animate__animated animate__fadeIn'>
       <div className='st2'>
           <div className="title-container">
             <div className='titles'>
@@ -105,23 +112,23 @@ export const TypeClinica = () => {
                       <p>Lo abrio perro hijuepputa.</p>
                     </ModalRegisterVet>
                     <div className="search">
-                      <input type="text" className="input iSearch" placeholder='ID del Veterinario...' onChange={getVeterId}/>
+                      <input type="text" className="input iSearch" placeholder='ID del Veterinario...' onKeyDown={getVeterId}/>
                       <img src={pets_images('./veterinarios/lupa.png')} alt="" id='searchIcon' />
                       <ButtonUI text="Registrar" type="button" style="regs submit" event={openModal1}></ButtonUI>
                     </div>
               <ul>
                 {
                   arr.map((item) =>(
-                    <li className="liVetSpace">
+                    <li className="liVetSpace animate__animated animate__backInUp">
                         <div className='liVet'>
                           <div className='img_li_vet'>
                             <img src={item.imagenVete} alt="" id='imgVet'/>
                           </div>
                           <div className='liVetA'>
-                            <h4><span>Nombre:</span>            {item.nombre}</h4>
-                            <h4><span>Apellido:</span>        {item.apellidos}</h4>
-                            <h4><span>ID:</span>             {item.documento}</h4>
-                            <h4><span>Especialidad:</span>{item.especialidad}</h4>
+                            <h4><span>Nombre:</span>              {item.nombre}</h4>
+                            <h4><span>Apellido:</span>         {item.apellidos}</h4>
+                            <h4><span>ID:</span>               {item.documento}</h4>
+                            <h4><span>Especialidad:</span>  {item.especialidad}</h4>
                           </div>
                         </div> 
                         <div className='idc'>
@@ -139,22 +146,22 @@ export const TypeClinica = () => {
               {
                 (JSON.stringify(useVet) !== '{}')
                 ? 
-                  <form onSubmit={handleSubmit} className='formVet'>
+                  <form onSubmit={handleSubmit} className='formVet  animate__animated animate__fadeIn'>
 
-                        {response ? <p id='succesP'>Simulacion de Envio terminada!</p> : <p></p>}
+                        {response ? <p id='succesP  animate__animated animate__fadeIn'>Simulacion de Envio terminada!</p> : <p></p>}
 
 
-                      <div className="imgForm">
+                      <div className="imgForm  animate__animated animate__fadeIn">
                         <div className="imagen_container">
                           <div className="img_cont_vet">
-                              <img src={form.imagen = img} 
+                              <img src={form.imagenVete = img} 
                               alt="" id='imgForm'/>
                               <a onClick={showWidget} className="a_uploadImage">
                                 <img src={pets_images('./veterinarios/subir.png')} alt="Subir Imagen" className='upload_Image'/>
                               </a>
                           </div>
                       </div>
-                      <div className="imgForm">
+                      <div className="imgForm  animate__animated animate__fadeIn">
                           <div className='liVetA'>
                               <h1>{useVet.especialidad}</h1>
                               <hr className='hrVet'/>
@@ -166,22 +173,22 @@ export const TypeClinica = () => {
 
                       {loading && <div id='login-spin-clinic' className='spiner'></div>}
                       
-                    <div className="bottomForm">
+                    <div className="bottomForm  animate__animated animate__fadeIn">
                       <div className="inputsVet">
                         <div className='input-container'>
                           <input 
                           name='apellido' type="text" 
                           placeholder=' Apellido... '
                           onChange={handleChangeVet}
-                          value={form.apellidos} onBlur={handleBlur}
+                          value={form.apellido} onBlur={handleBlur}
                           required 
                           id='apellido'
-                          className={`input ${(errors.apellido) ? 'iWarning' : 'input'}`}
+                          className={`input ${(errors.apellidos) ? 'iWarning' : 'input'}`}
                           />
                           <div class="cut"></div>
                           <label for="apellido" class="placeholder"> {useVet.apellidos} </label>
                         </div>
-                        {errors.apellido &&             <p id='warningP'>{errors.apellido}</p>}
+                        {errors.apellidos &&             <p id='warningP'>{errors.apellido}</p>}
 
                         <div className="input-container">
                           <input 
@@ -263,7 +270,7 @@ export const TypeClinica = () => {
                   </form>
                 : 
                   <div id='titleValidation'>
-                    <img src="https://www.gifsanimados.org/data/media/202/perro-imagen-animada-0387.gif" border="0" alt="perro-imagen-animada-0387" className='imgWait'/>
+                    <img src="https://www.gifsanimados.org/data/media/202/perro-imagen-animada-0387.gif" border="0" alt="perro-imagen-animada-0387" className='imgWait  animate__animated animate__fadeIn'/>
                     <h1 id='titleP2-margin'>Por favor selecciona un veterinario de tu planta!</h1>
                     <hr className='hrVet'/>
                   </div>
