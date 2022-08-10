@@ -59,6 +59,12 @@ export const postUsuario = async( user ) => {
                 "Content-Type":"application/json"
             },
             data: user
+        }).catch( function( error ) {
+
+            if ( error.response ) {
+                return { status : error.response.status }
+            }
+
         });
         
         return response;

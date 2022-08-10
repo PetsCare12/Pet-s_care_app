@@ -10,11 +10,11 @@ export const RegisterUser = ( {change_step} ) => {
 
     const [counter, setCounter] = useState(3);
     const registerSuccess = useRef(null);
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const [duplicatedData, setDuplicatedData] = useState(false);
 
     const handleSubmit = ( e ) => {
         e.preventDefault();
-
     }
 
     return (
@@ -78,17 +78,31 @@ export const RegisterUser = ( {change_step} ) => {
                     return errores;
                 }}
                 onSubmit={( valores, {resetForm} ) => {
-                    postUsuario( valores );
+                    let validacion = {};
+                    postUsuario( valores )
+                     .then( info => validacion = info );
+
                     setLoading(true);
                     setTimeout(()=>{
-                        resetForm();
-                        setLoading(false);
-                        window.location = "/login";
+                        if ( validacion.status === 400 ) {
+                            setDuplicatedData( true );
+                            setLoading(false);
+                        }
+                        else {
+                            setDuplicatedData( false );
+                            resetForm();
+                            setLoading(false);
+                            window.location = "/login";
+                        }
                     },1000)
                 }}
             >   
                 {({ errors }) => (
                     <Form>
+                        {
+                            ( duplicatedData ) &&
+                            <p>Al parecer tu correo o documento ya están registrados</p>
+                        }
                         <Field 
                             type='text'
                             className = 'inputLogin inputRegistro'
@@ -138,7 +152,7 @@ export const RegisterUser = ( {change_step} ) => {
                             />
 
                             <Field name="sexoUs" as="select" id="select">
-                                <option selected={true} value="none">Selecciona el sexo</option>
+                                <option value="none">Selecciona el sexo</option>
                                 <option value="hombre">Hombre</option>
                                 <option value="mujer">Mujer</option>
                                 <option value="otro">Otro</option>
