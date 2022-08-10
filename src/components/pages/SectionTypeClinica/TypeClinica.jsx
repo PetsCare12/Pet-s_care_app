@@ -1,17 +1,24 @@
 import { useState } from 'react';
 import { pets_images } from '../../../helpers/Pets_care_images';
-import { vet } from "./vetData.js";
 import { useForm } from '../../../helpers/useForm';
 import { ButtonUI } from "./../../UI/ButtonUI/ButtonUI";
 import { useModal } from '../../../helpers/useModal';
 import { ModalRegisterVet } from './ModalRegisterVet';
 import { useSendImage } from '../../../helpers/Cloudinary_Images/useSendImages';
 import "./TypeClinica.css";
+import { getVeterinarios } from '../../../helpers/API Consumer/useVeterinariosConsumer';
 
 export const TypeClinica = () => {
+  
+  let nit = 111;
+  let objVeter = getVeterinarios(nit);
+  console.log(objVeter);
+  const arr = Object.entries(objVeter);
+  console.log(arr);
+  // console.log(arr.then(response => console.log(response)));
 
-  const arr = vet;
   const [useVet, setVet] = useState({});
+
   const [img, setimg] = useState("");
 
   const getVet = (e) => {
@@ -19,10 +26,13 @@ export const TypeClinica = () => {
     setimg(useVet.imagen);
   }
 
-  const [isOpenModal1,openModal1,closeModal1] = useModal(false);
   const disableVet = (e) => {};
+  const searchVetById = (e) => {};
+
+  const [isOpenModal1,openModal1,closeModal1] = useModal(false);
 
   const {myWidgetVeter,urlImage} = useSendImage();
+  
   const showWidget = () => {
     setimg(!img);
     myWidgetVeter.open();
@@ -89,16 +99,16 @@ export const TypeClinica = () => {
                     </ModalRegisterVet>
                     <div className="search">
                       <input type="text" className="input iSearch" placeholder='ID del Veterinario...'/>
-                      <a onClick={""} href=""><img src={pets_images('./veterinarios/lupa.png')} alt="" id='searchIcon' /></a>
+                      <a onClick={searchVetById} href=""><img src={pets_images('./veterinarios/lupa.png')} alt="" id='searchIcon' /></a>
                       <ButtonUI text="Registrar" type="button" style="regs submit" event={openModal1}></ButtonUI>
                     </div>
               <ul>
-                {
+                {/* {
                   arr.map((item) =>(
                     <li className="liVetSpace">
                         <div className='liVet'>
                           <div className='img_li_vet'>
-                            <img src={item.imagen} alt="" id='imgVet'/>
+                            <img src={item.imagenVete} alt="" id='imgVet'/>
                           </div>
                           <div className='liVetA'>
                             <h4><span>Nombre:</span>            {item.nombre}</h4>
@@ -114,7 +124,7 @@ export const TypeClinica = () => {
                         </div>
                       </li>
                   ))
-                }
+                } */}
               </ul>
             </div>
             

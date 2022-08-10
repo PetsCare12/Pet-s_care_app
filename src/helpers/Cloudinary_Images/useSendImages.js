@@ -11,7 +11,7 @@ export const useSendImage = () => {
         },
         (error, result) => {
             if (!error && result && result.event === "success") {
-            console.log("Imagen subida con exito!!: ");
+            console.log("Imagen subida con exito!!");
             seturlImage(result.info.url);
           }
         }
@@ -24,7 +24,7 @@ export const useSendImage = () => {
         },
         (error, result) => {
           if (!error && result && result.event === "success") {
-            console.log("Imagen subida con exito!!: ");
+            console.log("Imagen subida con exito!!");
             seturlImage(result.info.url);
           }
         }
@@ -38,16 +38,30 @@ export const useSendImage = () => {
         },
         (error, result) => {
           if (!error && result && result.event === "success") {
-            console.log("Imagen subida con exito!!: ", result.info);
+            console.log("Imagen subida con exito!!");
             seturlImage(result.info.url);
           }
         }
     );
 
+    let myWidgetMascotas = window.cloudinary.createUploadWidget(
+      {
+        cloudName: "petscareimagecloud",
+        uploadPreset: "petscare_preset_mascotas"
+      },
+      (error, result) => {
+        if (!error && result && result.event === "success") {
+          console.log("Imagen subida con exito!!");
+          seturlImage(result.info.url);
+        }
+      }
+  );
+
     return {
         myWidgetClinics,
         myWidgetUser,
         myWidgetVeter,
+        myWidgetMascotas,
         urlImage
       };
 };
