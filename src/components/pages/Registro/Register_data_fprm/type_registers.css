@@ -1,5 +1,5 @@
 form{
-    height: 340px;
+    height: auto;
     display: flex;
     flex-direction: column;
     gap: 14px;

@@ -12,12 +12,19 @@ export const Header = () => {
   const [userData, setUserData] = useState({});
   let token = localStorage.getItem("token"); 
 
-    useEffect(()=>{
-
+  useEffect(()=>{
+      if ( user ) {
         getUsuarioId( user.jti )
         .then( data => setUserData( data.data ));
         
-    }, [user])
+      }
+      else{
+        console.log("No hay autenticación");
+      }
+      
+  }, [user])
+
+  // Cambio en git
     
 
   return (
@@ -28,7 +35,7 @@ export const Header = () => {
 
         <div className="options">
           {
-            ( token.length > 2 ) ?
+            ( !!token ) ?
               <button onClick={()=> window.location = "/perfil"}>
                 <div className='home__autenticado'>
                   <h1>{ userData.nombreUs }</h1>

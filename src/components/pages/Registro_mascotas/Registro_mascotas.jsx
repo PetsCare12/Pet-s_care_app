@@ -16,8 +16,16 @@ export const Registro_mascotas = () => {
     const [errorType, setErrorType] = useState(false);
     const [otro, setOtro] = useState("");
     const [loading, setLoading] = useState(false);
+    const user = JSON.parse(localStorage.getItem("usuario"));
 
-    const { jti, aud } = JSON.parse(localStorage.getItem("usuario"));
+    let jti = "";
+    let aud = "";
+
+    if ( !!localStorage.getItem("usuario") ) {
+        jti = user.jti;
+        aud = user.aud;
+    }
+
 
     const handle = ( e ) => {
 
@@ -63,6 +71,8 @@ export const Registro_mascotas = () => {
                             raza: "",
                             color: "",
                             peso: "",
+                            edad: "",
+                            sexo: "",
                             discapacidad: "",
                             tipoAnimal: "",
                             imagenMascota: "http://abc.finkeros.com/wp-content/uploads/2021/02/pets-3715733_1920.jpg"
@@ -73,7 +83,8 @@ export const Registro_mascotas = () => {
                             if      ( !valores.nombre ) { errores.nombre = "Ingrese un nombre" }
                             else if ( !valores.raza ) { errores.raza = "Ingrese una raza" }
                             else if ( !valores.color ) { errores.color = "Ingrese un color" }
-                            // else if ( !valores.sexo ) { errores.sexo_mc = "Ingrese un sexo" }
+                            else if ( !valores.edad ) { errores.edad = "Ingrese una edad" }
+                            else if ( !valores.sexo ) { errores.sexo = "Ingrese un sexo" }
                             else if ( !valores.peso ) { errores.peso = "Ingrese un peso" }
                             
                             return errores;
@@ -174,33 +185,46 @@ export const Registro_mascotas = () => {
                             <ErrorMessage name='raza' component={() => (<p id='warn__password-mascota'>{errors.raza}</p>)} />
                             <ErrorMessage name='color' component={() => (<p id='warn__password-mascota'>{errors.color}</p>)} />
                             
-                            {/* <div className='div_registro_mascotas_select_gender'>
+                            <div className='div_registro_mascotas_select_gender'>
                                 
                                 <Field as="select" name="sexo" id="select_gender">
                                     <option value="none" id='option_disabled'>Selecciona el sexo</option>
                                     <option value="macho">Macho</option>
                                     <option value="hembra">Hembra</option>
                                 </Field>
-                            </div> */}
-                            {/* <ErrorMessage name='sexo' component={() => (<p id='warn__password-mascota'>{errors.se}</p>)} /> */}
+                            </div>
+                            <ErrorMessage name='sexo' component={() => (<p id='warn__password-mascota'>{errors.sexo}</p>)} />
 
                             <div className='registroMascotas__div-peso'>
                                 <div className='peso'>
-                                    <label htmlFor="peso">Pesa </label>
-                                    <Field
-                                        className='inputLogin inputH-100' 
-                                        type="text" 
-                                        name="peso"
-                                    />
-                                    Kg
+                                    <div className='peso-div'>
+                                        <label htmlFor="peso">Pesa </label>
+                                        <Field
+                                            className='inputLogin inputH-100' 
+                                            type="text" 
+                                            name="peso"
+                                            placeholder = "0.0"
+                                        />
+                                        Kg
+                                    </div>
+                                    <div>
+                                        <label htmlFor="edad">Edad </label>
+                                        <Field
+                                            className='inputLogin inputH-100' 
+                                            type="text" 
+                                            name="edad"
+                                            placeholder = "1"
+                                        />
+                                    </div>
                                 </div>
                                 <div className='discapacidad'>
                                     <label htmlFor="discapacidad">¿Discapacidad?</label>
                                     <Field type="checkbox" name='discapacidad'/>
                                 </div>
                             </div>
-
                             <ErrorMessage name='peso' component={() => (<p id='warn__password-mascota'>{errors.peso}</p>)} />
+                            <ErrorMessage name='edad' component={() => (<p id='warn__password-mascota'>{errors.edad}</p>)} />
+
                             { !loading && 
                             <div className='registroMascotas__button-div'>
                                 <ButtonUI 

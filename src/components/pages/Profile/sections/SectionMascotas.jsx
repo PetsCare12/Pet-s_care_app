@@ -40,7 +40,7 @@ export const SectionMascotas = ( {userData} ) => {
                         <MascotasCard
                         key={pet.codigo}
                         name={pet.nombre}
-                        age={pet.age}
+                        age={pet.edad}
                         raza={pet.raza}
                         image={pet.imagenMascota}
                         />
