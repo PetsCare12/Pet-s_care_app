@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { pets_images } from '../../../helpers/Pets_care_images';
 import { useForm } from '../../../helpers/useForm';
 import { ButtonUI } from "./../../UI/ButtonUI/ButtonUI";
@@ -6,28 +6,35 @@ import { useModal } from '../../../helpers/useModal';
 import { ModalRegisterVet } from './ModalRegisterVet';
 import { useSendImage } from '../../../helpers/Cloudinary_Images/useSendImages';
 import "./TypeClinica.css";
-import { getVeterinarios } from '../../../helpers/API Consumer/useVeterinariosConsumer';
+import { getVeterinarioById, getVeterinarios } from '../../../helpers/API Consumer/useVeterinariosConsumer';
 
 export const TypeClinica = () => {
   
   let nit = 111;
-  let objVeter = getVeterinarios(nit);
-  console.log(objVeter);
-  const arr = Object.entries(objVeter);
-  console.log(arr);
-  // console.log(arr.then(response => console.log(response)));
+  const [arr, setarr] = useState([]);
+  
+  useEffect(() => {
+    getVeterinarios(nit).then( data => setarr(data))
+    console.log(arr);
+  }, []);
 
+  const getVeterId = (e) => {
+    if (e.target.value !== "") {
+      getVeterinarioById(e.target.value).then( data => console.log((data)))
+      console.log(arr);
+    }
+  }
+  
   const [useVet, setVet] = useState({});
 
   const [img, setimg] = useState("");
 
   const getVet = (e) => {
     setVet(e);
-    setimg(useVet.imagen);
+    // setimg(useVet.imagen);
   }
 
   const disableVet = (e) => {};
-  const searchVetById = (e) => {};
 
   const [isOpenModal1,openModal1,closeModal1] = useModal(false);
 
@@ -42,8 +49,8 @@ export const TypeClinica = () => {
   
   const initialForm = {
     documento: "",
-    nombre: "",apellido: "",
-    telefono: "",sexo: "",
+    nombre: "",apellidos: "",
+    telefono: "",sexovt: "",
     especialidad: "",imagen: ""
   };
 
@@ -98,12 +105,12 @@ export const TypeClinica = () => {
                       <p>Lo abrio perro hijuepputa.</p>
                     </ModalRegisterVet>
                     <div className="search">
-                      <input type="text" className="input iSearch" placeholder='ID del Veterinario...'/>
-                      <a onClick={searchVetById} href=""><img src={pets_images('./veterinarios/lupa.png')} alt="" id='searchIcon' /></a>
+                      <input type="text" className="input iSearch" placeholder='ID del Veterinario...' onChange={getVeterId}/>
+                      <img src={pets_images('./veterinarios/lupa.png')} alt="" id='searchIcon' />
                       <ButtonUI text="Registrar" type="button" style="regs submit" event={openModal1}></ButtonUI>
                     </div>
               <ul>
-                {/* {
+                {
                   arr.map((item) =>(
                     <li className="liVetSpace">
                         <div className='liVet'>
@@ -112,7 +119,7 @@ export const TypeClinica = () => {
                           </div>
                           <div className='liVetA'>
                             <h4><span>Nombre:</span>            {item.nombre}</h4>
-                            <h4><span>Apellido:</span>        {item.apellido}</h4>
+                            <h4><span>Apellido:</span>        {item.apellidos}</h4>
                             <h4><span>ID:</span>             {item.documento}</h4>
                             <h4><span>Especialidad:</span>{item.especialidad}</h4>
                           </div>
@@ -124,7 +131,7 @@ export const TypeClinica = () => {
                         </div>
                       </li>
                   ))
-                } */}
+                }
               </ul>
             </div>
             
@@ -151,7 +158,7 @@ export const TypeClinica = () => {
                           <div className='liVetA'>
                               <h1>{useVet.especialidad}</h1>
                               <hr className='hrVet'/>
-                              <h2>{useVet.nombre} {useVet.apellido}</h2>
+                              <h2>{useVet.nombre} {useVet.apellidos}</h2>
                               <h4>ID: {form.documento = useVet.documento}</h4>
                           </div>
                           </div>
@@ -166,13 +173,13 @@ export const TypeClinica = () => {
                           name='apellido' type="text" 
                           placeholder=' Apellido... '
                           onChange={handleChangeVet}
-                          value={form.apellido} onBlur={handleBlur}
+                          value={form.apellidos} onBlur={handleBlur}
                           required 
                           id='apellido'
                           className={`input ${(errors.apellido) ? 'iWarning' : 'input'}`}
                           />
                           <div class="cut"></div>
-                          <label for="apellido" class="placeholder"> {useVet.apellido} </label>
+                          <label for="apellido" class="placeholder"> {useVet.apellidos} </label>
                         </div>
                         {errors.apellido &&             <p id='warningP'>{errors.apellido}</p>}
 
@@ -201,7 +208,7 @@ export const TypeClinica = () => {
                           required 
                           />
                           <div class="cut"></div>
-                          <label for="sexo" class="placeholder"> {useVet.sexo} </label>
+                          <label for="sexo" class="placeholder"> {useVet.sexovt} </label>
                         </div>
                         {errors.sexo &&                 <p id='warningP'>{errors.sexo}</p>}
 
