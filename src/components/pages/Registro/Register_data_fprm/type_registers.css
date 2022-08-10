@@ -218,3 +218,6 @@ form{
     padding: 10px;
     text-align: center;
 }
+#registerUser__error{
+    color: red;
+}

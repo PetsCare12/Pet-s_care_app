@@ -14,7 +14,7 @@ export const SectionPerfil = ( {userData} ) => {
         <div className='profile__right-perfil animate__animated animate__fadeIn'>
             <p className='profile__editarPerfil'>Información</p>
             <div className="profile__seccion1">
-                <div className='profile__img'><img src={userData.imagenUsu} alt="" /></div>
+                <div className='profile__img'><img src={userData.imagenUsu} alt="" /><div className='profile__seccion1-changeImg'></div></div>
                 <div className='profile__info'>
 
                     <p>CC. {userData.documentoUs}</p>

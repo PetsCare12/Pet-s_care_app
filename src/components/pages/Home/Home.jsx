@@ -5,7 +5,7 @@ import './Home.css';
 export const Home = () => {
 
   return (
-    <div className="home__contenedor">
+    <div className="home__contenedor animate__animated animate__fadeIn">
       <div>
         <Header />
         <header>

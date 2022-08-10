@@ -1,12 +1,7 @@
-import { Link } from 'react-router-dom'
-import { ButtonUI } from '../../UI/ButtonUI/ButtonUI'
+import { Link } from 'react-router-dom';
 import { MdOutlineCancel, MdNavigateNext } from 'react-icons/md';
-import { InputUI } from '../../UI/InputUI/InputUI'
-import { Login } from '../Login/Login'
 import { RegisterClinica } from './Register_data_fprm/RegisterClinica';
-import { useEffect, useState } from 'react';
 import { RegisterUser } from './Register_data_fprm/RegisterUser';
-import { RegisterVeterinario } from './Register_data_fprm/RegisterVeterinario';
 
 export const RegistroStep2 = ( {steps, step_change, userType} ) => {
 
@@ -39,9 +34,6 @@ export const RegistroStep2 = ( {steps, step_change, userType} ) => {
                         ? <RegisterClinica change_step={handleChangeStepBack}/>
                         : <RegisterUser change_step={handleChangeStepBack}/>
                     }
-                    
-                    
-                    
 
                 </div>
             </div>
