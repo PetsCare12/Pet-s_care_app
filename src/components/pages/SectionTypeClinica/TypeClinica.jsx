@@ -10,9 +10,9 @@ import "./TypeClinica.css";
 
 export const TypeClinica = () => {
 
-  // let nit = 1010;
-  let nit = 111;
-  let token = "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxMTEiLCJzdWIiOiJzYWx1ZGNhbmluYUB2ZXRlcmluYXJpYXMuY29tIiwiYXVkIjoiW1JPTEVfQ0xJTklDQV0iLCJpYXQiOjE2NjAxNzk4ODIsImV4cCI6MTY2MDc4NDY4MX0.pBUjcGe1MUCv1AgUfDwpPoQcFb6lE4Q2V4D0BTlAf2NydWBJaF0t0p8tA9CNH5KPAvkclHS5My_ej2v3_XIl0A"
+  // let nitClinic = 1010;
+  let nitClinic = 111;
+  let tokenClinic = "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxMTEiLCJzdWIiOiJzYWx1ZGNhbmluYUB2ZXRlcmluYXJpYXMuY29tIiwiYXVkIjoiW1JPTEVfQ0xJTklDQV0iLCJpYXQiOjE2NjAxNzk4ODIsImV4cCI6MTY2MDc4NDY4MX0.pBUjcGe1MUCv1AgUfDwpPoQcFb6lE4Q2V4D0BTlAf2NydWBJaF0t0p8tA9CNH5KPAvkclHS5My_ej2v3_XIl0A"
   const [arrState, setarrState] = useState(true);
   const [arr, setarr] = useState([]);
   const [img, setimg] = useState("");
@@ -58,6 +58,7 @@ export const TypeClinica = () => {
     nombre: "",apellido: "",
     telefono: "",sexovt: "",
     especialidad: "",imagenVete: "",
+    correo: "",
     estadoVt: 1
   };
 
@@ -69,22 +70,28 @@ export const TypeClinica = () => {
 
          if (form.imagenVete === "") {form.imagenVete = useVet.imagenVete}
     else if (!form.apellido.trim()) {errors.apellido = "El 'Apellido:' es requerido!";}
+
     else if (!form.nombre.trim()) {errors.nombre = "El 'Nombre:' es requerido!";}
     else if (!form.sexovt.trim()) {errors.sexovt = "El 'Sexo:' es requerido!";}
+
     else if (!form.especialidad.trim()) {errors.especialidad = "El 'Especialidad:' es requerido!";}
     else if (!form.telefono.trim()) {errors.telefono = "El 'Telefono:' es requerido!";}
+
     else if (!form.correo.trim()) {errors.correo = "El 'Correo:' es requerido!";}
     else if (!regexName.test(form.apellido.trim())) {errors.apellido = "El 'Apellido:' solo acepta letras!"}
+
     else if (!regexName.test(form.nombre.trim())) {errors.nombre = "El campo 'Nombre:' solo acepta letras!"}
     else if (!regexName.test(form.sexovt.trim())) {errors.sexovt = "El campo 'Sexo:' solo acepta letras!"}
+
     else if (!regexName.test(form.especialidad.trim())) {errors.especialidad = "El campo 'Especialidad:' solo acepta letras!"}
     else if (!regexNumbers.test(form.telefono.trim())) {errors.telefono = "El campo 'Telefono:' solo acepta numeros!"}
+    
     else if (!regexEmail.test(form.correo.trim())) {errors.correo = "El campo 'Correo:' es Incorrecto!"}
 
     return errors;
   }
 
-  const {form,errors,loading,response,handleChangeVet,handleBlur,handleSubmit} = useForm(initialForm,validationsForm,token);
+  const {form,errors,loading,response,handleChangeVet,handleBlur,handleSubmit} = useForm(initialForm,validationsForm,tokenClinic);
   const disableVet = (e) => {};
 
   return (
@@ -104,7 +111,7 @@ export const TypeClinica = () => {
             <div className='st4'>
               <h1 className='titleP2 -margin'>Veterinarios</h1>
               <hr className='hrVet'/>
-                    <ModalRegisterVet isOpen={isOpenModal1} closeModal={closeModal1} className="animate__animated animated_fadeIn" />
+                    <ModalRegisterVet isOpen={isOpenModal1} closeModal={closeModal1} nit={nitClinic} token={tokenClinic} className="animate__animated animated_fadeIn" />
                     <div className="search">
                       <input type="text" className="input iSearch" placeholder='ID del Veterinario...' onKeyDown={getVeterId}/>
                       <img src={pets_images('./veterinarios/lupa.png')} alt="" id='searchIcon' />
