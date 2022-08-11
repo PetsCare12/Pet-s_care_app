@@ -1,27 +1,64 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { pets_images } from '../../../helpers/Pets_care_images';
-import { vet } from "./vetData.js";
 import { useForm } from '../../../helpers/useForm';
 import { ButtonUI } from "./../../UI/ButtonUI/ButtonUI";
-import { Loader } from '../../UI/Loader/Loader';
-import "./TypeClinica.css";
 import { useModal } from '../../../helpers/useModal';
-import { Modal } from '../../UI/Modals/Modal';
+import { ModalRegisterVet } from './ModalRegisterVet';
+import { useSendImage } from '../../../helpers/Cloudinary_Images/useSendImages';
+import { getVeterinarioById, getVeterinarios } from '../../../helpers/API Consumer/useVeterinariosConsumer';
+import "./TypeClinica.css";
 
 export const TypeClinica = () => {
 
-  const arr = vet;
+  // let nit = 1010;
+  let nit = 111;
+  let token = "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxMTEiLCJzdWIiOiJzYWx1ZGNhbmluYUB2ZXRlcmluYXJpYXMuY29tIiwiYXVkIjoiW1JPTEVfQ0xJTklDQV0iLCJpYXQiOjE2NjAxNzk4ODIsImV4cCI6MTY2MDc4NDY4MX0.pBUjcGe1MUCv1AgUfDwpPoQcFb6lE4Q2V4D0BTlAf2NydWBJaF0t0p8tA9CNH5KPAvkclHS5My_ej2v3_XIl0A"
+  const [arrState, setarrState] = useState(true);
+  const [arr, setarr] = useState([]);
+  const [img, setimg] = useState("");
+  const {myWidgetVeter,urlImage} = useSendImage();
   const [useVet, setVet] = useState({});
-  const getVet = (e) => {setVet(e);}
-
-  const disableVet = (e) => {};
-
   const [isOpenModal1,openModal1,closeModal1] = useModal(false);
+
+  const getVeterId = (e) => {
+    if (e.keyCode == "13") {
+
+      if (e.target.value !== "") {
+        // getVeterinarioById(e.target.value).then( data => setarr([data]));
+        console.log(arr);
+        setarrState(false);
+      }
+
+    }else if (e.target.value === "") {
+      setarrState(true);
+    }   
+  }
+
+  useEffect(() => {
+    if (arrState === true) {
+      // getVeterinarios(nit).then( data => setarr(data))
+      console.log(arr);
+    }
+  }, [arrState])
+
+  const getVet = (e) => {
+    setimg(e.imagenVete)
+    setVet(e);
+  }
+
+  useEffect(() => {
+    setimg(urlImage);
+    console.log(urlImage);
+  }, [urlImage])
+  
+  const showWidget = () => {myWidgetVeter.open();};
+
   const initialForm = {
     documento: "",
-    apellido: "",nombre: "",
-    sexo: "",especialidad: "",
-    telefono: "",correo: ""
+    nombre: "",apellido: "",
+    telefono: "",sexovt: "",
+    especialidad: "",imagenVete: "",
+    estadoVt: 1
   };
 
   const validationsForm = (form) => {
@@ -30,15 +67,16 @@ export const TypeClinica = () => {
     let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
     let regexNumbers = /^\d+$/;
 
-         if (!form.apellido.trim()) {errors.apellido = "El 'Apellido:' es requerido!";}
+         if (form.imagenVete === "") {form.imagenVete = useVet.imagenVete}
+    else if (!form.apellido.trim()) {errors.apellido = "El 'Apellido:' es requerido!";}
     else if (!form.nombre.trim()) {errors.nombre = "El 'Nombre:' es requerido!";}
-    else if (!form.sexo.trim()) {errors.sexo = "El 'Sexo:' es requerido!";}
+    else if (!form.sexovt.trim()) {errors.sexovt = "El 'Sexo:' es requerido!";}
     else if (!form.especialidad.trim()) {errors.especialidad = "El 'Especialidad:' es requerido!";}
     else if (!form.telefono.trim()) {errors.telefono = "El 'Telefono:' es requerido!";}
     else if (!form.correo.trim()) {errors.correo = "El 'Correo:' es requerido!";}
     else if (!regexName.test(form.apellido.trim())) {errors.apellido = "El 'Apellido:' solo acepta letras!"}
     else if (!regexName.test(form.nombre.trim())) {errors.nombre = "El campo 'Nombre:' solo acepta letras!"}
-    else if (!regexName.test(form.sexo.trim())) {errors.sexo = "El campo 'Sexo:' solo acepta letras!"}
+    else if (!regexName.test(form.sexovt.trim())) {errors.sexovt = "El campo 'Sexo:' solo acepta letras!"}
     else if (!regexName.test(form.especialidad.trim())) {errors.especialidad = "El campo 'Especialidad:' solo acepta letras!"}
     else if (!regexNumbers.test(form.telefono.trim())) {errors.telefono = "El campo 'Telefono:' solo acepta numeros!"}
     else if (!regexEmail.test(form.correo.trim())) {errors.correo = "El campo 'Correo:' es Incorrecto!"}
@@ -46,54 +84,45 @@ export const TypeClinica = () => {
     return errors;
   }
 
-  const {
-        form,errors,
-        loading,
-        response,handleChangeVet,
-        handleBlur,handleSubmit
-
-  } = useForm(initialForm,validationsForm);
+  const {form,errors,loading,response,handleChangeVet,handleBlur,handleSubmit} = useForm(initialForm,validationsForm,token);
+  const disableVet = (e) => {};
 
   return (
-    <div className='st1'>
+    <div className='st1 animate__animated animate__fadeIn'>
       <div className='st2'>
           <div className="title-container">
             <div className='titles'>
               <h1 id='titleP1'>{"Pet's Care"}</h1>
               <spam id='titleP2'>{"Para Veterinarias †"}</spam>
             </div>
+            <div id='titleP3'>
+              <h1>{"Veterinaria Salud Canina"}</h1>
+              <hr className='hrVet'/>
+            </div>
           </div>
           <div className='st3'>
             <div className='st4'>
               <h1 className='titleP2 -margin'>Veterinarios</h1>
               <hr className='hrVet'/>
-                    {/* <ButtonUI text="Registrar" type="button" style="btn btnRes" event={openModal1}></ButtonUI> */}
-                    <Modal isOpen={isOpenModal1} closeModal={closeModal1}><p>Lo abrio perro hijuepputa.</p></Modal>
+                    <ModalRegisterVet isOpen={isOpenModal1} closeModal={closeModal1} className="animate__animated animated_fadeIn" />
                     <div className="search">
-                      <input type="text" className="input iSearch" placeholder='ID del Veterinario...'/>
-                      <a onClick={""} href=""><img src={pets_images('./veterinarios/lupa.png')} alt="" id='searchIcon' /></a>
+                      <input type="text" className="input iSearch" placeholder='ID del Veterinario...' onKeyDown={getVeterId}/>
+                      <img src={pets_images('./veterinarios/lupa.png')} alt="" id='searchIcon' />
+                      <ButtonUI text="Registrar" type="button" style="regs submit" event={openModal1}></ButtonUI>
                     </div>
               <ul>
                 {
                   arr.map((item) =>(
-                    <li className="liVetSpace">
+                    <li className="liVetSpace animate__animated animate__backInUp">
                         <div className='liVet'>
-                          {
-                            (item.sexo === "Masculino")
-                            ?
-                              <img src={pets_images("./veterinarios/perfil-masculino.png")} alt="Masculino" id='imgVet'/>
-                            :
-                            (item.sexo === "Femenino")
-                            ?
-                              <img src={pets_images("./veterinarios/perfil-femenino.png")} alt="Femenino" id='imgVet'/>
-                            :
-                             <img src={pets_images("./veterinarios/usuario.png")} alt="" id='imgVet'/>
-                          }
+                          <div className='img_li_vet'>
+                            <img src={item.imagenVete} alt="" id='imgVet'/>
+                          </div>
                           <div className='liVetA'>
-                            <h4><span>Nombre:</span>            {item.nombre}</h4>
-                            <h4><span>Apellido:</span>        {item.apellido}</h4>
-                            <h4><span>ID:</span>             {item.documento}</h4>
-                            <h4><span>Especialidad:</span>{item.especialidad}</h4>
+                            <h4><span>Nombre:</span>              {item.nombre}</h4>
+                            <h4><span>Apellido:</span>         {item.apellidos}</h4>
+                            <h4><span>ID:</span>               {item.documento}</h4>
+                            <h4><span>Especialidad:</span>  {item.especialidad}</h4>
                           </div>
                         </div> 
                         <div className='idc'>
@@ -106,62 +135,39 @@ export const TypeClinica = () => {
                 }
               </ul>
             </div>
-
+            
             <div className='st5'>
               {
                 (JSON.stringify(useVet) !== '{}')
                 ? 
-                  <form onSubmit={handleSubmit} className='formVet'>
-                    {
-                        (useVet.sexo === "Masculino")
-                        ?
-                          <div className="imgForm">
-                            <img src={pets_images("./veterinarios/perfil-masculino.png")} alt="Masculino" id='imgForm'/>
-                              <div className='liVetA'>
-                                <h1>{useVet.especialidad}</h1>
-                                <hr className='hrVet'/>
-                                <h2>{useVet.nombre} {useVet.apellido}</h2>
-                                <h4>ID: {useVet.documento}</h4>
-                              </div>
-                          </div> 
-                        :
-                          (useVet.sexo === "Femenino")
-                        ?
-                            <div className="imgForm">
-                              <img src={pets_images("./veterinarios/perfil-femenino.png")} alt="Femenino" id='imgForm'/>
-                              <div className="imgForm">
-                                <div className='liVetA'>
-                                  <h1>{useVet.especialidad}</h1>
-                                  <hr className='hrVet'/>
-                                  <h2>{useVet.nombre} {useVet.apellido}</h2>
-                                  <h4>ID: {useVet.documento}</h4>
-                                </div>
-                              </div>
-                            </div>
-                        :
-                          <div className="imgForm">
-                            <img src={pets_images("./veterinarios/usuario.png")} alt="" id='imgForm'/>
-                            <div className="imgForm">
-                              <div className='liVetA'>
-                                  <h1>{useVet.especialidad}</h1>
-                                  <hr className='hrVet'/>
-                                  <h2>{useVet.nombre} {useVet.apellido}</h2>
-                                  <h4>ID: {useVet.documento}</h4>
-                              </div>
-                              </div>
+                  <form onSubmit={handleSubmit} className='formVet  animate__animated animate__fadeIn'>
+
+                        {response ? <p id='succesP  animate__animated animate__fadeIn'>Simulacion de Envio terminada!</p> : <p></p>}
+
+
+                      <div className="imgForm  animate__animated animate__fadeIn">
+                        <div className="imagen_container">
+                          <div className="img_cont_vet">
+                              <img src={form.imagenVete = img} 
+                              alt="" id='imgForm'/>
+                              <a onClick={showWidget} className="a_uploadImage">
+                                <img src={pets_images('./veterinarios/subir.png')} alt="Subir Imagen" className='upload_Image'/>
+                              </a>
                           </div>
-                    }
-                    <div className="messages">
-                      {errors.apellido &&             <p id='warningP'>{errors.apellido}</p>}
-                      {errors.nombre &&               <p id='warningP'>{errors.nombre}</p>}
-                      {errors.sexo &&                 <p id='warningP'>{errors.sexo}</p>}
-                      {errors.especialidad &&         <p id='warningP'>{errors.especialidad}</p>}
-                      {errors.correo &&               <p id='warningP'>{errors.correo}</p>}
-                      {errors.telefono &&             <p id='warningP'>{errors.telefono}</p>}
-                      {loading && <Loader></Loader>}
-                      {response ? <p id='succesP'>Simulacion de Envio terminada!</p> : <p></p>}
-                    </div>
-                    <div className="bottomForm">
+                      </div>
+                      <div className="imgForm  animate__animated animate__fadeIn">
+                          <div className='liVetA'>
+                              <h1>{useVet.especialidad}</h1>
+                              <hr className='hrVet'/>
+                              <h2>{useVet.nombre} {useVet.apellidos}</h2>
+                              <h4>ID: {form.documento = useVet.documento}</h4>
+                          </div>
+                          </div>
+                      </div>
+
+                      <div>{loading && <div id='login-spin-clinic' className='spiner'></div>}</div>
+                      
+                    <div className="bottomForm  animate__animated animate__fadeIn">
                       <div className="inputsVet">
                         <div className='input-container'>
                           <input 
@@ -171,11 +177,12 @@ export const TypeClinica = () => {
                           value={form.apellido} onBlur={handleBlur}
                           required 
                           id='apellido'
-                          className={`input ${(errors.apellido) ? 'iWarning' : 'input'}`}
+                          className={`input ${(errors.apellidos) ? 'iWarning' : 'input'}`}
                           />
                           <div class="cut"></div>
-                          <label for="apellido" class="placeholder"> {useVet.apellido} </label>
+                          <label for="apellido" class="placeholder"> {useVet.apellidos} </label>
                         </div>
+                        {errors.apellidos &&             <p id='warningP'>{errors.apellido}</p>}
 
                         <div className="input-container">
                           <input 
@@ -190,19 +197,21 @@ export const TypeClinica = () => {
                           <div class="cut"></div>
                           <label for="nombre" class="placeholder"> {useVet.nombre} </label>
                         </div>
+                        {errors.nombre &&               <p id='warningP'>{errors.nombre}</p>}
 
                         <div className="input-container">
                           <input 
-                          name='sexo' type="text" 
+                          name='sexovt' type="text" 
                           placeholder=' Sexo... ' onChange={handleChangeVet}
-                          value={form.sexo} onBlur={handleBlur}
+                          value={form.sexovt} onBlur={handleBlur}
                           id='sexo'
-                          className={`input ${(errors.sexo) ? 'iWarning' : 'input'}`}
+                          className={`input ${(errors.sexovt) ? 'iWarning' : 'input'}`}
                           required 
                           />
                           <div class="cut"></div>
-                          <label for="sexo" class="placeholder"> {useVet.sexo} </label>
+                          <label for="sexo" class="placeholder"> {useVet.sexovt} </label>
                         </div>
+                        {errors.sexo &&                 <p id='warningP'>{errors.sexovt}</p>}
 
                         <div className="input-container">
                           <input 
@@ -217,6 +226,7 @@ export const TypeClinica = () => {
                           <div class="cut"></div>
                           <label for="especialidad" class="placeholder"> {useVet.especialidad} </label>
                         </div>
+                        {errors.especialidad &&         <p id='warningP'>{errors.especialidad}</p>}
 
                         <div className="input-container">
                           <input 
@@ -228,8 +238,9 @@ export const TypeClinica = () => {
                           className={`input ${(errors.correo) ? 'iWarning' : 'input'}`}
                           />
                           <div class="cut"></div>
-                          <label for="correo" class="placeholder"> {useVet.correo} </label>
+                          <label for="correo" className="placeholder"> {useVet.correo} </label>
                         </div>
+                        {errors.correo &&               <p id='warningP'>{errors.correo}</p>}
 
                        <div className="input-container">
                         <input 
@@ -243,6 +254,7 @@ export const TypeClinica = () => {
                           <div class="cut"></div>
                           <label for="telefono" class="placeholder"> {useVet.telefono} </label>
                         </div>
+                        {errors.telefono &&             <p id='warningP'>{errors.telefono}</p>}
                       </div>
                     </div>
                     <div className="btnSection">
@@ -252,7 +264,9 @@ export const TypeClinica = () => {
                   </form>
                 : 
                   <div id='titleValidation'>
+                    <img src="https://www.gifsanimados.org/data/media/202/perro-imagen-animada-0387.gif" border="0" alt="perro-imagen-animada-0387" className='imgWait  animate__animated animate__fadeIn'/>
                     <h1 id='titleP2-margin'>Por favor selecciona un veterinario de tu planta!</h1>
+                    <hr className='hrVet'/>
                   </div>
               }
             </div>

@@ -1,6 +1,7 @@
 import { useState } from "react"
+import { putVeterinario } from "./API Consumer/useVeterinariosConsumer";
 
-export const useForm = (initialForm , validateForm) => {
+export const useForm = (initialForm , validateForm , token) => {
 
     const [form, setForm] = useState(initialForm);
     const [errors, setErrors] = useState({});
@@ -21,16 +22,20 @@ export const useForm = (initialForm , validateForm) => {
         e.preventDefault();
         setErrors(validateForm(form));
 
-            // Validacion contenido de errores sea inexsistente
         if (Object.keys(errors).length === 0) {
-            // Envio de formulario de actualizacion
             setLoading(true);
-            // Simulacion de Envio de objeto construido
             console.log(form);
+
+            if (e.target.classList.value === "formVet  animate__animated animate__fadeIn") {
+
+                // putVeterinario(form,form.documento,token).then( data => console.log(data));
+
+            }
+
             setTimeout(() => {
                 setResponse(true);
                 setLoading(false);
-            } , 2000);
+            } , 3000);
             setTimeout(() => {
                 setResponse(false);
             } , 7000);
