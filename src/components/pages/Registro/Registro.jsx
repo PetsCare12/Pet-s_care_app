@@ -1,9 +1,9 @@
 import { Login } from '../Login/Login'
 
-import './RegistroStyle.css'
 import { useState } from 'react';
 import { RegistroStep1 } from './RegistroStep1';
 import { RegistroStep2 } from './RegistroStep2';
+import './RegistroStyle.css'
 
 
 export const Registro = () => {

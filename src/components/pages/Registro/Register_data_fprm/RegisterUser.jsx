@@ -101,7 +101,7 @@ export const RegisterUser = ( {change_step} ) => {
                     <Form>
                         {
                             ( duplicatedData ) &&
-                            <p>Al parecer tu correo o documento ya están registrados</p>
+                            <p id='registerUser__error'>Al parecer tu correo o documento ya están registrados</p>
                         }
                         <Field 
                             type='text'

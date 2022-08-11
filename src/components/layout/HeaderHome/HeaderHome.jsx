@@ -4,12 +4,14 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getUsuarioId } from '../../../helpers/API Consumer/test';
 import { pets_images } from '../../../helpers/Pets_care_images';
+import MenuHome from '../../UI/MenuHome/MenuHome';
 import './HeaderHome.css'
 
 export const Header = () => {
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("usuario")));
   const [userData, setUserData] = useState({});
+  const [toggle, setToggle] = useState(false);
   let token = localStorage.getItem("token"); 
 
   useEffect(()=>{
@@ -24,7 +26,9 @@ export const Header = () => {
       
   }, [user])
 
-  // Cambio en git
+  const handleToggle = () => {
+    setToggle( !toggle );
+  }
     
 
   return (
@@ -36,7 +40,7 @@ export const Header = () => {
         <div className="options">
           {
             ( !!token ) ?
-              <button onClick={()=> window.location = "/perfil"}>
+              <button onClick={handleToggle}>
                 <div className='home__autenticado'>
                   <h1>{ userData.nombreUs }</h1>
 
@@ -51,6 +55,7 @@ export const Header = () => {
               </nav>
           }
         </div>  
+        { toggle && <MenuHome /> }
     </div>
   )
 }

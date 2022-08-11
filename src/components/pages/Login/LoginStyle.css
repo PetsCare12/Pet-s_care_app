@@ -9,6 +9,11 @@
     gap: 5%;
 }
 
+#formLogin__badData {
+    color: red;
+    padding: 0;
+}
+
 .formLogin {
     align-items: center;
     display: flex;

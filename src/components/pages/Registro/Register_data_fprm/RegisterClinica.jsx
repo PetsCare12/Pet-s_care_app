@@ -5,11 +5,13 @@ import { FaHospital } from 'react-icons/fa';
 import './type_registers.css';
 import { ButtonUI } from '../../../UI/ButtonUI/ButtonUI';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { registroClinica } from '../../../../helpers/API Consumer/useClinicasConsumer';
 
 export const RegisterClinica = ( {change_step} ) => {
 
     const [step_cli, setStep_cli] = useState(1)
     const [loading, setLoading] = useState(false);
+    const [dataCli, setDataCli] = useState([]);
 
 
     return (
@@ -46,7 +48,12 @@ export const RegisterClinica = ( {change_step} ) => {
                         initialValues={{
                             nit:"",
                             nombre:"",
-                            direccion:""
+                            direccion:"",
+                            telefono:"",
+                            correoCv:"",
+                            password:"",
+                            imagenclinica:"https://img.freepik.com/vector-premium/examen-medico-clinica-veterinaria-vacunacion-atencion-medica-mascotas-como-perros-gatos-dibujos-animados-planos-ilustracion-vectorial-fondo-afiches-o-pancartas_2175-3387.jpg?w=1380",
+                            estadoCli: 3
                         }}
                         validate={( valores ) => {
                             let errores = {};
@@ -54,16 +61,23 @@ export const RegisterClinica = ( {change_step} ) => {
                                  if( !valores.nombre.trim() ){ errores.nombre = "Por favor ingrese su nombre" }
                             else if ( !valores.nit.trim()) { errores.nit = "Por favor ingrese su NIT" }
                             else if( !valores.direccion.trim() ){ errores.direccion = "Por favor ingrese su dirección" }
+                            else if( !valores.telefono.trim() ){ errores.telefono = "Por favor ingrese el telefono" }
+                            else if( !valores.correoCv.trim() ){ errores.correoCv = "Por favor ingrese el correo" }
+                            else if( !valores.password.trim() ){ errores.password = "Por favor ingrese una contraseña" }
                                 
                            return errores; 
                         }}
                         onSubmit = {( valores, {resetForm} ) => {
                             console.log( valores );
+
+                            registroClinica( valores ).then( info => console.log( info ));
+
                             setLoading(true);
                             setTimeout(()=>{
 
                                 setLoading(false);
                                 resetForm();
+                                
                             },2000)
                         }}
                     >
@@ -94,16 +108,31 @@ export const RegisterClinica = ( {change_step} ) => {
                                 <ErrorMessage name='nit' component={() => (<p className='warn__password-user'>{errors.nit}</p>)} />
                                 <ErrorMessage name='direccion' component={() => (<p className='warn__password-user'>{errors.direccion}</p>)} />
 
-                                <div style={{
-                                    alignItems: 'center',
-                                    display:'flex',
-                                    flexDirection: 'column',
-                                    width: '100%'
-                                }}>
-                                    
+                                <Field 
+                                    type='text'
+                                    className = 'inputLogin inputRegistro'
+                                    placeholder = 'Teléfono'
+                                    name = "telefono"
+                                />
+                                <ErrorMessage name='telefono' component={() => (<p className='warn__password-user'>{errors.telefono}</p>)} />
+                                <div id='registro_column1'>
+                                    <Field 
+                                        type='text'
+                                        className = 'inputLogin inputRegistro'
+                                        placeholder = 'Correo Electrónico'
+                                        name = "correo"
+                                    />
+                                    <Field 
+                                        type='text'
+                                        className = 'inputLogin inputRegistro'
+                                        placeholder = 'Password'
+                                        name = "password"
+                                    />
                                 </div>
+                                <ErrorMessage name='correo' component={() => (<p className='warn__password-user'>{errors.correoCv}</p>)} />
+                                <ErrorMessage name='password' component={() => (<p className='warn__password-user'>{errors.passwordcorreoCv}</p>)} />
                                 <div id='div_100'>
-                                    <div style={{width:"40%"}}>
+
                                         <ButtonUI 
                                             text="Enviar"
                                             style={`btnLogin ${ loading && "hidden" }`}
@@ -112,7 +141,7 @@ export const RegisterClinica = ( {change_step} ) => {
                                         {
                                             ( loading ) && <div className='register__loading-div'><div className='spiner' id='login-spin'></div></div>
                                         }
-                                    </div>
+                                    
                                 </div>
 
                             </Form>

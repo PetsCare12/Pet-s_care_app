@@ -15,6 +15,8 @@ export const Login = () => {
     const [loading, setLoading] = useState(false)
     const [status, setStatus] = useState(0);
 
+    // TODO -> Validar que el ingresado no esté inactivo
+
   return (
     <div className="loginContainer">
         <div className="login_cont_iz">
@@ -73,7 +75,7 @@ export const Login = () => {
                 >
                     {({ errors }) => (
                         <Form className='formLogin'>
-                            { ( status === 500 ) && <p>El correo o contraseña son incorrectos</p> }
+                            { ( status === 500 ) && <p id='formLogin__badData'>El correo o contraseña son incorrectos</p> }
                             <Field 
                                 type='text'
                                 className = 'inputLogin'
