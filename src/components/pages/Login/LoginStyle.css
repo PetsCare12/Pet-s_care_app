@@ -75,7 +75,7 @@
     align-items: center;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-    gap: 15px;
+    gap: 5px;
 }
 
 .loginData p{
@@ -124,4 +124,18 @@
     position: relative;
     width: 20px;
     height: 20px;
+}
+
+#login__forgotPassword{
+    color: #008eff;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 0;
+    text-align: left;
+    text-decoration: underline;
+    width: 100%;
+}
+#login__forgotPassword:hover{
+    color: #0062b3;
+    transition: .4s;
 }

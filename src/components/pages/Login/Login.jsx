@@ -9,11 +9,13 @@ import './LoginStyle.css'
 import { useState } from 'react'
 import { parseJwt } from '../../../helpers/getPayLoad'
 import { inicioSesionUsuario } from '../../../helpers/API Consumer/test'
+import { Modal } from '../../UI/Modals/Modal';
 
 export const Login = () => {
 
     const [loading, setLoading] = useState(false)
     const [status, setStatus] = useState(0);
+    const [forgotPassword, setForgotPassword] = useState(false);
 
     // TODO -> Validar que el ingresado no esté inactivo
 
@@ -91,6 +93,7 @@ export const Login = () => {
                                 name = "password"
                             />
                             <ErrorMessage name='password' component={() => (<p id='warn-login'>{errors.password}</p>)} />
+                            <p onClick={()=>{setForgotPassword( true )}} id='login__forgotPassword'>Olvidé mi contraseña</p>
                             <ButtonUI 
                                 style={`btnLogin ${ (loading) && "hidden" }`}
                                 type={"submit"}
@@ -116,6 +119,13 @@ export const Login = () => {
                 
             </div>
         </div>
+
+        { 
+            forgotPassword && 
+            <Modal isOpen={true} closeModal={()=>setForgotPassword(false)}>
+                HOLA MIS PERROS
+            </Modal> 
+        }
         
     </div>
   )
