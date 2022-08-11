@@ -5,12 +5,14 @@ import { ButtonUI } from "./../../UI/ButtonUI/ButtonUI";
 import { useModal } from '../../../helpers/useModal';
 import { ModalRegisterVet } from './ModalRegisterVet';
 import { useSendImage } from '../../../helpers/Cloudinary_Images/useSendImages';
-import "./TypeClinica.css";
 import { getVeterinarioById, getVeterinarios } from '../../../helpers/API Consumer/useVeterinariosConsumer';
+import "./TypeClinica.css";
 
 export const TypeClinica = () => {
 
-  let nit = 1010;
+  // let nit = 1010;
+  let nit = 111;
+  let token = "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxMTEiLCJzdWIiOiJzYWx1ZGNhbmluYUB2ZXRlcmluYXJpYXMuY29tIiwiYXVkIjoiW1JPTEVfQ0xJTklDQV0iLCJpYXQiOjE2NjAxNzk4ODIsImV4cCI6MTY2MDc4NDY4MX0.pBUjcGe1MUCv1AgUfDwpPoQcFb6lE4Q2V4D0BTlAf2NydWBJaF0t0p8tA9CNH5KPAvkclHS5My_ej2v3_XIl0A"
   const [arrState, setarrState] = useState(true);
   const [arr, setarr] = useState([]);
   const [img, setimg] = useState("");
@@ -51,13 +53,12 @@ export const TypeClinica = () => {
   
   const showWidget = () => {myWidgetVeter.open();};
 
-  const disableVet = (e) => {};
-
   const initialForm = {
     documento: "",
     nombre: "",apellido: "",
-    telefono: "",sexo: "",
-    especialidad: "",imagenVete: ""
+    telefono: "",sexovt: "",
+    especialidad: "",imagenVete: "",
+    estadoVt: 1
   };
 
   const validationsForm = (form) => {
@@ -69,13 +70,13 @@ export const TypeClinica = () => {
          if (form.imagenVete === "") {form.imagenVete = useVet.imagenVete}
     else if (!form.apellido.trim()) {errors.apellido = "El 'Apellido:' es requerido!";}
     else if (!form.nombre.trim()) {errors.nombre = "El 'Nombre:' es requerido!";}
-    else if (!form.sexo.trim()) {errors.sexo = "El 'Sexo:' es requerido!";}
+    else if (!form.sexovt.trim()) {errors.sexovt = "El 'Sexo:' es requerido!";}
     else if (!form.especialidad.trim()) {errors.especialidad = "El 'Especialidad:' es requerido!";}
     else if (!form.telefono.trim()) {errors.telefono = "El 'Telefono:' es requerido!";}
     else if (!form.correo.trim()) {errors.correo = "El 'Correo:' es requerido!";}
     else if (!regexName.test(form.apellido.trim())) {errors.apellido = "El 'Apellido:' solo acepta letras!"}
     else if (!regexName.test(form.nombre.trim())) {errors.nombre = "El campo 'Nombre:' solo acepta letras!"}
-    else if (!regexName.test(form.sexo.trim())) {errors.sexo = "El campo 'Sexo:' solo acepta letras!"}
+    else if (!regexName.test(form.sexovt.trim())) {errors.sexovt = "El campo 'Sexo:' solo acepta letras!"}
     else if (!regexName.test(form.especialidad.trim())) {errors.especialidad = "El campo 'Especialidad:' solo acepta letras!"}
     else if (!regexNumbers.test(form.telefono.trim())) {errors.telefono = "El campo 'Telefono:' solo acepta numeros!"}
     else if (!regexEmail.test(form.correo.trim())) {errors.correo = "El campo 'Correo:' es Incorrecto!"}
@@ -83,13 +84,8 @@ export const TypeClinica = () => {
     return errors;
   }
 
-  const {
-        form,errors,
-        loading,
-        response,handleChangeVet,
-        handleBlur,handleSubmit
-
-  } = useForm(initialForm,validationsForm);
+  const {form,errors,loading,response,handleChangeVet,handleBlur,handleSubmit} = useForm(initialForm,validationsForm,token);
+  const disableVet = (e) => {};
 
   return (
     <div className='st1 animate__animated animate__fadeIn'>
@@ -109,7 +105,7 @@ export const TypeClinica = () => {
               <h1 className='titleP2 -margin'>Veterinarios</h1>
               <hr className='hrVet'/>
                     <ModalRegisterVet isOpen={isOpenModal1} closeModal={closeModal1} className="animate__animated animated_fadeIn">
-                      <p>Lo abrio perro hijuepputa.</p>
+                      <p>Lo abrio perro hijueputa.</p>
                     </ModalRegisterVet>
                     <div className="search">
                       <input type="text" className="input iSearch" placeholder='ID del Veterinario...' onKeyDown={getVeterId}/>
@@ -171,7 +167,7 @@ export const TypeClinica = () => {
                           </div>
                       </div>
 
-                      {loading && <div id='login-spin-clinic' className='spiner'></div>}
+                      <div>{loading && <div id='login-spin-clinic' className='spiner'></div>}</div>
                       
                     <div className="bottomForm  animate__animated animate__fadeIn">
                       <div className="inputsVet">
@@ -207,17 +203,17 @@ export const TypeClinica = () => {
 
                         <div className="input-container">
                           <input 
-                          name='sexo' type="text" 
+                          name='sexovt' type="text" 
                           placeholder=' Sexo... ' onChange={handleChangeVet}
-                          value={form.sexo} onBlur={handleBlur}
+                          value={form.sexovt} onBlur={handleBlur}
                           id='sexo'
-                          className={`input ${(errors.sexo) ? 'iWarning' : 'input'}`}
+                          className={`input ${(errors.sexovt) ? 'iWarning' : 'input'}`}
                           required 
                           />
                           <div class="cut"></div>
                           <label for="sexo" class="placeholder"> {useVet.sexovt} </label>
                         </div>
-                        {errors.sexo &&                 <p id='warningP'>{errors.sexo}</p>}
+                        {errors.sexo &&                 <p id='warningP'>{errors.sexovt}</p>}
 
                         <div className="input-container">
                           <input 
@@ -244,7 +240,7 @@ export const TypeClinica = () => {
                           className={`input ${(errors.correo) ? 'iWarning' : 'input'}`}
                           />
                           <div class="cut"></div>
-                          <label for="correo" class="placeholder"> {useVet.correo} </label>
+                          <label for="correo" className="placeholder"> {useVet.correo} </label>
                         </div>
                         {errors.correo &&               <p id='warningP'>{errors.correo}</p>}
 
