@@ -84,6 +84,8 @@
 
 .home__autenticado {
     align-items: center;
+    background-color: white;
+    border: 1px solid black;
     border-radius: 5px;
     display: flex;
     flex-direction: row;
@@ -98,7 +100,7 @@
     transition: .4s;
 }
 .home__autenticado h1 {
-    color: rgb(39, 39, 39);
+    color: black;
     font-size: 17px;
     font-weight: 500;
     width: auto;

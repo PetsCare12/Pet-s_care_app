@@ -15,6 +15,8 @@ export const Login = () => {
     const [loading, setLoading] = useState(false)
     const [status, setStatus] = useState(0);
 
+    // TODO -> Validar que el ingresado no esté inactivo
+
   return (
     <div className="loginContainer">
         <div className="login_cont_iz">
@@ -55,11 +57,12 @@ export const Login = () => {
                                 let token = info.data.tokenDeAcceso;
                                 localStorage.setItem("token", token);
                                 localStorage.setItem("usuario", JSON.stringify(parseJwt( token )));
+                                const data = parseJwt( token );
 
                                 setTimeout(()=>{
                                     setLoading(false);
                                     resetForm();
-                                    window.location = '/perfil'
+                                    // window.location = '/perfil'
                                 },2000);
                             }
                             if ( info.status === 500 ) {
@@ -73,7 +76,7 @@ export const Login = () => {
                 >
                     {({ errors }) => (
                         <Form className='formLogin'>
-                            { ( status === 500 ) && <p>El correo o contraseña son incorrectos</p> }
+                            { ( status === 500 ) && <p id='formLogin__badData'>El correo o contraseña son incorrectos</p> }
                             <Field 
                                 type='text'
                                 className = 'inputLogin'

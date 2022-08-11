@@ -269,6 +269,26 @@
     left: 60vw;
 }
 
+#perfil__logout {
+    position: absolute;
+    color: #ff6767;
+    align-items: center;
+    border: none;
+    border-radius: 0px;
+    border-left: 2px solid #ff6767;
+    bottom: 10px;
+    left: 0;
+    display: flex;
+    padding: 10px 0px;
+    height: 35px;
+    width: 125px;
+}
+#perfil__logout:hover{
+    background-color: #ff6767;
+    border-radius: 4px;
+    color: white;
+    transition: 1s;
+}
 
 
 

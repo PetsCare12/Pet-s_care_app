@@ -218,3 +218,18 @@ form{
     padding: 10px;
     text-align: center;
 }
+#registerUser__error{
+    color: red;
+}
+
+.registerUser__registered{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.registerUser__registered p{ 
+    color: #007306;
+}

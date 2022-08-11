@@ -1,10 +1,9 @@
 import React, { useRef, useState } from 'react'
-import { InputUI } from '../../../UI/InputUI/InputUI'
-import { AiOutlineUserAdd } from 'react-icons/ai';
+import { AiOutlineUserAdd, AiFillCheckCircle } from 'react-icons/ai';
 import { GoArrowSmallLeft } from 'react-icons/go';
 import { ButtonUI } from "../../../UI/ButtonUI/ButtonUI";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { getUsuario, postUsuario, pruebaPOST } from '../../../../helpers/API Consumer/test';
+import { postUsuario } from '../../../../helpers/API Consumer/test';
 
 export const RegisterUser = ( {change_step} ) => {
 
@@ -12,6 +11,7 @@ export const RegisterUser = ( {change_step} ) => {
     const registerSuccess = useRef(null);
     const [loading, setLoading] = useState(false);
     const [duplicatedData, setDuplicatedData] = useState(false);
+    const [registered, setRegistered] = useState(false);
 
     const handleSubmit = ( e ) => {
         e.preventDefault();
@@ -68,7 +68,7 @@ export const RegisterUser = ( {change_step} ) => {
                     else if (!/^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/.test(valores.correoUs)) {errores.correoUs = 'El correo no es válido';}
 
                     else if (!valores.telefonoUs.trim()) {errores.telefonoUs = 'Por favor ingresa un teléfono';}
-                    else if (!/^\d{10,10}$/.test(valores.telefonoUs)) {errores.telefonoUs = 'El número telefonico debe contener solo números';}
+                    else if (!/^\d{10,10}$/.test(valores.telefonoUs)) {errores.telefonoUs = 'El número telefonico no es válido';}
 
                     else if (valores.sexoUs==="none") {errores.sexoUs = 'Por favor ingrese el sexo';}
 
@@ -92,6 +92,7 @@ export const RegisterUser = ( {change_step} ) => {
                             setDuplicatedData( false );
                             resetForm();
                             setLoading(false);
+                            setRegistered( true );
                             window.location = "/login";
                         }
                     },1000)
@@ -101,7 +102,7 @@ export const RegisterUser = ( {change_step} ) => {
                     <Form>
                         {
                             ( duplicatedData ) &&
-                            <p>Al parecer tu correo o documento ya están registrados</p>
+                            <p id='registerUser__error'>Al parecer tu correo o documento ya están registrados</p>
                         }
                         <Field 
                             type='text'
@@ -171,11 +172,14 @@ export const RegisterUser = ( {change_step} ) => {
                         <ErrorMessage name='passwordUs' component={() => (<p className='warn__password-user'>{errors.passwordUs}</p>)} />
                         <ButtonUI 
                             text="Registrar"
-                            style={`btnLogin ${( loading ) && 'hidden'}`}
+                            style={`btnLogin ${( loading )? 'hidden' :( registered )? 'hidden' : ""}`}
                             type={"submit"}
                         />
                         {
                             ( loading ) && <div className='register__loading-div'><div className='spiner' id='login-spin'></div></div>
+                        }
+                        {
+                            ( registered ) && <div className='registerUser__registered'><AiFillCheckCircle style={{fontSize:"45px",color:"#00c600"}}/><p>¡Registro exitoso!</p></div>
                         }
                     </Form>
                 )}

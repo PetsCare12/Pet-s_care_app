@@ -17,12 +17,6 @@ export const Profile = () => {
     const [token, setToken] = useState(localStorage.getItem("token"));
     const [userData, setUserData] = useState({}); 
 
-    console.log( user );
-
-    if ( !user ) {
-        console.log("Que pasa");
-    }
-
 
     useEffect(()=>{
         if ( !!user ) {
@@ -34,6 +28,13 @@ export const Profile = () => {
         }
         
     }, [user])
+
+    const handleLogout = () => {
+         localStorage.removeItem("token");
+         localStorage.removeItem("usuario");
+         setActiveBtn("logout");
+         window.location = "/login";
+    }
     
     
     return (
@@ -62,6 +63,9 @@ export const Profile = () => {
                             <div className='profile__titleBtn'>Citas pendientes</div>
                         </button>
                     </div>
+                    <button id='perfil__logout' onClick={handleLogout} className={`profile__btnProfile ${(activeBtn === "logout") && "perfil_active"}`}>
+                        <div className='profile__titleBtn'>Cerrar sesión</div>
+                    </button>
                     <div className="profile__right">
                     {
                         ( activeBtn === "home" ) && 
