@@ -1,0 +1,140 @@
+
+.admin__container{
+    display: flex;
+    flex-direction: column;
+}
+.admin__nav{
+    background-color: lightgray;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 60px;
+    padding: 10px 40px;
+    width: 100%;
+}
+.admin__nav-izquierdo{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.btnAdmin{
+    background-color: #0072ff;
+    color: white;
+    height: 100%;
+    width: 100px;
+}
+.btnAdmin:hover{
+    background-color: #004ca8;
+    transition: .5s;
+}
+.btnAdmin.peticiones{
+    background-color: rgb(0, 158, 71);
+}
+.btnAdmin.peticiones:hover{
+    background-color: rgb(0, 120, 54);
+}
+
+.admin__container-info{
+    padding: 3% 10%;
+    width: 100%;
+}
+.activeBtnAdmin{
+    background-color: #004ca8;
+}
+/* Filter */
+.admin__filter{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    margin-top: 30px;
+    padding: 10px 50px;
+    width: 100%;
+}
+.admin__filter label{
+    font-family: 'Nunito', sans-serif;
+    margin-right: 10px;
+}
+.admin__filter input{
+    border: 1px solid black;
+    border-radius: 50px;
+    color: black;
+    height: 30px;
+    outline: none;
+    padding: 5px 10px;
+    width: 150px;
+}
+
+#search {
+    border-radius: 50px;
+    height: 30px;
+    margin-left: 10px;
+    width: 80px;
+}
+
+/* .............. Info User .............. */
+.infoUser__container{
+    background-color: #0072ff;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    height: 60px;
+    justify-content: space-between;
+    padding: 10px 30px;
+    width: 45%;
+}
+.infoUser__data{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.infoUser__data span{
+    color: white;
+    font-size: 10px;
+}
+.infoUser__data h1{
+    color: white;
+    font-size: 15px;
+    font-weight: 100;
+}
+.infoUser__data h2{
+    color: white;
+    letter-spacing: 1px;
+    font-size: 1rem;
+}
+.infoUser__managment{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+.infoUser__managment .casilla{
+    align-items: center;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+}
+.infoUser__managment .edit{
+    background-color: rgb(0, 209, 0);
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+}
+.infoUser__managment .delete{
+    background-color: rgb(255, 55, 55);
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+}
+.infoUser__managment .edit:hover{
+    background-color: rgb(0, 169, 0);
+    transition: .4s;
+}
+.infoUser__managment .delete:hover{
+    background-color: rgb(206, 24, 24);
+    transition: .4s;
+}
+.infoUser__container button{
+    background: none;
+}

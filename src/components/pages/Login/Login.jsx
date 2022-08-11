@@ -57,11 +57,12 @@ export const Login = () => {
                                 let token = info.data.tokenDeAcceso;
                                 localStorage.setItem("token", token);
                                 localStorage.setItem("usuario", JSON.stringify(parseJwt( token )));
+                                const data = parseJwt( token );
 
                                 setTimeout(()=>{
                                     setLoading(false);
                                     resetForm();
-                                    window.location = '/perfil'
+                                    // window.location = '/perfil'
                                 },2000);
                             }
                             if ( info.status === 500 ) {
