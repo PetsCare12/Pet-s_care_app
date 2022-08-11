@@ -11,6 +11,7 @@ import { Registro } from '../components/pages/Registro/Registro';
 import { Registro_mascotas } from '../components/pages/Registro_mascotas/Registro_mascotas';
 import { TypeClinica } from '../components/pages/SectionTypeClinica/TypeClinica';
 import { Agenda } from '../components/pages/Agenda/Agenda'
+import AdminScreen from '../components/pages/SectionTypeAdmin/AdminScreen';
 
 export const AppRouter = () => {
     return (
@@ -28,6 +29,7 @@ export const AppRouter = () => {
                 <Route path="/" element={ <Home />  } />
                 <Route path="/gestionClinica" element={ <TypeClinica />  } />
                 <Route path="/agenda" element={ <Agenda />  } />
+                <Route path="/admin" element={ <AdminScreen />  } />
             </Routes>
         </BrowserRouter>
     )

@@ -50,7 +50,7 @@ export const RegistroStep1 = ( {step_change, setUserType } ) => {
                     <div className='hr'>
                         <hr />
                     </div>
-
+                    { (active===3) && <p className='registerClinica__info animate__animated animate__fadeIn'>Ten en cuenta que al registrarte como clínica se enviará la petición de tu registro al administrador. Allí se revisarán tus credenciales</p>}
                     <p className='warn_check'>
                         Por favor, selecciona un rol antes de continuar
                     </p>

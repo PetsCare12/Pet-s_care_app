@@ -271,21 +271,22 @@
 
 #perfil__logout {
     position: absolute;
-    color: white;
+    color: #ff6767;
     align-items: center;
     border: none;
-    border-radius: 6px;
-    background-color: #ff6767;
+    border-radius: 0px;
+    border-left: 2px solid #ff6767;
     bottom: 10px;
     left: 0;
-    border-bottom-left-radius: 2px;
     display: flex;
     padding: 10px 0px;
     height: 35px;
-    width: 120px;
+    width: 125px;
 }
 #perfil__logout:hover{
-    background-color: #ff3838;
+    background-color: #ff6767;
+    border-radius: 4px;
+    color: white;
     transition: 1s;
 }
 
