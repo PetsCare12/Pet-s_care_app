@@ -20,7 +20,6 @@ export const useForm = (initialForm , validateForm , token) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(e.target.classList);
         setErrors(validateForm(form));
 
         if (Object.keys(errors).length === 0) {

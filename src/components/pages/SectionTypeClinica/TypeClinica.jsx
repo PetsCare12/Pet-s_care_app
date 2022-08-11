@@ -24,7 +24,7 @@ export const TypeClinica = () => {
     if (e.keyCode == "13") {
 
       if (e.target.value !== "") {
-        getVeterinarioById(e.target.value).then( data => setarr([data]));
+        // getVeterinarioById(e.target.value).then( data => setarr([data]));
         console.log(arr);
         setarrState(false);
       }
@@ -36,7 +36,7 @@ export const TypeClinica = () => {
 
   useEffect(() => {
     if (arrState === true) {
-      getVeterinarios(nit).then( data => setarr(data))
+      // getVeterinarios(nit).then( data => setarr(data))
       console.log(arr);
     }
   }, [arrState])
@@ -104,9 +104,7 @@ export const TypeClinica = () => {
             <div className='st4'>
               <h1 className='titleP2 -margin'>Veterinarios</h1>
               <hr className='hrVet'/>
-                    <ModalRegisterVet isOpen={isOpenModal1} closeModal={closeModal1} className="animate__animated animated_fadeIn">
-                      <p>Lo abrio perro hijueputa.</p>
-                    </ModalRegisterVet>
+                    <ModalRegisterVet isOpen={isOpenModal1} closeModal={closeModal1} className="animate__animated animated_fadeIn" />
                     <div className="search">
                       <input type="text" className="input iSearch" placeholder='ID del Veterinario...' onKeyDown={getVeterId}/>
                       <img src={pets_images('./veterinarios/lupa.png')} alt="" id='searchIcon' />
