@@ -4,19 +4,31 @@ import { ImagenUI } from '../../UI/ImagenUI/ImagenUI'
 import image from './perro_gato_animadoNew.png'
 import { pets_images } from '../../../helpers/Pets_care_images';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-
-import './LoginStyle.css'
 import { useState } from 'react'
 import { parseJwt } from '../../../helpers/getPayLoad'
 import { inicioSesionUsuario } from '../../../helpers/API Consumer/test'
-import { Modal } from '../../UI/Modals/Modal';
+import { SimpleModal } from '../../layout/Modals/SimpleModal';
+import {HiOutlineMailOpen} from 'react-icons/hi';
+import {RiLockPasswordFill} from 'react-icons/ri';
+import emailjs from '@emailjs/browser';
+
+import './LoginStyle.css'
 
 export const Login = () => {
 
     const [loading, setLoading] = useState(false)
     const [status, setStatus] = useState(0);
     const [forgotPassword, setForgotPassword] = useState(false);
+    const [emailSent, setEmailSent] = useState(false)
+    
+    const handleEmail = ( e ) => {
+        e.preventDefault();
 
+        emailjs.sendForm('service_kagt37a','template_o4defbc', e.target,'akQoWyMBUDzn4jOoB')
+        .then( response => console.log( response ) )
+        .catch( error => console.log( error ) )
+
+    }
     // TODO -> Validar que el ingresado no esté inactivo
 
   return (
@@ -24,7 +36,6 @@ export const Login = () => {
         <div className="login_cont_iz">
             <img src={image} alt="" />
             <img id='eslogan' src={ pets_images("./login/esloganNew.png")} alt="" />
-            {/* <p><b>¡</b> Sé la persona que tu perro cree que eres <b>!</b></p> */}
         </div>
         <div className='login_cont_dr'>
             <ImagenUI 
@@ -119,12 +130,40 @@ export const Login = () => {
                 
             </div>
         </div>
+        {
+            forgotPassword &&
+            <SimpleModal>
+                <div className='forgotPss__container recovery'>
+                    <p onClick={()=> setForgotPassword( false )} className='cancel'>x</p>
+                    <div className='div-imgEmail'>
+                        <RiLockPasswordFill className='email-img' />  
+                    </div>
+                    <div>    
+                        <h1>Recuperación de contaseña</h1>
+                        <p>Ingresa el correo con el cual te registraste</p>
+                    </div>
+                    <form onSubmit={ handleEmail } className='inputRecovery-div'>
+                        <input type="text" className="inputLogin" id='recovereyPassword-input' name='email' placeholder='Correo electrónico'/><br/>
+                        <button type='submit'>Enviar</button>
+                    </form>
+                </div>
+            </SimpleModal>
+        }
 
         { 
-            forgotPassword && 
-            <Modal isOpen={true} closeModal={()=>setForgotPassword(false)}>
-                HOLA MIS PERROS
-            </Modal> 
+            emailSent && 
+            <SimpleModal>
+                <div className='forgotPss__container'>
+                    <div className='div-imgEmail'>
+                        <HiOutlineMailOpen className='email-img' />  
+                    </div>
+                    <div>
+                        <h1>Te hemos enviado un correo</h1>
+                        <p>Por favor revisa tu bandeja para obtener las instrucciones en el cambio de tu contaseña.</p>
+                    </div>
+                    <button onClick={()=> setForgotPassword(false)} className='btn200'>Login</button>
+                </div>
+            </SimpleModal> 
         }
         
     </div>
