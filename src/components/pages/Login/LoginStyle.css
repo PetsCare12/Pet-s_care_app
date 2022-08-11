@@ -157,6 +157,16 @@
     color: #008eff;
     font-family: 'Nunito', sans-serif;
     text-align: center;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+.forgotPss__container span{
+    color: #000000;
+    font-size: 15px;
+    font-weight: 100;
+    background-color: #c8e5ff;
+    padding: 6px;
+    border-radius: 6px;
 }
 .forgotPss__container p{
     color: #595959;
@@ -213,4 +223,26 @@
 #recovereyPassword-input {
     height: 40px;
     width: 60%;
+}
+#btnh30{
+    height: 30px;
+    font-size: 17px;
+    padding: 5px 22px;
+    width: 80px;
+}
+.forgotPss__container .errorEmail {
+    background-color: #ff5050;
+    border-radius: 6px;
+    color: white;
+    padding: 10px;
+    position: absolute;
+    top: -55px;
+}
+.forgotPss__container .errorEmail #spanEmailError{
+    background: none;
+    cursor: pointer;
+}
+
+.forgotPss__container .errorEmail #spanEmailError:hover{
+    color: white;
 }

@@ -20,7 +20,7 @@ export const Profile = () => {
 
     useEffect(()=>{
         if ( !!user ) {
-            getUsuarioId( user.jti )
+            getUsuarioId( user.id )
             .then( data => setUserData( data.data ));
         }
         else {
