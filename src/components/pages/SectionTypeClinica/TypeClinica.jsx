@@ -148,8 +148,7 @@ export const TypeClinica = () => {
                       <div className="imgForm  animate__animated animate__fadeIn">
                         <div className="imagen_container">
                           <div className="img_cont_vet">
-                              <img src={form.imagenVete = img} 
-                              alt="" id='imgForm'/>
+                              <img src={form.imagenVete = img} alt="" id='imgForm'/>
                               <a onClick={showWidget} className="a_uploadImage">
                                 <img src={pets_images('./veterinarios/subir.png')} alt="Subir Imagen" className='upload_Image'/>
                               </a>

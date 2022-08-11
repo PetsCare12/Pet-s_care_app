@@ -20,43 +20,50 @@ export const ModalRegisterVet = ({ children, isOpen, closeModal }) => {
 
             <form action="" className='formVet_register animate__animated animate__fadeIn'>
 
-              <img src="" alt="" />
+              <div className="img_cont_vet">
+                <img src={pets_images("./veterinarios/usuario.png")} alt="" id='imgForm'/>
+              </div>
 
               <div className='setImg_register_container'>
-                <a onClick={showWidget} className="a_uploadImage">
-                <img src={pets_images('./veterinarios/subir.png')} alt="Subir Imagen" className='upload_Image'/>
+                <a onClick={showWidget} className="">
+                <img src={pets_images('./veterinarios/subir.png')} alt="Subir Imagen" className='upload_Image_regs'/>
                 </a>
               </div>
 
-              <input type="number" placeholder='ID'/>
-              <input type="text" placeholder='Nombre'/>
-              <input type="text" placeholder='Apellido'/>
-              <input type="text" placeholder='Telefono'/>
+              <div className="part1">
+                <input type="text" placeholder='ID' className='input regs'/>
+                <input type="text" placeholder='Nombre' className='input regs'/>
+              </div>
 
-              <select name="" id="">
-                <option value="none">Seleccione el sexo</option>
-                <option value="hombre">Hombre</option>
-                <option value="mujer">Mujer</option>
-                <option value="otro">Otro</option>
-              </select>
+              <div className="part2">
+                <input type="text" placeholder='Apellido' className='input regs'/>
+                <input type="text" placeholder='Telefono' className='input regs'/>
+              </div>
 
-              <input type="email" placeholder='Correo'/>
-              <input type="text" placeholder='Especialidad'/>
+              <div className="selects_conatiner">
+                <select name="" id="" className='input selects'>
+                  <option value="none">Seleccione el sexo</option>
+                  <option value="hombre">Hombre</option>
+                  <option value="mujer">Mujer</option>
+                  <option value="otro">Otro</option>
+                </select>
+                <select name="" id="" className='input selects'>
+                  <option value="none">Seleccione un estado</option>
+                  <option value="1">Activo</option>
+                  <option value="2">Inactivo</option>
+                </select>
+              </div>
 
-              <select name="" id="">
-                <option value="none">Seleccione un estado</option>
-                <option value="1">Activo</option>
-                <option value="2">Inactivo</option>
-              </select>
-
-              <input type="password" placeholder='Contraseña'/>
+              <div className="part3">
+                <input type="email" placeholder='Correo' className='input regs'/>
+                <input type="text" placeholder='Especialidad' className='input regs'/>
+              </div>
+              <input type="password" placeholder='Contraseña' className='input'/>
 
               <ButtonUI text="Registrar Veterinario"  type="submit" style="submit"></ButtonUI>
 
             </form>
-
           </div>
-
         </div>
     </div>
   )
