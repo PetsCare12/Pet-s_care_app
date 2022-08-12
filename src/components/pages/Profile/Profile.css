@@ -44,10 +44,10 @@
     flex-direction: column;
 }
 .profile__seccion1{
+    align-items: center;
     display: flex;
     flex-direction: row;
     gap: 50px;
-    margin-top: 30px;
 }
 .profile__seccion1 .profile__img {
     height: 250px;
@@ -290,7 +290,38 @@
     transition: 1s;
 }
 
+.perfil__editImage {
+    cursor: pointer;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    background: #0000006e;
+    border: dashed 2px #ffffff;
+    z-index: 1000;
+    height: 250px;
+    width: 250px;
+    font-size: 4rem;
+    color: white;
+}
+.perfil__editImage:hover{
+    background-color: #000000ba;
+    transition: .4s;
+}
 
+#formUpdateUser{
+    gap: 0;
+}
+
+.selectSexoUserUpdate{
+    margin-top: 10px;
+}
+
+.profile__editarPerfil.cc{
+    border-left: 3px solid lightgreen;
+    font-size: 15px;
+    margin-top: 5px;
+}
 
 
 

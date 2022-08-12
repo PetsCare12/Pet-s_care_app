@@ -13,23 +13,63 @@ import {RiLockPasswordFill} from 'react-icons/ri';
 import emailjs from '@emailjs/browser';
 
 import './LoginStyle.css'
+import { imageRandom } from '../../../helpers/RandomImages/imagenessa';
 
 export const Login = () => {
+
+    // EL ESTADO
+    // 1 - BIEN
+    // 2 - ELIMINADO
+    // 3 - PENDIENTE
 
     const [loading, setLoading] = useState(false)
     const [status, setStatus] = useState(0);
     const [forgotPassword, setForgotPassword] = useState(false);
-    const [emailSent, setEmailSent] = useState(false)
+    const [emailSent, setEmailSent] = useState(false);
+    const [errorEmail, setErrorEmail] = useState(false);
+    const [userEmail, setUserEmail] = useState("");
+    const [loadingEmail, setLoadingEmail] = useState(false);
+    const [mssStatus, setMssStatus] = useState(false);
+    const [messageStatus, setMessageStatus] = useState("");
+
+
+    const handleClose = () => {
+        setEmailSent( false );
+        setErrorEmail( false );
+        setUserEmail( "" );
+    }
+
+    const handleUserEmail = ( e ) =>{
+
+        setUserEmail( e.target.value );
+    }
+
+    imageRandom()
     
     const handleEmail = ( e ) => {
         e.preventDefault();
 
+        setLoadingEmail( true );
+
         emailjs.sendForm('service_kagt37a','template_o4defbc', e.target,'akQoWyMBUDzn4jOoB')
-        .then( response => console.log( response ) )
-        .catch( error => console.log( error ) )
+        .then( response => {
+            console.log( response );
+            if ( response.status === 200 ) {
+                
+                setEmailSent( true );
+                setForgotPassword( false );
+                setErrorEmail( true );
+                setLoadingEmail( false );
+            }
+        } )
+        .catch( error => {
+            setErrorEmail( true );
+            setLoadingEmail( false );
+        } )
 
     }
-    // TODO -> Validar que el ingresado no esté inactivo
+
+
 
   return (
     <div className="loginContainer">
@@ -61,22 +101,34 @@ export const Login = () => {
                     onSubmit={( valores, {resetForm} ) => {
                         setLoading(true);
                         inicioSesionUsuario( valores ).then( info => {
-
-                            console.log( info.status );
                             setStatus(info.status)
-                            
                             if ( info.status === 200 ) {
 
                                 let token = info.data.tokenDeAcceso;
                                 localStorage.setItem("token", token);
                                 localStorage.setItem("usuario", JSON.stringify(parseJwt( token )));
                                 const data = parseJwt( token );
-
-                                setTimeout(()=>{
-                                    setLoading(false);
+                                
+                                if ( data.estado === 1 ) {
                                     resetForm();
-                                    // window.location = '/perfil'
-                                },2000);
+                                    window.location = '/perfil';
+                                }
+                                else if( data.estado === 2 ) {
+                                    console.log( "Mal" );
+                                    localStorage.removeItem("token");
+                                    localStorage.removeItem("usuario");
+                                    setMessageStatus( "Tu estado es inactivo. Comunicate con el administrador para solventar el problema" );
+                                    setMssStatus( true );
+                                }
+                                else {
+                                    console.log( "Pendiente" );
+                                    localStorage.removeItem("token");
+                                    localStorage.removeItem("usuario");
+                                    setMessageStatus( "Tu registro está siendo validado, por favor se paciente" );
+                                    setMssStatus( true );
+                                }
+
+                                setLoading(false);
                             }
                             if ( info.status === 500 ) {
                                 setLoading(false);
@@ -90,6 +142,16 @@ export const Login = () => {
                     {({ errors }) => (
                         <Form className='formLogin'>
                             { ( status === 500 ) && <p id='formLogin__badData'>El correo o contraseña son incorrectos</p> }
+                            { mssStatus && 
+                            
+                                <SimpleModal>
+                                    <div className='perfil__statusUser'>
+                                        <h1>¡Atención!</h1>
+                                        <p>{messageStatus}</p>
+                                        <button onClick={()=> setMssStatus( false )} id="btnh30" className='btn200'>Ok</button>
+                                    </div>
+                                </SimpleModal> }
+
                             <Field 
                                 type='text'
                                 className = 'inputLogin'
@@ -133,7 +195,7 @@ export const Login = () => {
         {
             forgotPassword &&
             <SimpleModal>
-                <div className='forgotPss__container recovery'>
+                <div className='forgotPss__container recovery animate__animated animate__fadeIn'>
                     <p onClick={()=> setForgotPassword( false )} className='cancel'>x</p>
                     <div className='div-imgEmail'>
                         <RiLockPasswordFill className='email-img' />  
@@ -143,9 +205,11 @@ export const Login = () => {
                         <p>Ingresa el correo con el cual te registraste</p>
                     </div>
                     <form onSubmit={ handleEmail } className='inputRecovery-div'>
-                        <input type="text" className="inputLogin" id='recovereyPassword-input' name='email' placeholder='Correo electrónico'/><br/>
-                        <button type='submit'>Enviar</button>
+                        <input value={userEmail} onChange={handleUserEmail} type="text" className="inputLogin" id='recovereyPassword-input' name='email' placeholder='Correo electrónico'/><br/>
+                        <button type='submit' className={`"" ${ loadingEmail && "hidden" }`}>Enviar</button>
+                        { loadingEmail &&  <div id='login-spin' className='spiner'></div> }
                     </form>
+                    { errorEmail && <p className='errorEmail'>Hubo un error al enviar el correo, por favor intentalo nuevamente <span onClick={()=> setErrorEmail(false)} id='spanEmailError'>x</span></p> }
                 </div>
             </SimpleModal>
         }
@@ -153,15 +217,15 @@ export const Login = () => {
         { 
             emailSent && 
             <SimpleModal>
-                <div className='forgotPss__container'>
+                <div className='forgotPss__container animate__animated animate__fadeIn'>
                     <div className='div-imgEmail'>
                         <HiOutlineMailOpen className='email-img' />  
                     </div>
                     <div>
-                        <h1>Te hemos enviado un correo</h1>
-                        <p>Por favor revisa tu bandeja para obtener las instrucciones en el cambio de tu contaseña.</p>
+                        <h1>Te hemos enviado un correo a <br/><span>{userEmail}</span></h1>
+                        <p>Por favor revisa tu bandeja de entrada o en span para obtener las instrucciones en el cambio de tu contaseña.</p>
                     </div>
-                    <button onClick={()=> setForgotPassword(false)} className='btn200'>Login</button>
+                    <button onClick={handleClose} id="btnh30" className='btn200'>Ok</button>
                 </div>
             </SimpleModal> 
         }
