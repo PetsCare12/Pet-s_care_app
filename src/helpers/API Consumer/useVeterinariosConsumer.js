@@ -11,9 +11,10 @@ export const getVeterinarios = async( nit ) => {
 
     } catch (error) {
 
-        console.log( error );
-
-        return error;
+        if ( error.response ) {
+            console.log(error.response.status);
+            return error.response.status;
+        }
 
     }
 
@@ -29,9 +30,10 @@ export const getVeterinarioById = async( id ) => {
 
     } catch (error) {
 
-        console.log( error );
-
-        return error;
+        if ( error.response ) {
+            console.log(error.response.status);
+            return error.response.status;
+        }
         
     }
 
@@ -47,9 +49,10 @@ export const getVeterinarioByName = async( name ) => {
 
     } catch (error) {
 
-        console.log( error );
-
-        return error;
+        if ( error.response ) {
+            console.log(error.response.status);
+            return error.response.status;
+        }
         
     }
 
@@ -70,15 +73,23 @@ export const setVeterinario = async( veterinario , nit , access_token ) => {
             },
             data : veterinario
             
+        }).catch( function( error ) {
+
+            if ( error.response ) {
+                console.log(error.response.status);
+                return error.response.status;
+            }
+
         });
                 
-        return sendRequest.data;
+        return console.log(sendRequest.data);
 
     } catch (error) {
 
-        console.log( error );
-
-        return error;
+        if ( error.response ) {
+            console.log(error.response.status);
+            return error.response.status;
+        }
 
     }
 
@@ -99,15 +110,23 @@ export const putVeterinario = async( veterinario , id , access_token ) => {
             },
             data : veterinario
             
+        }).catch( function( error ) {
+
+            if ( error.response ) {
+                console.log(error.response.status);
+                return error.response.status;
+            }
+
         });
 
         return sendRequest.data;
 
     } catch (error) {
 
-        console.log( error );
-
-        return error;
+        if ( error.response ) {
+            console.log(error.response.status);
+            return error.response.status;
+        }
 
     }
 

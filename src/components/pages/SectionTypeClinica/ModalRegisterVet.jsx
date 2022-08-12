@@ -8,9 +8,10 @@ import { useForm } from '../../../helpers/useForm';
 
 export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit }) => {
 
+  let imgDefault = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJxA5cTf-5dh5Eusm0puHbvAhOrCRPtckzjA&usqp=CAU";
   const {myWidgetVeter,urlImage} = useSendImage();
   const showWidget = () => {myWidgetVeter.open()};
-  const [img, setimg] = useState(pets_images('./veterinarios/subir.png'));
+  const [img, setimg] = useState(imgDefault);
 
   const initialForm = {
     documento: "",
@@ -34,30 +35,24 @@ export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit 
 
          if (!form.imagenVete === "") {form.imagenVete = img}
     else if (!form.documento.trim()) {errors.documento = "El 'Documento:' es requerido!";}
-
     else if (!form.nombre.trim()) {errors.nombre = "El 'Nombre:' es requerido!";}
     else if (!form.apellido.trim()) {errors.apellido = "El 'Apellido:' es requerido!";}
-
     else if (!form.telefono.trim()) {errors.telefono = "El 'Telefono:' es requerido!";}
-    else if (!form.sexovt === 0) {errors.sexovt = "El 'Sexo:' es requerido!";}
-
-    else if (!form.estadoVt === 0) {errors.estadoVt = "El 'Estado:' es requerido!";}
     else if (!form.especialidad.trim()) {errors.especialidad = "El 'Especialidad:' es requerido!";}
-
+    else if (!form.especialidad.trim()) {errors.especialidad = "El 'Especialidad:' es requerido!";}
     else if (!form.correo.trim()) {errors.correo = "El 'Correo:' es requerido!";}
     else if (!form.password.trim()) {errors.correo = "La 'Contraseña:' es requerido!";}
 
     else if (!regexNumbers.test(form.documento.trim())) {errors.documento = "El 'Documento:' solo acepta numeros!"}
-    else if (!regexName.test(form.apellido.trim())) {errors.apellido = "El 'Apellido:' solo acepta letras!"}
-
     else if (!regexName.test(form.nombre.trim())) {errors.nombre = "El campo 'Nombre:' solo acepta letras!"}
-    else if (!regexName.test(form.especialidad.trim())) {errors.especialidad = "El campo 'Especialidad:' solo acepta letras!"}
-
+    else if (!regexName.test(form.apellido.trim())) {errors.apellido = "El 'Apellido:' solo acepta letras!"}
     else if (!regexNumbers.test(form.telefono.trim())) {errors.telefono = "El campo 'Telefono:' solo acepta numeros!"}
+    else if (!form.sexovt === 0) {errors.sexovt = "El 'Sexo:' es requerido!";}
+    else if (!form.estadoVt === 0) {errors.estadoVt = "El 'Estado:' es requerido!";}
+    else if (!form.especialidad.trim()) {errors.especialidad = "El 'Especialidad:' es requerido!";}
+    else if (!regexName.test(form.especialidad.trim())) {errors.especialidad = "El campo 'Especialidad:' solo acepta letras!"}
     else if (!regexEmail.test(form.correo.trim())) {errors.correo = "El campo 'Correo:' es Incorrecto!"}
-
     else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}/.test(form.password)) {errors.password = 'Debes incluir minúsculas, mayúsculas, números y caracteres especiales en la contraseña';}
-
     return errors;
   }
   const {form,errors,loading,response,handleChangeVet,handleBlur,handleSubmit} = useForm(initialForm,validationsForm,token,nit);
@@ -79,12 +74,12 @@ export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit 
             <form onSubmit={handleSubmit} className='formVet_register animate__animated animate__fadeIn'>
 
               <div className="img_cont_vet">
-                <img src={pets_images("./veterinarios/usuario.png")} alt="" id='imgForm'/>
+                <img src={form.imagenVete =  img} alt="" id='imgForm'/>
               </div>
 
               <div className='setImg_register_container'>
                 <a onClick={showWidget} className="a_upload_Image_regs ">
-                <img src={img} alt="Subir Imagen" className=' imgRegs upload_Image_regs'/>
+                <img src={pets_images('./veterinarios/subir.png')} alt="Subir Imagen" className=' imgRegs upload_Image_regs'/>
                 </a>
               </div>
 
@@ -111,8 +106,8 @@ export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit 
                 id='nombre'/>
 
               </div>
-              {errors.documento && <p id='warningP'>{errors.documento}</p>}
-              {errors.nombre && <p id='warningP'>{errors.nombre}</p>}
+              {errors.documento && <p id='warn-login'>{errors.documento}</p>}
+              {errors.nombre && <p id='warn-login'>{errors.nombre}</p>}
 
               <div className="parts part2">
                 <input type="text" 
@@ -135,8 +130,8 @@ export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit 
                 required
                 id='telefono'/>
               </div>
-              {errors.apellido && <p id='warningP'>{errors.apellido}</p>}
-              {errors.telefono && <p id='warningP'>{errors.telefono}</p>}
+              {errors.apellido && <p id='warn-login'>{errors.apellido}</p>}
+              {errors.telefono && <p id='warn-login'>{errors.telefono}</p>}
 
               <div className="parts selects_conatiner">
 
@@ -154,8 +149,8 @@ export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit 
                 </select>
 
               </div>
-              {errors.sexovt && <p id='warningP'>{errors.sexovt}</p>}
-              {errors.estadoVt && <p id='warningP'>{errors.estadoVt}</p>}
+              {errors.sexovt && <p id='warn-login'>{errors.sexovt}</p>}
+              {errors.estadoVt && <p id='warn-login'>{errors.estadoVt}</p>}
 
               <div className="parts part3">
 
@@ -180,8 +175,8 @@ export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit 
                 id='especialidad'/>
 
               </div>
-              {errors.correo && <p id='warningP'>{errors.correo}</p>}
-              {errors.especialidad && <p id='warningP'>{errors.especialidad}</p>}
+              {errors.correo && <p id='warn-login'>{errors.correo}</p>}
+              {errors.especialidad && <p id='warn-login'>{errors.especialidad}</p>}
 
                   <input type="password" 
                   placeholder='Contraseña' 
@@ -192,7 +187,7 @@ export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit 
                   onBlur={handleBlur}
                   required
                   id='password'/>
-              {errors.password && <p id='warningP'>{errors.password}</p>}
+              {errors.password && <p id='warn-login'>{errors.password}</p>}
 
               <ButtonUI text="Registrar Veterinario"  type="submit" style="submit vetRes"></ButtonUI>
 

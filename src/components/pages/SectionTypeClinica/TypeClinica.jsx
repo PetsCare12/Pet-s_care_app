@@ -10,34 +10,45 @@ import "./TypeClinica.css";
 
 export const TypeClinica = () => {
 
-  // let nitClinic = 1010;
-  let nitClinic = 111;
-  let tokenClinic = "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxMTEiLCJzdWIiOiJzYWx1ZGNhbmluYUB2ZXRlcmluYXJpYXMuY29tIiwiYXVkIjoiW1JPTEVfQ0xJTklDQV0iLCJpYXQiOjE2NjAxNzk4ODIsImV4cCI6MTY2MDc4NDY4MX0.pBUjcGe1MUCv1AgUfDwpPoQcFb6lE4Q2V4D0BTlAf2NydWBJaF0t0p8tA9CNH5KPAvkclHS5My_ej2v3_XIl0A"
+  // let nitClinic = 111;
+  // let tokenClinic = "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxMTEiLCJzdWIiOiJzYWx1ZGNhbmluYUB2ZXRlcmluYXJpYXMuY29tIiwiYXVkIjoiW1JPTEVfQ0xJTklDQV0iLCJpYXQiOjE2NjAxNzk4ODIsImV4cCI6MTY2MDc4NDY4MX0.pBUjcGe1MUCv1AgUfDwpPoQcFb6lE4Q2V4D0BTlAf2NydWBJaF0t0p8tA9CNH5KPAvkclHS5My_ej2v3_XIl0A"
+
+  let nitClinic = 1010;
+  let tokenClinic =  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWx1ZGNhbmluYUB2ZXRlcmluYXJpYXMuY29tIiwiYXVkIjoiW1JPTEVfQ0xJTklDQV0iLCJlc3RhZG8iOjEsImlkIjoxMDEwLCJleHAiOjE2NjA5MzE3MTAsImlhdCI6MTY2MDMyNjkxMH0.eQPuQYTPp4NQXTCea-5hiCuBf5AcRgD7h46egTe8ZB8Bg9_L9nilCVm_M3lD0GOETgC0xtr_07FZ37fTVo7U-g";
+
   const [arrState, setarrState] = useState(true);
   const [arr, setarr] = useState([]);
   const [img, setimg] = useState("");
   const {myWidgetVeter,urlImage} = useSendImage();
   const [useVet, setVet] = useState({});
   const [isOpenModal1,openModal1,closeModal1] = useModal(false);
+  const [requestState, setrequestState] = useState(true);
 
   const getVeterId = (e) => {
     if (e.keyCode == "13") {
 
       if (e.target.value !== "") {
-        // getVeterinarioById(e.target.value).then( data => setarr([data]));
-        console.log(arr);
+
+        getVeterinarioById(e.target.value).then( data => setarr([data]));
+        
+          if (arr[0] === 404) {
+            console.log("No existe");
+            setrequestState(false);
+          }else{
+            console.log("Si esxiste");
+            setrequestState(true);
+          }
+
         setarrState(false);
       }
-
     }else if (e.target.value === "") {
       setarrState(true);
     }   
-  }
+  } 
 
   useEffect(() => {
     if (arrState === true) {
-      // getVeterinarios(nit).then( data => setarr(data))
-      console.log(arr);
+      getVeterinarios(nitClinic).then( data => setarr(data));
     }
   }, [arrState])
 
@@ -118,28 +129,30 @@ export const TypeClinica = () => {
                       <ButtonUI text="Registrar" type="button" style="regs submit" event={openModal1}></ButtonUI>
                     </div>
               <ul>
-                {
-                  arr.map((item) =>(
-                    <li className="liVetSpace animate__animated animate__backInUp">
-                        <div className='liVet'>
-                          <div className='img_li_vet'>
-                            <img src={item.imagenVete} alt="" id='imgVet'/>
-                          </div>
-                          <div className='liVetA'>
-                            <h4><span>Nombre:</span>              {item.nombre}</h4>
-                            <h4><span>Apellido:</span>         {item.apellidos}</h4>
-                            <h4><span>ID:</span>               {item.documento}</h4>
-                            <h4><span>Especialidad:</span>  {item.especialidad}</h4>
-                          </div>
-                        </div> 
-                        <div className='idc'>
-                          <a onClick={() => getVet(item)} href>
-                            <img src={pets_images('./veterinarios/proximo.png')} alt="" id='imgLi'/>
-                          </a>
+                {requestState ? 
+                arr.map((item) =>(
+                  <li className="liVetSpace animate__animated animate__backInUp">
+                    <div className='liVet'>
+                        <div className='img_li_vet'>
+                          <img src={item.imagenVete} alt="" id='imgVet'/>
                         </div>
-                      </li>
-                  ))
-                }
+                        <div className='liVetA'>
+                          <h4><span>Nombre:</span>              {item.nombre}</h4>
+                          <h4><span>Apellido:</span>         {item.apellidos}</h4>
+                          <h4><span>ID:</span>               {item.documento}</h4>
+                          <h4><span>Especialidad:</span>  {item.especialidad}</h4>
+                        </div>
+                      </div> 
+                      <div className='idc'>
+                        <a onClick={() => getVet(item)} href>
+                          <img src={pets_images('./veterinarios/proximo.png')} alt="" id='imgLi'/>
+                        </a>
+                      </div>
+                  </li>
+                ))
+                : 
+                <li><h2>No encontrado</h2></li>
+              }
               </ul>
             </div>
             

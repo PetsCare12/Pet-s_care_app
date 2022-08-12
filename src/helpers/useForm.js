@@ -28,12 +28,12 @@ export const useForm = (initialForm , validateForm , token , nit) => {
 
             if (e.target.classList.value === "formVet  animate__animated animate__fadeIn") {
 
-                // putVeterinario(form,form.documento,token).then( data => console.log(data));
+                putVeterinario(form,form.documento,token).then( data => console.log(data));
                 console.log("Actualizacion Veterinario");
 
             }else if (e.target.classList.value === "formVet_register animate__animated animate__fadeIn") {
                 
-                // setVeterinario(form,nit,token).then( data => console.log(data));
+                setVeterinario(form,nit,token).then( data => console.log(data));
                 console.log("Registro Veterinario");
 
             }
