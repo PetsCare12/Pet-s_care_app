@@ -4,11 +4,11 @@ import { GoArrowSmallLeft } from 'react-icons/go';
 import { ButtonUI } from "../../../UI/ButtonUI/ButtonUI";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { postUsuario } from '../../../../helpers/API Consumer/test';
+import { imageRandom } from '../../../../helpers/RandomImages/imagenessa';
 
 export const RegisterUser = ( {change_step} ) => {
 
-    const [counter, setCounter] = useState(3);
-    const registerSuccess = useRef(null);
+    const [serverError, setServerError] = useState(false);
     const [loading, setLoading] = useState(false);
     const [duplicatedData, setDuplicatedData] = useState(false);
     const [registered, setRegistered] = useState(false);
@@ -79,24 +79,34 @@ export const RegisterUser = ( {change_step} ) => {
                     return errores;
                 }}
                 onSubmit={( valores, {resetForm} ) => {
+
+                    const img = imageRandom();
+                    valores.imagenUsu = img;
+
                     let validacion = {};
                     postUsuario( valores )
-                     .then( info => validacion = info );
+                     .then( info => {
+                            validacion = info
+                            setLoading(true);
+                            if ( validacion.status === 400 ) {
+                                setDuplicatedData( true );
+                                setServerError( false );
+                                setLoading(false);
+                            }
+                            else if( validacion.status === 500 ){
+                                setServerError( true );
+                                setDuplicatedData( false );
+                                setLoading( false );
+                            }
+                            else {
+                                setDuplicatedData( false );
+                                resetForm();
+                                setLoading(false);
+                                setRegistered( true );
+                                window.location = "/login";
+                            }
+                        });
 
-                    setLoading(true);
-                    setTimeout(()=>{
-                        if ( validacion.status === 400 ) {
-                            setDuplicatedData( true );
-                            setLoading(false);
-                        }
-                        else {
-                            setDuplicatedData( false );
-                            resetForm();
-                            setLoading(false);
-                            setRegistered( true );
-                            window.location = "/login";
-                        }
-                    },1000)
                 }}
             >   
                 {({ errors }) => (
@@ -104,6 +114,10 @@ export const RegisterUser = ( {change_step} ) => {
                         {
                             ( duplicatedData ) &&
                             <p id='registerUser__error'>Al parecer tu correo o documento ya están registrados</p>
+                        }
+                        {
+                            ( serverError ) &&
+                            <p id='registerUser__error'>Hubo un error en el registro, intentalo nuevamente.</p>
                         }
                         <Field 
                             type='text'

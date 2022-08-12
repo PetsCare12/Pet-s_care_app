@@ -224,11 +224,12 @@
     height: 40px;
     width: 60%;
 }
-#btnh30{
+#btnh30 {
     height: 30px;
-    font-size: 17px;
-    padding: 5px 22px;
+    font-size: 1rem;
+    padding: 6px 22px;
     width: 80px;
+    font-weight: 100;
 }
 .forgotPss__container .errorEmail {
     background-color: #ff5050;
@@ -245,4 +246,27 @@
 
 .forgotPss__container .errorEmail #spanEmailError:hover{
     color: white;
+}
+
+.perfil__statusUser{
+    align-items: center;
+    background-color: white;
+    border-top: 6px solid #008eff;
+    border-radius: 4px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 35px;
+    width: auto;
+}
+.perfil__statusUser h1{
+    color: #008eff;
+    font-size: 2rem;
+}
+.perfil__statusUser p{
+    font-size: 1rem;
+    text-align: center;
+    width: 250px;
+    height: auto;
 }

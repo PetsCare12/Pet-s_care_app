@@ -13,6 +13,7 @@ import {RiLockPasswordFill} from 'react-icons/ri';
 import emailjs from '@emailjs/browser';
 
 import './LoginStyle.css'
+import { imageRandom } from '../../../helpers/RandomImages/imagenessa';
 
 export const Login = () => {
 
@@ -31,6 +32,7 @@ export const Login = () => {
     const [mssStatus, setMssStatus] = useState(false);
     const [messageStatus, setMessageStatus] = useState("");
 
+
     const handleClose = () => {
         setEmailSent( false );
         setErrorEmail( false );
@@ -41,6 +43,8 @@ export const Login = () => {
 
         setUserEmail( e.target.value );
     }
+
+    imageRandom()
     
     const handleEmail = ( e ) => {
         e.preventDefault();
@@ -141,7 +145,11 @@ export const Login = () => {
                             { mssStatus && 
                             
                                 <SimpleModal>
-                                    {messageStatus}
+                                    <div className='perfil__statusUser'>
+                                        <h1>¡Atención!</h1>
+                                        <p>{messageStatus}</p>
+                                        <button onClick={()=> setMssStatus( false )} id="btnh30" className='btn200'>Ok</button>
+                                    </div>
                                 </SimpleModal> }
 
                             <Field 
