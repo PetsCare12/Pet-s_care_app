@@ -9,14 +9,14 @@ import PeticionClinica from './components/PeticionClinica';
 const AdminScreen = () => {
 
     const [solicitudesScreen, setSolicitudesScreen] = useState(false);
+    const [requestCli, setRequestCli] = useState([]);
 
-    useEffect(()=>{
-        if ( solicitudesScreen ) {
-            // TODO - Clínicas con estado en 3
-            getPeticionesClinicas()
-                .then( data => console.log(data))
-        }
-    }, [setSolicitudesScreen])
+
+    const handleRequest = () => {
+        getPeticionesClinicas()
+            .then( data => setRequestCli(data))
+        setSolicitudesScreen( true );
+    }
 
     return (
         <>
@@ -28,7 +28,7 @@ const AdminScreen = () => {
                         <button className='btnAdmin'>Veterinarios</button>
                         <button className='btnAdmin'>Clínicas</button>
                     </div>
-                    <button onClick={()=> setSolicitudesScreen( true )} className='btnAdmin peticiones'>Peticiones</button>
+                    <button onClick={handleRequest} className='btnAdmin peticiones'>Peticiones</button>
                 </div>
                 <form className='admin__filter' action="">
                     <label htmlFor="documento">N° Documento</label>
@@ -49,8 +49,11 @@ const AdminScreen = () => {
                         <p className='descripcion'>Las siguientes clinicas están pendientes.</p>
 
                         <div className="peticiones">
-
-                            <PeticionClinica nit={""} nombre={""} />
+                            {
+                                ( requestCli ) ?
+                                requestCli.map( cli => <PeticionClinica key={cli.nit} nit={cli.nit} nombre={cli.nombre} />)
+                                : <p>No hay peticiones pendientes</p>
+                            }
 
                         </div>
                     </div>

@@ -31,7 +31,7 @@ export const getPeticionesClinicas = async() => {
     try {
         const respuesta = await axios.get("http://localhost:8080/api/clinicas");
 
-        const peticiones = respuesta.data.filter( cli => cli.estdo_cli === 3 );
+        const peticiones = respuesta.data.filter( cli => cli.estadoCli === 3 );
 
         return peticiones;
         
