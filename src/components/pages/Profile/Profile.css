@@ -52,6 +52,7 @@
 .profile__seccion1 .profile__img {
     height: 250px;
     width: 250px;
+    position: relative;
 }
 .profile__seccion1 .profile__img img {
     border-radius: 2px;
@@ -301,6 +302,7 @@
     z-index: 1000;
     height: 250px;
     width: 250px;
+    top: 0;
     font-size: 4rem;
     color: white;
 }

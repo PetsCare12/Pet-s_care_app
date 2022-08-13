@@ -1,6 +1,14 @@
 import React from 'react'
+import { aceptarPeticion } from '../../../../helpers/API Consumer/useClinicasConsumer'
 
-const PeticionClinica = ( {nit,nombre} ) => {
+const PeticionClinica = ( {nit,nombre,dataCli,token} ) => {
+
+    const handleAccept = () => {
+
+        // aceptarPeticion( dataCli, dataCli.nit, token )
+        // .then( info => console.log( info ) )
+    }
+
     return (
         <button className='peticionesCli__container'>
             <div>
@@ -8,7 +16,7 @@ const PeticionClinica = ( {nit,nombre} ) => {
                 <p className='nombre'>{nombre}</p>
             </div>
             <div>
-                <button className='peticionesCli__button aceptar'>Aceptar</button>
+                <button onDoubleClick={handleAccept} className='peticionesCli__button aceptar'>Aceptar</button>
                 <button className='peticionesCli__button denegar'>Denegar</button>
             </div>
         </button>
