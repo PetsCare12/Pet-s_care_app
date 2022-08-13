@@ -25,8 +25,8 @@ export const SectionPerfil = ( {userData} ) => {
             <div className="profile__seccion1">
                 <div className='profile__img'>
                     <img src={userData.imagenUsu} alt="" />
+                    <div onClick={handleImageEdit} className='perfil__editImage'><div><VscFiles /></div></div>
                 </div>
-                <div onClick={handleImageEdit} className='perfil__editImage'><div><VscFiles /></div></div>
                 <div className='profile__info'>
 
                     <Formik

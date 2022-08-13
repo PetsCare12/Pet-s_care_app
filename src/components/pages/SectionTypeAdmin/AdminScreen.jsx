@@ -10,6 +10,7 @@ const AdminScreen = () => {
 
     const [solicitudesScreen, setSolicitudesScreen] = useState(false);
     const [requestCli, setRequestCli] = useState([]);
+    const token = localStorage.getItem("token");
 
 
     const handleRequest = () => {
@@ -43,15 +44,15 @@ const AdminScreen = () => {
                 solicitudesScreen && 
                 <SimpleModal>
                     <div className='admin__peticiones-modal animate__animated animate__fadeIn'>
-                        <div className="cancel"><p>x</p></div>
+                        <div onClick={()=>setSolicitudesScreen( false )} className="cancel"><p>x</p></div>
 
                         <h1 className='titulo'>Peticiones</h1>
                         <p className='descripcion'>Las siguientes clinicas están pendientes.</p>
 
                         <div className="peticiones">
                             {
-                                ( requestCli ) ?
-                                requestCli.map( cli => <PeticionClinica key={cli.nit} nit={cli.nit} nombre={cli.nombre} />)
+                                ( requestCli.length > 0 ) ?
+                                requestCli.map( cli => <PeticionClinica key={cli.nit} token={token} dataCli={cli} nit={cli.nit} nombre={cli.nombre} />)
                                 : <p>No hay peticiones pendientes</p>
                             }
 

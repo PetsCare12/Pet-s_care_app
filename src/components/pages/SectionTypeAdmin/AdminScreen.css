@@ -165,6 +165,7 @@
 }
 .admin__peticiones-modal .cancel p:hover{
     border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
     color: #ffffff;
     transition: .4s;
     background-color: #ff3535;
