@@ -2,15 +2,38 @@ import React, { useEffect, useState } from 'react';
 import { getPeticionesClinicas } from '../../../helpers/API Consumer/useClinicasConsumer';
 import {Header} from '../../layout/HeaderHome/HeaderHome';
 import { SimpleModal } from '../../layout/Modals/SimpleModal';
+import { BiRefresh } from "react-icons/bi";
 import './AdminScreen.css';
 import InfoUser from './components/InfoUser';
 import PeticionClinica from './components/PeticionClinica';
+import { usuariosTodos } from '../../../helpers/API Consumer/test';
 
 const AdminScreen = () => {
+
+    // 1 ~ Usuario
+    // 2 ~ Veterinario
+    // 3 ~ Clinica
 
     const [solicitudesScreen, setSolicitudesScreen] = useState(false);
     const [requestCli, setRequestCli] = useState([]);
     const token = localStorage.getItem("token");
+    const [userType, setUserType] = useState(0);
+    const [data, setData] = useState([]);
+
+    const handleSelect = ( type ) => {
+
+        if ( type === 1 ) {
+            usuariosTodos().then( info => setData( info ));
+            setUserType( 1 );
+        }
+        else if ( type === 2 ) {
+            // usuariosTodos().then( info => setData( info ));
+            setUserType(2);
+        }
+
+    }
+
+    console.log( data );
 
 
     const handleRequest = () => {
@@ -25,20 +48,37 @@ const AdminScreen = () => {
             <div className="admin__container animate__animated animate__fadeIn">
                 <div className="admin__nav">
                     <div className='admin__nav-izquierdo'>
-                        <button className='btnAdmin'>Usuarios</button>
-                        <button className='btnAdmin'>Veterinarios</button>
-                        <button className='btnAdmin'>Clínicas</button>
+                        <button onClick={()=>{handleSelect(1)}} className={`btnAdmin ${userType === 1 && "active"}`}>Usuarios</button>
+                        <button onClick={()=>{handleSelect(2)}} className={`btnAdmin ${userType === 2 && "active"}`}>Veterinarios</button>
+                        <button onClick={()=>{handleSelect(3)}} className={`btnAdmin ${userType === 3 && "active"}`}>Clínicas</button>
                     </div>
                     <button onClick={handleRequest} className='btnAdmin peticiones'>Peticiones</button>
                 </div>
-                <form className='admin__filter' action="">
-                    <label htmlFor="documento">N° Documento</label>
-                    <input type="text" name='documento'/>
-                    <button id='search' className='btnAdmin'>Buscar</button>
-                </form>
-                <div className="admin__container-info">
-                    <InfoUser />
-                </div>
+                {
+                    userType===1 &&
+                    <form className='admin__filter' action="">
+                        <label htmlFor="documento">N° Documento</label>
+                        <input type="text" name='documento'/>
+                        <button id='search' className='btnAdmin'>Buscar</button>
+                    </form>
+                }
+                {
+                    userType===1 &&
+                    
+                    data.map( user => 
+                        <div className="admin__container-info">
+                            <InfoUser
+                                id = {user.documentoUs}
+                                correo = {user.correoUs}
+                                nombre = {user.nombreUs}
+                                apellido = {user.apellidoUs}
+                                img = {user.imagenUsu}
+                                telefono = {user.telefonoUs}
+                                status = {user.estadoUs}
+                            />
+                        </div>
+                        )
+                }
             </div>
             {
                 solicitudesScreen && 
@@ -47,6 +87,7 @@ const AdminScreen = () => {
                         <div onClick={()=>setSolicitudesScreen( false )} className="cancel"><p>x</p></div>
 
                         <h1 className='titulo'>Peticiones</h1>
+                        <BiRefresh onClick={handleRequest} className='peticiones__refreh' />
                         <p className='descripcion'>Las siguientes clinicas están pendientes.</p>
 
                         <div className="peticiones">

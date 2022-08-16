@@ -98,3 +98,16 @@ export const inicioSesionUsuario = async ( valores ) => {
     }
 }
 
+export const usuariosTodos = async() => {
+
+    try {
+        const respuesta = await axios.get("http://localhost:8080/api/usuarios");
+
+        return respuesta.data;
+        
+    } catch (error) {
+        console.log( error );
+    }
+
+}
+
