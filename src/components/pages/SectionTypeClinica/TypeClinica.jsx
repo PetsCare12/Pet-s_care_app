@@ -10,11 +10,11 @@ import "./TypeClinica.css";
 
 export const TypeClinica = () => {
 
-  let nitClinic = 111;
-  let tokenClinic = "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxMTEiLCJzdWIiOiJzYWx1ZGNhbmluYUB2ZXRlcmluYXJpYXMuY29tIiwiYXVkIjoiW1JPTEVfQ0xJTklDQV0iLCJpYXQiOjE2NjAxNzk4ODIsImV4cCI6MTY2MDc4NDY4MX0.pBUjcGe1MUCv1AgUfDwpPoQcFb6lE4Q2V4D0BTlAf2NydWBJaF0t0p8tA9CNH5KPAvkclHS5My_ej2v3_XIl0A"
+  // let nitClinic = 111;
+  // let tokenClinic = "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxMTEiLCJzdWIiOiJzYWx1ZGNhbmluYUB2ZXRlcmluYXJpYXMuY29tIiwiYXVkIjoiW1JPTEVfQ0xJTklDQV0iLCJpYXQiOjE2NjAxNzk4ODIsImV4cCI6MTY2MDc4NDY4MX0.pBUjcGe1MUCv1AgUfDwpPoQcFb6lE4Q2V4D0BTlAf2NydWBJaF0t0p8tA9CNH5KPAvkclHS5My_ej2v3_XIl0A"
 
-  // let nitClinic = 1010;
-  // let tokenClinic =  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWx1ZGNhbmluYUB2ZXRlcmluYXJpYXMuY29tIiwiYXVkIjoiW1JPTEVfQ0xJTklDQV0iLCJlc3RhZG8iOjEsImlkIjoxMDEwLCJleHAiOjE2NjA5MzE3MTAsImlhdCI6MTY2MDMyNjkxMH0.eQPuQYTPp4NQXTCea-5hiCuBf5AcRgD7h46egTe8ZB8Bg9_L9nilCVm_M3lD0GOETgC0xtr_07FZ37fTVo7U-g";
+  let nitClinic = 1010;
+  let tokenClinic =  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWx1ZGNhbmluYUB2ZXRlcmluYXJpYXMuY29tIiwiYXVkIjoiW1JPTEVfQ0xJTklDQV0iLCJlc3RhZG8iOjEsImlkIjoxMDEwLCJleHAiOjE2NjA5MzE3MTAsImlhdCI6MTY2MDMyNjkxMH0.eQPuQYTPp4NQXTCea-5hiCuBf5AcRgD7h46egTe8ZB8Bg9_L9nilCVm_M3lD0GOETgC0xtr_07FZ37fTVo7U-g";
 
   const [arrState, setarrState] = useState(true);
   const [arr, setarr] = useState([]);
@@ -76,18 +76,23 @@ export const TypeClinica = () => {
 
   const validationsForm = (form) => {
     let errors = {};
-    let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
-    let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
-    let regexNumbers = /^\d+$/;
 
-         if (!form.imagenVete.trim()) {form.imagenVete = img}
-    else if (!form.documento.trim() || !regexNumbers.test(form.documento)) { errors.documento = "Documento erroneo" }
-    else if (!form.nombre.trim() || !regexName.test(form.nombre)) { errors.nombre = "Nombres erroneo" }
-    else if (!form.apellidos.trim() || !regexName.test(form.apellidos)) { errors.apellidos = "Apellidos erroneos" }
-    else if (!form.telefono.trim() || !regexNumbers.test(form.telefono)) { errors.telefono = "Telefono erroneo" }
+         if (!form.nombre.trim()) { errors.nombre = "Nombres erroneos" }
+    else if (!/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(form.nombre)) { errors.nombre = "Nombres erroneos" }
+
+    else if (!form.apellidos.trim()) { errors.apellidos = "Apellidos erroneos" }
+    else if (!/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(form.apellidos)) { errors.apellidos = "Apellidos erroneos" }
+
+    else if (!form.telefono.trim()) { errors.telefono = "Telefono erroneo" }
+    else if (!/^\d{10,10}$/.test(form.telefono)) { errors.telefono = "Telefono erroneo" }
+
     else if (!form.sexovt === "none") {errors.sexovt = "Sexo requerido"}
-    else if (!form.especialidad.trim() || !regexName.test(form.especialidad)) { errors.especialidad = "Especialidad erronea" }
-    else if (!form.correo.trim() || !regexEmail.test(form.correo)) { errors.correo = "Correo erroneo" }
+    else if (!form.especialidad.trim() || /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(form.especialidad)) { errors.especialidad = "Especialidad erronea" }
+
+    else if (!form.correo.trim()){ errors.correo = "Correo erroneo" }
+    else if (!/^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/.test(form.correo)) { errors.correo = "Correo erroneo" }
+
+    else if (!form.imagenVete.trim()) {form.imagenVete = img}
     
     return errors;  
   }
@@ -179,20 +184,6 @@ export const TypeClinica = () => {
                       
                     <div className="bottomForm  animate__animated animate__fadeIn">
                       <div className="inputsVet">
-                        <div className='input-container'>
-                          <input 
-                          name='apellidos' type="text" 
-                          placeholder=' Apellido... '
-                          onChange={handleChangeVet}
-                          value={form.apellidos} onBlur={handleBlur}
-                          required 
-                          id='apellido'
-                          className={`input ${(errors.apellidos) ? 'iWarning' : 'input'}`}
-                          />
-                          <div class="cut"></div>
-                          <label for="apellido" class="placeholder"> {useVet.apellidos} </label>
-                        </div>
-                        {errors.apellidos &&             <p id='warningP'>{errors.apellidos}</p>}
 
                         <div className="input-container">
                           <input 
@@ -209,6 +200,40 @@ export const TypeClinica = () => {
                         </div>
                         {errors.nombre &&               <p id='warningP'>{errors.nombre}</p>}
 
+                        <div className='input-container'>
+                          <input 
+                          name='apellidos' 
+                          type="text" 
+                          placeholder=' Apellido... '
+                          onChange={handleChangeVet}
+                          value={form.apellidos} 
+                          onBlur={handleBlur}
+                          required 
+                          id='apellido'
+                          className={`input ${(errors.apellidos) ? 'iWarning' : 'input'}`}
+                          />
+                          <div class="cut"></div>
+                          <label for="apellido" class="placeholder"> {useVet.apellidos} </label>
+                        </div>
+                        {errors.apellidos &&             <p id='warningP'>{errors.apellidos}</p>}
+
+                        <div className="input-container">
+                          <input 
+                          name='telefono' 
+                          type="text" 
+                          placeholder=' Telefono... ' 
+                          onChange={handleChangeVet}
+                          value={form.telefono} 
+                          onBlur={handleBlur}
+                          required 
+                          id='telefono'
+                          className={`input ${(errors.telefono) ? 'iWarning' : 'input'}`}
+                          />
+                          <div class="cut"></div>
+                          <label for="telefono" class="placeholder"> {useVet.telefono} </label>
+                        </div>
+                        {errors.telefono &&             <p id='warningP'>{errors.telefono}</p>}
+
                         <select name="sexovt" id="sexovt" className='input' onChange={handleChangeVet} value={form.sexovt} onBlur={handleBlur}>
                           <option value="none">Seleccione el sexo</option>
                           <option value="hombre">Hombre</option>
@@ -219,10 +244,12 @@ export const TypeClinica = () => {
 
                         <div className="input-container">
                           <input 
-                          name='especialidad' type="text" 
+                          name='especialidad' 
+                          type="text" 
                           placeholder=' Especialidad... '
                           onChange={handleChangeVet}
-                          value={form.especialidad} onBlur={handleBlur}
+                          value={form.especialidad} 
+                          onBlur={handleBlur}
                           required
                           id='especialidad'
                           className={`input ${(errors.especialidad) ? 'iWarning' : 'input'}`}
@@ -234,9 +261,12 @@ export const TypeClinica = () => {
 
                         <div className="input-container">
                           <input 
-                          name='correo'  type="email" 
-                          placeholder=' Correo... ' onChange={handleChangeVet}
-                          value={form.correo} onBlur={handleBlur}
+                          name='correo'  
+                          type="email" 
+                          placeholder=' Correo... ' 
+                          onChange={handleChangeVet}
+                          value={form.correo} 
+                          onBlur={handleBlur}
                           required 
                           id='correo'
                           className={`input ${(errors.correo) ? 'iWarning' : 'input'}`}
@@ -245,20 +275,6 @@ export const TypeClinica = () => {
                           <label for="correo" className="placeholder"> {useVet.correo} </label>
                         </div>
                         {errors.correo &&               <p id='warningP'>{errors.correo}</p>}
-
-                       <div className="input-container">
-                        <input 
-                          name='telefono' type="text" 
-                          placeholder=' Telefono... ' onChange={handleChangeVet}
-                          value={form.telefono} onBlur={handleBlur}
-                          required 
-                          id='telefono'
-                          className={`input ${(errors.telefono) ? 'iWarning' : 'input'}`}
-                          />
-                          <div class="cut"></div>
-                          <label for="telefono" class="placeholder"> {useVet.telefono} </label>
-                        </div>
-                        {errors.telefono &&             <p id='warningP'>{errors.telefono}</p>}
                       </div>
                     </div>
                     <div className="btnSection">

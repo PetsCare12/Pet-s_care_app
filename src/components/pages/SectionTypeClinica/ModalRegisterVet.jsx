@@ -28,22 +28,34 @@ export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit 
   const validationsForm = (form) => {
 
     let errors = {};
-    let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
-    let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
-    let regexNumbers = /^\d+$/;
-    let regexPass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}/;
 
-         if (!form.imagenVete.trim()) {form.imagenVete = img}
-    else if (!form.documento.trim() || !regexNumbers.test(form.documento)) { errors.documento = "Documento erroneo" }
-    else if (!form.nombre.trim() || !regexName.test(form.nombre)) { errors.nombre = "Nombres erroneo" }
-    else if (!form.apellidos.trim() || !regexName.test(form.apellidos)) { errors.apellidos = "Apellidos erroneos" }
-    else if (!form.telefono.trim() || !regexNumbers.test(form.telefono)) { errors.telefono = "Telefono erroneo" }
+         if (form.imagenVete === "") {form.imagenVete = img}
+
+    else if (!form.documento.trim()) { errors.documento = "Documento erroneo" }
+    else if (!/^\d{7,}$/.test(form.documento)) { errors.documento = "Documento erroneo  mín. 7 caracteres y solo números" }
+
+    else if (!form.nombre.trim()) { errors.nombre = "Nombres erroneos" }
+    else if (!/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(form.nombre)) { errors.nombre = "Nombres erroneos" }
+
+    else if (!form.apellidos.trim()) { errors.apellidos = "Apellidos erroneos" }
+    else if (!/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(form.apellidos)) { errors.apellidos = "Apellidos erroneos" }
+
+    else if (!form.telefono.trim()) { errors.telefono = "Telefono erroneo" }
+    else if (!/^\d{10,10}$/.test(form.telefono)) { errors.telefono = "Telefono erroneo" }
+
     else if (!form.sexovt === "none") {errors.sexovt = "Sexo requerido"}
-    else if (!form.correo.trim() || !regexEmail.test(form.correo)) { errors.correo = "Correo erroneo" }
-    else if (!form.especialidad.trim() || !regexName.test(form.especialidad)) { errors.especialidad = "Especialidad erronea" }
     else if (!form.estadoVt === 0) {errors.estadoVt = "Estado requerido"}
-    else if (!form.password.trim() || !regexPass.test(form.password)) {errors.password = "Debes incluir minúsculas, mayúsculas, números y caracteres especiales en la contraseña"}
 
+    else if (!/^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/.test(form.correo)) { errors.correo = "Correo erroneo" }
+    else if (!form.correo.trim()) { errors.correo = "Correo erroneo" }
+
+    else if (!form.especialidad.trim()) { errors.especialidad = "Especialidad erronea" }
+    else if (!/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(form.especialidad)) { errors.especialidad = "Especialidad erronea" }
+
+    else if (!form.password.trim()) {errors.password = "Debes incluir minúsculas, mayúsculas, números y caracteres especiales en la contraseña"}
+    else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}/.test(form.password)) {errors.password = "Debes incluir minúsculas, mayúsculas, números y caracteres especiales en la contraseña"}
+
+    console.log(errors);
     return errors;
   }
   const {form,errors,loading,response,handleChangeVet,handleBlur,handleSubmit} = useForm(initialForm,validationsForm,token,nit);

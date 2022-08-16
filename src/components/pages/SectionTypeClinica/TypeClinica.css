@@ -398,7 +398,7 @@ span{
 .upload_Image{
     transition: 0.2s;
     position: relative;
-    width: 64px;
+    width: 48px;
     z-index: 10;
     padding-top: 10rem;
     left: 50px;
