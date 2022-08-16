@@ -16,7 +16,7 @@ export const Header = () => {
 
   useEffect(()=>{
       if ( user ) {
-        getUsuarioId( user.jti )
+        getUsuarioId( user.id )
         .then( data => setUserData( data.data ));
         
       }

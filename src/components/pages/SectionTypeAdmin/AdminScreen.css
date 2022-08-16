@@ -138,3 +138,92 @@
 .infoUser__container button{
     background: none;
 }
+.admin__peticiones-modal{
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 50vh;
+    padding: 4vw;
+    position: absolute;
+    width: 50vw;
+}
+.admin__peticiones-modal .cancel{
+    border-radius: 100%;
+    cursor: pointer;
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    right: 0px;
+    top: 0px;
+}
+.admin__peticiones-modal .cancel p{
+    color: #666666;
+    width: 25px;
+    text-align: center;
+}
+.admin__peticiones-modal .cancel p:hover{
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    color: #ffffff;
+    transition: .4s;
+    background-color: #ff3535;
+}
+
+.admin__peticiones-modal .titulo{
+    color: #0072ff;
+}
+
+.admin__peticiones-modal .peticiones{
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    height: 80%;
+    padding: 2vw;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+/* .............. Peticiones Clínicas ................ */
+.peticionesCli__container{
+    align-items: center;
+    background-color: #0072ff;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.7vw;
+    text-align: left;
+}
+.peticionesCli__container .nit{
+    color: white;
+    font-size: 1rem;
+}
+.peticionesCli__container .nombre{
+    color: white;
+    font-size: 15px;
+}
+.peticionesCli__button{
+    color: white;
+    height: 30px;
+    width: 65px;
+}
+.peticionesCli__button.aceptar{
+    background-color: #12d800;
+}
+.peticionesCli__button.denegar{
+    background-color: #ff3535;
+    margin-left: 5px;
+}
+.peticionesCli__button.aceptar:hover{
+    background-color: #0c8b00;
+    transition: .4s;
+}
+.peticionesCli__button.denegar:hover{
+    background-color: #bd0000;
+    transition: .4s;
+}

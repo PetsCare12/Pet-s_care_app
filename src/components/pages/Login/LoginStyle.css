@@ -75,7 +75,7 @@
     align-items: center;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-    gap: 15px;
+    gap: 5px;
 }
 
 .loginData p{
@@ -124,4 +124,149 @@
     position: relative;
     width: 20px;
     height: 20px;
+}
+
+#login__forgotPassword {
+    align-self: flex-start;
+    color: #008eff;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 0;
+    text-decoration: underline;
+    width: auto;
+}
+#login__forgotPassword:hover{
+    color: #0062b3;
+    transition: .4s;
+}
+
+
+/* Modal Forgot Password */
+.forgotPss__container {
+    align-items: center;
+    background-color: white;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 350px;
+    padding: 1%;
+    width: 40%;
+}
+.forgotPss__container h1{
+    color: #008eff;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+.forgotPss__container span{
+    color: #000000;
+    font-size: 15px;
+    font-weight: 100;
+    background-color: #c8e5ff;
+    padding: 6px;
+    border-radius: 6px;
+}
+.forgotPss__container p{
+    color: #595959;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+}
+.forgotPss__container .email-img{
+    color: white;
+    font-size: 4rem;
+}
+.forgotPss__container .div-imgEmail{
+    align-items: center;
+    background-color: #008eff;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    height: 100px;
+    width: 100px;
+}
+.forgotPss__container.recovery{
+    justify-content: space-evenly;
+    position: absolute;
+    height: 450px;
+}
+.forgotPss__container.recovery .cancel {
+    cursor: pointer;
+    position: absolute;
+    font-size: 20px;
+    top: 1%;
+    right: 2%;
+    padding: 5px;
+}
+.forgotPss__container.recovery .cancel:hover{
+    color: red;
+    transition: .4s;
+}
+.forgotPss__container.recovery .inputRecovery-div{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+}
+.forgotPss__container.recovery .inputRecovery-div button{
+    background-color: #008eff;
+    color: white;
+    height: 30px;
+    width: 20%;
+}
+.forgotPss__container.recovery .inputRecovery-div button:hover{
+    background-color: #0062b3;
+    transition: .4s;
+}
+#recovereyPassword-input {
+    height: 40px;
+    width: 60%;
+}
+#btnh30 {
+    height: 30px;
+    font-size: 1rem;
+    padding: 6px 22px;
+    width: 80px;
+    font-weight: 100;
+}
+.forgotPss__container .errorEmail {
+    background-color: #ff5050;
+    border-radius: 6px;
+    color: white;
+    padding: 10px;
+    position: absolute;
+    top: -55px;
+}
+.forgotPss__container .errorEmail #spanEmailError{
+    background: none;
+    cursor: pointer;
+}
+
+.forgotPss__container .errorEmail #spanEmailError:hover{
+    color: white;
+}
+
+.perfil__statusUser{
+    align-items: center;
+    background-color: white;
+    border-top: 6px solid #008eff;
+    border-radius: 4px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 35px;
+    width: auto;
+}
+.perfil__statusUser h1{
+    color: #008eff;
+    font-size: 2rem;
+}
+.perfil__statusUser p{
+    font-size: 1rem;
+    text-align: center;
+    width: 250px;
+    height: auto;
 }
