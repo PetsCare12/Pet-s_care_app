@@ -23,7 +23,7 @@ export const Login = () => {
     // 3 - PENDIENTE
 
     const [loading, setLoading] = useState(false)
-    const [status, setStatus] = useState(0);
+    const [status, setStatus] = useState(null);
     const [forgotPassword, setForgotPassword] = useState(false);
     const [emailSent, setEmailSent] = useState(false);
     const [errorEmail, setErrorEmail] = useState(false);
@@ -133,6 +133,10 @@ export const Login = () => {
                             if ( info.status === 500 ) {
                                 setLoading(false);
                             }
+                            if ( info.status === 0 ) {
+                
+                                setLoading( false );
+                            }
                         });
 
 
@@ -142,6 +146,7 @@ export const Login = () => {
                     {({ errors }) => (
                         <Form className='formLogin'>
                             { ( status === 500 ) && <p id='formLogin__badData'>El correo o contraseña son incorrectos</p> }
+                            { ( status === 0 ) && <p id='formLogin__badData'>Estamos presentando problemas. Intentalo más tarde</p> }
                             { mssStatus && 
                             
                                 <SimpleModal>
