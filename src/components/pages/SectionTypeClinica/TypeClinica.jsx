@@ -9,7 +9,7 @@ import { getVeterinarioById, getVeterinarios } from '../../../helpers/API Consum
 import "./TypeClinica.css";
 
 export const TypeClinica = () => {
-
+  let nameClinic = "Veterinaria Salud Canina";
   // let nitClinic = 111;
   // let tokenClinic = "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxMTEiLCJzdWIiOiJzYWx1ZGNhbmluYUB2ZXRlcmluYXJpYXMuY29tIiwiYXVkIjoiW1JPTEVfQ0xJTklDQV0iLCJpYXQiOjE2NjAxNzk4ODIsImV4cCI6MTY2MDc4NDY4MX0.pBUjcGe1MUCv1AgUfDwpPoQcFb6lE4Q2V4D0BTlAf2NydWBJaF0t0p8tA9CNH5KPAvkclHS5My_ej2v3_XIl0A"
 
@@ -84,10 +84,12 @@ export const TypeClinica = () => {
     else if (!/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(form.apellidos)) { errors.apellidos = "Apellidos erroneos" }
 
     else if (!form.telefono.trim()) { errors.telefono = "Telefono erroneo" }
-    else if (!/^\d{10,10}$/.test(form.telefono)) { errors.telefono = "Telefono erroneo" }
+    else if (/^\d{10,10}$/.test(form.telefono)) { errors.telefono = "Telefono erroneo" }
 
     else if (!form.sexovt === "none") {errors.sexovt = "Sexo requerido"}
-    else if (!form.especialidad.trim() || /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(form.especialidad)) { errors.especialidad = "Especialidad erronea" }
+    else if (!form.especialidad.trim()) { errors.especialidad = "Especialidad erronea" }
+
+    else if (!/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(form.especialidad)) { errors.especialidad = "Especialidad erronea" }
 
     else if (!form.correo.trim()){ errors.correo = "Correo erroneo" }
     else if (!/^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/.test(form.correo)) { errors.correo = "Correo erroneo" }
@@ -97,7 +99,7 @@ export const TypeClinica = () => {
     return errors;  
   }
 
-  const {form,errors,loading,response,handleChangeVet,handleBlur,handleSubmit} = useForm(initialForm,validationsForm,tokenClinic);
+  const {form,errors,loading,response,estatusResponse,handleChangeVet,handleBlur,handleSubmit} = useForm(initialForm,validationsForm,tokenClinic);
   
   const disableVet = (e) => {};
 
@@ -110,7 +112,7 @@ export const TypeClinica = () => {
               <spam id='titleP2'>{"Para Veterinarias †"}</spam>
             </div>
             <div id='titleP3'>
-              <h1>{"Veterinaria Salud Canina"}</h1>
+              <h1>{nameClinic}</h1>
               <hr className='hrVet'/>
             </div>
           </div>
@@ -157,10 +159,6 @@ export const TypeClinica = () => {
                 (JSON.stringify(useVet) !== '{}')
                 ? 
                   <form onSubmit={handleSubmit} className='formVet  animate__animated animate__fadeIn'>
-
-                        {response ? <p id='succesP  animate__animated animate__fadeIn'>Simulacion de Envio terminada!</p> : <p></p>}
-
-
                       <div className="imgForm  animate__animated animate__fadeIn">
                         <div className="imagen_container">
                           <div className="img_cont_vet">
@@ -180,7 +178,10 @@ export const TypeClinica = () => {
                           </div>
                       </div>
 
-                      <div>{loading && <div id='login-spin-clinic' className='spiner'></div>}</div>
+                      <div>
+                        {loading && <div id='login-spin-clinic' className='spiner'></div>}
+                        {response && <p id='succesP  animate__animated animate__fadeIn'>{estatusResponse}</p>}
+                      </div>
                       
                     <div className="bottomForm  animate__animated animate__fadeIn">
                       <div className="inputsVet">
@@ -193,12 +194,12 @@ export const TypeClinica = () => {
                           value={form.nombre} onBlur={handleBlur}
                           required 
                           id='nombre'
-                          className={`input ${(errors.nombre) ? 'iWarning' : 'input'}`}
+                          className='input'
                           />
                           <div class="cut"></div>
-                          <label for="nombre" class="placeholder"> {useVet.nombre} </label>
+                          <label for="nombre" className="placeholder"> {useVet.nombre} </label>
                         </div>
-                        {errors.nombre &&               <p id='warningP'>{errors.nombre}</p>}
+                        {errors.nombre && <p id='warn-login'>{errors.nombre}</p>}
 
                         <div className='input-container'>
                           <input 
@@ -210,12 +211,12 @@ export const TypeClinica = () => {
                           onBlur={handleBlur}
                           required 
                           id='apellido'
-                          className={`input ${(errors.apellidos) ? 'iWarning' : 'input'}`}
+                          className='input'                          
                           />
                           <div class="cut"></div>
-                          <label for="apellido" class="placeholder"> {useVet.apellidos} </label>
+                          <label for="apellido" className="placeholder"> {useVet.apellidos} </label>
                         </div>
-                        {errors.apellidos &&             <p id='warningP'>{errors.apellidos}</p>}
+                        {errors.apellidos && <p id='warn-login'>{errors.apellidos}</p>}
 
                         <div className="input-container">
                           <input 
@@ -227,12 +228,12 @@ export const TypeClinica = () => {
                           onBlur={handleBlur}
                           required 
                           id='telefono'
-                          className={`input ${(errors.telefono) ? 'iWarning' : 'input'}`}
+                          className='input'
                           />
                           <div class="cut"></div>
-                          <label for="telefono" class="placeholder"> {useVet.telefono} </label>
+                          <label for="telefono" className="placeholder"> {useVet.telefono} </label>
                         </div>
-                        {errors.telefono &&             <p id='warningP'>{errors.telefono}</p>}
+                        {errors.telefono && <p id='warn-login'>{errors.telefono}</p>}
 
                         <select name="sexovt" id="sexovt" className='input' onChange={handleChangeVet} value={form.sexovt} onBlur={handleBlur}>
                           <option value="none">Seleccione el sexo</option>
@@ -240,7 +241,7 @@ export const TypeClinica = () => {
                           <option value="mujer">Mujer</option>
                           <option value="otro">Otro</option>
                         </select>
-                        {errors.sexo &&                 <p id='warningP'>{errors.sexovt}</p>}
+                        {errors.sexo && <p id='warn-login'>{errors.sexovt}</p>}
 
                         <div className="input-container">
                           <input 
@@ -252,12 +253,12 @@ export const TypeClinica = () => {
                           onBlur={handleBlur}
                           required
                           id='especialidad'
-                          className={`input ${(errors.especialidad) ? 'iWarning' : 'input'}`}
+                          className='input'
                           />
                           <div class="cut"></div>
-                          <label for="especialidad" class="placeholder"> {useVet.especialidad} </label>
+                          <label for="especialidad" className="placeholder"> {useVet.especialidad} </label>
                         </div>
-                        {errors.especialidad &&         <p id='warningP'>{errors.especialidad}</p>}
+                        {errors.especialidad && <p id='warn-login'>{errors.especialidad}</p>}
 
                         <div className="input-container">
                           <input 
@@ -269,12 +270,12 @@ export const TypeClinica = () => {
                           onBlur={handleBlur}
                           required 
                           id='correo'
-                          className={`input ${(errors.correo) ? 'iWarning' : 'input'}`}
+                          className='input'
                           />
                           <div class="cut"></div>
                           <label for="correo" className="placeholder"> {useVet.correo} </label>
                         </div>
-                        {errors.correo &&               <p id='warningP'>{errors.correo}</p>}
+                        {errors.correo && <p id='warn-login'>{errors.correo}</p>}
                       </div>
                     </div>
                     <div className="btnSection">

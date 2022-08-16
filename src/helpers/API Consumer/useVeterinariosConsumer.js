@@ -87,7 +87,7 @@ export const setVeterinario = async( veterinario , nit , access_token ) => {
     } catch (error) {
 
         if ( error.response ) {
-            console.log(error.response.status);
+            console.log(error.response);
             return error.response.status;
         }
 

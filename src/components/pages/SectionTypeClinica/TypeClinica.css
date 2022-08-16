@@ -311,10 +311,6 @@ span{
     flex-direction: column; 
     gap: 20px;
 }
-.iWarning{
-    border: 2px solid #ff0000;
-    background-color: #ff04041f;
-}
 #titleValidation{
     display: flex;
     flex-direction: column;

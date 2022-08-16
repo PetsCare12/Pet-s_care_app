@@ -5,33 +5,31 @@ import { useSendImage } from '../../../helpers/Cloudinary_Images/useSendImages';
 import { ButtonUI } from '../../UI/ButtonUI/ButtonUI';
 import { useForm } from '../../../helpers/useForm';
 import "./ModalRegisterVet.css";
+import { imageRandom } from '../../../helpers/RandomImages/imagenessa';
 
 export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit }) => {
 
-  let imgDefault = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJxA5cTf-5dh5Eusm0puHbvAhOrCRPtckzjA&usqp=CAU";
   const {myWidgetVeter,urlImage} = useSendImage();
-  const [img, setimg] = useState(imgDefault);
+  const [img, setimg] = useState(imageRandom);
 
   const initialForm = {
     documento: "",
     nombre: "",
     apellidos: "",
-    telefono: "",
     sexovt: "none",
+    telefono: "",
     correo: "",
     especialidad: "",
+    password: "",
     imagenVete: "",
-    estadoVt: 0,
-    password: ""
+    estadoVt: 0
   };
 
   const validationsForm = (form) => {
 
     let errors = {};
 
-         if (form.imagenVete === "") {form.imagenVete = img}
-
-    else if (!form.documento.trim()) { errors.documento = "Documento erroneo" }
+         if (!form.documento.trim()) { errors.documento = "Documento erroneo" }
     else if (!/^\d{7,}$/.test(form.documento)) { errors.documento = "Documento erroneo  mín. 7 caracteres y solo números" }
 
     else if (!form.nombre.trim()) { errors.nombre = "Nombres erroneos" }
@@ -46,8 +44,8 @@ export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit 
     else if (!form.sexovt === "none") {errors.sexovt = "Sexo requerido"}
     else if (!form.estadoVt === 0) {errors.estadoVt = "Estado requerido"}
 
-    else if (!/^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/.test(form.correo)) { errors.correo = "Correo erroneo" }
     else if (!form.correo.trim()) { errors.correo = "Correo erroneo" }
+    else if (!/^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/.test(form.correo)) { errors.correo = "Correo erroneo" }
 
     else if (!form.especialidad.trim()) { errors.especialidad = "Especialidad erronea" }
     else if (!/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(form.especialidad)) { errors.especialidad = "Especialidad erronea" }
@@ -55,10 +53,9 @@ export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit 
     else if (!form.password.trim()) {errors.password = "Debes incluir minúsculas, mayúsculas, números y caracteres especiales en la contraseña"}
     else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}/.test(form.password)) {errors.password = "Debes incluir minúsculas, mayúsculas, números y caracteres especiales en la contraseña"}
 
-    console.log(errors);
-    return errors;
+      return errors;
   }
-  const {form,errors,loading,response,handleChangeVet,handleBlur,handleSubmit} = useForm(initialForm,validationsForm,token,nit);
+  const {form,errors,loading,response,estatusResponse,handleChangeVet,handleBlur,handleSubmit} = useForm(initialForm,validationsForm,token,nit);
 
   const showWidget = () => {myWidgetVeter.open();};
 
@@ -73,7 +70,6 @@ export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit 
 
           <div className="btn_close_container">
             <div id='MdOutlineCancelVet' onClick={closeModal}><MdOutlineCancel /></div>
-            <div>{loading && <div id='login-spin-clinic' className='spiner'></div>}</div>
           </div>
 
           <div className="input_registerVet_container">
@@ -82,8 +78,11 @@ export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit 
 
             <form onSubmit={handleSubmit} className='formVet_register animate__animated animate__fadeIn'>
 
+                {loading && <div id='login-spin-clinic' className='spiner'></div>}
+                {response && <p id='succesP  animate__animated animate__fadeIn'>{estatusResponse}</p>}
+
               <div className="img_cont_vet">
-                <img src={form.imagenVete =  img} alt="" id='imgForm'/>
+                <img src={form.imagenVete = img} alt="" id='imgForm'/>
               </div>
 
               <div className='setImg_register_container'>
@@ -122,12 +121,12 @@ export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit 
                 <input type="text" 
                 placeholder='Apellido' 
                 className='input regs'
-                name='apellido'
+                name='apellidos'
                 onChange={handleChangeVet}
                 value={form.apellido}
                 onBlur={handleBlur}
                 required
-                id='apellido'/>
+                id='apellidos'/>
 
                 <input type="text" 
                 placeholder='Telefono' 

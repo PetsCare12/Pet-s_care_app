@@ -7,6 +7,7 @@ export const useForm = (initialForm , validateForm , token , nit) => {
     const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(false);
     const [response, setResponse] = useState(null);
+    const [estatusResponse, setestatusResponse] = useState("");
 
     const handleChangeVet = (e) => {
         const {name,value} = e.target;
@@ -28,23 +29,71 @@ export const useForm = (initialForm , validateForm , token , nit) => {
 
             if (e.target.classList.value === "formVet  animate__animated animate__fadeIn") {
 
-                putVeterinario(form,form.documento,token).then( data => console.log(data));
-                console.log("Actualizacion Veterinario");
+                putVeterinario(form,form.documento,token).then( data =>  {
+
+                    if (data === "Veterinario Actualizado con exito") {
+
+                        setestatusResponse("Actualizacion Exitosa!");
+
+                        setTimeout(() => {
+                            setResponse(true);
+                            setLoading(false);
+                        } , 3000);
+                        setTimeout(() => {
+                            setResponse(false);
+                        } , 7000);
+
+                    }else{
+
+                        setestatusResponse("Actualizacion Fallida!");
+
+                        setTimeout(() => {
+                            setResponse(true);
+                            setLoading(false);
+                        } , 3000);
+                        setTimeout(() => {
+                            setResponse(false);
+                        } , 7000);
+
+                    }
+
+                });
+               
 
             }else if (e.target.classList.value === "formVet_register animate__animated animate__fadeIn") {
                 
-                setVeterinario(form,nit,token).then( data => console.log(data));
-                console.log("Registro Veterinario");
+                setVeterinario(form,nit,token).then( data => {
+                    
+                    if (data === "Veterinario registrada con exito") {
+
+                        setestatusResponse("Registro Exitoso!");
+
+                        setTimeout(() => {
+                            setResponse(true);
+                            setLoading(false);
+                        } , 3000);
+                        setTimeout(() => {
+                            setResponse(false);
+                        } , 7000);
+
+                    }else{
+
+                        setestatusResponse("Registro Fallido!");
+
+                        setTimeout(() => {
+                            setResponse(true);
+                            setLoading(false);
+                        } , 3000);
+                        setTimeout(() => {
+                            setResponse(false);
+                        } , 7000);
+
+                    }
+
+                });
 
             }
 
-            setTimeout(() => {
-                setResponse(true);
-                setLoading(false);
-            } , 3000);
-            setTimeout(() => {
-                setResponse(false);
-            } , 7000);
 
         }else{
 
@@ -55,7 +104,7 @@ export const useForm = (initialForm , validateForm , token , nit) => {
 
     return {
         form,errors,
-        loading,response,
+        loading,response,estatusResponse,
         handleChangeVet,handleBlur,handleSubmit
     }
 }
