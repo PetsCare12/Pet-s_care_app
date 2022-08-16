@@ -427,4 +427,9 @@ span{
     height:200px;
     width: 200px;
 }
+.notFound{
+    height: 10vh;
+    display: flex;
+    justify-content: center ;
+}
 /* //////////////////// */

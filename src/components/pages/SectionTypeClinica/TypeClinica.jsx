@@ -10,11 +10,11 @@ import "./TypeClinica.css";
 
 export const TypeClinica = () => {
 
-  // let nitClinic = 111;
-  // let tokenClinic = "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxMTEiLCJzdWIiOiJzYWx1ZGNhbmluYUB2ZXRlcmluYXJpYXMuY29tIiwiYXVkIjoiW1JPTEVfQ0xJTklDQV0iLCJpYXQiOjE2NjAxNzk4ODIsImV4cCI6MTY2MDc4NDY4MX0.pBUjcGe1MUCv1AgUfDwpPoQcFb6lE4Q2V4D0BTlAf2NydWBJaF0t0p8tA9CNH5KPAvkclHS5My_ej2v3_XIl0A"
+  let nitClinic = 111;
+  let tokenClinic = "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxMTEiLCJzdWIiOiJzYWx1ZGNhbmluYUB2ZXRlcmluYXJpYXMuY29tIiwiYXVkIjoiW1JPTEVfQ0xJTklDQV0iLCJpYXQiOjE2NjAxNzk4ODIsImV4cCI6MTY2MDc4NDY4MX0.pBUjcGe1MUCv1AgUfDwpPoQcFb6lE4Q2V4D0BTlAf2NydWBJaF0t0p8tA9CNH5KPAvkclHS5My_ej2v3_XIl0A"
 
-  let nitClinic = 1010;
-  let tokenClinic =  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWx1ZGNhbmluYUB2ZXRlcmluYXJpYXMuY29tIiwiYXVkIjoiW1JPTEVfQ0xJTklDQV0iLCJlc3RhZG8iOjEsImlkIjoxMDEwLCJleHAiOjE2NjA5MzE3MTAsImlhdCI6MTY2MDMyNjkxMH0.eQPuQYTPp4NQXTCea-5hiCuBf5AcRgD7h46egTe8ZB8Bg9_L9nilCVm_M3lD0GOETgC0xtr_07FZ37fTVo7U-g";
+  // let nitClinic = 1010;
+  // let tokenClinic =  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWx1ZGNhbmluYUB2ZXRlcmluYXJpYXMuY29tIiwiYXVkIjoiW1JPTEVfQ0xJTklDQV0iLCJlc3RhZG8iOjEsImlkIjoxMDEwLCJleHAiOjE2NjA5MzE3MTAsImlhdCI6MTY2MDMyNjkxMH0.eQPuQYTPp4NQXTCea-5hiCuBf5AcRgD7h46egTe8ZB8Bg9_L9nilCVm_M3lD0GOETgC0xtr_07FZ37fTVo7U-g";
 
   const [arrState, setarrState] = useState(true);
   const [arr, setarr] = useState([]);
@@ -25,52 +25,53 @@ export const TypeClinica = () => {
   const [requestState, setrequestState] = useState(true);
 
   const getVeterId = (e) => {
-    if (e.keyCode == "13") {
-
+    if (e.keyCode === 13) {
       if (e.target.value !== "") {
-
-        getVeterinarioById(e.target.value).then( data => setarr([data]));
-        
-          if (arr[0] === 404) {
-            console.log("No existe");
+        getVeterinarioById(e.target.value).then( data => {
+          if (data === 404) {
             setrequestState(false);
           }else{
-            console.log("Si esxiste");
+            setarr([data])
             setrequestState(true);
           }
-
+        });
         setarrState(false);
       }
     }else if (e.target.value === "") {
+      setrequestState(true);
       setarrState(true);
     }   
-  } 
+  }
 
   useEffect(() => {
     if (arrState === true) {
       getVeterinarios(nitClinic).then( data => setarr(data));
     }
-  }, [arrState])
+  }, [arrState]);
 
   const getVet = (e) => {
-    setimg(e.imagenVete)
+    setimg(e.imagenVete);
     setVet(e);
+    form.password = e.password;
   }
 
   useEffect(() => {
     setimg(urlImage);
-    console.log(urlImage);
   }, [urlImage])
   
   const showWidget = () => {myWidgetVeter.open();};
 
   const initialForm = {
     documento: "",
-    nombre: "",apellido: "",
-    telefono: "",sexovt: "",
-    especialidad: "",imagenVete: "",
+    nombre: "",
+    apellidos: "",
+    telefono: "",
+    sexovt: "none",
+    especialidad: "",
+    imagenVete: "",
     correo: "",
-    estadoVt: 1
+    estadoVt: 1,
+    password : ""
   };
 
   const validationsForm = (form) => {
@@ -79,30 +80,20 @@ export const TypeClinica = () => {
     let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
     let regexNumbers = /^\d+$/;
 
-         if (form.imagenVete === "") {form.imagenVete = useVet.imagenVete}
-    else if (!form.apellido.trim()) {errors.apellido = "El 'Apellido:' es requerido!";}
-
-    else if (!form.nombre.trim()) {errors.nombre = "El 'Nombre:' es requerido!";}
-    else if (!form.sexovt.trim()) {errors.sexovt = "El 'Sexo:' es requerido!";}
-
-    else if (!form.especialidad.trim()) {errors.especialidad = "El 'Especialidad:' es requerido!";}
-    else if (!form.telefono.trim()) {errors.telefono = "El 'Telefono:' es requerido!";}
-
-    else if (!form.correo.trim()) {errors.correo = "El 'Correo:' es requerido!";}
-    else if (!regexName.test(form.apellido.trim())) {errors.apellido = "El 'Apellido:' solo acepta letras!"}
-
-    else if (!regexName.test(form.nombre.trim())) {errors.nombre = "El campo 'Nombre:' solo acepta letras!"}
-    else if (!regexName.test(form.sexovt.trim())) {errors.sexovt = "El campo 'Sexo:' solo acepta letras!"}
-
-    else if (!regexName.test(form.especialidad.trim())) {errors.especialidad = "El campo 'Especialidad:' solo acepta letras!"}
-    else if (!regexNumbers.test(form.telefono.trim())) {errors.telefono = "El campo 'Telefono:' solo acepta numeros!"}
+         if (!form.imagenVete.trim()) {form.imagenVete = img}
+    else if (!form.documento.trim() || !regexNumbers.test(form.documento)) { errors.documento = "Documento erroneo" }
+    else if (!form.nombre.trim() || !regexName.test(form.nombre)) { errors.nombre = "Nombres erroneo" }
+    else if (!form.apellidos.trim() || !regexName.test(form.apellidos)) { errors.apellidos = "Apellidos erroneos" }
+    else if (!form.telefono.trim() || !regexNumbers.test(form.telefono)) { errors.telefono = "Telefono erroneo" }
+    else if (!form.sexovt === "none") {errors.sexovt = "Sexo requerido"}
+    else if (!form.especialidad.trim() || !regexName.test(form.especialidad)) { errors.especialidad = "Especialidad erronea" }
+    else if (!form.correo.trim() || !regexEmail.test(form.correo)) { errors.correo = "Correo erroneo" }
     
-    else if (!regexEmail.test(form.correo.trim())) {errors.correo = "El campo 'Correo:' es Incorrecto!"}
-
-    return errors;
+    return errors;  
   }
 
   const {form,errors,loading,response,handleChangeVet,handleBlur,handleSubmit} = useForm(initialForm,validationsForm,tokenClinic);
+  
   const disableVet = (e) => {};
 
   return (
@@ -151,7 +142,7 @@ export const TypeClinica = () => {
                   </li>
                 ))
                 : 
-                <li><h2>No encontrado</h2></li>
+                <li className="liVetSpace animate__animated animate__backInUp notFound"><h2>Veterinario no encontrado</h2></li>
               }
               </ul>
             </div>
@@ -190,10 +181,10 @@ export const TypeClinica = () => {
                       <div className="inputsVet">
                         <div className='input-container'>
                           <input 
-                          name='apellido' type="text" 
+                          name='apellidos' type="text" 
                           placeholder=' Apellido... '
                           onChange={handleChangeVet}
-                          value={form.apellido} onBlur={handleBlur}
+                          value={form.apellidos} onBlur={handleBlur}
                           required 
                           id='apellido'
                           className={`input ${(errors.apellidos) ? 'iWarning' : 'input'}`}
@@ -201,7 +192,7 @@ export const TypeClinica = () => {
                           <div class="cut"></div>
                           <label for="apellido" class="placeholder"> {useVet.apellidos} </label>
                         </div>
-                        {errors.apellidos &&             <p id='warningP'>{errors.apellido}</p>}
+                        {errors.apellidos &&             <p id='warningP'>{errors.apellidos}</p>}
 
                         <div className="input-container">
                           <input 
@@ -218,18 +209,12 @@ export const TypeClinica = () => {
                         </div>
                         {errors.nombre &&               <p id='warningP'>{errors.nombre}</p>}
 
-                        <div className="input-container">
-                          <input 
-                          name='sexovt' type="text" 
-                          placeholder=' Sexo... ' onChange={handleChangeVet}
-                          value={form.sexovt} onBlur={handleBlur}
-                          id='sexo'
-                          className={`input ${(errors.sexovt) ? 'iWarning' : 'input'}`}
-                          required 
-                          />
-                          <div class="cut"></div>
-                          <label for="sexo" class="placeholder"> {useVet.sexovt} </label>
-                        </div>
+                        <select name="sexovt" id="sexovt" className='input' onChange={handleChangeVet} value={form.sexovt} onBlur={handleBlur}>
+                          <option value="none">Seleccione el sexo</option>
+                          <option value="hombre">Hombre</option>
+                          <option value="mujer">Mujer</option>
+                          <option value="otro">Otro</option>
+                        </select>
                         {errors.sexo &&                 <p id='warningP'>{errors.sexovt}</p>}
 
                         <div className="input-container">

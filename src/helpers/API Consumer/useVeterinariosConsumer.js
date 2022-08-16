@@ -13,7 +13,7 @@ export const getVeterinarios = async( nit ) => {
 
         if ( error.response ) {
             console.log(error.response.status);
-            return error.response.status;
+            return error.response;
         }
 
     }
@@ -65,7 +65,7 @@ export const setVeterinario = async( veterinario , nit , access_token ) => {
     try {
         
         const sendRequest = await axios({
-            url : `${url}veterinarios/${nit}`,
+            url : `${url}/veterinarios/${nit}`,
             method : 'POST',
             headers : {
                 "Content-Type":"application/json",
@@ -102,7 +102,7 @@ export const putVeterinario = async( veterinario , id , access_token ) => {
     try {
 
         const sendRequest = await axios({
-            url : `${url}veterinarios/${id}`,
+            url : `${url}/veterinarios/${id}`,
             method : 'PUT',
             headers : {
                 "Content-Type":"application/json",

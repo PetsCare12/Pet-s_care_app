@@ -1,24 +1,23 @@
-import React, { useState } from 'react'
-import "./ModalRegisterVet.css";
+import React, { useEffect, useState } from 'react'
 import { MdOutlineCancel } from 'react-icons/md';
 import { pets_images } from '../../../helpers/Pets_care_images';
 import { useSendImage } from '../../../helpers/Cloudinary_Images/useSendImages';
 import { ButtonUI } from '../../UI/ButtonUI/ButtonUI';
 import { useForm } from '../../../helpers/useForm';
+import "./ModalRegisterVet.css";
 
 export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit }) => {
 
   let imgDefault = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJxA5cTf-5dh5Eusm0puHbvAhOrCRPtckzjA&usqp=CAU";
   const {myWidgetVeter,urlImage} = useSendImage();
-  const showWidget = () => {myWidgetVeter.open()};
   const [img, setimg] = useState(imgDefault);
 
   const initialForm = {
     documento: "",
     nombre: "",
-    apellido: "",
+    apellidos: "",
     telefono: "",
-    sexovt: "",
+    sexovt: "none",
     correo: "",
     especialidad: "",
     imagenVete: "",
@@ -32,30 +31,28 @@ export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit 
     let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
     let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
     let regexNumbers = /^\d+$/;
+    let regexPass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}/;
 
-         if (!form.imagenVete === "") {form.imagenVete = img}
-    else if (!form.documento.trim()) {errors.documento = "El 'Documento:' es requerido!";}
-    else if (!form.nombre.trim()) {errors.nombre = "El 'Nombre:' es requerido!";}
-    else if (!form.apellido.trim()) {errors.apellido = "El 'Apellido:' es requerido!";}
-    else if (!form.telefono.trim()) {errors.telefono = "El 'Telefono:' es requerido!";}
-    else if (!form.especialidad.trim()) {errors.especialidad = "El 'Especialidad:' es requerido!";}
-    else if (!form.especialidad.trim()) {errors.especialidad = "El 'Especialidad:' es requerido!";}
-    else if (!form.correo.trim()) {errors.correo = "El 'Correo:' es requerido!";}
-    else if (!form.password.trim()) {errors.correo = "La 'Contraseña:' es requerido!";}
+         if (!form.imagenVete.trim()) {form.imagenVete = img}
+    else if (!form.documento.trim() || !regexNumbers.test(form.documento)) { errors.documento = "Documento erroneo" }
+    else if (!form.nombre.trim() || !regexName.test(form.nombre)) { errors.nombre = "Nombres erroneo" }
+    else if (!form.apellidos.trim() || !regexName.test(form.apellidos)) { errors.apellidos = "Apellidos erroneos" }
+    else if (!form.telefono.trim() || !regexNumbers.test(form.telefono)) { errors.telefono = "Telefono erroneo" }
+    else if (!form.sexovt === "none") {errors.sexovt = "Sexo requerido"}
+    else if (!form.correo.trim() || !regexEmail.test(form.correo)) { errors.correo = "Correo erroneo" }
+    else if (!form.especialidad.trim() || !regexName.test(form.especialidad)) { errors.especialidad = "Especialidad erronea" }
+    else if (!form.estadoVt === 0) {errors.estadoVt = "Estado requerido"}
+    else if (!form.password.trim() || !regexPass.test(form.password)) {errors.password = "Debes incluir minúsculas, mayúsculas, números y caracteres especiales en la contraseña"}
 
-    else if (!regexNumbers.test(form.documento.trim())) {errors.documento = "El 'Documento:' solo acepta numeros!"}
-    else if (!regexName.test(form.nombre.trim())) {errors.nombre = "El campo 'Nombre:' solo acepta letras!"}
-    else if (!regexName.test(form.apellido.trim())) {errors.apellido = "El 'Apellido:' solo acepta letras!"}
-    else if (!regexNumbers.test(form.telefono.trim())) {errors.telefono = "El campo 'Telefono:' solo acepta numeros!"}
-    else if (!form.sexovt === 0) {errors.sexovt = "El 'Sexo:' es requerido!";}
-    else if (!form.estadoVt === 0) {errors.estadoVt = "El 'Estado:' es requerido!";}
-    else if (!form.especialidad.trim()) {errors.especialidad = "El 'Especialidad:' es requerido!";}
-    else if (!regexName.test(form.especialidad.trim())) {errors.especialidad = "El campo 'Especialidad:' solo acepta letras!"}
-    else if (!regexEmail.test(form.correo.trim())) {errors.correo = "El campo 'Correo:' es Incorrecto!"}
-    else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}/.test(form.password)) {errors.password = 'Debes incluir minúsculas, mayúsculas, números y caracteres especiales en la contraseña';}
     return errors;
   }
   const {form,errors,loading,response,handleChangeVet,handleBlur,handleSubmit} = useForm(initialForm,validationsForm,token,nit);
+
+  const showWidget = () => {myWidgetVeter.open();};
+
+  useEffect(() => {
+    setimg(urlImage);
+  }, [urlImage])
 
   return (
 
