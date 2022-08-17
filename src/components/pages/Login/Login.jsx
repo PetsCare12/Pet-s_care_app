@@ -51,7 +51,7 @@ export const Login = () => {
 
         setLoadingEmail( true );
 
-        emailjs.sendForm('service_kagt37a','template_o4defbc', e.target,'akQoWyMBUDzn4jOoB')
+        emailjs.sendForm('service_kagt37a','template_4f77v7z', e.target,'akQoWyMBUDzn4jOoB')
         .then( response => {
             console.log( response );
             if ( response.status === 200 ) {
