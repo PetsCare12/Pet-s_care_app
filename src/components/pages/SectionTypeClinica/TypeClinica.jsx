@@ -7,14 +7,15 @@ import { ModalRegisterVet } from './ModalRegisterVet';
 import { useSendImage } from '../../../helpers/Cloudinary_Images/useSendImages';
 import { getVeterinarioById, getVeterinarios } from '../../../helpers/API Consumer/useVeterinariosConsumer';
 import "./TypeClinica.css";
+import { PhotoProfile } from '../Profile/PhotoProfile';
 
 export const TypeClinica = () => {
   let nameClinic = "Veterinaria Salud Canina";
-  // let nitClinic = 111;
-  // let tokenClinic = "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxMTEiLCJzdWIiOiJzYWx1ZGNhbmluYUB2ZXRlcmluYXJpYXMuY29tIiwiYXVkIjoiW1JPTEVfQ0xJTklDQV0iLCJpYXQiOjE2NjAxNzk4ODIsImV4cCI6MTY2MDc4NDY4MX0.pBUjcGe1MUCv1AgUfDwpPoQcFb6lE4Q2V4D0BTlAf2NydWBJaF0t0p8tA9CNH5KPAvkclHS5My_ej2v3_XIl0A"
+  let nitClinic = 111;
+  let tokenClinic = "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxMTEiLCJzdWIiOiJzYWx1ZGNhbmluYUB2ZXRlcmluYXJpYXMuY29tIiwiYXVkIjoiW1JPTEVfQ0xJTklDQV0iLCJpYXQiOjE2NjAxNzk4ODIsImV4cCI6MTY2MDc4NDY4MX0.pBUjcGe1MUCv1AgUfDwpPoQcFb6lE4Q2V4D0BTlAf2NydWBJaF0t0p8tA9CNH5KPAvkclHS5My_ej2v3_XIl0A"
 
-  let nitClinic = 1010;
-  let tokenClinic =  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWx1ZGNhbmluYUB2ZXRlcmluYXJpYXMuY29tIiwiYXVkIjoiW1JPTEVfQ0xJTklDQV0iLCJlc3RhZG8iOjEsImlkIjoxMDEwLCJleHAiOjE2NjA5MzE3MTAsImlhdCI6MTY2MDMyNjkxMH0.eQPuQYTPp4NQXTCea-5hiCuBf5AcRgD7h46egTe8ZB8Bg9_L9nilCVm_M3lD0GOETgC0xtr_07FZ37fTVo7U-g";
+  // let nitClinic = 1010;
+  // let tokenClinic =  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWx1ZGNhbmluYUB2ZXRlcmluYXJpYXMuY29tIiwiYXVkIjoiW1JPTEVfQ0xJTklDQV0iLCJlc3RhZG8iOjEsImlkIjoxMDEwLCJleHAiOjE2NjA5MzE3MTAsImlhdCI6MTY2MDMyNjkxMH0.eQPuQYTPp4NQXTCea-5hiCuBf5AcRgD7h46egTe8ZB8Bg9_L9nilCVm_M3lD0GOETgC0xtr_07FZ37fTVo7U-g";
 
   const [arrState, setarrState] = useState(true);
   const [arr, setarr] = useState([]);
@@ -44,9 +45,7 @@ export const TypeClinica = () => {
   }
 
   useEffect(() => {
-    if (arrState === true) {
-      getVeterinarios(nitClinic).then( data => setarr(data));
-    }
+    getVeterinarios(nitClinic).then( data => setarr(data));
   }, [arrState]);
 
   const getVet = (e) => {
@@ -161,11 +160,8 @@ export const TypeClinica = () => {
                   <form onSubmit={handleSubmit} className='formVet  animate__animated animate__fadeIn'>
                       <div className="imgForm  animate__animated animate__fadeIn">
                         <div className="imagen_container">
-                          <div className="img_cont_vet">
+                          <div title='Sube una Imgen!' className="img_cont_vet" onClick={showWidget}>
                               <img src={form.imagenVete = img} alt="" id='imgForm'/>
-                              <a onClick={showWidget} className="a_uploadImage">
-                                <img src={pets_images('./veterinarios/subir.png')} alt="Subir Imagen" className='upload_Image'/>
-                              </a>
                           </div>
                       </div>
                       <div className="imgForm  animate__animated animate__fadeIn">
@@ -188,10 +184,12 @@ export const TypeClinica = () => {
 
                         <div className="input-container">
                           <input 
-                          name='nombre' type="text"
+                          name='nombre' 
+                          type="text"
                           placeholder=' Nombre... ' 
                           onChange={handleChangeVet}
-                          value={form.nombre} onBlur={handleBlur}
+                          value={form.nombre} 
+                          onBlur={handleBlur}
                           required 
                           id='nombre'
                           className='input'

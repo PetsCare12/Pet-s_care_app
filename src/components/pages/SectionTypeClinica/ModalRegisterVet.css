@@ -66,17 +66,6 @@
     justify-content: center;
 }
 /* ///////////////////// */
-.upload_Image_regs{
-    transition: 0.2s;
-    position: relative;
-    width: 64px;
-    z-index: 10;
-    margin-top: -4rem;
-    border-radius: 0;
-}
-.a_upload_Image_regs{
-    cursor: pointer;
-}
 .submit.vetRes{
     width: 25vh;
 }

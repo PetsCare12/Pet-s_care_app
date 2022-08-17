@@ -39,7 +39,7 @@ export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit 
     else if (!/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(form.apellidos)) { errors.apellidos = "Apellidos erroneos" }
 
     else if (!form.telefono.trim()) { errors.telefono = "Telefono erroneo" }
-    else if (!/^\d{10,10}$/.test(form.telefono)) { errors.telefono = "Telefono erroneo" }
+    else if (!/^\d{10,10}$/.test(form.telefono)) { errors.telefono = "Telefono erroneo mín. 10 caracteres y solo números" }
 
     else if (!form.sexovt === "none") {errors.sexovt = "Sexo requerido"}
     else if (!form.estadoVt === 0) {errors.estadoVt = "Estado requerido"}
@@ -81,14 +81,8 @@ export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit 
                 {loading && <div id='login-spin-clinic' className='spiner'></div>}
                 {response && <p id='succesP  animate__animated animate__fadeIn'>{estatusResponse}</p>}
 
-              <div className="img_cont_vet">
+              <div title='Sube una Imagen!' className="img_cont_vet" onClick={showWidget}>
                 <img src={form.imagenVete = img} alt="" id='imgForm'/>
-              </div>
-
-              <div className='setImg_register_container'>
-                <a onClick={showWidget} className="a_upload_Image_regs ">
-                <img src={pets_images('./veterinarios/subir.png')} alt="Subir Imagen" className=' imgRegs upload_Image_regs'/>
-                </a>
               </div>
 
               <div className="parts part1">
@@ -123,7 +117,7 @@ export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit 
                 className='input regs'
                 name='apellidos'
                 onChange={handleChangeVet}
-                value={form.apellido}
+                value={form.apellidos}
                 onBlur={handleBlur}
                 required
                 id='apellidos'/>
@@ -138,7 +132,7 @@ export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit 
                 required
                 id='telefono'/>
               </div>
-              {errors.apellido && <p id='warn-login'>{errors.apellido}</p>}
+              {errors.apellidos && <p id='warn-login'>{errors.apellidos}</p>}
               {errors.telefono && <p id='warn-login'>{errors.telefono}</p>}
 
               <div className="parts selects_conatiner">
@@ -167,7 +161,7 @@ export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit 
                 className='input regs'
                 name='correo'
                 onChange={handleChangeVet}
-                value={form.email}
+                value={form.correo}
                 onBlur={handleBlur}
                 required
                 id='correo'/>

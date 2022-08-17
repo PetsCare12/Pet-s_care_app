@@ -391,18 +391,6 @@ span{
     padding: 0;
 }
 /* /////////////////////// */
-.upload_Image{
-    transition: 0.2s;
-    position: relative;
-    width: 48px;
-    z-index: 10;
-    padding-top: 10rem;
-    left: 50px;
-}
-.upload_Image:hover{
-    transition: 0.2s;
-    filter: brightness(50%)
-}
 #imgForm{
     height: 100%;
     width: 100%;
@@ -416,12 +404,18 @@ span{
     align-items: center;
 }
 .img_cont_vet{
+    transition: 0.2s;
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
     justify-content: center;
     height:200px;
     width: 200px;
+    cursor: pointer;
+}
+.img_cont_vet:hover{
+    transition: 0.2s;
+    filter: brightness(50%); 
 }
 .notFound{
     height: 10vh;
@@ -429,3 +423,4 @@ span{
     justify-content: center ;
 }
 /* //////////////////// */
+
