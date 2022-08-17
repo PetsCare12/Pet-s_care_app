@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { MdOutlineCancel } from 'react-icons/md';
-import { pets_images } from '../../../helpers/Pets_care_images';
 import { useSendImage } from '../../../helpers/Cloudinary_Images/useSendImages';
 import { ButtonUI } from '../../UI/ButtonUI/ButtonUI';
 import { useForm } from '../../../helpers/useForm';
-import "./ModalRegisterVet.css";
 import { imageRandom } from '../../../helpers/RandomImages/imagenessa';
+import "./ModalRegisterVet.css";
 
 export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit }) => {
 
+  let imgDefault = imageRandom();
   const {myWidgetVeter,urlImage} = useSendImage();
-  const [img, setimg] = useState(imageRandom);
+  const [imgUrl, setimg] = useState(imgDefault);
 
   const initialForm = {
     documento: "",
@@ -82,7 +82,7 @@ export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit 
                 {response && <p id='succesP  animate__animated animate__fadeIn'>{estatusResponse}</p>}
 
               <div title='Sube una Imagen!' className="img_cont_vet" onClick={showWidget}>
-                <img src={form.imagenVete = img} alt="" id='imgForm'/>
+                <img src={form.imagenVete = imgUrl} alt="" className='imgForm'/>
               </div>
 
               <div className="parts part1">

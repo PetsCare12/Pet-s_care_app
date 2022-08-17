@@ -18,7 +18,7 @@ export const useForm = (initialForm , validateForm , token , nit) => {
         handleChangeVet(e);
         setErrors(validateForm(form));
     }
-
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors(validateForm(form));
@@ -35,10 +35,9 @@ export const useForm = (initialForm , validateForm , token , nit) => {
 
                         setestatusResponse("Actualizacion Exitosa!");
 
-                        setTimeout(() => {
-                            setResponse(true);
-                            setLoading(false);
-                        } , 3000);
+                        setLoading(false);
+                        setResponse(true);
+                        
                         setTimeout(() => {
                             setResponse(false);
                         } , 7000);
@@ -47,11 +46,10 @@ export const useForm = (initialForm , validateForm , token , nit) => {
 
                         setestatusResponse("Actualizacion Fallida!");
 
+                        setLoading(false);
+                        
                         setTimeout(() => {
                             setResponse(true);
-                            setLoading(false);
-                        } , 3000);
-                        setTimeout(() => {
                             setResponse(false);
                         } , 7000);
 

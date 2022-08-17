@@ -67,7 +67,6 @@
     width: 99%;
     height: 98%;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-    background-color: #f0f8ff;
 }
 .st3{
     margin-top: 20px;
@@ -422,5 +421,35 @@ span{
     display: flex;
     justify-content: center ;
 }
+.succes{
+    color: green;
+}
+/* ESTADOS */
+.active{
+    color: green;
+}
+.inactive{
+    color: tomato;
+}
 /* //////////////////// */
-
+.modal_active_inactive{
+    background-color: #dee1e2;
+    width: 50vh;
+    height: 7vh;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+}
+.closemodal_x{
+    cursor: pointer;
+    padding-top: 2px;
+    z-index: 15;
+    right: -65px;
+    align-items: center;
+    position: relative;
+}
+.modalactive_text{
+    color: #0072ff;
+}

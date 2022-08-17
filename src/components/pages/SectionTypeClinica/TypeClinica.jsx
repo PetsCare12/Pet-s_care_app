@@ -5,17 +5,19 @@ import { ButtonUI } from "./../../UI/ButtonUI/ButtonUI";
 import { useModal } from '../../../helpers/useModal';
 import { ModalRegisterVet } from './ModalRegisterVet';
 import { useSendImage } from '../../../helpers/Cloudinary_Images/useSendImages';
-import { getVeterinarioById, getVeterinarios } from '../../../helpers/API Consumer/useVeterinariosConsumer';
+import { setStateVeterinario, getVeterinarioById, getVeterinarios } from '../../../helpers/API Consumer/useVeterinariosConsumer';
+import { SimpleModal } from "../../layout/Modals/SimpleModal";
+import { MdOutlineCancel } from 'react-icons/md';
 import "./TypeClinica.css";
-import { PhotoProfile } from '../Profile/PhotoProfile';
 
 export const TypeClinica = () => {
-  let nameClinic = "Veterinaria Salud Canina";
-  let nitClinic = 111;
-  let tokenClinic = "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxMTEiLCJzdWIiOiJzYWx1ZGNhbmluYUB2ZXRlcmluYXJpYXMuY29tIiwiYXVkIjoiW1JPTEVfQ0xJTklDQV0iLCJpYXQiOjE2NjAxNzk4ODIsImV4cCI6MTY2MDc4NDY4MX0.pBUjcGe1MUCv1AgUfDwpPoQcFb6lE4Q2V4D0BTlAf2NydWBJaF0t0p8tA9CNH5KPAvkclHS5My_ej2v3_XIl0A"
 
-  // let nitClinic = 1010;
-  // let tokenClinic =  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWx1ZGNhbmluYUB2ZXRlcmluYXJpYXMuY29tIiwiYXVkIjoiW1JPTEVfQ0xJTklDQV0iLCJlc3RhZG8iOjEsImlkIjoxMDEwLCJleHAiOjE2NjA5MzE3MTAsImlhdCI6MTY2MDMyNjkxMH0.eQPuQYTPp4NQXTCea-5hiCuBf5AcRgD7h46egTe8ZB8Bg9_L9nilCVm_M3lD0GOETgC0xtr_07FZ37fTVo7U-g";
+  let nameClinic = "Veterinaria Salud Canina";
+  // let nitClinic = 111;
+  // let tokenClinic = "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxMTEiLCJzdWIiOiJzYWx1ZGNhbmluYUB2ZXRlcmluYXJpYXMuY29tIiwiYXVkIjoiW1JPTEVfQ0xJTklDQV0iLCJpYXQiOjE2NjAxNzk4ODIsImV4cCI6MTY2MDc4NDY4MX0.pBUjcGe1MUCv1AgUfDwpPoQcFb6lE4Q2V4D0BTlAf2NydWBJaF0t0p8tA9CNH5KPAvkclHS5My_ej2v3_XIl0A"
+
+  let nitClinic = 1010;
+  let tokenClinic =  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWx1ZGNhbmluYUB2ZXRlcmluYXJpYXMuY29tIiwiYXVkIjoiW1JPTEVfQ0xJTklDQV0iLCJlc3RhZG8iOjEsImlkIjoxMDEwLCJleHAiOjE2NjA5MzE3MTAsImlhdCI6MTY2MDMyNjkxMH0.eQPuQYTPp4NQXTCea-5hiCuBf5AcRgD7h46egTe8ZB8Bg9_L9nilCVm_M3lD0GOETgC0xtr_07FZ37fTVo7U-g";
 
   const [arrState, setarrState] = useState(true);
   const [arr, setarr] = useState([]);
@@ -24,6 +26,8 @@ export const TypeClinica = () => {
   const [useVet, setVet] = useState({});
   const [isOpenModal1,openModal1,closeModal1] = useModal(false);
   const [requestState, setrequestState] = useState(true);
+  const [modalRespUpdateVetState, setmodalRespUpdateVetState] = useState(false);
+  const [vetState, setvetState] = useState("");
 
   const getVeterId = (e) => {
     if (e.keyCode === 13) {
@@ -45,7 +49,9 @@ export const TypeClinica = () => {
   }
 
   useEffect(() => {
-    getVeterinarios(nitClinic).then( data => setarr(data));
+    if (arrState === true) {
+      getVeterinarios(nitClinic).then( data => setarr(data));
+    }
   }, [arrState]);
 
   const getVet = (e) => {
@@ -99,8 +105,37 @@ export const TypeClinica = () => {
   }
 
   const {form,errors,loading,response,estatusResponse,handleChangeVet,handleBlur,handleSubmit} = useForm(initialForm,validationsForm,tokenClinic);
+
+  useEffect(() => {
+    setarrState(!arrState);
+    setarrState(true);
+  }, [loading])
   
-  const disableVet = (e) => {};
+  const disableVet = (e) => {
+    setStateVeterinario(e.documento,2,tokenClinic).then( data => {if (data === "El estado del Veterinario Actualizado con exito") {
+      setarrState(!arrState);
+      setarrState(true);
+      setvetState("Deshabilitado con exito!");
+      setmodalRespUpdateVetState(true);
+    }else{
+      setvetState("No se pudo Deshabilitar!");
+      setmodalRespUpdateVetState(true);
+    }});
+  };
+
+  const activeVet = (e) => {
+    setStateVeterinario(e.documento,1,tokenClinic).then( data => {if (data === "El estado del Veterinario Actualizado con exito") {
+      setarrState(!arrState);
+      setarrState(true);
+      setvetState("Activado con exito!");
+      setmodalRespUpdateVetState(true);
+    }else{
+      setvetState("No se pudo Activar!");
+      setmodalRespUpdateVetState(true);
+    }});
+  }
+
+  const closeSimpleModal = () => {setmodalRespUpdateVetState(false);}
 
   return (
     <div className='st1 animate__animated animate__fadeIn'>
@@ -134,10 +169,16 @@ export const TypeClinica = () => {
                           <img src={item.imagenVete} alt="" id='imgVet'/>
                         </div>
                         <div className='liVetA'>
-                          <h4><span>Nombre:</span>              {item.nombre}</h4>
-                          <h4><span>Apellido:</span>         {item.apellidos}</h4>
-                          <h4><span>ID:</span>               {item.documento}</h4>
-                          <h4><span>Especialidad:</span>  {item.especialidad}</h4>
+                          <h4><span>ID:</span> {item.documento}</h4>
+                          <h4>{item.nombre} {item.apellidos}</h4>
+                          <h4>{item.especialidad}</h4>
+                          {
+                              item.estadoVt === 1
+                            ? 
+                              <h4><span className='active'>{" Activo"}</span></h4>
+                            :
+                              <h4><span className='inactive'>{" Inactivo"}</span></h4>
+                          }
                         </div>
                       </div> 
                       <div className='idc'>
@@ -169,14 +210,20 @@ export const TypeClinica = () => {
                               <h1>{useVet.especialidad}</h1>
                               <hr className='hrVet'/>
                               <h2>{useVet.nombre} {useVet.apellidos}</h2>
+                              {
+                                  useVet.estadoVt === 1
+                                ? 
+                                  <h3>Estado:<span className='active'>{" Activo"}</span></h3>
+                                :
+                                  <h3>Estado:<span className='inactive'>{" Inactivo"}</span></h3>
+                              }
                               <h4>ID: {form.documento = useVet.documento}</h4>
                           </div>
                           </div>
                       </div>
-
                       <div>
                         {loading && <div id='login-spin-clinic' className='spiner'></div>}
-                        {response && <p id='succesP  animate__animated animate__fadeIn'>{estatusResponse}</p>}
+                        {response && <h4 id='succes  animate__animated animate__fadeIn'>{estatusResponse}</h4>}
                       </div>
                       
                     <div className="bottomForm  animate__animated animate__fadeIn">
@@ -277,8 +324,27 @@ export const TypeClinica = () => {
                       </div>
                     </div>
                     <div className="btnSection">
-                      <ButtonUI text="Actualizar"  type="submit" style="submit"></ButtonUI>
-                      <ButtonUI text="Deshabilitar" event={disableVet} type="button" style="submit"></ButtonUI>
+                      {
+                          useVet.estadoVt !== 1
+                        ? 
+                          <div className="btnSection">
+                            <ButtonUI text="Actualizar"  type="submit" style="submit"></ButtonUI>
+                            <ButtonUI text="Activar" event={() => activeVet(useVet)} type="button" style="submit"></ButtonUI>
+                          </div>
+                        : 
+                          <div className="btnSection">
+                            <ButtonUI text="Actualizar"  type="submit" style="submit"></ButtonUI>
+                            <ButtonUI text="Deshabilitar" event={() => disableVet(useVet)} type="button" style="submit"></ButtonUI>
+                          </div>
+                      }
+                      {
+                          modalRespUpdateVetState && <SimpleModal>
+                              <div className='modal_active_inactive animate__animated animate__fadeIn'>
+                              <div id='MdOutlineCancelVet' onClick={closeSimpleModal} className='closemodal_x'><MdOutlineCancel /></div>
+                                <h2 className='modalactive_text'>{vetState}</h2>
+                              </div>
+                          </SimpleModal>
+                      }
                     </div>
                   </form>
                 : 
