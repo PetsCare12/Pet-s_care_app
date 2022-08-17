@@ -324,6 +324,28 @@
     font-size: 15px;
     margin-top: 5px;
 }
+#login-spin-sectionPerfil{
+    border-bottom: 7px dotted #008eff;
+    border-top: 7px solid #ffffff00;
+    border-left: 7px dotted #008eff;
+    /* border-right: 7px solid #ffffff00; */
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.loading_sectionPerfil {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+#formUpdateUser .error_actualizar_usuario{
+    color: red;
+    margin-top: 10px;
+}
 
 
 
