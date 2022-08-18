@@ -1,4 +1,74 @@
+
 *{
     margin: 0;
     padding: 0;
+}
+/* .section_profile_1_clinics{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+} */
+
+/* Horarios */
+.table_horarios{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.horarios_define{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    width: 70vh;
+    padding: 5vh;
+}
+.header_table{
+    display: flex;
+    flex-direction: row;
+    background-color: #ddf4ff;
+}
+.head{
+    height: 7vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.head_1{
+    width: 20vh;
+}
+.days{
+    height: 7vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20vh;
+    border-bottom: 1px solid #a8dff8;
+}
+.days_viernes{
+    border-bottom: none;
+}
+.days_lunes{
+    border-top: 1px solid #a8dff8;
+}
+.hours_lunes{
+    border-top: 1px solid #a8dff8;
+}
+.hours{
+    height: 7vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40vh;
+    gap: 15px;
+    border-bottom: 1px solid #a8dff8;
+    border-left: 1px solid #a8dff8;
+}
+.hours_viernes{
+    border-bottom: none;
+}
+.body_table{
+    display: flex;
+    flex-direction: row;
 }
