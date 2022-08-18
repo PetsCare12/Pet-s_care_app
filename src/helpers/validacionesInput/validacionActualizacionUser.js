@@ -1,5 +1,6 @@
 
-const validacionActualizacionUser = ( user, cambiarEstado, txtEstado ) => {
+export const validacionActualizacionUser = ( user, cambiarEstado, txtEstado ) => {
+    
 
     const { nombreUs,apellidoUs,telefonoUs,sexoUs } = user;
 
@@ -38,4 +39,14 @@ const validacionActualizacionUser = ( user, cambiarEstado, txtEstado ) => {
 
 }
 
-export default validacionActualizacionUser;
+export const actualizacionPasswordUser = ( password ) => {
+
+    if (!password.oldPassword.trim() && !password.newPassword.trim() ) { return { resp:false , msj:"Debes completar los dos campos" } }
+    else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}/.test(password.newPassword)) {return {resp : false , msj : 'Debes incluir minúsculas, mayúsculas, números y caracteres especiales'} }
+
+    return {
+        resp:true,
+        msj:""
+    };
+}
+

@@ -1,7 +1,7 @@
 
 .MenuHome__div {
     background-color: white;
-    border: 1px solid black;
+    border: 1px solid #5a5a5a;
     border-radius: 4px;
     display: flex;
     flex-direction: column;

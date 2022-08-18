@@ -1,6 +1,6 @@
 import './InputUIStyle.css';
 
-export const InputUI = ( { name, type, style, txt, id, eventChange, eventBlur, value, event, req } ) => {
+export const InputUI = ( { name, type, style, txt, id, eventChange, eventBlur, value, event, ref } ) => {
   return (
     <input 
       type={type} 
@@ -11,6 +11,7 @@ export const InputUI = ( { name, type, style, txt, id, eventChange, eventBlur, v
       id={id}
       value={value}
       name={name}
+      ref={ref}
     />
   )
 }

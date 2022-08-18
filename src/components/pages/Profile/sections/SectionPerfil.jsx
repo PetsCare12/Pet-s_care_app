@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import { InputUI } from '../../../UI/InputUI/InputUI';
 import { ButtonUI } from '../../../UI/ButtonUI/ButtonUI';
 import {VscFiles} from 'react-icons/vsc';
-import { getUsuarioId, usuarioUpdate } from '../../../../helpers/API Consumer/test';
-import  validacionActualizacionUser  from "../../../../helpers/validacionesInput/validacionActualizacionUser";
+import { inicioSesionUsuario, usuarioUpdate } from '../../../../helpers/API Consumer/test';
+import { actualizacionPasswordUser, validacionActualizacionUser }  from "../../../../helpers/validacionesInput/validacionActualizacionUser";
 import { useSendImage } from '../../../../helpers/Cloudinary_Images/useSendImages';
 
 
@@ -14,12 +14,13 @@ export const SectionPerfil = ( {userData} ) => {
     const [loading, setLoading] = useState(false);
     const [errorFormTxt, setErrorFormTxt] = useState("");
     const [errorForm, setErrorForm] = useState(false);
+    const [errorPassword, setErrorPassword] = useState([false,""])
+    const [passwordChanged, setPasswordChanged] = useState([false,""]);
     
     const form = useRef(null);
+    const formPassword = useRef(null);
 
     const {myWidgetUser,urlImage} = useSendImage();
-
-    console.log(urlImage);
 
     useEffect( () => {
 
@@ -51,15 +52,20 @@ export const SectionPerfil = ( {userData} ) => {
     const [actImage, setActImage] = useState("");
     const [actCorreo, setActCorreo] = useState("");
     const [actPass, setActPass] = useState("");
-
+    const [oldPassword, setOldPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
 
     const handleNombre = ( e ) => { setActNombre( e.target.value ) }
     const handleApellido = ( e ) => { setActApellido( e.target.value ) }
     const handleTelefono = ( e ) => { setActTele( e.target.value ) }
     const handleSexo = ( e ) => { setActSexo( e.target.value ) }
+    const handleOldPassword = ( e ) => { setOldPassword( e.target.value ) }
+    const handleNewPassword = ( e ) => { setNewPassword( e.target.value ) }
 
     useEffect( () => {
-        setActImage( urlImage );
+        if ( !!urlImage.length ) {
+            setActImage( urlImage );
+        }
     }, [urlImage])
 
     const handleSubmitInfo = ( e ) => {
@@ -72,14 +78,85 @@ export const SectionPerfil = ( {userData} ) => {
             sexoUs: formData.get('sexo')
         }
         const resp = validacionActualizacionUser( data, setErrorForm, setErrorFormTxt );
-        console.log( resp );
 
         if ( resp === "ok" ) {
             data.correoUs = actCorreo;
             data.imagenUsu = actImage;
             data.passwordUs = actPass;
-            usuarioUpdate( data, userData.documentoUs, token).then( info => console.log(info));
+            usuarioUpdate( data, userData.documentoUs, token).then( info => {
+                if ( info.status === 200 ) {
+                    window.location = "/perfil"
+                }
+            });
         }
+    }
+
+    const handleSubmitPassword = ( e ) => {
+
+        e.preventDefault();
+
+        const formData = new FormData(formPassword.current);
+        const data = {
+            oldPassword: formData.get('oldPassword'),
+            newPassword: formData.get('newPassword'),
+            nombreUs: actNombre,
+            apellidoUs: actApellido,
+            telefonoUs: actTele,
+            sexoUs: actSexo
+        }
+        console.log(data);
+        
+        const validacion = { nombreoCorreo : actCorreo , password : data.oldPassword };
+        const resp2 = validacionActualizacionUser( data, setErrorForm, setErrorFormTxt );
+        const { resp, msj } = actualizacionPasswordUser( data );
+
+        if ( resp2==="ok" && resp ) {
+            inicioSesionUsuario( validacion ).then( info => {
+
+                if ( info.status === 500 ) {
+                    setErrorPassword([true, "La contraseña no es correcta"])
+                }
+                else if ( info.status === 200 ) {
+
+                    let dataActualizacion = {
+                        nombreUs : actNombre,
+                        apellidoUs : actApellido,
+                        telefonoUs : actTele,
+                        sexoUs : actSexo,
+                        correoUs : actCorreo,
+                        imagenUsu : actImage,
+                        passwordUs : data.newPassword
+                    }
+
+                    console.log("New Passwor: "+data.newPassword);
+                    
+                    setErrorPassword([false,""]);
+                    usuarioUpdate( dataActualizacion, userData.documentoUs, token).then( info => {
+                        console.log( info.status );
+                        if ( info.status === 200 ) {
+                            console.log( info );
+                            setPasswordChanged([true, "Tu contraseña ha sido actualizada"])
+                            setTimeout( () => {
+                                setPasswordChanged([false, ""])
+                            },3000)
+                            setOldPassword("");
+                            setNewPassword("");
+                        }
+                        else {
+                            setErrorPassword([true,"Ha ocurrido un error inesperado, por favor intentalo más tarde o prueba refrescando la página"]);
+                        }
+                    });
+                }
+                else {
+                    setErrorPassword([true,"Ha ocurrido un error inesperado, por favor intentalo más tarde"]);
+                }
+            })
+        }
+        else{
+            setErrorPassword([ true, msj ])
+        }
+
+
     }
 
 
@@ -152,22 +229,32 @@ export const SectionPerfil = ( {userData} ) => {
                 <div className="profile__section2">
                     <p>Cambiar contraseña</p>
                     <div className="profile__cambioContasena">
-                        <InputUI 
-                            type={"text"}
-                            txt={"Contraseña actual"}
-                            style={"inputLogin mt-5"}
-                            name={"oldPassword"}
-                        />
-                        <InputUI 
-                            type={"text"}
-                            txt={"Contraseña nueva"}
-                            style={"inputLogin mt-3"}
-                            name={"newPassword"}
-                        />
-                        <ButtonUI 
-                            style={"btnAgregarMascota mt-5"}
-                            text={"Cambiar"}
-                        />
+                        <form ref={formPassword}>
+                            <InputUI 
+                                type={"password"}
+                                txt={"Contraseña actual"}
+                                style={"inputLogin mt-5"}
+                                name={"oldPassword"}
+                                value={oldPassword}
+                                eventChange={handleOldPassword}
+                            />
+                            <InputUI 
+                                type={"password"}
+                                txt={"Contraseña nueva"}
+                                style={"inputLogin mt-3"}
+                                name={"newPassword"}
+                                value={newPassword}
+                                eventChange={handleNewPassword}
+                            />
+                            { errorPassword[0] && <p className='updatePasswordError'>{ errorPassword[1] }</p> }
+                            { passwordChanged[0] && <p className='profile__editarPerfil cc'>{ passwordChanged[1] }</p> }
+                            <ButtonUI 
+                                style={"btnAgregarMascota mt-5"}
+                                type="submit"
+                                text={"Cambiar"}
+                                event={handleSubmitPassword}
+                            />
+                        </form>
                     </div>
                 </div>
             </div>

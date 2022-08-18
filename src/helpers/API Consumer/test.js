@@ -30,6 +30,8 @@ export const crearMascota = async( mascota, id ) => {
             
         });
 
+        return resp;
+
     } catch (error) {
         console.log( error );
     }
@@ -90,7 +92,7 @@ export const inicioSesionUsuario = async ( valores ) => {
                 return { status : error.response.status};
             } 
         });
-        console.log( resp );
+
         return resp;
 
     } catch (error) {
@@ -112,8 +114,6 @@ export const usuariosTodos = async() => {
 }
 
 export const usuarioUpdate = async( user, id, token) => {
-
-    console.log( user );
 
     try {
         const resp = await axios({
