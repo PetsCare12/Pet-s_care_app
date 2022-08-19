@@ -19,7 +19,6 @@ export const ClinicaProfile = () => {
 
   const getDates = (e) => {
     e.preventDefault();
-
     let hoursAvalibles = 
     {
       "Lunes" : 
