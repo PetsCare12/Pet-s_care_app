@@ -11,9 +11,10 @@ export const getVeterinarios = async( nit ) => {
 
     } catch (error) {
 
-        console.log( error );
-
-        return error;
+        if ( error.response ) {
+            console.log(error.response.status);
+            return error.response;
+        }
 
     }
 
@@ -29,9 +30,10 @@ export const getVeterinarioById = async( id ) => {
 
     } catch (error) {
 
-        console.log( error );
-
-        return error;
+        if ( error.response ) {
+            console.log(error.response.status);
+            return error.response.status;
+        }
         
     }
 
@@ -47,9 +49,10 @@ export const getVeterinarioByName = async( name ) => {
 
     } catch (error) {
 
-        console.log( error );
-
-        return error;
+        if ( error.response ) {
+            console.log(error.response.status);
+            return error.response.status;
+        }
         
     }
 
@@ -57,12 +60,11 @@ export const getVeterinarioByName = async( name ) => {
 
 export const setVeterinario = async( veterinario , nit , access_token ) => {
 
-    // const access_token = localStorage.getItem("token");
 
     try {
         
         const sendRequest = await axios({
-            url : `${url}veterinarios/${nit}`,
+            url : `${url}/veterinarios/${nit}`,
             method : 'POST',
             headers : {
                 "Content-Type":"application/json",
@@ -70,15 +72,23 @@ export const setVeterinario = async( veterinario , nit , access_token ) => {
             },
             data : veterinario
             
+        }).catch( function( error ) {
+
+            if ( error.response ) {
+                console.log(error.response.status);
+                return error.response.status;
+            }
+
         });
                 
-        return sendRequest.data;
+        return console.log(sendRequest.data);
 
     } catch (error) {
 
-        console.log( error );
-
-        return error;
+        if ( error.response ) {
+            console.log(error.response);
+            return error.response.status;
+        }
 
     }
 
@@ -86,12 +96,11 @@ export const setVeterinario = async( veterinario , nit , access_token ) => {
 
 export const putVeterinario = async( veterinario , id , access_token ) => {
 
-    // const access_token = localStorage.getItem("token");
 
     try {
 
         const sendRequest = await axios({
-            url : `${url}veterinarios/${id}`,
+            url : `${url}/veterinarios/${id}`,
             method : 'PUT',
             headers : {
                 "Content-Type":"application/json",
@@ -99,15 +108,58 @@ export const putVeterinario = async( veterinario , id , access_token ) => {
             },
             data : veterinario
             
+        }).catch( function( error ) {
+
+            if ( error.response ) {
+                console.log(error.response.status);
+                return error.response.status;
+            }
+
         });
 
         return sendRequest.data;
 
     } catch (error) {
 
-        console.log( error );
+        if ( error.response ) {
+            console.log(error.response.status);
+            return error.response.status;
+        }
 
-        return error;
+    }
+
+};
+
+export const setStateVeterinario = async( id , estado , access_token ) => {
+
+    try {
+
+        const sendRequest = await axios({
+            url : `${url}/veterinarios/${id}/estado/${estado}`,
+            method : 'PUT',
+            headers : {
+                "Content-Type":"application/json",
+                'Authorization': 'Bearer '+access_token,
+            },
+            data : ""
+            
+        }).catch( function( error ) {
+
+            if ( error.response ) {
+                console.log(error.response.status);
+                return error.response.status;
+            }
+
+        });
+
+        return sendRequest.data;
+
+    } catch (error) {
+
+        if ( error.response ) {
+            console.log(error.response.status);
+            return error.response.status;
+        }
 
     }
 
