@@ -38,6 +38,9 @@
 .head_1{
     width: 20vh;
 }
+.head_2{
+    width: 40vh;
+}
 .days{
     height: 7vh;
     display: flex;

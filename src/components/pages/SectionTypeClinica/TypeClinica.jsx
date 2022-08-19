@@ -161,36 +161,44 @@ export const TypeClinica = () => {
                       <ButtonUI text="Registrar" type="button" style="regs submit" event={openModal1}></ButtonUI>
                     </div>
               <ul>
-                {requestState ? 
-                arr.map((item) =>(
-                  <li className="liVetSpace animate__animated animate__backInUp">
-                    <div className='liVet'>
-                        <div className='img_li_vet'>
-                          <img src={item.imagenVete} alt="" id='imgVet'/>
-                        </div>
-                        <div className='liVetA'>
-                          <h4><span>ID:</span> {item.documento}</h4>
-                          <h4>{item.nombre} {item.apellidos}</h4>
-                          <h4>{item.especialidad}</h4>
-                          {
-                              item.estadoVt === 1
-                            ? 
-                              <h4><span className='active'>{" Activo"}</span></h4>
-                            :
-                              <h4><span className='inactive'>{" Inactivo"}</span></h4>
-                          }
-                        </div>
-                      </div> 
-                      <div className='idc'>
-                        <a onClick={() => getVet(item)} href>
-                          <img src={pets_images('./veterinarios/proximo.png')} alt="" id='imgLi'/>
-                        </a>
-                      </div>
-                  </li>
-                ))
-                : 
-                <li className="liVetSpace animate__animated animate__backInUp notFound"><h2>Veterinario no encontrado</h2></li>
-              }
+              {
+                    arr.length === 0
+
+                      ? 
+                        <li className="liVetSpace animate__animated animate__backInUp notFound"><h2>Registra tu primer veterinario</h2></li>
+
+                      : 
+                        (requestState ? 
+                          arr.map((item) =>(
+                            <li className="liVetSpace animate__animated animate__backInUp">
+                              <div className='liVet'>
+                                  <div className='img_li_vet'>
+                                    <img src={item.imagenVete} alt="" id='imgVet'/>
+                                  </div>
+                                  <div className='liVetA'>
+                                    <h4><span>ID:</span> {item.documento}</h4>
+                                    <h4>{item.nombre} {item.apellidos}</h4>
+                                    <h4>{item.especialidad}</h4>
+                                    {
+                                        item.estadoVt === 1
+                                      ? 
+                                        <h4><span className='active'>{" Activo"}</span></h4>
+                                      :
+                                        <h4><span className='inactive'>{" Inactivo"}</span></h4>
+                                    }
+                                  </div>
+                                </div> 
+                                <div className='idc'>
+                                  <a onClick={() => getVet(item)} href>
+                                    <img src={pets_images('./veterinarios/proximo.png')} alt="" id='imgLi'/>
+                                  </a>
+                                </div>
+                            </li>
+                          ))
+                          : 
+                          <li className="liVetSpace animate__animated animate__backInUp notFound"><h2>Veterinario no encontrado</h2></li>
+                        )
+                  }
               </ul>
             </div>
             
