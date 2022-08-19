@@ -3,13 +3,29 @@
     margin: 0;
     padding: 0;
 }
-/* .section_profile_1_clinics{
+.profile_clinica h1,h2,h3,h4,h5,h6,input,button,span{
+    font-family: 'Ruda', sans-serif;
+    color: #0072ff;
+}
+.profile_clinica{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.horarios_define{
+    background-color: #ffffff;
+}
+.section_profile_1_clinics{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-} */
 
+}
+.section_profile_3_clinics{
+    background: linear-gradient(360deg, #61bbd6,#0072ff);
+    height: 25vh;
+}
 /* Horarios */
 .table_horarios{
     display: flex;
@@ -21,8 +37,8 @@
     justify-content: center;
     align-items: center;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-    width: 70vh;
-    padding: 5vh;
+    width: 65vh;
+    padding: 2vh;
 }
 .header_table{
     display: flex;
@@ -74,4 +90,28 @@
 .body_table{
     display: flex;
     flex-direction: row;
+}
+
+
+/* Perfil Left */
+.section_profile_4_clinics{
+    width: 20vw;
+    background-color: rgb(255, 255, 255);
+    height: 85%;
+    /* margin-top: 10rem;
+    position: absolute;
+    z-index: 10001; */
+}
+.img_profile_clinic{
+    width: 20vw;
+    height: 20vw;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.img_cont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

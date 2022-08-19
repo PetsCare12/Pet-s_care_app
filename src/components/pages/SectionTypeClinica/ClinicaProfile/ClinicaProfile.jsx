@@ -1,8 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ButtonUI } from '../../../UI/ButtonUI/ButtonUI';
+import { PhotoProfile } from '../../Profile/PhotoProfile';
+import { FaHome } from 'react-icons/fa';
 import '../ClinicaProfile/ClinicaProfile.css';
 
 export const ClinicaProfile = () => {
+
+  let nameClinic = "Veterinaria Salud Canina";
+
+  const [activeBtn, setActiveBtn] = useState("")
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("clinica");
+    window.location = "/login";
+    setActiveBtn("logout");
+  }
 
   const getDates = (e) => {
     e.preventDefault();
@@ -47,6 +60,54 @@ export const ClinicaProfile = () => {
   return (
     <div>
         <div className='profile_clinica'>
+
+            <header className="section_profile_3_clinics">
+
+              <div className="title_profile_clinic">
+                <h1 style={{color:'white'}}>{"Administra tu clinica"}</h1>
+                <h3 style={{color:'white'}}>{nameClinic}</h3>
+              </div>
+
+              <div className="wave wave1"></div>
+              <div className="wave wave2"></div>
+              <div className="wave wave3"></div>
+              <div className="wave wave4"></div>
+
+            </header>
+
+            <div className="section_profile_4_clinics">
+
+              <div className="img_profile_clinic">
+
+                <div className="img_cont">
+                  <PhotoProfile img={"https://img.lalr.co/cms/2020/07/14130856/Cl%C3%ADnica-Azul.jpg?size=xl"}/>
+                </div>
+
+              </div>
+
+              <div className="section_profile_2_clinics">
+
+              <button onClick={() => {setActiveBtn("home") 
+                window.location = "/"}}className={`profile__btnProfile mt-10 ${(activeBtn === "home") && "perfil_active"}`}>
+                    <div className='profile__titleBtn'><FaHome style={{fontSize:"20px"}} /></div>
+                </button>
+                <button onClick={() => {setActiveBtn("perfil")}} className={`profile__btnProfile ${(activeBtn === "perfil") && "perfil_active"}`}>
+                    <div className='profile__titleBtn'>Perfil</div>
+                </button>
+                <button onClick={() => {setActiveBtn("mascotas")}} className={`profile__btnProfile ${(activeBtn === "mascotas") && "perfil_active"}`}>
+                    <div className='profile__titleBtn'>Mascotas</div>
+                </button>
+                <button onClick={() => {setActiveBtn("citas")}} className={`profile__btnProfile ${(activeBtn === "citas") && "perfil_active"}`}>
+                    <div className='profile__titleBtn'>Citas pendientes</div>
+                </button>  
+
+                <button id='perfil__logout' onClick={handleLogout} className={`profile__btnProfile ${(activeBtn === "logout") && "perfil_active"}`}>
+                      <div className='profile__titleBtn'>Cerrar sesión</div>
+                </button>            
+
+              </div>
+
+            </div>
 
             <div className="section_profile_1_clinics">
 
@@ -144,15 +205,7 @@ export const ClinicaProfile = () => {
                 </div>
 
             </div>
-
-            <div className="section_profile_2_clinics"></div>
-
-            <div className="section_profile_3_clinics"></div>
-
-            <div className="section_profile_4_clinics"></div>
-            
         </div>
-                
     </div>
   )
 }
