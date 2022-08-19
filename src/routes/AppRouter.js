@@ -12,6 +12,7 @@ import { Registro_mascotas } from '../components/pages/Registro_mascotas/Registr
 import { TypeClinica } from '../components/pages/SectionTypeClinica/TypeClinica';
 import { Agenda } from '../components/pages/Agenda/Agenda'
 import AdminScreen from '../components/pages/SectionTypeAdmin/AdminScreen';
+import { ClinicaProfile } from '../components/pages/SectionTypeClinica/ClinicaProfile/ClinicaProfile';
 
 export const AppRouter = () => {
     return (
@@ -28,6 +29,7 @@ export const AppRouter = () => {
                 <Route path="/cita/:id" element={ <CitaEspecifica />  } />
                 <Route path="/" element={ <Home />  } />
                 <Route path="/gestionClinica" element={ <TypeClinica />  } />
+                <Route path="/tuClinica" element={ <ClinicaProfile />  } />
                 <Route path="/agenda" element={ <Agenda />  } />
                 <Route path="/admin" element={ <AdminScreen />  } />
             </Routes>
