@@ -14,7 +14,7 @@ const MenuHome = () => {
     }
 
     return (
-        <div className='MenuHome__div animate__animated animate__fadeInRight'>
+        <div className='MenuHome__div animate__animated animate__flipInX'>
             <p onClick={handlePerfil} className='MenuHome__perfil'>Gestion</p>
             <hr/>
             <p onClick={handleLogout} className='MenuHome__logout'>Cerrar sesión</p>

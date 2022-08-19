@@ -43,6 +43,11 @@ export const SectionMascotas = ( {userData} ) => {
                         age={pet.edad}
                         raza={pet.raza}
                         image={pet.imagenMascota}
+                        discapacidad={pet.discapacidad}
+                        sexo={pet.sexo}
+                        peso = {pet.peso}
+                        tipo = {pet.tipoAnimal}
+                        color = {pet.color}
                         />
 
                     ))

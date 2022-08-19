@@ -233,6 +233,7 @@ export const Registro_mascotas = () => {
                                     type={"submit"}
                                 />
                                 <ButtonUI 
+                                    type={"button"}
                                     event={()=>window.location = "/perfil"}
                                     style='btnRegistroMascota-cancel h_35 mt-3'
                                     text='Cancelar'
