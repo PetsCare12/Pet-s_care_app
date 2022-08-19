@@ -41,17 +41,16 @@ export const getPeticionesClinicas = async() => {
 
 }
 
-export const aceptarPeticion = async ( clinica, nit, access_token ) => {
+export const peticion = async ( nit, access_token, estado ) => {
 
     try {
         const response = await axios({
-            url: "http://localhost:8080/api/clinicas/"+nit,
+            url: "http://localhost:8080/api/clinicas/"+nit+"/estado/"+estado,
             method: "PUT",
             headers: {
                 "Content-Type":"application/json",
                 'Authorization': 'Bearer '+access_token,
             },
-            data: clinica
         }).catch( function( error ) {
 
             if ( error.response ) {
@@ -60,7 +59,7 @@ export const aceptarPeticion = async ( clinica, nit, access_token ) => {
             }
 
         });
-        console.log( response );
+
         return response;
     } catch (error) {
         console.log( error );

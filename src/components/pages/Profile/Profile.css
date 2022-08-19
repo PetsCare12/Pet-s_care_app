@@ -158,7 +158,7 @@
     padding: 10px 15px;
     text-align: left;
     transition: .4s;
-    width: 45%;
+    width: auto;
 }
 
 .mascotaCard__info h2{
