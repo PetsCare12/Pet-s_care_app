@@ -27,6 +27,11 @@
     background-color: #004ca8;
     transition: .5s;
 }
+.btnAdmin.active{
+    background-color: #004ca8;
+    transition: .5s;
+    text-decoration: underline;
+}
 .btnAdmin.peticiones{
     background-color: rgb(0, 158, 71);
 }
@@ -35,7 +40,7 @@
 }
 
 .admin__container-info{
-    padding: 3% 10%;
+    padding: 10px 5%;
     width: 100%;
 }
 .activeBtnAdmin{
@@ -81,7 +86,7 @@
     height: 60px;
     justify-content: space-between;
     padding: 10px 30px;
-    width: 45%;
+    width: 40vw;
 }
 .infoUser__data{
     display: flex;
@@ -116,25 +121,36 @@
     width: 40px;
 }
 .infoUser__managment .edit{
-    background-color: rgb(0, 209, 0);
+    background-color: #00d100;
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+}
+.infoUser__managment .show{
+    background-color: #97c0ff;
     color: white;
     font-size: 20px;
     font-weight: 400;
 }
 .infoUser__managment .delete{
-    background-color: rgb(255, 55, 55);
+    background-color: #ff3737;
     color: white;
     font-size: 20px;
     font-weight: 400;
 }
 .infoUser__managment .edit:hover{
-    background-color: rgb(0, 169, 0);
+    background-color: #00a900;
     transition: .4s;
 }
 .infoUser__managment .delete:hover{
-    background-color: rgb(206, 24, 24);
+    background-color: #ce1818;
     transition: .4s;
 }
+.infoUser__managment .show:hover{
+    background-color: #4c6997;
+    transition: .4s;
+}
+
 .infoUser__container button{
     background: none;
 }
@@ -226,4 +242,116 @@
 .peticionesCli__button.denegar:hover{
     background-color: #bd0000;
     transition: .4s;
+}
+.hidden{
+    display: none;
+}
+.peticiones__refreh{
+    color: #0072ff;
+    cursor: pointer;
+    font-size: 25px;
+    background-color: #cbe7ff;
+    border-radius: 6px;
+}
+.peticiones__refreh:hover{
+    color: white;
+    cursor: pointer;
+    font-size: 25px;
+    background-color: #0072ff;
+    transition: .4s;
+    border-radius: 6px;
+}
+.admin__peticiones-modalVerify{
+    padding: 20px;
+    background-color: #bd0000;
+    z-index: 1000;
+    position: absolute;
+    top: 0;
+}
+
+.infoUser-modal {
+    align-items: center;
+    border: 2px solid #0072ff;
+    position: relative;
+    border-radius: 5px;
+    background-color: white;
+    color: #666666;
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    padding: 4vh 4vw;
+    width: 40vw;
+    justify-content: space-between;
+}
+.infoUser-modal .title_modal {
+    background-color: white;
+    border: 2px solid #0072ff;
+    border-radius: 5px;
+    color: #0072ff;
+    font-size: 20px;
+    height: 40px;
+    padding: 6px 5%;
+    position: absolute;
+    text-align: center;
+    top: -20px;
+    width: auto;
+}
+.infoUser-modal .status {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 2px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-weight: 800;
+    height: 30px;
+    width: 40px;
+}
+.infoUser-modal .status.active{
+    color: white;
+    background-color: #0072ff;
+}
+.infoUser-modal .status.disabled{
+    color: white;
+    background-color: #ff3535;
+}
+.infoUser-modal .status.waiting{
+    color: white;
+    background-color: #0c8b00;
+}
+.infoUser-modal .status.cancel{
+    color: #888888;
+    cursor: pointer;
+    top: 10px;
+    right: 5px;
+}
+.infoUser-modal .status.cancel:hover{
+    color: #e43f3f;
+    transition: .4s;
+}
+
+.infoUser-modal .img-div{
+    height: 200px;
+    width: 200px;
+}
+.infoUser-modal .img-div img{
+    border-radius: 100%;
+    height: auto;
+    width: 100%;
+}
+.infoUser-modal .info-div{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 250px;
+    justify-content: center;
+    width: 50%;
+}
+.infoUser-modal .info-div .icon{
+    color: #0072ff;
+    margin-right: 15px;
+}
+.infoUser-modal .info-div p{
+    font-size: 20px;
 }

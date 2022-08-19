@@ -18,11 +18,11 @@ export const Registro_mascotas = () => {
     const [loading, setLoading] = useState(false);
     const user = JSON.parse(localStorage.getItem("usuario"));
 
-    let jti = "";
+    let id = "";
     let aud = "";
 
     if ( !!localStorage.getItem("usuario") ) {
-        jti = user.jti;
+        id = user.id;
         aud = user.aud;
     }
 
@@ -124,14 +124,14 @@ export const Registro_mascotas = () => {
 
                                 setLoading( true );
                                 setErrorType( false );
-                                console.log("Cargando...");
-                                setTimeout(()=>{
+                                
+                                crearMascota( valores, id ).then( info => {
+
                                     setLoading( false );
-                                    console.log("TU FORMULARIOS HA SIDO ENVIADO CON EXITO");
                                     resetForm();
-                                },2000)
-                                console.log( valores );
-                                crearMascota( valores, jti );
+                                    window.location = "/perfil";
+
+                                })
 
                             }
                         }}
