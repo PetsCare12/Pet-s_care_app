@@ -104,7 +104,6 @@ export const SectionPerfil = ( {userData} ) => {
             telefonoUs: actTele,
             sexoUs: actSexo
         }
-        console.log(data);
         
         const validacion = { nombreoCorreo : actCorreo , password : data.oldPassword };
         const resp2 = validacionActualizacionUser( data, setErrorForm, setErrorFormTxt );
