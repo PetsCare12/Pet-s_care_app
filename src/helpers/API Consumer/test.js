@@ -27,8 +27,17 @@ export const crearMascota = async( mascota, id ) => {
                 'Authorization': 'Bearer '+access_token,
             },
             data : mascota
-            
+        }).catch( function( error ) {
+
+            if ( error.response ) {
+                console.log( error );
+                return { status : error.response.status }
+            }
+
         });
+        console.log( resp );
+
+        return resp;
 
     } catch (error) {
         console.log( error );
@@ -90,7 +99,7 @@ export const inicioSesionUsuario = async ( valores ) => {
                 return { status : error.response.status};
             } 
         });
-        console.log( resp );
+
         return resp;
 
     } catch (error) {
@@ -105,6 +114,32 @@ export const usuariosTodos = async() => {
 
         return respuesta.data;
         
+    } catch (error) {
+        console.log( error );
+    }
+
+}
+
+export const usuarioUpdate = async( user, id, token) => {
+
+    try {
+        const resp = await axios({
+            url: "http://localhost:8080/api/usuarios/"+id,
+            method: "PUT",
+            headers: {
+                "Content-Type":"application/json",
+                'Authorization': 'Bearer '+token,
+            },
+            data: user
+        }).catch( function( error ) {
+
+            if (error.response) {
+                return { status : error.response.status};
+            } 
+        });
+        console.log( resp );
+        return resp;
+
     } catch (error) {
         console.log( error );
     }

@@ -1,16 +1,17 @@
 
 .MenuHome__div {
     background-color: white;
-    border: 1px solid black;
+    border: 1px solid #5a5a5a;
     border-radius: 4px;
     display: flex;
     flex-direction: column;
     height: auto;
-    position: absolute;
+    position: fixed;
     right: 1rem;
     top: 4rem;
-    width: 120px;
-    z-index: 1000;
+    width: 12vw;
+    min-width: 120px;
+    z-index: 1001;
 }
 
 .MenuHome__perfil{
