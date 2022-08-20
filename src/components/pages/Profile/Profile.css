@@ -301,7 +301,7 @@
     border: dashed 2px #ffffff;
     z-index: 1000;
     height: 250px;
-    width: 250px;
+    width: 100%;
     top: 0;
     font-size: 4rem;
     color: white;
@@ -394,22 +394,20 @@
 }
 .mascotaInfo__container .updateImg{
     display: flex;
-    background-color: #008eff;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
     cursor: pointer;
     position: absolute;
     padding: 20px;
-    top: 65px;
+    width: 400px;
+    height: 200px;
 }
 .mascotaInfo__container .updateImg:hover{
     border-radius: 5px;
-    background-color: #008eff;
+    background-color: #00000078;
     width: 400px;
     height: 200px;
     transition: 1s;
-    top: 0;
 }
 .mascotaInfo__container .specificInfo{
     width: 300px;
@@ -525,5 +523,20 @@
     outline: 1px solid #dddfe2;
 
 }
-
+.mascotaInfo__container .validacionForm{
+    font-size: 14px;
+    color: red;
+    border-left: 2px solid red;
+    padding-left: 15px;
+}
+.mascotaInfo__container .center{
+    margin: 10px 0px;
+    align-self: center;
+}
+.mascotaInfo__container .validacionFormSuccess{
+    font-size: 14px;
+    color: green;
+    border-left: 2px solid green;
+    padding-left: 15px;
+}
 

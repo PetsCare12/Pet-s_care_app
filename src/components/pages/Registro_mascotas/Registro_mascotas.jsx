@@ -127,9 +127,18 @@ export const Registro_mascotas = () => {
                                 
                                 crearMascota( valores, id ).then( info => {
 
-                                    setLoading( false );
-                                    resetForm();
-                                    window.location = "/perfil";
+                                    if ( info.status === 201 ) {
+                                        
+                                        setTimeout(()=>{
+                                            setLoading( false );
+                                            resetForm();
+                                            window.location = "/perfil";
+                                        },[1000])
+                                    }
+                                    else{
+                                            setLoading( false );
+                                            console.log("Hubo un error interno en el sistema, intentalo más tarde");
+                                    }
 
                                 })
 

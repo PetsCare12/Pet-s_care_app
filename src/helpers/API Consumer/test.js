@@ -27,8 +27,15 @@ export const crearMascota = async( mascota, id ) => {
                 'Authorization': 'Bearer '+access_token,
             },
             data : mascota
-            
+        }).catch( function( error ) {
+
+            if ( error.response ) {
+                console.log( error );
+                return { status : error.response.status }
+            }
+
         });
+        console.log( resp );
 
         return resp;
 
