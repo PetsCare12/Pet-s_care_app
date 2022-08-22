@@ -54,6 +54,7 @@ const AdminScreen = () => {
                     </div>
                     <button onClick={handleRequest} className='btnAdmin peticiones'>Peticiones</button>
                 </div>
+                
                 {
                     userType===1 &&
                     <form className='admin__filter' action="">
@@ -62,23 +63,30 @@ const AdminScreen = () => {
                         <button id='search' className='btnAdmin'>Buscar</button>
                     </form>
                 }
-                {
-                    userType===1 &&
-                    
-                    data.map( user => 
-                        <div className="admin__container-info">
-                            <InfoUser
-                                id = {user.documentoUs}
-                                correo = {user.correoUs}
-                                nombre = {user.nombreUs}
-                                apellido = {user.apellidoUs}
-                                img = {user.imagenUsu}
-                                telefono = {user.telefonoUs}
-                                status = {user.estadoUs}
-                            />
-                        </div>
-                        )
-                }
+
+                <div className="tableUsuarios">
+                    <h2>Usuarios</h2>
+                    <ul className="responsive-table">
+                        <li className="table-header">
+                        <div className="col col-1">Id</div>
+                        <div className="col col-2">Nombre</div>
+                        <div className="col col-3">Correo</div>
+                        <div className="col col-4">Acciones</div>
+                        </li>
+                        {
+                            userType===1 &&
+                            
+                            data.map( user => 
+
+                                    <InfoUser
+                                        { ... user }
+                                    />
+
+                                )
+                        }
+                    </ul>
+                </div>
+
             </div>
             {
                 solicitudesScreen && 
