@@ -11,17 +11,31 @@ import '../ClinicaProfile/ClinicaProfile.css';
 
 export const ClinicaProfile = () => {
 
+  
   let nameClinic = "Veterinaria Salud Canina";
 
   const [imgUrl, setimgUrl] = useState(imageRandom());
   const [activeBtn, setActiveBtn] = useState("perfil");
-  // const { 
+  const { 
 
-  //   form,errors,
-  //   loading,response,estatusResponse,
-  //   handleChangeVet,handleBlur,handleSubmit 
+    form,errors,
+    loading,response,estatusResponse,
+    handleChangeVet,handleBlur,handleSubmit 
 
-  // } = useForm(initialForm , validateForm , token , nit);
+  } = useForm( initialForm , validateForm );
+
+  const initialForm = {
+    nit : "",
+    nombre : "",
+    direccion : "",
+    telefono : "",
+    correoCv : "",
+    password : "",
+    imagenclinica : "",
+    estadoCli : 1
+  };
+
+  const validateForm = () => {};
 
   const handleLogout = () => {
     localStorage.removeItem("token");
