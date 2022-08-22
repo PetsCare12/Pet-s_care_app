@@ -8,21 +8,32 @@ import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { ButtonUI } from '../../../UI/ButtonUI/ButtonUI';
 import { useForm } from '../../../../helpers/useForm';
 import '../ClinicaProfile/ClinicaProfile.css';
+import { getClinicaById } from '../../../../helpers/API Consumer/useClinicasConsumer';
 
 export const ClinicaProfile = () => {
 
-  
   let nameClinic = "Veterinaria Salud Canina";
+  const tokenClinic = localStorage.getItem('token');
+  const user = localStorage.getItem('usuario');
 
   const [imgUrl, setimgUrl] = useState(imageRandom());
   const [activeBtn, setActiveBtn] = useState("perfil");
-  const { 
+  const [useToken, setuseToken] = useState(tokenClinic)
 
-    form,errors,
-    loading,response,estatusResponse,
-    handleChangeVet,handleBlur,handleSubmit 
+  useEffect(() => {
 
-  } = useForm( initialForm , validateForm );
+    if (JSON.stringify(useToken) != "{}") {
+      getClinicaById(user.id).then(data => {
+        setuseToken = data;
+        console.log(useToken);
+      });
+    }else{
+      setuseToken({});
+    }
+
+  }, [])
+
+  const { form,errors,loading,response,estatusResponse,handleChangeVet,handleBlur,handleSubmit } = useForm( initialForm , validateForm );
 
   const initialForm = {
     nit : "",
@@ -48,7 +59,11 @@ export const ClinicaProfile = () => {
 
   return (
     <div>
-        <div className='profile_clinica animate__animated animate__fadeIn'>
+        {
+          JSON.stringify(useToken) != '{}'
+
+          ? 
+          <div className='profile_clinica animate__animated animate__fadeIn'>
 
             <header className="section_profile_3_clinics">
 
@@ -133,13 +148,15 @@ export const ClinicaProfile = () => {
 
                           <ButtonUI type="submit" style="submit" text="Actualizar"></ButtonUI>
                         </form>
-
                     </div>
-
                   </div>
+              </div>
+          </div>
 
-            </div>
-        </div>
+          : 
+            ()
+          
+        }
     </div>
   )
 }
