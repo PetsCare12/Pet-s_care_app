@@ -3,6 +3,15 @@
     margin: 0;
     padding: 0;
 }
+.gestion_space{
+    display: flex;
+    gap: 15px;
+}
+.title_profile_clinic{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .profile_clinica h1,h2,h3,h4,h5,h6,input,button,span{
     font-family: 'Ruda', sans-serif;
     color: #0072ff;
@@ -12,25 +21,21 @@
     flex-direction: column;
     justify-content: center;
 }
-.horarios_define{
-    background-color: #ffffff;
-}
 .section_profile_1_clinics{
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
+    width: 155vh;
 }
 .section_profile_3_clinics{
     background: linear-gradient(360deg, #61bbd6,#0072ff);
     height: 25vh;
 }
+
 /* Horarios */
 .table_horarios{
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #ffffff;
 }
 .horarios_define{
     display: flex;
@@ -39,6 +44,19 @@
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
     width: 65vh;
     padding: 2vh;
+    position: relative;
+}
+.horarios_define_hidde{
+    display: none;
+}
+.horarios_define_show{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    width: 150vh;
+    padding: 2vh;
+    position: relative;
 }
 .header_table{
     display: flex;
@@ -46,23 +64,23 @@
     background-color: #ddf4ff;
 }
 .head{
-    height: 7vh;
+    height: 5vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .head_1{
-    width: 20vh;
+    width: 25vh;
 }
 .head_2{
-    width: 40vh;
+    width: 65vh;
 }
 .days{
-    height: 7vh;
+    height: 10vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 20vh;
+    width: 25vh;
     border-bottom: 1px solid #a8dff8;
 }
 .days_viernes{
@@ -75,12 +93,12 @@
     border-top: 1px solid #a8dff8;
 }
 .hours{
-    height: 7vh;
+    height: 10vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40vh;
-    gap: 15px;
+    width: 65vh;
+    gap: 75px;
     border-bottom: 1px solid #a8dff8;
     border-left: 1px solid #a8dff8;
 }
@@ -92,15 +110,13 @@
     flex-direction: row;
 }
 
-
 /* Perfil Left */
 .section_profile_4_clinics{
+    margin-top: -12rem;
+    z-index: 10001;
     width: 20vw;
     background-color: rgb(255, 255, 255);
-    height: 85%;
-    /* margin-top: 10rem;
-    position: absolute;
-    z-index: 10001; */
+    height: 95vh;
 }
 .img_profile_clinic{
     width: 20vw;
@@ -114,4 +130,27 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+/* Perfil Editable */
+.perfil{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.perfil_hidde{
+    display: none;
+}
+.perfil_show{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Bottom section */
+.section_bottom{
+    display: flex;
+    flex-direction: row;
+    gap: 5rem;
+    justify-content: space-between;
 }
