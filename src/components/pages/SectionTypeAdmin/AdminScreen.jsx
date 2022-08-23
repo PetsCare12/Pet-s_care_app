@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getPeticionesClinicas } from '../../../helpers/API Consumer/useClinicasConsumer';
+import { getAllClinicas, getPeticionesClinicas } from '../../../helpers/API Consumer/useClinicasConsumer';
 import {Header} from '../../layout/HeaderHome/HeaderHome';
 import { SimpleModal } from '../../layout/Modals/SimpleModal';
 import { BiRefresh } from "react-icons/bi";
@@ -19,16 +19,32 @@ const AdminScreen = () => {
     const token = localStorage.getItem("token");
     const [userType, setUserType] = useState(0);
     const [data, setData] = useState([]);
+    const [loadingData, setLoadingData] = useState(false);
 
     const handleSelect = ( type ) => {
 
+        setLoadingData( true );
+
         if ( type === 1 ) {
-            usuariosTodos().then( info => setData( info ));
+            usuariosTodos().then( info => {
+                setData( info );
+                setLoadingData( false );
+            });
             setUserType( 1 );
         }
         else if ( type === 2 ) {
             // usuariosTodos().then( info => setData( info ));
             setUserType(2);
+        }
+        else if( type === 3 ) {
+            console.log("CLINICA");
+            getAllClinicas().then( info => {
+
+                setData(info.data);
+                setLoadingData( false );
+
+            });
+            setUserType(3);
         }
 
     }
@@ -63,31 +79,122 @@ const AdminScreen = () => {
                         <button id='search' className='btnAdmin'>Buscar</button>
                     </form>
                 }
-
-                <div className="tableUsuarios">
-                    <h2>Usuarios</h2>
-                    <ul className="responsive-table">
-                        <li className="table-header">
-                        <div className="col col-1">Id</div>
-                        <div className="col col-2">Nombre</div>
-                        <div className="col col-3">Correo</div>
-                        <div className="col col-4">Acciones</div>
-                        </li>
-                        {
-                            userType===1 &&
-                            
-                            data.map( user => 
-
+                {
+                    userType===2 &&
+                    <form className='admin__filter' action="">
+                        <label htmlFor="documento">N° Documento</label>
+                        <input type="text" name='documento'/>
+                        <button id='search' className='btnAdmin'>Buscar</button>
+                    </form>
+                }
+                {
+                    userType===3 &&
+                    <form className='admin__filter' action="">
+                        <label htmlFor="documento">N° NIT</label>
+                        <input type="text" name='documento'/>
+                        <button id='search' className='btnAdmin'>Buscar</button>
+                    </form>
+                }
+                {
+                    loadingData && <div id='login-spin-adminScreen' className='spiner'></div>
+                }
+                {
+                    !loadingData &&
+                        <div className="tableUsuarios">
+                            <ul className="responsive-table">
+                                {
+                                    userType===1 && 
+                                    <>
+                                    <h2>Usuarios</h2>   
+                                    <li className="table-header">
+                                    <div className="col col-1">Id</div>
+                                    <div className="col col-2">Nombre</div>
+                                    <div className="col col-3">Correo</div>
+                                    <div className="col col-4">Acciones</div>
+                                    </li>
+                                    </>
+                                }
+                                
+                                {
+                                    userType===1 &&
+                                
+                                    data.map( (user,key) => 
+                                        
                                     <InfoUser
-                                        { ... user }
-                                    />
-
-                                )
-                        }
-                    </ul>
-                </div>
+                                        key={key}
+                                        id={user.documentoUs} 
+                                        nombre={user.nombreUs} 
+                                        correo={user.correoUs} 
+                                        img = {user.imagenUsu}
+                                        telefono={user.telefonoUs} 
+                                        estado={user.estadoUs} 
+                                    
+                                />
+                                        
+                                        )
+                                }
+                                {
+                                    userType===2 && 
+                                    <>
+                                    <h2>Veterinarios</h2>   
+                                    <li className="table-header">
+                                    <div className="col col-1">Id</div>
+                                    <div className="col col-2">Nombre</div>
+                                    <div className="col col-3">Correo</div>
+                                    <div className="col col-4">Acciones</div>
+                                    </li>
+                                    </>
+                                }
+                                {
+                                    userType===2 &&
+                                    
+                                    data.map( (user,key) => 
+                                        
+                                        <InfoUser
+                                            key={key}
+                                            { ... user }
+                                        />
+                                        
+                                        )
+                                }
+                                {
+                                    userType===3 && 
+                                    <>
+                                    <h2>Clínicas</h2>   
+                                    <li className="table-header">
+                                    <div className="col col-1">Id</div>
+                                    <div className="col col-2">Nombre</div>
+                                    <div className="col col-3">Correo</div>
+                                    <div className="col col-4">Acciones</div>
+                                    </li>
+                                    </>
+                                }
+                                {
+                                    userType===3 &&
+                                    
+                                    data.map( (user,key) => 
+                                        
+                                        <InfoUser
+                                            key={key}
+                                            id={user.nit} 
+                                            direccion={user.direccion}
+                                            nombre={user.nombre} 
+                                            correo={user.correoCv} 
+                                            img = {user.imagenclinica}
+                                            telefono={user.telefono} 
+                                            estado={user.estadoCli} 
+                                            
+                                        />
+                                        
+                                        )
+                                }
+                                
+                            </ul>
+                        </div>
+                }
 
             </div>
+
             {
                 solicitudesScreen && 
                 <SimpleModal>

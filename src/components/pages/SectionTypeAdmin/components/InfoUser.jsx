@@ -3,19 +3,19 @@ import { SimpleModal } from '../../../layout/Modals/SimpleModal';
 
 import { HiOutlineIdentification,HiOutlineMail } from "react-icons/hi";
 import { BsTelephoneForward } from "react-icons/bs";
-import { MdPermIdentity } from "react-icons/md";
+import { MdPermIdentity,MdOutlineLocationOn } from "react-icons/md";
 import { TbPencil } from "react-icons/tb";
 import { AiFillDelete,AiFillEye } from "react-icons/ai";
 
 
 
-const InfoUser = ( props ) => {
+const InfoUser = ( { id, nombre, apellido="" , correo, img, telefono, estado, direccion="" } ) => {
 
     const [showInfo, setShowInfo] = useState(false);
 
     
 
-//     documentoUs
+// documentoUs
 // correoUs
 // nombreUs
 // apellidoUs
@@ -25,10 +25,10 @@ const InfoUser = ( props ) => {
     return (
         <>
             <li className="table-row">
-                <div className="col col-1" data-label="Job Id">{props.documentoUs}</div>
-                <div className="col col-2" data-label="Customer Name">{props.nombreUs}</div>
-                <div className="col col-3" data-label="Amount">{props.correoUs}</div>
-                <div className="col col-4" data-label="Payment Status">
+                <div className="col col-1 doc" data-label="Job Id">{id}</div>
+                <div className="col col-2 nom" data-label="Customer Name">{nombre}</div>
+                <div className="col col-3 cor" data-label="Amount">{correo}</div>
+                <div className="col col-4 but" data-label="Payment Status">
                     <button className='infoUser__managment'>
                         <p className='casilla edit'><TbPencil/></p>
                         <p className='casilla delete'><AiFillDelete/></p>
@@ -41,22 +41,25 @@ const InfoUser = ( props ) => {
                 <SimpleModal>
                     <div className='infoUser-modal animate__animated animate__fadeIn'>
                         <div className='img-div'>
-                            <img src={props.img} alt="img" />
+                            <img src={img} alt="img" />
                         </div>
                         <div className='info-div'>
-                            <p><HiOutlineIdentification className='icon'/> { props.id } </p>
-                            <p><MdPermIdentity className='icon'/> { props.nombre } { props.apellido }</p>
-                            <p><HiOutlineMail className='icon'/> { props.correo } </p>
-                            <p><BsTelephoneForward className='icon'/> { props.telefono } </p>
+                            <p><HiOutlineIdentification className='icon'/> { id } </p>
+                            <p><MdPermIdentity className='icon'/> { nombre } { apellido }</p>
+                            <p><HiOutlineMail className='icon'/> { correo } </p>
+                            <p><BsTelephoneForward className='icon'/> { telefono } </p>
+                            {
+                                direccion && <p><MdOutlineLocationOn className='icon'/> { direccion } </p>
+                            }
                         </div>
                     {
-                        props.status === 1 && <p className='status active'>{ props.status }</p>
+                        estado === 1 && <p className='status active'>{ estado }</p>
                     }
                     {
-                        props.status === 2 && <p className='status disabled'>{ props.status }</p>
+                        estado === 2 && <p className='status disabled'>{ estado }</p>
                     }
                     {
-                        props.status === 3 && <p className='status waiting'>{ props.status }</p>
+                        estado === 3 && <p className='status waiting'>{ estado }</p>
                     }
 
                     <p onClick={()=>setShowInfo( false )} className='status cancel'>x</p>

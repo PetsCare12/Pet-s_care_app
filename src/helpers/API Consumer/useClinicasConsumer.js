@@ -66,3 +66,15 @@ export const peticion = async ( nit, access_token, estado ) => {
     }
 
 }
+
+export const getAllClinicas = async () => {
+
+    try {
+        const response = await axios("http://localhost:8080/api/clinicas");
+
+        return response;
+    } catch (error) {
+        console.log( error );
+    }
+
+}
