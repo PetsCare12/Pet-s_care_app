@@ -13,6 +13,7 @@ import { TypeClinica } from '../components/pages/SectionTypeClinica/TypeClinica'
 import { Agenda } from '../components/pages/Agenda/Agenda'
 import AdminScreen from '../components/pages/SectionTypeAdmin/AdminScreen';
 import { ClinicaProfile } from '../components/pages/SectionTypeClinica/ClinicaProfile/ClinicaProfile';
+import { PasswordRecovery } from '../components/pages/Password-recovery/PasswordRecovery';
 
 export const AppRouter = () => {
 
@@ -33,6 +34,7 @@ export const AppRouter = () => {
                 <Route path="/tuClinica" element={ <ClinicaProfile />  } />
                 <Route path="/agenda" element={ <Agenda />  } />
                 <Route path="/admin" element={<AdminScreen/>}/>
+                <Route path="/recovery-password" element={<PasswordRecovery />}/>
             </Routes>
         </BrowserRouter>
     )
