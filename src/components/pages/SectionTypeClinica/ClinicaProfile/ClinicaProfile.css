@@ -112,7 +112,7 @@
 
 /* Perfil Left */
 .section_profile_4_clinics{
-    margin-top: -12rem;
+    margin-top: -13rem;
     z-index: 10001;
     width: 20vw;
     background-color: rgb(255, 255, 255);
@@ -135,6 +135,7 @@
 /* Perfil Editable */
 .perfil{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -143,6 +144,7 @@
 }
 .perfil_show{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }

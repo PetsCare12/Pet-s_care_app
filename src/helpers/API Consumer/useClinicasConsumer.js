@@ -44,11 +44,11 @@ export const getClinicaById = async( nit ) => {
     }
 }
 
-export const putClinica = async( clinica ) => {
+export const putClinica = async( clinica , nit ) => {
  
     try {
         const response = await axios({
-            url: "http://localhost:8080/api/clinicas",
+            url: `http://localhost:8080/api/clinicas/${nit}`,
             method: "PUT",
             headers: {
                 "Content-Type":"application/json"

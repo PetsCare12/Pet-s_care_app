@@ -9,17 +9,13 @@ import { setStateVeterinario, getVeterinarioById, getVeterinarios } from '../../
 import { SimpleModal } from "../../layout/Modals/SimpleModal";
 import { MdOutlineCancel } from 'react-icons/md';
 import "./TypeClinica.css";
+import { getClinicaById } from '../../../helpers/API Consumer/useClinicasConsumer';
 
 export const TypeClinica = () => {
 
-  let nameClinic = "Veterinaria Salud Canina";
-  // let nitClinic = 111;
-  // let tokenClinic = "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxMTEiLCJzdWIiOiJzYWx1ZGNhbmluYUB2ZXRlcmluYXJpYXMuY29tIiwiYXVkIjoiW1JPTEVfQ0xJTklDQV0iLCJpYXQiOjE2NjAxNzk4ODIsImV4cCI6MTY2MDc4NDY4MX0.pBUjcGe1MUCv1AgUfDwpPoQcFb6lE4Q2V4D0BTlAf2NydWBJaF0t0p8tA9CNH5KPAvkclHS5My_ej2v3_XIl0A"
+  const [tokenUser, setTokenUser] = useState(JSON.parse(localStorage.getItem("usuario")));
 
-  let nitClinic = 1010;
-  let tokenClinic =  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWx1ZGNhbmluYUB2ZXRlcmluYXJpYXMuY29tIiwiYXVkIjoiW1JPTEVfQ0xJTklDQV0iLCJlc3RhZG8iOjEsImlkIjoxMDEwLCJleHAiOjE2NjA5MzE3MTAsImlhdCI6MTY2MDMyNjkxMH0.eQPuQYTPp4NQXTCea-5hiCuBf5AcRgD7h46egTe8ZB8Bg9_L9nilCVm_M3lD0GOETgC0xtr_07FZ37fTVo7U-g";
-
-  const [arrState, setarrState] = useState(true);
+  const [arrState, setarrState] = useState(false);
   const [arr, setarr] = useState([]);
   const [img, setimg] = useState("");
   const {myWidgetVeter,urlImage} = useSendImage();
@@ -28,6 +24,37 @@ export const TypeClinica = () => {
   const [requestState, setrequestState] = useState(true);
   const [modalRespUpdateVetState, setmodalRespUpdateVetState] = useState(false);
   const [vetState, setvetState] = useState("");
+  const [clinicInfo, setclinicInfo] = useState({});
+  
+  let tokenClinic = localStorage.getItem('token');
+  let nameClinic = clinicInfo.nombre;
+  let nitClinic = clinicInfo.nit;
+
+  useEffect(() => {
+    if (arrState === true) {
+      getVeterinarios(nitClinic).then(data => {
+        console.log(data);
+      });
+    }else if (arrState === false){
+      console.log("En espera");
+    }
+  }, [arrState]);
+
+  
+  useEffect(() => {
+
+    if ( !!tokenUser ) {
+
+      getClinicaById( tokenUser.id ).then( data => {
+        if ( data != {} ) {
+          setclinicInfo(data.data);
+          setarrState(true);
+        }
+      });
+      
+    }
+    
+  }, [tokenUser]);
 
   const getVeterId = (e) => {
     if (e.keyCode === 13) {
@@ -47,12 +74,6 @@ export const TypeClinica = () => {
       setarrState(true);
     }   
   }
-
-  useEffect(() => {
-    if (arrState === true) {
-      getVeterinarios(nitClinic).then( data => setarr(data));
-    }
-  }, [arrState]);
 
   const getVet = (e) => {
     setimg(e.imagenVete);
