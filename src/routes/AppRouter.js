@@ -15,6 +15,7 @@ import AdminScreen from '../components/pages/SectionTypeAdmin/AdminScreen';
 import { ClinicaProfile } from '../components/pages/SectionTypeClinica/ClinicaProfile/ClinicaProfile';
 
 export const AppRouter = () => {
+
     return (
         <BrowserRouter>            
             <Routes>
@@ -31,7 +32,7 @@ export const AppRouter = () => {
                 <Route path="/gestionClinica" element={ <TypeClinica />  } />
                 <Route path="/tuClinica" element={ <ClinicaProfile />  } />
                 <Route path="/agenda" element={ <Agenda />  } />
-                <Route path="/admin" element={ <AdminScreen />  } />
+                <Route path="/admin" element={<AdminScreen/>}/>
             </Routes>
         </BrowserRouter>
     )
