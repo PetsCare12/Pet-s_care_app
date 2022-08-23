@@ -13,19 +13,29 @@ const InfoUser = ( props ) => {
 
     const [showInfo, setShowInfo] = useState(false);
 
+    
+
+//     documentoUs
+// correoUs
+// nombreUs
+// apellidoUs
+// imagenUsu
+// telefonoUs
+// estadoUs
     return (
         <>
-            <div className='infoUser__container animate__animated animate__fadeIn'>
-                <div className='infoUser__data'>
-                    <h2>{ props.id }</h2>
-                    <h1>{ props.nombre }</h1>
+            <li className="table-row">
+                <div className="col col-1" data-label="Job Id">{props.documentoUs}</div>
+                <div className="col col-2" data-label="Customer Name">{props.nombreUs}</div>
+                <div className="col col-3" data-label="Amount">{props.correoUs}</div>
+                <div className="col col-4" data-label="Payment Status">
+                    <button className='infoUser__managment'>
+                        <p className='casilla edit'><TbPencil/></p>
+                        <p className='casilla delete'><AiFillDelete/></p>
+                        <p className='casilla show' onClick={()=>setShowInfo(true)}><AiFillEye/></p>
+                    </button>
                 </div>
-                <button className='infoUser__managment'>
-                    <p className='casilla edit'><TbPencil/></p>
-                    <p className='casilla delete'><AiFillDelete/></p>
-                    <p className='casilla show' onClick={()=>setShowInfo(true)}><AiFillEye/></p>
-                </button>
-            </div>
+            </li>
             {
                 showInfo &&
                 <SimpleModal>
