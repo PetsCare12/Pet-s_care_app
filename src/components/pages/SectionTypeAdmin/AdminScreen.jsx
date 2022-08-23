@@ -7,8 +7,17 @@ import './AdminScreen.css';
 import InfoUser from './components/InfoUser';
 import PeticionClinica from './components/PeticionClinica';
 import { usuariosTodos } from '../../../helpers/API Consumer/test';
+import { NoAutenticado } from '../NoAutenticado/NoAutenticado';
 
 const AdminScreen = () => {
+
+    const isAuth = localStorage.getItem("token");
+    const aud = "";
+
+    if ( !!isAuth ) {
+        const usuario = JSON.parse(localStorage.getItem("usuario"));
+        aud = usuario.aud;
+    }
 
     // 1 ~ Usuario
     // 2 ~ Veterinario
@@ -60,140 +69,149 @@ const AdminScreen = () => {
 
     return (
         <>
-            <Header />
-            <div className="admin__container animate__animated animate__fadeIn">
-                <div className="admin__nav">
-                    <div className='admin__nav-izquierdo'>
-                        <button onClick={()=>{handleSelect(1)}} className={`btnAdmin ${userType === 1 && "active"}`}>Usuarios</button>
-                        <button onClick={()=>{handleSelect(2)}} className={`btnAdmin ${userType === 2 && "active"}`}>Veterinarios</button>
-                        <button onClick={()=>{handleSelect(3)}} className={`btnAdmin ${userType === 3 && "active"}`}>Clínicas</button>
-                    </div>
-                    <button onClick={handleRequest} className='btnAdmin peticiones'>Peticiones</button>
-                </div>
-                
-                {
-                    userType===1 &&
-                    <form className='admin__filter' action="">
-                        <label htmlFor="documento">N° Documento</label>
-                        <input type="text" name='documento'/>
-                        <button id='search' className='btnAdmin'>Buscar</button>
-                    </form>
-                }
-                {
-                    userType===2 &&
-                    <form className='admin__filter' action="">
-                        <label htmlFor="documento">N° Documento</label>
-                        <input type="text" name='documento'/>
-                        <button id='search' className='btnAdmin'>Buscar</button>
-                    </form>
-                }
-                {
-                    userType===3 &&
-                    <form className='admin__filter' action="">
-                        <label htmlFor="documento">N° NIT</label>
-                        <input type="text" name='documento'/>
-                        <button id='search' className='btnAdmin'>Buscar</button>
-                    </form>
-                }
-                {
-                    loadingData && <div id='login-spin-adminScreen' className='spiner'></div>
-                }
-                {
-                    !loadingData &&
-                        <div className="tableUsuarios">
-                            <ul className="responsive-table">
-                                {
-                                    userType===1 && 
-                                    <>
-                                    <h2>Usuarios</h2>   
-                                    <li className="table-header">
-                                    <div className="col col-1">Id</div>
-                                    <div className="col col-2">Nombre</div>
-                                    <div className="col col-3">Correo</div>
-                                    <div className="col col-4">Acciones</div>
-                                    </li>
-                                    </>
-                                }
-                                
-                                {
-                                    userType===1 &&
-                                
-                                    data.map( (user,key) => 
+            {
+                (!!isAuth && aud === "[ROLE_ADMIN]") &&
+                <>
+                    <Header />
+                    <div className="admin__container animate__animated animate__fadeIn">
+                        <div className="admin__nav">
+                            <div className='admin__nav-izquierdo'>
+                                <button onClick={()=>{handleSelect(1)}} className={`btnAdmin ${userType === 1 && "active"}`}>Usuarios</button>
+                                <button onClick={()=>{handleSelect(2)}} className={`btnAdmin ${userType === 2 && "active"}`}>Veterinarios</button>
+                                <button onClick={()=>{handleSelect(3)}} className={`btnAdmin ${userType === 3 && "active"}`}>Clínicas</button>
+                            </div>
+                            <button onClick={handleRequest} className='btnAdmin peticiones'>Peticiones</button>
+                        </div>
+                        
+                        {
+                            userType===1 &&
+                            <form className='admin__filter' action="">
+                                <label htmlFor="documento">N° Documento</label>
+                                <input type="text" name='documento'/>
+                                <button id='search' className='btnAdmin'>Buscar</button>
+                            </form>
+                        }
+                        {
+                            userType===2 &&
+                            <form className='admin__filter' action="">
+                                <label htmlFor="documento">N° Documento</label>
+                                <input type="text" name='documento'/>
+                                <button id='search' className='btnAdmin'>Buscar</button>
+                            </form>
+                        }
+                        {
+                            userType===3 &&
+                            <form className='admin__filter' action="">
+                                <label htmlFor="documento">N° NIT</label>
+                                <input type="text" name='documento'/>
+                                <button id='search' className='btnAdmin'>Buscar</button>
+                            </form>
+                        }
+                        {
+                            loadingData && <div id='login-spin-adminScreen' className='spiner'></div>
+                        }
+                        {
+                            !loadingData &&
+                                <div className="tableUsuarios">
+                                    <ul className="responsive-table">
+                                        {
+                                            userType===1 && 
+                                            <>
+                                            <h2>Usuarios</h2>   
+                                            <li className="table-header">
+                                            <div className="col col-1">Id</div>
+                                            <div className="col col-2">Nombre</div>
+                                            <div className="col col-3">Correo</div>
+                                            <div className="col col-4">Acciones</div>
+                                            </li>
+                                            </>
+                                        }
                                         
-                                    <InfoUser
-                                        key={key}
-                                        id={user.documentoUs} 
-                                        nombre={user.nombreUs} 
-                                        correo={user.correoUs} 
-                                        img = {user.imagenUsu}
-                                        telefono={user.telefonoUs} 
-                                        estado={user.estadoUs} 
-                                    
-                                />
+                                        {
+                                            userType===1 &&
                                         
-                                        )
-                                }
-                                {
-                                    userType===2 && 
-                                    <>
-                                    <h2>Veterinarios</h2>   
-                                    <li className="table-header">
-                                    <div className="col col-1">Id</div>
-                                    <div className="col col-2">Nombre</div>
-                                    <div className="col col-3">Correo</div>
-                                    <div className="col col-4">Acciones</div>
-                                    </li>
-                                    </>
-                                }
-                                {
-                                    userType===2 &&
-                                    
-                                    data.map( (user,key) => 
-                                        
-                                        <InfoUser
-                                            key={key}
-                                            { ... user }
-                                        />
-                                        
-                                        )
-                                }
-                                {
-                                    userType===3 && 
-                                    <>
-                                    <h2>Clínicas</h2>   
-                                    <li className="table-header">
-                                    <div className="col col-1">Id</div>
-                                    <div className="col col-2">Nombre</div>
-                                    <div className="col col-3">Correo</div>
-                                    <div className="col col-4">Acciones</div>
-                                    </li>
-                                    </>
-                                }
-                                {
-                                    userType===3 &&
-                                    
-                                    data.map( (user,key) => 
-                                        
-                                        <InfoUser
-                                            key={key}
-                                            id={user.nit} 
-                                            direccion={user.direccion}
-                                            nombre={user.nombre} 
-                                            correo={user.correoCv} 
-                                            img = {user.imagenclinica}
-                                            telefono={user.telefono} 
-                                            estado={user.estadoCli} 
+                                            data.map( (user,key) => 
+                                                
+                                            <InfoUser
+                                                key={key}
+                                                id={user.documentoUs} 
+                                                nombre={user.nombreUs} 
+                                                correo={user.correoUs} 
+                                                img = {user.imagenUsu}
+                                                telefono={user.telefonoUs} 
+                                                estado={user.estadoUs} 
                                             
                                         />
+                                                
+                                                )
+                                        }
+                                        {
+                                            userType===2 && 
+                                            <>
+                                            <h2>Veterinarios</h2>   
+                                            <li className="table-header">
+                                            <div className="col col-1">Id</div>
+                                            <div className="col col-2">Nombre</div>
+                                            <div className="col col-3">Correo</div>
+                                            <div className="col col-4">Acciones</div>
+                                            </li>
+                                            </>
+                                        }
+                                        {
+                                            userType===2 &&
+                                            
+                                            data.map( (user,key) => 
+                                                
+                                                <InfoUser
+                                                    key={key}
+                                                    { ... user }
+                                                />
+                                                
+                                                )
+                                        }
+                                        {
+                                            userType===3 && 
+                                            <>
+                                            <h2>Clínicas</h2>   
+                                            <li className="table-header">
+                                            <div className="col col-1">Id</div>
+                                            <div className="col col-2">Nombre</div>
+                                            <div className="col col-3">Correo</div>
+                                            <div className="col col-4">Acciones</div>
+                                            </li>
+                                            </>
+                                        }
+                                        {
+                                            userType===3 &&
+                                            
+                                            data.map( (user,key) => 
+                                                
+                                                <InfoUser
+                                                    key={key}
+                                                    id={user.nit} 
+                                                    direccion={user.direccion}
+                                                    nombre={user.nombre} 
+                                                    correo={user.correoCv} 
+                                                    img = {user.imagenclinica}
+                                                    telefono={user.telefono} 
+                                                    estado={user.estadoCli} 
+                                                    
+                                                />
+                                                
+                                                )
+                                        }
                                         
-                                        )
-                                }
-                                
-                            </ul>
-                        </div>
-                }
+                                    </ul>
+                                </div>
+                        }
 
-            </div>
+                    </div>
+                </>
+            }
+            {
+                (!isAuth && aud !== "[ROLE_ADMIN]") &&
+                <NoAutenticado txt="Al parecer no tienes permiso para entrar a este lugar."/>
+            }
 
             {
                 solicitudesScreen && 

@@ -1,4 +1,4 @@
-import { NavLink, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { ButtonUI } from '../../UI/ButtonUI/ButtonUI'
 import { ImagenUI } from '../../UI/ImagenUI/ImagenUI'
 import image from './perro_gato_animadoNew.png'
@@ -14,6 +14,7 @@ import emailjs from '@emailjs/browser';
 
 import './LoginStyle.css'
 import { imageRandom } from '../../../helpers/RandomImages/imagenessa';
+import { generateCode } from '../../../helpers/API Consumer/recovery-password';
 
 export const Login = () => {
 
@@ -50,22 +51,42 @@ export const Login = () => {
         e.preventDefault();
 
         setLoadingEmail( true );
+        let key = "";
 
-        emailjs.sendForm('service_kagt37a','template_4f77v7z', e.target,'akQoWyMBUDzn4jOoB')
-        .then( response => {
-            console.log( response );
-            if ( response.status === 200 ) {
+        generateCode( userEmail ).then( info => {
+
+            if ( info.status === 200 ) {
+                key = info.data.key;
+                const data = document.createElement('form');
                 
-                setEmailSent( true );
-                setForgotPassword( false );
-                setErrorEmail( true );
-                setLoadingEmail( false );
+                data.append(`
+                    <form>  
+                        <input type="text" name="email" value="${userEmail}">  
+                        <input type="text" name="key" value="${key}">  
+                    </form>  
+                `)
+                emailjs.sendForm('service_kagt37a','template_4f77v7z', data ,'akQoWyMBUDzn4jOoB')
+                .then( response => {
+                    console.log( response );
+                    if ( response.status === 200 ) {
+                        
+                        setEmailSent( true );
+                        setForgotPassword( false );
+                        setErrorEmail( true );
+                        setLoadingEmail( false );
+                    }
+                } )
+                .catch( error => {
+                    setErrorEmail( true );
+                    setLoadingEmail( false );
+                } )
             }
-        } )
-        .catch( error => {
-            setErrorEmail( true );
-            setLoadingEmail( false );
-        } )
+            else {
+                console.log( "Error" );
+                setLoading( false );
+            }
+        } );
+
 
     }
 
@@ -228,9 +249,10 @@ export const Login = () => {
                     </div>
                     <div>
                         <h1>Te hemos enviado un correo a <br/><span>{userEmail}</span></h1>
-                        <p>Por favor revisa tu bandeja de entrada o en span para obtener las instrucciones en el cambio de tu contaseña.</p>
+                        <p>Por favor revisa tu bandeja de entrada o en span para obtener el código.</p>
                     </div>
-                    <button onClick={handleClose} id="btnh30" className='btn200'>Ok</button>
+                    <input type="text" className='inputEditMascota input-w150' />
+                    <button onClick={handleClose} className='btnAuto'>verificar</button>
                 </div>
             </SimpleModal> 
         }
