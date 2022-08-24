@@ -12,7 +12,6 @@ export const getVeterinarios = async( nit ) => {
     } catch (error) {
 
         if ( error.response ) {
-            console.log(error.response.status);
             return error.response;
         }
 
@@ -31,8 +30,7 @@ export const getVeterinarioById = async( id ) => {
     } catch (error) {
 
         if ( error.response ) {
-            console.log(error.response.status);
-            return error.response.status;
+            return error.response;
         }
         
     }
@@ -50,8 +48,7 @@ export const getVeterinarioByName = async( name ) => {
     } catch (error) {
 
         if ( error.response ) {
-            console.log(error.response.status);
-            return error.response.status;
+            return error.response;
         }
         
     }
@@ -75,8 +72,7 @@ export const setVeterinario = async( veterinario , nit , access_token ) => {
         }).catch( function( error ) {
 
             if ( error.response ) {
-                console.log(error.response.status);
-                return error.response.status;
+                return error.response;
             }
 
         });
@@ -86,8 +82,7 @@ export const setVeterinario = async( veterinario , nit , access_token ) => {
     } catch (error) {
 
         if ( error.response ) {
-            console.log(error.response);
-            return error.response.status;
+            return error.response;
         }
 
     }
@@ -111,8 +106,7 @@ export const putVeterinario = async( veterinario , id , access_token ) => {
         }).catch( function( error ) {
 
             if ( error.response ) {
-                console.log(error.response.status);
-                return error.response.status;
+                return error.response;
             }
 
         });
@@ -122,8 +116,7 @@ export const putVeterinario = async( veterinario , id , access_token ) => {
     } catch (error) {
 
         if ( error.response ) {
-            console.log(error.response.status);
-            return error.response.status;
+            return error.response;
         }
 
     }
@@ -146,8 +139,7 @@ export const setStateVeterinario = async( id , estado , access_token ) => {
         }).catch( function( error ) {
 
             if ( error.response ) {
-                console.log(error.response.status);
-                return error.response.status;
+                return error.response;
             }
 
         });
@@ -157,8 +149,7 @@ export const setStateVeterinario = async( id , estado , access_token ) => {
     } catch (error) {
 
         if ( error.response ) {
-            console.log(error.response.status);
-            return error.response.status;
+            return error.response;
         }
 
     }
