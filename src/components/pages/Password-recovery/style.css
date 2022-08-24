@@ -92,3 +92,22 @@
 .recoveryPass label{
     font-size: 15px;
 }
+
+.alignCenter{
+    text-align: center;
+}
+
+.recoveryPass .success{
+    padding: 10px;
+    background-color: lightgreen;
+    border: 1px solid green;
+    border-radius: 5px;
+    color: #004500;
+}
+
+.recoveryPass .btnAuto.link{
+    align-self: center;
+    border-radius: 6px;
+    width: 150px;
+    text-decoration: none;
+}
