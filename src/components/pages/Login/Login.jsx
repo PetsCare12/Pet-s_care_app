@@ -71,6 +71,10 @@ export const Login = () => {
                                     
                                         window.location = '/tuClinica';
                                     }
+                                    else if ( data.aud === "[ROLE_ADMIN]" ){
+                                    
+                                        window.location = '/admin';
+                                    }
                                     else if ( data.aud === "[ROLE_USER]" ){
                                     
                                         window.location = '/perfil';
