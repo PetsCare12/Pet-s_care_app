@@ -78,3 +78,16 @@ export const getAllClinicas = async () => {
     }
 
 }
+
+export const getClinicaByNit = async ( nit ) => {
+
+    try {
+        const response = await axios("http://localhost:8080/api/clinicas/"+nit);
+
+        console.log( response );
+        return response;
+    } catch (error) {
+        console.log( error );
+    }
+
+}

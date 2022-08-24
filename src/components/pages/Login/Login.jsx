@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ButtonUI } from '../../UI/ButtonUI/ButtonUI'
 import { ImagenUI } from '../../UI/ImagenUI/ImagenUI'
-import image from './perro_gato_animadoNew.png'
 import { pets_images } from '../../../helpers/Pets_care_images';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useState } from 'react'
@@ -29,7 +28,7 @@ export const Login = () => {
   return (
     <div className="loginContainer">
         <div className="login_cont_iz">
-            <img src={image} alt="" />
+            <img src={pets_images("./login/logo.jpg")} alt="" />
             <img id='eslogan' src={ pets_images("./login/esloganNew.png")} alt="" />
         </div>
         <div className='login_cont_dr'>
@@ -68,7 +67,18 @@ export const Login = () => {
                                 
                                 if ( data.estado === 1 ) {
                                     resetForm();
-                                    window.location = '/perfil';
+                                    if ( data.aud === "[ROLE_CLINICA]" ) {
+                                    
+                                        window.location = '/tuClinica';
+                                    }
+                                    else if ( data.aud === "[ROLE_USER]" ){
+                                    
+                                        window.location = '/perfil';
+                                    }
+                                    else if ( data.aud === "[ROLE_USER]" ){
+                                    
+                                        // window.location = '/perfil';
+                                    }
                                 }
                                 else if( data.estado === 2 ) {
                                     console.log( "Mal" );

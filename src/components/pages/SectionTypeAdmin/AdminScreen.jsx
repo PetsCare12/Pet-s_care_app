@@ -46,7 +46,6 @@ const AdminScreen = () => {
             setUserType(2);
         }
         else if( type === 3 ) {
-            console.log("CLINICA");
             getAllClinicas().then( info => {
 
                 setData(info.data);
@@ -57,8 +56,6 @@ const AdminScreen = () => {
         }
 
     }
-
-    console.log( data );
 
 
     const handleRequest = () => {
@@ -209,7 +206,7 @@ const AdminScreen = () => {
                 </>
             }
             {
-                (!isAuth && aud !== "[ROLE_ADMIN]") &&
+                (!isAuth || aud !== "[ROLE_ADMIN]") &&
                 <NoAutenticado txt="Al parecer no tienes permiso para entrar a este lugar."/>
             }
 
