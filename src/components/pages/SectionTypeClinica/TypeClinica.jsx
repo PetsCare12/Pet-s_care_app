@@ -9,14 +9,15 @@ import { setStateVeterinario, getVeterinarioById, getVeterinarios } from '../../
 import { SimpleModal } from "../../layout/Modals/SimpleModal";
 import { MdOutlineCancel } from 'react-icons/md';
 import { getClinicaById } from '../../../helpers/API Consumer/useClinicasConsumer';
-import "./TypeClinica.css";
 import { NoAutenticado } from '../NoAutenticado/NoAutenticado';
+import "./TypeClinica.css";
 
 export const TypeClinica = () => {
+
   const tokenClinic = localStorage.getItem('token');
   const [tokenUser, setTokenUser] = useState(JSON.parse(localStorage.getItem("usuario")));
-  const [nitClinic, setnitClinic] = useState(tokenUser.nit);
-  const [nameClinic, setnameClinic] = useState(tokenClinic.nombre);
+  const [nitClinic, setnitClinic] = useState(tokenUser.id);
+  const [nameClinic, setnameClinic] = useState("");
   const [clinicInfo, setclinicInfo] = useState({});
   const [arrState, setarrState] = useState(true);
   const [arr, setarr] = useState([]);
@@ -28,36 +29,23 @@ export const TypeClinica = () => {
   const [modalRespUpdateVetState, setmodalRespUpdateVetState] = useState(false);
   const [vetState, setvetState] = useState("");
   
- 
-
   useEffect(() => {
 
     if ( !!tokenUser ) {
-      getClinicaById( tokenUser.id ).then( data => {
-        if ( data !== {} ) {
-          setclinicInfo(data.data);
-          setnameClinic(clinicInfo.nombre);
-          setnitClinic(clinicInfo.nit)
+      getClinicaById( tokenUser.id ).then( resp => {
+        if ( resp.status === 200 ) {
+          setclinicInfo(resp.data);
+          setnameClinic(resp.data.nombre)
         }
       });
     }
-    
   }, [tokenUser]);
 
   useEffect(() => {
-    console.log(arrState);
     if (arrState === true) {
-      if (nitClinic !== "") {
-        getVeterinarios(nitClinic).then(data => {
-          if ( data.status === 400 ) {
-            console.log("Error");
-            setarrState(false);
-            setarrState(true);
-          }else{
-            setarr(data);
-          }
-        });
-      }
+      getVeterinarios(nitClinic).then(data => {
+        setarr(data);
+      });
     }
   }, [arrState]);
 
@@ -203,7 +191,7 @@ export const TypeClinica = () => {
                                       <img src={item.imagenVete} alt="" id='imgVet'/>
                                     </div>
                                     <div className='liVetA'>
-                                      <h4><span>ID:</span> {item.documento}</h4>
+                                      <h4><span>Documento:</span> {item.documento}</h4>
                                       <h4>{item.nombre} {item.apellidos}</h4>
                                       <h4>{item.especialidad}</h4>
                                       {

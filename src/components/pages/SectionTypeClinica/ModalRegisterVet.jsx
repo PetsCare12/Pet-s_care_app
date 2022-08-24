@@ -4,11 +4,14 @@ import { useSendImage } from '../../../helpers/Cloudinary_Images/useSendImages';
 import { ButtonUI } from '../../UI/ButtonUI/ButtonUI';
 import { useForm } from '../../../helpers/useForm';
 import { imageRandom } from '../../../helpers/RandomImages/imagenessa';
+import { getVeterinarioById } from '../../../helpers/API Consumer/useVeterinariosConsumer';
 import "./ModalRegisterVet.css";
 
 export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit }) => {
 
   let imgDefault = imageRandom();
+
+  const [val_exist, setval_exist] = useState(404);
   const {myWidgetVeter,urlImage} = useSendImage();
   const [imgUrl, setimg] = useState(imgDefault);
 
@@ -27,10 +30,29 @@ export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit 
 
   const validationsForm = (form) => {
 
+    if ( val_exist !== 200 ) {
+      getVeterinarioById(form.documento).then(data => { 
+
+        if (data.status === 404) {
+          setval_exist(404);
+          console.log(setval_exist);
+        }else{
+          setval_exist(200); 
+        }
+         
+      });
+    }else {
+      setval_exist(200);
+      console.log("Hecho");
+    }
+
     let errors = {};
 
-         if (!form.documento.trim()) { errors.documento = "Documento erroneo" }
-    else if (!/^\d{7,}$/.test(form.documento)) { errors.documento = "Documento erroneo  mín. 7 caracteres y solo números" }
+        if (!form.documento.trim() 
+        // || !/^\d{7,}$/.test(form.documento)
+        ) { errors.documento = "Documento erroneo mín. 7 caracteres y solo números" }
+        
+    else if ( val_exist === 200 ) { errors.documento = "El documento ya existe" }
 
     else if (!form.nombre.trim()) { errors.nombre = "Nombres erroneos" }
     else if (!/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(form.nombre)) { errors.nombre = "Nombres erroneos" }
@@ -52,6 +74,8 @@ export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit 
 
     else if (!form.password.trim()) {errors.password = "Debes incluir minúsculas, mayúsculas, números y caracteres especiales en la contraseña"}
     else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}/.test(form.password)) {errors.password = "Debes incluir minúsculas, mayúsculas, números y caracteres especiales en la contraseña"}
+
+    else{errors.documento = ""}
 
       return errors;
   }
