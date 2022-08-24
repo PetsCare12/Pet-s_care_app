@@ -12,7 +12,7 @@ import { NoAutenticado } from '../NoAutenticado/NoAutenticado';
 const AdminScreen = () => {
 
     const isAuth = localStorage.getItem("token");
-    const aud = "";
+    let aud = "";
 
     if ( !!isAuth ) {
         const usuario = JSON.parse(localStorage.getItem("usuario"));

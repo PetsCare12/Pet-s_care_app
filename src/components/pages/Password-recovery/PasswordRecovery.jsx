@@ -2,19 +2,22 @@ import React, { useRef, useState } from 'react'
 import {HiOutlineMailOpen} from 'react-icons/hi';
 import {RiLockPasswordFill} from 'react-icons/ri';
 import {MdCancel} from 'react-icons/md';
-import { generateCode } from '../../../helpers/API Consumer/recovery-password';
+import { changePassword, generateCode } from '../../../helpers/API Consumer/recovery-password';
 import { pets_images } from '../../../helpers/Pets_care_images'
 import { validacionCorreo, validacionPassword } from '../../../helpers/validacionesInput/validacionGeneral';
 import emailjs from '@emailjs/browser';
 import './style.css'
+import { Link } from 'react-router-dom';
 
 export const PasswordRecovery = () => {
 
-    const [step, setStep] = useState(2);
+    const [step, setStep] = useState(0);
     const [loading, setLoading] = useState(false);
     const [userEmail, setUserEmail] = useState("");
     const [validacion, setValidacion] = useState([false,""]);
     const [error, setError] = useState(false);
+    const [myKey, setMyKey] = useState("");
+    const [success, setSuccess] = useState(false);
 
     const [newPassword, setNewpassword] = useState("");
     const [samePassword, setSamePassword] = useState("");
@@ -62,10 +65,12 @@ export const PasswordRecovery = () => {
                         email : userEmail,
                         key : info.data.key
                     }
+
+                    setMyKey( data.key )
                     
                     emailjs.send('service_kagt37a','template_4f77v7z', data ,'akQoWyMBUDzn4jOoB')
                                 .then( response => {
-                                    console.log( response );
+
                                     if ( response.status === 200 ) {
                                         setStep( 1 );
                                         setLoading( false );
@@ -93,12 +98,59 @@ export const PasswordRecovery = () => {
     const handleSubmitCode = ( e ) => {
 
         e.preventDefault();
-        const formData = new FormData(formCode.current);
+        const form = new FormData(formCode.current);
         const data = {
-            key: formData.get('code'),
+            key: form.get('code')
         }
 
-        console.log( data );
+        if ( myKey === data.key ) {
+            
+            setStep(2);
+        }
+        else {
+            setValidacion([true,"El código no es correcto"])
+        }
+
+    }
+
+    const handleSubmitPassword = ( e ) => {
+        e.preventDefault();
+
+        setLoading( true );
+        setValidacion([false,""])
+
+        if ( newPassword !== samePassword ) {
+
+            setValidacion([true,"Las contraseñas no coinciden"]);
+            setLoading( false );
+        }
+
+        else if( newPassword.length === 0 ){
+
+            setValidacion([true,"Los campos son obligatorios"])
+        }
+
+        else {
+
+            setValidacion([false,""]);
+
+            changePassword( newPassword, userEmail, myKey ).then( info => {
+                
+                if ( info.status === 200 ) {
+                    setSuccess( true );
+                    setLoading( false );
+                    setNewpassword("");
+                    setSamePassword("");
+                }
+
+                else {
+                    setValidacion([true,"Hubo un error en el proceso, intentalo de nuevo"])
+                }
+            })
+    
+        
+        }
+
         
     }
     
@@ -130,7 +182,7 @@ export const PasswordRecovery = () => {
                 <p>Te hemos enviado un código a tu correo,<br/> por favor ingresalo aquí </p>
                 <div className='correo'>
                     <form onSubmit={handleSubmitCode} className='correo' ref={formCode}>
-                        <input type="text" className='inputLogin' name="code"/>
+                        <input type="text" className='inputLogin alignCenter' name="code"/>
                         { validacion[0] && <p className='validacion'>{validacion[1]}</p> }
                         {
                             loading ?
@@ -148,7 +200,7 @@ export const PasswordRecovery = () => {
             <div className='recoveryPass pass animate__animated animate__zoomIn'>
                 <h1 className='title'>Cambia tu contraseña</h1>
                 <div className='correo'>
-                    <form onSubmit={handleSubmitCode} className='passwordForm' ref={formPassword}>
+                    <form onSubmit={handleSubmitPassword} className='passwordForm' ref={formPassword}>
                         <label htmlFor="newpassword">Nueva contraseña</label>
                         <input type="password" className='inputLogin' name="newpassword" value={newPassword} onChange={handlePassword}/>
                         <label htmlFor="retrypassword">Confirmar contraseña</label>
@@ -157,9 +209,14 @@ export const PasswordRecovery = () => {
                         {
                             loading ?
                             <div className='loadingDog'><img src={pets_images("./loading/perrito.gif")} alt='loadingDog' /></div>
-                            
                             :
-                            <button onClick={handleSubmitCode} className='btnAuto'>Cambiar</button>
+                            success ?
+                            <>
+                            <div className='success'>¡Proceso exitoso!</div>
+                            <Link to="/login" className='btnAuto link'>Iniciar Sesión</Link>
+                            </>
+                            :
+                            <button onClick={handleSubmitPassword} className='btnAuto'>Cambiar</button>
                         }
                     </form>
                 </div>
