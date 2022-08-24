@@ -3,6 +3,9 @@ import './MenuHome.css';
 
 const MenuHome = () => {
 
+    const data = JSON.parse( localStorage.getItem("usuario") );
+    console.log( data );
+
     const handleLogout = () => {
         localStorage.removeItem("usuario");
         localStorage.removeItem("token");
@@ -10,7 +13,19 @@ const MenuHome = () => {
     }
 
     const handlePerfil = () => {
-        window.location = "/perfil";
+
+        if ( data.aud === "[ROLE_CLINICA]" ) {
+        
+            window.location = "/tuClinica";
+        }
+        else if ( data.aud === "[ROLE_USER]" ) {
+
+            window.location = "/perfil";
+        }
+        else if ( data.aud === "[ROLE_ADMIN]" ) {
+
+            window.location = "/perfil";
+        }
     }
 
     return (
