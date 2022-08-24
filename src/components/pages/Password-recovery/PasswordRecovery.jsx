@@ -105,6 +105,7 @@ export const PasswordRecovery = () => {
 
         if ( myKey === data.key ) {
             
+            setValidacion([false,""]);
             setStep(2);
         }
         else {
@@ -117,7 +118,6 @@ export const PasswordRecovery = () => {
         e.preventDefault();
 
         setLoading( true );
-        setValidacion([false,""])
 
         if ( newPassword !== samePassword ) {
 

@@ -11,12 +11,15 @@ export const Clinica_card = ( {
     nombre,
     direccion,
     tarifa,
-    horario
+    horario,
+    estado
 } ) => {
 
 
     return (
         <>
+        {
+            estado === 1 &&
             <div className="card__cli">
                 {
                     (img === "")
@@ -24,9 +27,9 @@ export const Clinica_card = ( {
                     : <img src={img} alt={id} />
                 }
                 <h1> {nombre} </h1>
-                <h2> <span><IoLocationOutline /></span> {direccion} </h2>
+                <h2 className='txt'> <span><IoLocationOutline /></span> {direccion} </h2>
                 <hr className='hr__clinicas'/>
-                <h3> <span><AiOutlineDollarCircle /></span> Desde <b>${tarifa}</b> </h3>
+                <h3 className='txt'> <span><AiOutlineDollarCircle /></span> Desde <b>${tarifa}</b> </h3>
                 {
                     horario.map( day => (
                         <p key={id}> 
@@ -52,6 +55,7 @@ export const Clinica_card = ( {
                 
                 
             </div>
+        }
 
         </>
     )

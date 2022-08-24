@@ -128,7 +128,7 @@
 
 #login__forgotPassword {
     align-self: flex-start;
-    color: #008eff;
+    color: #ff7f26;
     cursor: pointer;
     font-size: 15px;
     padding: 0;
@@ -136,7 +136,7 @@
     width: auto;
 }
 #login__forgotPassword:hover{
-    color: #0062b3;
+    color: #cc5500;
     transition: .4s;
 }
 

@@ -56,7 +56,7 @@ export const RegisterClinica = ( {change_step} ) => {
                             telefono:"",
                             correoCv:"",
                             password:"",
-                            imagenclinica:"https://img.freepik.com/vector-premium/examen-medico-clinica-veterinaria-vacunacion-atencion-medica-mascotas-como-perros-gatos-dibujos-animados-planos-ilustracion-vectorial-fondo-afiches-o-pancartas_2175-3387.jpg?w=1380",
+                            imagenclinica:"https://img.freepik.com/vector-gratis/lindo-perro-medico-estetoscopio-dibujos-animados-vector-icono-ilustracion-animal-salud-icono-aislado_138676-5182.jpg?w=826&t=st=1661365682~exp=1661366282~hmac=f7e6379812296866a0dda877ddaca6a0de61466f04b23baa22bfe2410d401558",
                             estadoCli: 3
                         }}
                         validate={( valores ) => {
