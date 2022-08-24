@@ -248,3 +248,18 @@ button{
     background-color: #0053c0;
     transition: .4s;
 }
+
+.btnAuto {
+    color: white;
+    background-color: #008eff;
+    font-size: 15px;
+    height: auto;
+    padding: 7px 15px;
+    width: auto;
+    font-weight: 100;
+}
+
+.btnAuto:hover{
+    transition: .4s;
+    background-color: #0064b3;
+}

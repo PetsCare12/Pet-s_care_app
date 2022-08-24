@@ -1,0 +1,113 @@
+.recoveryPass__container{
+    background: linear-gradient(45deg, #001629, #008eff);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    overflow: auto;
+    min-height: 100vh;
+}
+.recoveryPass__container .error{
+    align-items: center;
+    background-color: #ff6e6e;
+    border: 1px solid #810000;
+    color: #810000;
+    border-radius: 6px;
+    display: flex;
+    padding: 10px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    gap: 10px;
+}
+.recoveryPass__container .error p {
+    font-size: 12px;
+    color: white;
+    pointer-events: none;
+}
+.recoveryPass{
+    align-items: center;
+    background-color: white;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    min-width: 400px;
+    min-height: 400px;
+    padding: 30px;
+    text-align: center;
+}
+.recoveryPass .backgroundIcon{
+    align-items: center;
+    background-color: #003b6b;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+}
+.recoveryPass .icon{
+    color: white;
+    font-size: 5rem;
+}
+.recoveryPass .correo{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+.loadingDog{
+    width: 20%;
+}
+.recoveryPass .loadingDog img{
+    width: 100%;
+}
+.recoveryPass .validacion{
+    align-self: flex-start;
+    color: red;
+    font-size: 15px;
+    margin-top: -15px;
+}
+
+.recoveryPass .passwordForm{
+    border: 1px solid #c0c0c0;
+    border-radius: 6px;
+    padding: 15px;
+    width: 335px;
+}
+.recoveryPass .title{
+    color: #008eff;
+    font-size: 25px;
+}
+
+.recoveryPass.pass{
+    justify-content: space-around;
+}
+
+.recoveryPass .validacion.pass {
+    text-align: left;
+    width: 100%;
+    font-size: 12px;
+}
+.recoveryPass label{
+    font-size: 15px;
+}
+
+.alignCenter{
+    text-align: center;
+}
+
+.recoveryPass .success{
+    padding: 10px;
+    background-color: lightgreen;
+    border: 1px solid green;
+    border-radius: 5px;
+    color: #004500;
+}
+
+.recoveryPass .btnAuto.link{
+    align-self: center;
+    border-radius: 6px;
+    width: 150px;
+    text-decoration: none;
+}

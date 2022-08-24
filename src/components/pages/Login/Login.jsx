@@ -1,4 +1,4 @@
-import { NavLink, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { ButtonUI } from '../../UI/ButtonUI/ButtonUI'
 import { ImagenUI } from '../../UI/ImagenUI/ImagenUI'
 import image from './perro_gato_animadoNew.png'
@@ -8,12 +8,8 @@ import { useState } from 'react'
 import { parseJwt } from '../../../helpers/getPayLoad'
 import { inicioSesionUsuario } from '../../../helpers/API Consumer/test'
 import { SimpleModal } from '../../layout/Modals/SimpleModal';
-import {HiOutlineMailOpen} from 'react-icons/hi';
-import {RiLockPasswordFill} from 'react-icons/ri';
-import emailjs from '@emailjs/browser';
 
 import './LoginStyle.css'
-import { imageRandom } from '../../../helpers/RandomImages/imagenessa';
 
 export const Login = () => {
 
@@ -24,50 +20,9 @@ export const Login = () => {
 
     const [loading, setLoading] = useState(false)
     const [status, setStatus] = useState(null);
-    const [forgotPassword, setForgotPassword] = useState(false);
-    const [emailSent, setEmailSent] = useState(false);
-    const [errorEmail, setErrorEmail] = useState(false);
-    const [userEmail, setUserEmail] = useState("");
-    const [loadingEmail, setLoadingEmail] = useState(false);
     const [mssStatus, setMssStatus] = useState(false);
     const [messageStatus, setMessageStatus] = useState("");
 
-
-    const handleClose = () => {
-        setEmailSent( false );
-        setErrorEmail( false );
-        setUserEmail( "" );
-    }
-
-    const handleUserEmail = ( e ) =>{
-
-        setUserEmail( e.target.value );
-    }
-
-    imageRandom()
-    
-    const handleEmail = ( e ) => {
-        e.preventDefault();
-
-        setLoadingEmail( true );
-
-        emailjs.sendForm('service_kagt37a','template_4f77v7z', e.target,'akQoWyMBUDzn4jOoB')
-        .then( response => {
-            console.log( response );
-            if ( response.status === 200 ) {
-                
-                setEmailSent( true );
-                setForgotPassword( false );
-                setErrorEmail( true );
-                setLoadingEmail( false );
-            }
-        } )
-        .catch( error => {
-            setErrorEmail( true );
-            setLoadingEmail( false );
-        } )
-
-    }
 
 
 
@@ -103,6 +58,8 @@ export const Login = () => {
                         inicioSesionUsuario( valores ).then( info => {
                             setStatus(info.status)
                             if ( info.status === 200 ) {
+
+                                // TODO - CLINICA al iniciar sesion que lo envie a /tuClinica
 
                                 let token = info.data.tokenDeAcceso;
                                 localStorage.setItem("token", token);
@@ -171,7 +128,7 @@ export const Login = () => {
                                 name = "password"
                             />
                             <ErrorMessage name='password' component={() => (<p id='warn-login'>{errors.password}</p>)} />
-                            <p onClick={()=>{setForgotPassword( true )}} id='login__forgotPassword'>Olvidé mi contraseña</p>
+                            <p onClick={()=>{window.location = "/recovery-password"}} id='login__forgotPassword'>Olvidé mi contraseña</p>
                             <ButtonUI 
                                 style={`btnLogin ${ (loading) && "hidden" }`}
                                 type={"submit"}
@@ -197,43 +154,7 @@ export const Login = () => {
                 
             </div>
         </div>
-        {
-            forgotPassword &&
-            <SimpleModal>
-                <div className='forgotPss__container recovery animate__animated animate__fadeIn'>
-                    <p onClick={()=> setForgotPassword( false )} className='cancel'>x</p>
-                    <div className='div-imgEmail'>
-                        <RiLockPasswordFill className='email-img' />  
-                    </div>
-                    <div>    
-                        <h1>Recuperación de contaseña</h1>
-                        <p>Ingresa el correo con el cual te registraste</p>
-                    </div>
-                    <form onSubmit={ handleEmail } className='inputRecovery-div'>
-                        <input value={userEmail} onChange={handleUserEmail} type="text" className="inputLogin" id='recovereyPassword-input' name='email' placeholder='Correo electrónico'/><br/>
-                        <button type='submit' className={`"" ${ loadingEmail && "hidden" }`}>Enviar</button>
-                        { loadingEmail &&  <div id='login-spin' className='spiner'></div> }
-                    </form>
-                    { errorEmail && <p className='errorEmail'>Hubo un error al enviar el correo, por favor intentalo nuevamente <span onClick={()=> setErrorEmail(false)} id='spanEmailError'>x</span></p> }
-                </div>
-            </SimpleModal>
-        }
-
-        { 
-            emailSent && 
-            <SimpleModal>
-                <div className='forgotPss__container animate__animated animate__fadeIn'>
-                    <div className='div-imgEmail'>
-                        <HiOutlineMailOpen className='email-img' />  
-                    </div>
-                    <div>
-                        <h1>Te hemos enviado un correo a <br/><span>{userEmail}</span></h1>
-                        <p>Por favor revisa tu bandeja de entrada o en span para obtener las instrucciones en el cambio de tu contaseña.</p>
-                    </div>
-                    <button onClick={handleClose} id="btnh30" className='btn200'>Ok</button>
-                </div>
-            </SimpleModal> 
-        }
+        
         
     </div>
   )

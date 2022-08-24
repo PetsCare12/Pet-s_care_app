@@ -47,6 +47,9 @@
 .input-w95{
     width: 95px;
 }
+.input-w150{
+    width: 150px;
+}
 
 .inputEditMascota:focus{
     outline: 1px solid #dddfe2;

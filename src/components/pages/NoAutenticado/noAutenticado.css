@@ -5,20 +5,22 @@
     height: 100vh;
     justify-content: center;
     width: 100vw;
+    overflow: scroll;
 }
 .modal_perfil_no_autorizado_info {
     background-color: white;
     box-shadow: -13px 11px 9px 0px #85c9ff;
     display: flex;
     flex-direction: column;
-    height: 400px;
-    justify-content: space-around;
+    min-height: 300px;
+    justify-content: space-between;
     padding: 50px 40px;
     width: 50%;
+    position: relative;
 }
 .modal_perfil_no_autorizado img {
     position: absolute;
-    top: 163px;
+    top: -90px;
     width: 200px;
 }
 
