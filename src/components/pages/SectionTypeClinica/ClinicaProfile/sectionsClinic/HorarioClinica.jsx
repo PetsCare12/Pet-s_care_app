@@ -37,6 +37,18 @@ export const HorarioClinica = () => {
               "Entrada" : e.target[8].value,
               "Salida"  : e.target[9].value
             }
+          ,
+          "Sabado" : 
+            {
+              "Entrada" : e.target[10].value,
+              "Salida"  : e.target[11].value
+            }
+          ,
+          "Domingos - Festivos" : 
+            {
+              "Entrada" : e.target[12].value,
+              "Salida"  : e.target[13].value
+            }
         }
     
         console.log(hoursAvalibles);
@@ -44,7 +56,7 @@ export const HorarioClinica = () => {
 
   return (
     <form onSubmit={getDates} className="animate__animated animate__fadeIn">
-    <div className='table_horarios'>
+      {/* <div className='table_horarios'>
         <h2>{"Horario Clinica"}</h2>
             <div className="header_table">
 
@@ -130,7 +142,83 @@ export const HorarioClinica = () => {
                 </div>
             </div>
             <ButtonUI text="Actualizar"  type="submit" style="submit"></ButtonUI>
-        </div>
+        </div> */}
+        <div className="tableUsuarios">
+          <ul className="responsive-table">
+              <>
+              <h2>{"Horario Clinica"}</h2>   
+              <li className="table-header">
+                <div className="col col-1">Dias</div>
+                <div className="col col-2">Horas</div>
+              </li>
+              </>
+              <li class="table-row">
+                <div class="col col-1">
+                  <h4>{"Lunes"}</h4>
+                </div>
+
+                <div class="col col-2">
+
+                  <div className="cont_hours_1">
+                    <h5><span>Entrada:</span></h5>
+                    <input type="time" name="lunes_hours_in" id="lunes_in" />
+                  </div>
+                </div>
+
+                <div className="col col-3">
+                  <div className="cont_hours_2">
+                      <h5><span>Salida:</span></h5>
+                      <input type="time" name="lunes_hours_leave" id="lunes_leave" />
+                      </div>
+                </div>
+              </li>
+
+              <li class="table-row">
+                <div class="col col-1">
+                  <h4>{"Martes"}</h4>
+                </div>
+
+                <div class="col col-2">
+
+                  <div className="cont_hours_1">
+                    <h5><span>Entrada:</span></h5>
+                    <input type="time" name="martes_hours_in" id="martes_in" />
+                  </div>
+                </div>
+
+                <div className="col col-3">
+                  <div className="cont_hours_2">
+                    <h5><span>Salida:</span></h5>
+                    <input type="time" name="martes_hours_leave" id="martes_leave" />
+                  </div>
+                </div>
+              </li>
+
+              <li class="table-row">
+                <div class="col col-1">
+                  <h4>{"Miercoles"}</h4>
+                </div>
+
+                <div class="col col-2">
+
+                  <div className="cont_hours_1">
+                    <h5><span>Entrada:</span></h5>
+                    <input type="time" name="miercoles_hours_in" id="miercoles_in" />
+                  </div>
+                </div>
+
+                <div className="col col-3">
+                  <div className="cont_hours_2">
+                    <h5><span>Salida:</span></h5>
+                    <input type="time" name="miercoles_hours_leave" id="miercoles_leave" />
+                  </div>
+                </div>
+              </li>
+
+          
+          </ul>
+          <ButtonUI text="Actualizar"  type="submit" style="submit"></ButtonUI>
+      </div>
     </form>
 
   )

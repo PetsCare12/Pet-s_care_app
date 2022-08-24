@@ -8,7 +8,6 @@ import { getClinicaById } from '../../../../helpers/API Consumer/useClinicasCons
 import { NoAutenticado } from "../../NoAutenticado/NoAutenticado";
 import { SectionPerfilClinica } from "../ClinicaProfile/sectionsClinic/SectionPerfilClinica";
 import '../ClinicaProfile/ClinicaProfile.css';
-import { TypeClinica } from '../TypeClinica';
 
 export const ClinicaProfile = () => {
 
