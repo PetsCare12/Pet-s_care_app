@@ -8,17 +8,17 @@ import { useSendImage } from '../../../helpers/Cloudinary_Images/useSendImages';
 import { setStateVeterinario, getVeterinarioById, getVeterinarios } from '../../../helpers/API Consumer/useVeterinariosConsumer';
 import { SimpleModal } from "../../layout/Modals/SimpleModal";
 import { MdOutlineCancel } from 'react-icons/md';
+import { getClinicaById } from '../../../helpers/API Consumer/useClinicasConsumer';
+import { NoAutenticado } from '../NoAutenticado/NoAutenticado';
 import "./TypeClinica.css";
 
 export const TypeClinica = () => {
 
-  let nameClinic = "Veterinaria Salud Canina";
-  // let nitClinic = 111;
-  // let tokenClinic = "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxMTEiLCJzdWIiOiJzYWx1ZGNhbmluYUB2ZXRlcmluYXJpYXMuY29tIiwiYXVkIjoiW1JPTEVfQ0xJTklDQV0iLCJpYXQiOjE2NjAxNzk4ODIsImV4cCI6MTY2MDc4NDY4MX0.pBUjcGe1MUCv1AgUfDwpPoQcFb6lE4Q2V4D0BTlAf2NydWBJaF0t0p8tA9CNH5KPAvkclHS5My_ej2v3_XIl0A"
-
-  let nitClinic = 1010;
-  let tokenClinic =  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWx1ZGNhbmluYUB2ZXRlcmluYXJpYXMuY29tIiwiYXVkIjoiW1JPTEVfQ0xJTklDQV0iLCJlc3RhZG8iOjEsImlkIjoxMDEwLCJleHAiOjE2NjA5MzE3MTAsImlhdCI6MTY2MDMyNjkxMH0.eQPuQYTPp4NQXTCea-5hiCuBf5AcRgD7h46egTe8ZB8Bg9_L9nilCVm_M3lD0GOETgC0xtr_07FZ37fTVo7U-g";
-
+  const tokenClinic = localStorage.getItem('token');
+  const [tokenUser, setTokenUser] = useState(JSON.parse(localStorage.getItem("usuario")));
+  const [nitClinic, setnitClinic] = useState(tokenUser.id);
+  const [nameClinic, setnameClinic] = useState("");
+  const [clinicInfo, setclinicInfo] = useState({});
   const [arrState, setarrState] = useState(true);
   const [arr, setarr] = useState([]);
   const [img, setimg] = useState("");
@@ -28,6 +28,26 @@ export const TypeClinica = () => {
   const [requestState, setrequestState] = useState(true);
   const [modalRespUpdateVetState, setmodalRespUpdateVetState] = useState(false);
   const [vetState, setvetState] = useState("");
+  
+  useEffect(() => {
+
+    if ( !!tokenUser ) {
+      getClinicaById( tokenUser.id ).then( resp => {
+        if ( resp.status === 200 ) {
+          setclinicInfo(resp.data);
+          setnameClinic(resp.data.nombre)
+        }
+      });
+    }
+  }, [tokenUser]);
+
+  useEffect(() => {
+    if (arrState === true) {
+      getVeterinarios(nitClinic).then(data => {
+        setarr(data);
+      });
+    }
+  }, [arrState]);
 
   const getVeterId = (e) => {
     if (e.keyCode === 13) {
@@ -47,12 +67,6 @@ export const TypeClinica = () => {
       setarrState(true);
     }   
   }
-
-  useEffect(() => {
-    if (arrState === true) {
-      getVeterinarios(nitClinic).then( data => setarr(data));
-    }
-  }, [arrState]);
 
   const getVet = (e) => {
     setimg(e.imagenVete);
@@ -168,33 +182,34 @@ export const TypeClinica = () => {
                         <li className="liVetSpace animate__animated animate__backInUp notFound"><h2>Registra tu primer veterinario</h2></li>
 
                       : 
-                        (requestState ? 
-                          arr.map((item) =>(
-                            <li className="liVetSpace animate__animated animate__backInUp">
-                              <div className='liVet'>
-                                  <div className='img_li_vet'>
-                                    <img src={item.imagenVete} alt="" id='imgVet'/>
+                        (requestState 
+                          ? 
+                            arr.map((item) =>(
+                              <li className="liVetSpace animate__animated animate__backInUp">
+                                <div className='liVet'>
+                                    <div className='img_li_vet'>
+                                      <img src={item.imagenVete} alt="" id='imgVet'/>
+                                    </div>
+                                    <div className='liVetA'>
+                                      <h4><span>Documento:</span> {item.documento}</h4>
+                                      <h4>{item.nombre} {item.apellidos}</h4>
+                                      <h4>{item.especialidad}</h4>
+                                      {
+                                          item.estadoVt === 1
+                                        ? 
+                                          <h4><span className='active'>{" Activo"}</span></h4>
+                                        :
+                                          <h4><span className='inactive'>{" Inactivo"}</span></h4>
+                                      }
+                                    </div>
+                                  </div> 
+                                  <div className='idc'>
+                                    <a onClick={() => getVet(item)} href>
+                                      <img src={pets_images('./veterinarios/proximo.png')} alt="" id='imgLi'/>
+                                    </a>
                                   </div>
-                                  <div className='liVetA'>
-                                    <h4><span>ID:</span> {item.documento}</h4>
-                                    <h4>{item.nombre} {item.apellidos}</h4>
-                                    <h4>{item.especialidad}</h4>
-                                    {
-                                        item.estadoVt === 1
-                                      ? 
-                                        <h4><span className='active'>{" Activo"}</span></h4>
-                                      :
-                                        <h4><span className='inactive'>{" Inactivo"}</span></h4>
-                                    }
-                                  </div>
-                                </div> 
-                                <div className='idc'>
-                                  <a onClick={() => getVet(item)} href>
-                                    <img src={pets_images('./veterinarios/proximo.png')} alt="" id='imgLi'/>
-                                  </a>
-                                </div>
-                            </li>
-                          ))
+                              </li>
+                            ))
                           : 
                           <li className="liVetSpace animate__animated animate__backInUp notFound"><h2>Veterinario no encontrado</h2></li>
                         )
@@ -365,6 +380,10 @@ export const TypeClinica = () => {
             </div>
           </div>
       </div>
+      {
+        ( !tokenClinic || !tokenUser ) &&
+        <NoAutenticado txt={"Al parecer no has iniciado sesión, te invitamos a hacerlo."} />
+      }
     </div>
   )
 }

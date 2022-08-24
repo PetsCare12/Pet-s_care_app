@@ -26,6 +26,50 @@ export const registroClinica = async( clinica ) => {
  
 }
 
+export const getClinicaById = async( nit ) => {
+ 
+    
+    try {
+
+        const respuesta = await axios.get(`http://localhost:8080/api/clinicas/${nit}`);
+
+        return respuesta;
+        
+    } catch (error) {
+        if ( error.response ) {
+            console.log(error.response.status);
+            return error.response.status;
+        }
+        
+    }
+}
+
+export const putClinica = async( clinica , nit ) => {
+ 
+    try {
+        const response = await axios({
+            url: `http://localhost:8080/api/clinicas/${nit}`,
+            method: "PUT",
+            headers: {
+                "Content-Type":"application/json"
+            },
+            data: clinica
+        }).catch( function( error ) {
+
+            if ( error.response ) {
+                return { status : error.response.status }
+            }
+
+        });
+        
+        return response;
+
+    } catch (error) {
+        console.log( error );
+    }
+ 
+}
+
 export const getPeticionesClinicas = async() => {
 
     try {

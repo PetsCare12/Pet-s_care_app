@@ -1,158 +1,130 @@
-import React from 'react'
-import { ButtonUI } from '../../../UI/ButtonUI/ButtonUI';
+import React, { useEffect, useState } from 'react'
+import { PhotoProfile } from '../../Profile/PhotoProfile';
+import { FaHome } from 'react-icons/fa';
+import { HorarioClinica } from './sectionsClinic/HorarioClinica';
+import { HorarioVeterinarios } from './sectionsClinic/HorarioVeterinarios';
+import { BsFillArrowRightCircleFill } from "react-icons/bs";
+import { getClinicaById } from '../../../../helpers/API Consumer/useClinicasConsumer';
+import { NoAutenticado } from "../../NoAutenticado/NoAutenticado";
+import { SectionPerfilClinica } from "../ClinicaProfile/sectionsClinic/SectionPerfilClinica";
 import '../ClinicaProfile/ClinicaProfile.css';
+import { TypeClinica } from '../TypeClinica';
 
 export const ClinicaProfile = () => {
 
-  const getDates = (e) => {
-    e.preventDefault();
+  let nameClinic = "Veterinaria Salud Canina";
 
-    let hoursAvalibles = 
-    {
-      "Lunes" : 
-        {
-          "Entrada" : e.target[0].value,
-          "Salida"  : e.target[1].value
-        }
-      ,
-      "Martes" : 
-        {
-          "Entrada" : e.target[2].value,
-          "Salida"  : e.target[3].value
-        }
-      ,
-      "Miercoles" : 
-        {
-          "Entrada" : e.target[4].value,
-          "Salida"  : e.target[5].value
-        }
-      ,
-      "Jueves" : 
-        {
-          "Entrada" : e.target[6].value,
-          "Salida"  : e.target[7].value
-        }
-      ,
-      "Viernes" : 
-        {
-          "Entrada" : e.target[8].value,
-          "Salida"  : e.target[9].value
-        }
+  const [clinicObjt, setclinicObjt] = useState({});
+  const [imgUrl, setimgUrl] = useState("");
+  const [activeBtn, setActiveBtn] = useState("perfil");
+  const [tokenUser, setTokenUser] = useState(JSON.parse(localStorage.getItem("usuario")));
+
+  useEffect(() => {
+
+    if ( !!tokenUser ) {
+
+      console.log("No esta vacio");
+      getClinicaById( tokenUser.id ).then( data => {
+        setclinicObjt(data.data);
+      });
+      
+    }else{
+
+      console.log("Esta vacio");
+
     }
+    
+  }, [tokenUser])
 
-    console.log(hoursAvalibles);
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("clinica");
+    window.location = "/login";
+    setActiveBtn("logout");
   }
-
 
   return (
     <div>
-        <div className='profile_clinica'>
+        {
+          ( JSON.stringify(tokenUser) !== '{}' )
+          ?
+            <div className='profile_clinica animate__animated animate__fadeIn'>
 
-            <div className="section_profile_1_clinics">
+              <header className="section_profile_3_clinics">
 
-                <div className="horarios_define">
-
-                 <form onSubmit={getDates}>
-                 <div className='table_horarios'>
-                      <div className="header_table">
-
-                        <div className="head head_1"><h3>{"Dias"}</h3></div>
-
-                        <div className="head head_2"><h3>{"Horas"}</h3></div>
-
-                        </div>
-
-                        <div className="body_table">
-
-                          <div className="days_table">
-
-                              <div className="days days_lunes"><h4><span>{"Lunes"}</span></h4></div>
-                              <div className="days days_martes"><h4><span>{"Martes"}</span></h4></div>
-                              <div className="days days_miercoles"><h4><span>{"Miercoles"}</span></h4></div>
-                              <div className="days days_jueves"><h4><span>{"Jueves"}</span></h4></div>
-                              <div className="days days_viernes"><h4><span>{"Viernes"}</span></h4></div>
-
-                          </div>
-
-                          <div className="hours_table">
-
-                              <div className="hora_entrada">
-
-                                <div className="hours hours_lunes">
-                                  <div className="cont_hours_1">
-                                    <h5><span>Entrada:</span></h5>
-                                    <input type="time" name="lunes_hours_in" id="lunes_in" />
-                                  </div>
-                                  <div className="cont_hours_2">
-                                    <h5><span>Salida:</span></h5>
-                                    <input type="time" name="lunes_hours_leave" id="lunes_leave" />
-                                  </div>
-                                </div>
-
-                                <div className="hours hours_martes">
-                                  <div className="cont_hours_1">
-                                    <h5><span>Entrada:</span></h5>
-                                    <input type="time" name="martes_hours_in" id="martes_in" />
-                                  </div>
-                                  <div className="cont_hours_2">
-                                    <h5><span>Salida:</span></h5>
-                                    <input type="time" name="martes_hours_leave" id="martes_leave" />
-                                  </div>
-                                </div>
-
-                                <div className="hours hours_miercoles">
-                                  <div className="cont_hours_1">
-                                    <h5><span>Entrada:</span></h5>
-                                    <input type="time" name="miercoles_hours_in" id="miercoles_in" />
-                                  </div>
-                                  <div className="cont_hours_2">
-                                    <h5><span>Salida:</span></h5>
-                                    <input type="time" name="miercoles_hours_leave" id="miercoles_leave" />
-                                  </div>
-                                </div>
-
-                                <div className="hours hours_jueves">
-                                  <div className="cont_hours_1">
-                                    <h5><span>Entrada:</span></h5>
-                                    <input type="time" name="jueves_hours_in" id="jueves_in" />
-                                  </div>
-                                  <div className="cont_hours_2">
-                                    <h5><span>Salida:</span></h5>
-                                    <input type="time" name="lunes_hours_in" id="jueves_leave" />
-                                  </div>
-                                </div>
-
-                                <div className="hours hours_viernes">
-                                  <div className="cont_hours_1">
-                                    <h5><span>Entrada:</span></h5>
-                                    <input type="time" name="viernes_hours_in" id="viernes_in" />
-                                  </div>
-                                  <div className="cont_hours_2">
-                                    <h5><span>Salida:</span></h5>
-                                    <input type="time" name="viernes_hours_in" id="viernes_leave" />
-                                  </div>
-                                </div>
-
-                              </div>
-
-                          </div>
-                      </div>
-                      <ButtonUI text="Actualizar"  type="submit" style="submit"></ButtonUI>
-                    </div>
-                 </form>
-
+                <div className="title_profile_clinic">
+                  <h1 style={{color:'white'}}>{"Administra tu Clinica"}</h1>
+                  <h3 style={{color:'white'}}>{nameClinic}</h3>
                 </div>
 
+                <div className="wave wave1"></div>
+                <div className="wave wave2"></div>
+                <div className="wave wave3"></div>
+                <div className="wave wave4"></div>
+
+              </header>
+
+              <div className="section_bottom">
+
+              <div className="section_profile_4_clinics">
+
+                  <div className="img_profile_clinic">
+
+                    <div className="img_cont">
+                      <PhotoProfile img={ clinicObjt.imagenclinica = imgUrl }/>
+                    </div>
+
+                    </div>
+
+                    <div className="section_profile_2_clinics">
+                      <button onClick={() => {setActiveBtn("home") 
+                      window.location = "/"}}className={`profile__btnProfile mt-10 ${(activeBtn === "home") && "perfil_active"}`}>
+                          <div className='profile__titleBtn'><FaHome style={{fontSize:"20px"}} /></div>
+                      </button>
+                      <button onClick={() => {setActiveBtn("perfil")}} className={`profile__btnProfile ${(activeBtn === "perfil") && "perfil_active"}`}>
+                          <div className='profile__titleBtn'>Perfil</div>
+                      </button>
+                      <button onClick={() => {setActiveBtn("horario")}} className={`profile__btnProfile ${(activeBtn === "horario") && "perfil_active"}`}>
+                          <div className='profile__titleBtn'>Horario Clinica</div>
+                      </button>
+                      <button onClick={() => {setActiveBtn("horario_veterinario")}} className={`profile__btnProfile ${(activeBtn === "horario_veterinario") && "perfil_active"}`}>
+                          <div className='profile__titleBtn'>Horario Veterinarios</div>
+                      </button>  
+                      <button onClick={() => {setActiveBtn("gestion") 
+                      window.location = "/gestionClinica"}} className={`profile__btnProfile mt-10 ${(activeBtn === "gestion") && "perfil_active"}`}>
+                          <div className='profile__titleBtn gestion_space'><BsFillArrowRightCircleFill style={{fontSize:"20px"}} /><p>Gestiona tus Veterinarios</p></div>
+                      </button>
+
+                      <button id='perfil__logout' onClick={handleLogout} className={`profile__btnProfile ${(activeBtn === "logout") && "perfil_active"}`}>
+                            <div className='profile__titleBtn'>Cerrar sesión</div>
+                      </button>            
+
+                    </div>
+
+              </div>
+
+                    <div className="section_profile_1_clinics animate__animated animate__fadeIn">
+
+                      <div className={`horarios_define ${(activeBtn === "horario") ? "horarios_define_show" : "horarios_define_hidde"}`}>
+                          
+                          <HorarioClinica data={clinicObjt}/>
+
+                      </div>
+
+                      <div className={`horarios_define ${(activeBtn === "horario_veterinario") ? "horarios_define_show" : "horarios_define_hidde"}`}>
+
+                          <HorarioVeterinarios data={clinicObjt} />
+
+                      </div>
+                      {
+                        ( activeBtn === "perfil" ) && <SectionPerfilClinica userData={clinicObjt}/>
+                      }
+                    </div>
+                </div>
             </div>
-
-            <div className="section_profile_2_clinics"></div>
-
-            <div className="section_profile_3_clinics"></div>
-
-            <div className="section_profile_4_clinics"></div>
-            
-        </div>
-                
+          :
+            <NoAutenticado txt={"Al parecer no has iniciado sesión, te invitamos a hacerlo."} />
+        }
     </div>
   )
 }
