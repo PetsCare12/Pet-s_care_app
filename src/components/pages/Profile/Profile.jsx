@@ -62,6 +62,12 @@ export const Profile = () => {
                         <button onClick={() => {setActiveBtn("citas")}} className={`profile__btnProfile ${(activeBtn === "citas") && "perfil_active"}`}>
                             <div className='profile__titleBtn'>Citas pendientes</div>
                         </button>
+                        <button onClick={() => {
+                                window.location = "/clinicas"
+                                setActiveBtn("clinicas")
+                            }} className={`profile__btnProfile ${(activeBtn === "clinicas") && "perfil_active"}`}>
+                            <div className='profile__titleBtn'>Clínicas</div>
+                        </button>
                     </div>
                     <button id='perfil__logout' onClick={handleLogout} className={`profile__btnProfile ${(activeBtn === "logout") && "perfil_active"}`}>
                         <div className='profile__titleBtn'>Cerrar sesión</div>
