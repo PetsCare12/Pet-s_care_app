@@ -23,7 +23,6 @@ export const ClinicaProfile = () => {
     if ( !!tokenUser ) {
 
       console.log("No esta vacio");
-      
       getClinicaById(tokenUser.id).then(data => {
         setimagenCli(data.data.imagenclinica);
         setclinicObjt(data.data);
