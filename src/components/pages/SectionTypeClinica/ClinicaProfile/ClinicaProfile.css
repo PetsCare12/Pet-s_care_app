@@ -29,67 +29,6 @@
     background: linear-gradient(360deg, #61bbd6,#0072ff);
     height: 25vh;
 }
-
-/* Horarios */
-/* .table_horarios{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #ffffff;
-}
-
-.header_table{
-    display: flex;
-    flex-direction: row;
-    background-color: #ddf4ff;
-}
-.head{
-    height: 5vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.head_1{
-    width: 25vh;
-}
-.head_2{
-    width: 65vh;
-}
-.days{
-    height: 10vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 25vh;
-    border-bottom: 1px solid #a8dff8;
-}
-.days_viernes{
-    border-bottom: none;
-}
-.days_lunes{
-    border-top: 1px solid #a8dff8;
-}
-.hours_lunes{
-    border-top: 1px solid #a8dff8;
-}
-.hours{
-    height: 10vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 65vh;
-    gap: 75px;
-    border-bottom: 1px solid #a8dff8;
-    border-left: 1px solid #a8dff8;
-}
-.hours_viernes{
-    border-bottom: none;
-}
-.body_table{
-    display: flex;
-    flex-direction: row;
-}
-
 /* Perfil Left */
 .section_profile_4_clinics{
     margin-top: -19rem;

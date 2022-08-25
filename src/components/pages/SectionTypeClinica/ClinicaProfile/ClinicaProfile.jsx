@@ -11,11 +11,11 @@ import '../ClinicaProfile/ClinicaProfile.css';
 
 export const ClinicaProfile = () => {
 
-  let nameClinic = "Veterinaria Salud Canina";
+  let nameClinic = "";
 
   const [clinicObjt, setclinicObjt] = useState({});
-  const [imgUrl, setimgUrl] = useState("");
   const [activeBtn, setActiveBtn] = useState("perfil");
+  const [imagenCli, setimagenCli] = useState("");
   const [tokenUser, setTokenUser] = useState(JSON.parse(localStorage.getItem("usuario")));
 
   useEffect(() => {
@@ -23,17 +23,21 @@ export const ClinicaProfile = () => {
     if ( !!tokenUser ) {
 
       console.log("No esta vacio");
-      getClinicaById( tokenUser.id ).then( data => {
+      
+      getClinicaById(tokenUser.id).then(data => {
+        setimagenCli(data.data.imagenclinica);
         setclinicObjt(data.data);
       });
       
     }else{
-
+      
       console.log("Esta vacio");
-
+      
     }
     
   }, [tokenUser])
+  
+  nameClinic = clinicObjt.nombre;
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -41,7 +45,7 @@ export const ClinicaProfile = () => {
     window.location = "/login";
     setActiveBtn("logout");
   }
-
+  
   return (
     <div>
         {
@@ -70,7 +74,7 @@ export const ClinicaProfile = () => {
                   <div className="img_profile_clinic">
 
                     <div className="img_cont">
-                      <PhotoProfile img={ clinicObjt.imagenclinica = imgUrl }/>
+                      <PhotoProfile img={ imagenCli }/>
                     </div>
 
                     </div>
@@ -116,7 +120,7 @@ export const ClinicaProfile = () => {
 
                       </div>
                       {
-                        ( activeBtn === "perfil" ) && <SectionPerfilClinica userData={clinicObjt}/>
+                        ( activeBtn === "perfil" ) && <SectionPerfilClinica userData={clinicObjt} imgCli={imagenCli}/>
                       }
                     </div>
                     
