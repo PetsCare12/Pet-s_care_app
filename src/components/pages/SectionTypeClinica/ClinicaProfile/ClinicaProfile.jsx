@@ -119,6 +119,7 @@ export const ClinicaProfile = () => {
                         ( activeBtn === "perfil" ) && <SectionPerfilClinica userData={clinicObjt}/>
                       }
                     </div>
+                    
                 </div>
             </div>
           :
