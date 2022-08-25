@@ -9,7 +9,7 @@ import { putClinica } from '../../../../../helpers/API Consumer/useClinicasConsu
 
 
 
-export const SectionPerfilClinica = ( {userData} ) => {
+export const SectionPerfilClinica = ( {userData , imgCli} ) => {
 
     const token = localStorage.getItem("token");
 
@@ -24,26 +24,6 @@ export const SectionPerfilClinica = ( {userData} ) => {
 
     const {myWidgetClinics,urlImage} = useSendImage();
 
-    useEffect( () => {
-
-        if (!userData.nit) {    
-            setLoading( true );
-        }
-        else {
-            setLoading( false );
-            setActTele(userData.telefono);
-            setActImage(userData.imagenclinica);
-            setActCorreo(userData.correoCv);
-            setActDireccion(userData.direccion);
-            setActPass(userData.password);
-        }
-    }, [userData])
-
-    const handleImageEdit = () => {
-        myWidgetClinics.open();
-    }
-    
-    // console.log(monthDays( 2022, 8 ));
 
     const [actTele, setActTele] = useState("");
     const [actImage, setActImage] = useState("");
@@ -53,6 +33,26 @@ export const SectionPerfilClinica = ( {userData} ) => {
     
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
+
+    useEffect( () => {
+
+        if (!userData.nit) {    
+            setLoading( true );
+        }
+        else {
+            setLoading( false );
+            setActTele(userData.telefono);
+            setActCorreo(userData.correoCv);
+            setActDireccion(userData.direccion);
+            setActPass(userData.password);
+            setActImage(imgCli);
+        }
+    }, [userData])
+
+    const handleImageEdit = () => {
+        myWidgetClinics.open();
+    }
+    // console.log(monthDays( 2022, 8 ));
 
     const handleTelefono = ( e ) => { setActTele( e.target.value ) }
     const handleDireccion = ( e ) => { setActTele( e.target.value ) }
@@ -168,7 +168,7 @@ export const SectionPerfilClinica = ( {userData} ) => {
                 <p className='profile__editarPerfil cc'>N° {userData.nit}</p>
                 <div className="profile__seccion1">
                     <div className='profile__img'>
-                        <img src={actImage} alt="" />
+                        <img src={imgCli} alt="" />
                         <div onClick={handleImageEdit} className='perfil__editImage'><div><VscFiles /></div></div>
                     </div>
                     <div className='profile__info'>

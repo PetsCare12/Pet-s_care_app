@@ -157,6 +157,14 @@ export const registroClinicaTest = () => {
         "La granja",
         "La lopera"
     ]
+    const tarifas = [
+        "10000",
+        "20000",
+        "30000",
+        "40000",
+        "50000",
+        "60000"
+    ]
 
     let posicion = 0;
 
@@ -176,6 +184,7 @@ export const registroClinicaTest = () => {
             correoCv : `test${index}@gmail.com`,
             password : "test",
             imagenclinica : imgClinicas[posicion],
+            tarifa : tarifas[posicion],
             estadoCli : 1
         }
 

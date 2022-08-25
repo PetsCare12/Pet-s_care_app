@@ -34,7 +34,7 @@ export const Clinicas = () => {
                             img={cli.imagenclinica}
                             nombre={cli.nombre}
                             direccion={cli.direccion}
-                            tarifa={cli.valor_consulta}
+                            tarifa={cli.tarifa}
                             horario={cli.horarios}
                             estado = {cli.estadoCli}
                         />
