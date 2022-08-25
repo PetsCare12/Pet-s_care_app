@@ -31,33 +31,13 @@
 }
 
 /* Horarios */
-.table_horarios{
+/* .table_horarios{
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #ffffff;
 }
-.horarios_define{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-    width: 65vh;
-    padding: 2vh;
-    position: relative;
-}
-.horarios_define_hidde{
-    display: none;
-}
-.horarios_define_show{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-    width: 150vh;
-    padding: 2vh;
-    position: relative;
-}
+
 .header_table{
     display: flex;
     flex-direction: row;
@@ -112,7 +92,7 @@
 
 /* Perfil Left */
 .section_profile_4_clinics{
-    margin-top: -13rem;
+    margin-top: -19rem;
     z-index: 10001;
     width: 20vw;
     background-color: rgb(255, 255, 255);
@@ -130,7 +110,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
+} */
 
 /* Perfil Editable */
 .perfil{
@@ -155,4 +135,32 @@
     flex-direction: row;
     gap: 5rem;
     justify-content: space-between;
+}
+
+/* Tabla horarios */
+.margintop{
+    margin-top: 15vh;
+}
+.horarios_define{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    width: 65vh;
+    padding: 2vh;
+    position: relative;
+}
+.horarios_define_hidde{
+    display: none;
+}
+.horarios_define_show{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    width: 100vh;
+    padding: 2vh;
+    height: 70vh;
+    overflow-y: scroll;
+    position: relative;
 }

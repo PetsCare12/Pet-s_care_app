@@ -26,7 +26,7 @@ export const SectionPerfilClinica = ( {userData} ) => {
 
     useEffect( () => {
 
-        if (!userData.documentoUs) {    
+        if (!userData.nit) {    
             setLoading( true );
         }
         else {
@@ -34,6 +34,7 @@ export const SectionPerfilClinica = ( {userData} ) => {
             setActTele(userData.telefono);
             setActImage(userData.imagenclinica);
             setActCorreo(userData.correoCv);
+            setActDireccion(userData.direccion);
             setActPass(userData.password);
         }
     }, [userData])
