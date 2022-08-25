@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { SimpleModal } from '../../../layout/Modals/SimpleModal';
 
 import { HiOutlineIdentification,HiOutlineMail } from "react-icons/hi";
@@ -12,27 +12,24 @@ import { AiFillDelete,AiFillEye } from "react-icons/ai";
 const InfoUser = ( { id, nombre, apellido="" , correo, img, telefono, estado, direccion="" } ) => {
 
     const [showInfo, setShowInfo] = useState(false);
+    const liDeleted = useRef(null);
 
-    
+    const handleDelete = () => {
 
-// documentoUs
-// correoUs
-// nombreUs
-// apellidoUs
-// imagenUsu
-// telefonoUs
-// estadoUs
+        
+    }
+
     return (
         <>
-            <li className="table-row">
+            <li ref={liDeleted} className="table-row animate__animated">
                 <div className="col col-1 doc" data-label="Job Id">{id}</div>
                 <div className="col col-2 nom" data-label="Customer Name">{nombre}</div>
                 <div className="col col-3 cor" data-label="Amount">{correo}</div>
                 <div className="col col-4 but" data-label="Payment Status">
                     <button className='infoUser__managment'>
-                        <p className='casilla edit'><TbPencil/></p>
-                        <p className='casilla delete'><AiFillDelete/></p>
-                        <p className='casilla show' onClick={()=>setShowInfo(true)}><AiFillEye/></p>
+                        <p onClick={handleDelete} className='casilla edit'><TbPencil/></p>
+                        <p onClick={handleDelete} className='casilla delete'><AiFillDelete/></p>
+                        <p onClick={()=>setShowInfo(true)} className='casilla show' ><AiFillEye/></p>
                     </button>
                 </div>
             </li>
