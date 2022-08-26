@@ -18,7 +18,6 @@ export const ClinicaProfile = () => {
   const [imagenCli, setimagenCli] = useState("");
   const [tokenUser, setTokenUser] = useState(JSON.parse(localStorage.getItem("usuario")));
 
-  console.log("'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''");
   useEffect(() => {
 
     if ( !!tokenUser ) {

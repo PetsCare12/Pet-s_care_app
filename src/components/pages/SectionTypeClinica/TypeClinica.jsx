@@ -41,6 +41,7 @@ export const TypeClinica = () => {
     }
   }, [tokenUser]);
 
+  // console.log(arr);
   useEffect(() => {
     if (arrState === true) {
       getVeterinarios(nitClinic).then(data => {
@@ -53,7 +54,7 @@ export const TypeClinica = () => {
     if (e.keyCode === 13) {
       if (e.target.value !== "") {
         getVeterinarioById(e.target.value).then( data => {
-          if (data === 404) {
+          if (data.status === 404) {
             setrequestState(false);
           }else{
             setarr([data])
