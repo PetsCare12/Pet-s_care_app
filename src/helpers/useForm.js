@@ -76,8 +76,8 @@ export const useForm = (initialForm , validateForm , token , nit) => {
 
                     }else{
 
-                        setestatusResponse(data.mensaje);
-
+                        setestatusResponse(data);
+                        console.log(data);
                         setTimeout(() => {
                             setResponse(true);
                             setLoading(false);

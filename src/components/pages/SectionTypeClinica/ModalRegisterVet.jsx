@@ -32,7 +32,6 @@ export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit 
 
     getVeterinarioById(form.documento).then(data => { 
 
-      // console.log(data);
       if (data.status === 404) {
         setval_exist(404);
         console.log(setval_exist);

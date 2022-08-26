@@ -1,5 +1,6 @@
 import React from 'react'
 import { ButtonUI } from '../../../../UI/ButtonUI/ButtonUI';
+import { Dias_Horario_UI } from '../../../../UI/Dias_Horario_UI/Dias_Horario_UI';
 
 export const HorarioClinica = () => {
 
@@ -55,165 +56,58 @@ export const HorarioClinica = () => {
       }
 
   return (
-    <form onSubmit={getDates} className="animate__animated animate__fadeIn">
-        <div className="tableUsuarios margintop">
-          <ul className="responsive-table">
-              <>
-              <h2>{"Horario Clinica"}</h2>   
-              <li className="table-header">
-                <div className="col col-1">Dias</div>
-                <div className="col col-2">Horas</div>
-              </li>
-              </>
-              <li class="table-row">
-                <div class="col col-1">
-                  <h4>{"Lunes"}</h4>
-                </div>
+    <form onSubmit={getDates} className="horario_form animate__animated animate__fadeIn">
 
-                <div class="col col-2">
+      <div className="part1_horarios">
 
-                  <div className="cont_hours_1">
-                    <h5><span>Entrada:</span></h5>
-                    <input type="time" name="lunes_hours_in" id="lunes_in" />
-                  </div>
-                </div>
+        <Dias_Horario_UI 
+          dia={"Lunes"}
+          name_hour_in={"lunes_in"}
+          name_hour_out={"lunes_out"}
+        />
 
-                <div className="col col-2">
-                  <div className="cont_hours_2">
-                      <h5><span>Salida:</span></h5>
-                      <input type="time" name="lunes_hours_leave" id="lunes_leave" />
-                  </div>
-                </div>
-              </li>
-
-              <li class="table-row">
-                <div class="col col-1">
-                  <h4>{"Martes"}</h4>
-                </div>
-
-                <div class="col col-2">
-
-                  <div className="cont_hours_1">
-                    <h5><span>Entrada:</span></h5>
-                    <input type="time" name="martes_hours_in" id="martes_in" />
-                  </div>
-                </div>
-
-                <div className="col col-2">
-                  <div className="cont_hours_2">
-                    <h5><span>Salida:</span></h5>
-                    <input type="time" name="martes_hours_leave" id="martes_leave" />
-                  </div>
-                </div>
-              </li>
-
-              <li class="table-row">
-                <div class="col col-1">
-                  <h4>{"Miercoles"}</h4>
-                </div>
-
-                <div class="col col-2">
-
-                  <div className="cont_hours_1">
-                    <h5><span>Entrada:</span></h5>
-                    <input type="time" name="miercoles_hours_in" id="miercoles_in" />
-                  </div>
-                </div>
-
-                <div className="col col-2">
-                  <div className="cont_hours_2">
-                    <h5><span>Salida:</span></h5>
-                    <input type="time" name="miercoles_hours_leave" id="miercoles_leave" />
-                  </div>
-                </div>
-              </li>
-
-              <li class="table-row">
-                <div class="col col-1">
-                  <h4>{"Jueves"}</h4>
-                </div>
-
-                <div class="col col-2">
-
-                  <div className="cont_hours_1">
-                    <h5><span>Entrada:</span></h5>
-                    <input type="time" name="jueves_hours_in" id="jueves_in" />
-                  </div>
-                </div>
-
-                <div className="col col-2">
-                  <div className="cont_hours_2">
-                    <h5><span>Salida:</span></h5>
-                    <input type="time" name="jueves_hours_leave" id="jueves_leave" />
-                  </div>
-                </div>
-              </li>
-
-              <li class="table-row">
-                <div class="col col-1">
-                  <h4>{"Viernes"}</h4>
-                </div>
-
-                <div class="col col-2">
-
-                  <div className="cont_hours_1">
-                    <h5><span>Entrada:</span></h5>
-                    <input type="time" name="viernes_hours_in" id="viernes_in" />
-                  </div>
-                </div>
-
-                <div className="col col-2">
-                  <div className="cont_hours_2">
-                    <h5><span>Salida:</span></h5>
-                    <input type="time" name="viernes_hours_leave" id="viernes_leave" />
-                  </div>
-                </div>
-              </li>
-
-              <li class="table-row">
-                <div class="col col-1">
-                  <h4>{"Sabado"}</h4>
-                </div>
-
-                <div class="col col-2">
-
-                  <div className="cont_hours_1">
-                    <h5><span>Entrada:</span></h5>
-                    <input type="time" name="sabado_hours_in" id="sabado_in" />
-                  </div>
-                </div>
-
-                <div className="col col-2">
-                  <div className="cont_hours_2">
-                    <h5><span>Salida:</span></h5>
-                    <input type="time" name="sabado_hours_leave" id="sabado_leave" />
-                  </div>
-                </div>
-              </li>
-
-              <li class="table-row">
-                <div class="col col-1">
-                  <h4>{"Domingos y festivos"}</h4>
-                </div>
-
-                <div class="col col-2">
-
-                  <div className="cont_hours_1">
-                    <h5><span>Entrada:</span></h5>
-                    <input type="time" name="dom_fest_hours_in" id="dom_fest_in" />
-                  </div>
-                </div>
-
-                <div className="col col-2">
-                  <div className="cont_hours_2">
-                    <h5><span>Salida:</span></h5>
-                    <input type="time" name="dom_fest_hours_leave" id="dom_fest_leave" />
-                  </div>
-                </div>
-              </li>
-          </ul>
-          <ButtonUI text="Actualizar"  type="submit" style="submit"></ButtonUI>
+        <Dias_Horario_UI 
+          dia={"Martes"}
+          name_hour_in={"martes_in"}
+          name_hour_out={"martes_out"}
+        />
+  
+        <Dias_Horario_UI 
+          dia={"Miercoles"}
+          name_hour_in={"martes_in"}
+          name_hour_out={"martes_out"}
+        />
+        
       </div>
+
+     <div className="part2_horarios">
+
+      <Dias_Horario_UI 
+          dia={"Jueves"}
+          name_hour_in={"jueves_in"}
+          name_hour_out={"jueves_out"}
+        />
+
+        <Dias_Horario_UI 
+          dia={"Viernes"}
+          name_hour_in={"viernes_in"}
+          name_hour_out={"viernes_out"}
+        />
+
+        <Dias_Horario_UI 
+          dia={"Sabado"}
+          name_hour_in={"sabado_in"}
+          name_hour_out={"sabado_out"}
+        />
+
+        <Dias_Horario_UI 
+          dia={"Domingo"}
+          name_hour_in={"domingo_in"}
+          name_hour_out={"domingo_out"}
+        />
+
+     </div>
+      <ButtonUI text="Actualizar"  type="submit" style="submit"></ButtonUI>
     </form>
   )
 }
