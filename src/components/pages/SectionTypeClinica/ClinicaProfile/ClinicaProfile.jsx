@@ -109,7 +109,7 @@ export const ClinicaProfile = () => {
 
                       <div className={`horarios_define ${(activeBtn === "horario") ? "horarios_define_show" : "horarios_define_hidde"}`}>
                           
-                          <HorarioClinica data={clinicObjt}/>
+                          <HorarioClinica data={clinicObjt}/> 
 
                       </div>
 

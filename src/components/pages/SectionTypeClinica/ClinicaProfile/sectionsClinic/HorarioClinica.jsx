@@ -107,7 +107,9 @@ export const HorarioClinica = () => {
         />
 
      </div>
+     <div className="part1_horarios">
       <ButtonUI text="Actualizar"  type="submit" style="submit"></ButtonUI>
+     </div>
     </form>
   )
 }
