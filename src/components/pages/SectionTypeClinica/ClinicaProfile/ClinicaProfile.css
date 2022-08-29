@@ -157,3 +157,14 @@
 .cont{
     text-align: center;
 }
+.title_hour{
+    margin-bottom: 2rem;
+}
+.btn_marg{
+    margin: 0;
+}
+.title_cont{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}

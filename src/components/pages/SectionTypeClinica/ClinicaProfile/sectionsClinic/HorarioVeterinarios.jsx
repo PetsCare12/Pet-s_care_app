@@ -45,7 +45,7 @@ export const HorarioVeterinarios = () => {
           "Salida"  : e.target[11].value
         }
       ,
-      "Domingos - Festivos" : 
+      "Domingos" : 
         {
           "Entrada" : e.target[12].value,
           "Salida"  : e.target[13].value
@@ -57,9 +57,11 @@ export const HorarioVeterinarios = () => {
 
 return (
 <form onSubmit={getDates} className="horario_form animate__animated animate__fadeIn">
-
+  
+  <div className="title_cont">
+    <h3 className='profile__editarPerfil title_hour'>{"Horario Veterinarios"}</h3><div id='login-spin-clinic' className='spiner'></div>
+  </div>
   <div className="part1_horarios">
-
       <Dias_Horario_UI 
         dia={"Lunes"}
         name_hour_in={"lunes_in"}
@@ -108,7 +110,7 @@ return (
 
     </div>
     <div className="part1_horarios">
-    <ButtonUI text="Actualizar"  type="submit" style="submit"></ButtonUI>
+    <ButtonUI text="Actualizar"  type="submit" style="submit btn_marg"></ButtonUI>
     </div>
 </form>
 )
