@@ -60,56 +60,56 @@ return (
 
   <div className="part1_horarios">
 
-    <Dias_Horario_UI 
-      dia={"Lunes"}
-      name_hour_in={"lunes_in"}
-      name_hour_out={"lunes_out"}
-    />
+      <Dias_Horario_UI 
+        dia={"Lunes"}
+        name_hour_in={"lunes_in"}
+        name_hour_out={"lunes_out"}
+      />
+
+      <Dias_Horario_UI 
+        dia={"Martes"}
+        name_hour_in={"martes_in"}
+        name_hour_out={"martes_out"}
+      />
+
+      <Dias_Horario_UI 
+        dia={"Miercoles"}
+        name_hour_in={"martes_in"}
+        name_hour_out={"martes_out"}
+      />
+      
+    </div>
+
+    <div className="part2_horarios">
 
     <Dias_Horario_UI 
-      dia={"Martes"}
-      name_hour_in={"martes_in"}
-      name_hour_out={"martes_out"}
-    />
+        dia={"Jueves"}
+        name_hour_in={"jueves_in"}
+        name_hour_out={"jueves_out"}
+      />
 
-    <Dias_Horario_UI 
-      dia={"Miercoles"}
-      name_hour_in={"martes_in"}
-      name_hour_out={"martes_out"}
-    />
-    
-  </div>
+      <Dias_Horario_UI 
+        dia={"Viernes"}
+        name_hour_in={"viernes_in"}
+        name_hour_out={"viernes_out"}
+      />
 
-  <div className="part2_horarios">
+      <Dias_Horario_UI 
+        dia={"Sabado"}
+        name_hour_in={"sabado_in"}
+        name_hour_out={"sabado_out"}
+      />
 
-  <Dias_Horario_UI 
-      dia={"Jueves"}
-      name_hour_in={"jueves_in"}
-      name_hour_out={"jueves_out"}
-    />
+      <Dias_Horario_UI 
+        dia={"Domingo"}
+        name_hour_in={"domingo_in"}
+        name_hour_out={"domingo_out"}
+      />
 
-    <Dias_Horario_UI 
-      dia={"Viernes"}
-      name_hour_in={"viernes_in"}
-      name_hour_out={"viernes_out"}
-    />
-
-    <Dias_Horario_UI 
-      dia={"Sabado"}
-      name_hour_in={"sabado_in"}
-      name_hour_out={"sabado_out"}
-    />
-
-    <Dias_Horario_UI 
-      dia={"Domingo"}
-      name_hour_in={"domingo_in"}
-      name_hour_out={"domingo_out"}
-    />
-
-  </div>
-  <div className="part1_horarios">
-  <ButtonUI text="Actualizar"  type="submit" style="submit"></ButtonUI>
-  </div>
+    </div>
+    <div className="part1_horarios">
+    <ButtonUI text="Actualizar"  type="submit" style="submit"></ButtonUI>
+    </div>
 </form>
 )
 }
