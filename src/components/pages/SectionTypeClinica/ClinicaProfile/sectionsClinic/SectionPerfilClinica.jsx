@@ -165,7 +165,7 @@ export const SectionPerfilClinica = ( {userData , imgCli} ) => {
             !loading && 
             <div className='profile__right-perfil animate__animated animate__fadeIn'>
                 <p className='profile__editarPerfil'>Información</p>
-                <p className='profile__editarPerfil cc'>N° {userData.nit}</p>
+                <p className='profile__editarPerfil cc'>Nit° {userData.nit}</p>
                 <div className="profile__seccion1">
                     <div className='profile__img'>
                         <img src={imgCli} alt="" />

@@ -61,7 +61,7 @@ export const useForm = (initialForm , validateForm , token , nit) => {
             }else if (e.target.classList.value === "formVet_register animate__animated animate__fadeIn") {
                 
                 setVeterinario(form,nit,token).then( data => {
-                    
+                    console.log(data);
                     if (data === "Veterinario registrada con exito") {
 
                         setestatusResponse("Registro Exitoso!");
@@ -76,8 +76,8 @@ export const useForm = (initialForm , validateForm , token , nit) => {
 
                     }else{
 
-                        setestatusResponse("Registro Fallido!");
-
+                        setestatusResponse(data);
+                        console.log(data);
                         setTimeout(() => {
                             setResponse(true);
                             setLoading(false);

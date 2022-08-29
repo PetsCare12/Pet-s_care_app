@@ -155,3 +155,37 @@ export const setStateVeterinario = async( id , estado , access_token ) => {
     }
 
 };
+// Tests//
+
+export const eliminarVeterinario = async( id , access_token ) => {
+
+
+    try {
+
+        const sendRequest = await axios({
+            url : `${url}/veterinarios/${id}`,
+            method : 'DELETE',
+            headers : {
+                "Content-Type":"application/json",
+                'Authorization': 'Bearer '+access_token,
+            }
+            
+        }).catch( function( error ) {
+
+            if ( error.response ) {
+                return error.response;
+            }
+
+        });
+
+        return sendRequest.data;
+
+    } catch (error) {
+
+        if ( error.response ) {
+            return error.response;
+        }
+
+    }
+
+};

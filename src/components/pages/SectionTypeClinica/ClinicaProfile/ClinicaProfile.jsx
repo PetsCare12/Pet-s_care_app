@@ -18,7 +18,6 @@ export const ClinicaProfile = () => {
   const [imagenCli, setimagenCli] = useState("");
   const [tokenUser, setTokenUser] = useState(JSON.parse(localStorage.getItem("usuario")));
 
-  console.log("'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''");
   useEffect(() => {
 
     if ( !!tokenUser ) {
@@ -110,7 +109,7 @@ export const ClinicaProfile = () => {
 
                       <div className={`horarios_define ${(activeBtn === "horario") ? "horarios_define_show" : "horarios_define_hidde"}`}>
                           
-                          <HorarioClinica data={clinicObjt}/>
+                          <HorarioClinica data={clinicObjt}/> 
 
                       </div>
 

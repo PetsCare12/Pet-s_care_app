@@ -5,7 +5,7 @@ import { ButtonUI } from "./../../UI/ButtonUI/ButtonUI";
 import { useModal } from '../../../helpers/useModal';
 import { ModalRegisterVet } from './ModalRegisterVet';
 import { useSendImage } from '../../../helpers/Cloudinary_Images/useSendImages';
-import { setStateVeterinario, getVeterinarioById, getVeterinarios } from '../../../helpers/API Consumer/useVeterinariosConsumer';
+import { setStateVeterinario, getVeterinarioById, getVeterinarios, eliminarVeterinario } from '../../../helpers/API Consumer/useVeterinariosConsumer';
 import { SimpleModal } from "../../layout/Modals/SimpleModal";
 import { MdOutlineCancel } from 'react-icons/md';
 import { getClinicaById } from '../../../helpers/API Consumer/useClinicasConsumer';
@@ -39,6 +39,8 @@ export const TypeClinica = () => {
         }
       });
     }
+
+    eliminarVeterinario( 1095550395 , tokenClinic );
   }, [tokenUser]);
 
   useEffect(() => {
@@ -53,7 +55,7 @@ export const TypeClinica = () => {
     if (e.keyCode === 13) {
       if (e.target.value !== "") {
         getVeterinarioById(e.target.value).then( data => {
-          if (data === 404) {
+          if (data.status === 404) {
             setrequestState(false);
           }else{
             setarr([data])
@@ -156,12 +158,13 @@ export const TypeClinica = () => {
       <div className='st2'>
           <div className="title-container">
             <div className='titles'>
+              <img className='img_logo_clinica' src={pets_images('./veterinarios/cruz_logo.png')} alt="" />  
               <h1 id='titleP1'>{"Pet's Care"}</h1>
-              <spam id='titleP2'>{"Para Veterinarias †"}</spam>
             </div>
             <div id='titleP3'>
-              <h1>{nameClinic}</h1>
-              <hr className='hrVet'/>
+                <h1>{nameClinic}</h1>
+                <hr className='hrVet'/>
+                {/* <h6>{"Clinica"}</h6> */}
             </div>
           </div>
           <div className='st3'>

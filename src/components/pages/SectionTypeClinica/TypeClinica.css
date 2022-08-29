@@ -2,16 +2,18 @@
 *{
     margin: 0;
     padding: 0;
-    scrollbar-color: #0072ff rgba(0, 0, 0, 0);
+    scrollbar-color: #008eff rgba(0, 0, 0, 0);
     scrollbar-width: thin;
 }
 .st2 h1,h2,h3,h4,h5,h6,input,button,span{
     font-family: 'Ruda', sans-serif;
-    color: #0072ff;
+    color: #008eff;
 }
 .titles{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
 }
 .title-container{
     padding: 0;
@@ -21,12 +23,12 @@
     width: 85%;
 }
 #titleP1{
-    color: #0073ff;
+    color: #008eff;
     font-family: 'Ruda', sans-serif;
     font-size:  7vh;
 }
 #titleP2{
-    color: #0072ff;
+    color: #008eff;
     font-family: 'Ruda', sans-serif;
     font-size:  3vh;
     margin-left: 25px;
@@ -36,6 +38,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.img_logo_clinica{
+    width: 150px;
+    object-fit: contain;
 }
 #titleP3 h1{
     font-size:  4vh;
@@ -91,7 +97,6 @@
     align-items: center;
     background-color: #ffffff73;
 }
-
 .st5{
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
     margin-left: 5px;
@@ -124,7 +129,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #0072ff;
+    background-color: #008eff;
     border-radius: 20px;
     border: 2px solid #f1f2f3;
 }
@@ -264,13 +269,13 @@ span{
 .input:focus ~ .placeholder {
     font-weight: bold;
     font-size: 20px;
-    color: #0072ff;
+    color: #008eff;
 }
 #id{
     background-color: #00779b44;
 }
 .submit {
-    background-color: #0072ff;
+    background-color: #008eff;
     border-radius: 12px;
     border: 0;
     box-sizing: border-box;
@@ -345,7 +350,7 @@ span{
 }
 .idSection h3{
     font-size: 40px;
-    color: #0072ff;
+    color: #008eff;
 }
 .btnSection{
     margin-bottom: 5vh;
@@ -374,7 +379,7 @@ span{
     width: 60vh;
     border-radius: 100%;
     height: 2px;
-    color: #0072ff;
+    color: #008eff;
 }
 #login-spin-clinic{
     border-bottom: 2px solid #008eff;
@@ -451,5 +456,5 @@ span{
     position: relative;
 }
 .modalactive_text{
-    color: #0072ff;
+    color: #008eff;
 }
