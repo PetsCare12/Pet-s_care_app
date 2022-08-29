@@ -1,11 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import { getAllClinicas } from '../../../helpers/API Consumer/useClinicasConsumer';
 import {Header} from '../../layout/HeaderHome/HeaderHome';
 import './style.css';
 
 export const Agenda = () => {
 
     const [active, setActive] = useState();
-    const [hour, setHour] = useState("")
+    const [clinica, setClinica] = useState([]);
+    const [hour, setHour] = useState("");
+
+    const { id:clinicaEsp } = useParams();
+
+    useEffect( () => {
+
+        getAllClinicas().then( info => {
+            setClinica(info.data)
+
+        });
+
+    },[])
     
     const schedules = [
         { hora : "1:45"},
@@ -22,6 +36,7 @@ export const Agenda = () => {
         { hora : "12:45"},
     ]
 
+    console.log( !!clinicaEsp );
     console.log( hour );
 
     return (
@@ -38,11 +53,19 @@ export const Agenda = () => {
                             <option value="sa">Optioon</option>
                         </select>
 
-                        <select id='select' name='clinica'>
-                            <option value="none">Selecciona una clínica</option>
-                            <option value="sa">Optioon</option>
-                            <option value="sa">Optioon</option>
-                            <option value="sa">Optioon</option>
+                        <select id='select' name='clinica' value={!!clinicaEsp && clinicaEsp}>
+                            <option id='selected' value="none">Selecciona una clínica</option>
+                            {
+                                clinica.map( cli => (
+                                    <option 
+                                        key={cli.nit} 
+                                        value={cli.nit}
+                                    >
+                                        {cli.nombre}
+                                    </option>
+                                ))
+                            }
+                            
                         </select>
 
                         <div className="agenda__info-veterinarios mt-5">

@@ -36,6 +36,7 @@ export const AppRouter = () => {
                 <Route path="/admin" element={<AdminScreen/>}/>
                 <Route path="/recovery-password" element={<PasswordRecovery />}/>
                 <Route path="/agenda" element={<Agenda />}/>
+                <Route path="/agenda/:id" element={<Agenda />}/>
 
             </Routes>
         </BrowserRouter>

@@ -157,6 +157,7 @@ export const PasswordRecovery = () => {
 
     return (
         <div className='recoveryPass__container'>
+            <img className='logo' src={pets_images("./varios/hueso.png")} alt="" />
             {
             step === 0 &&
             <div className='recoveryPass animate__animated animate__zoomIn'>
