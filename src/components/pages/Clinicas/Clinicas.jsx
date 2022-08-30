@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { clinicas } from './data'
 import './clinicas.css'
 import { Clinica_card } from './Clinica_card'
 import { IoIosArrowDropdown } from "react-icons/io";
@@ -37,8 +36,12 @@ export const Clinicas = () => {
                             tarifa={cli.tarifa}
                             horario={cli.horarios}
                             estado = {cli.estadoCli}
+                            telefono={ cli.telefono }
                         />
                     ))
+                }
+                {
+                    clinicas.length === 0 && <p style={{textAlign:"center"}}>Aún no hay clínicas registradas <br/>😪🏥</p>
                 }
                 
             </div>

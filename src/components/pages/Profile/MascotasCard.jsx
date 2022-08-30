@@ -153,7 +153,10 @@ export const MascotasCard = ( props ) => {
                         edit &&
                         <>
                         <img id='edit' className='img animate__animated animate__fadeIn' src={actImage} />
-                        <div onClick={handleImageEdit} className='updateImg'><VscFiles size="50px" /></div>
+                        <div className='container__updateImg'>
+                            <div onClick={handleImageEdit} className='updateImg'><VscFiles size="50px" /></div>
+                            
+                        </div>
                         <div className="specificInfo animate__animated animate__fadeIn">
                             { !validacionForm[0] && <p className='validacionForm'>{ validacionForm[1] }</p> }
                             { success && <p className='validacionFormSuccess'>Tu mascota ha sido actualizada con exito</p> }

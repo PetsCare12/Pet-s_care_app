@@ -24,7 +24,7 @@ export const Home = () => {
       </div>
       <div className="home__aboutUs">
           <div className="home__aboutUs-img">
-            <img src="https://lamenteesmaravillosa.com/wp-content/uploads/2014/05/grupo-personas-trabajando.jpg" alt="about-us" />
+            <img src={pets_images("./home/undraw_real_time_collaboration_c62i.svg")} alt="images" />
           </div>
           <div className="home__aboutUs-text">
             <h1>Equipo de <br/><span>desarrollo</span></h1>
@@ -37,12 +37,12 @@ export const Home = () => {
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat similique sint consequatur odio officiis, quisquam pariatur necessitatibus nisi, optio tempore perspiciatis debitis consectetur! Consequuntur incidunt adipisci voluptate assumenda nihil ex.</p>
           </div>
           <div className="home__proyecto-img">
-            <img src={pets_images("./home/undraw_scrum_board_re_wk7v.svg")} alt="about-us" />
+            <img src={pets_images("./home/undraw_real_time_analytics_re_yliv.svg")} alt="about-us" />
           </div>
       </div>
       <div className="home__tiempo home__aboutUs">
           <div className="home__tiempo home__aboutUs-img">
-            <img className="home__tiempo-img" src={pets_images("./home/undraw_time_management_re_tk5w.svg")} alt="about-us" />
+            <img className="home__tiempo-img" src={pets_images("./home/undraw_season_change_f99v.svg")} alt="about-us" />
           </div>
           <div className="home__tiempo home__aboutUs-text">
             <h1>No <span>pierdas</span> más<br/> tu tiempo</h1>

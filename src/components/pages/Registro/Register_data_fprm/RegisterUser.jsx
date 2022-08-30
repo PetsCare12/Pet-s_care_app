@@ -57,7 +57,7 @@ export const RegisterUser = ( {change_step} ) => {
                     let errores = {};
 
                          if (!valores.documentoUs.trim()) {errores.documentoUs = 'Por favor ingrese un documento';}
-                    else if (!/^\d{7,}$/.test(valores.documentoUs)) {errores.documentoUs = 'Requiere mín. 7 caracteres y solo números';}
+                    else if (!/^\d{5,}$/.test(valores.documentoUs)) {errores.documentoUs = 'Requiere mín. 5 caracteres y solo números';}
 
                     else if (!valores.nombreUs.trim()) {errores.nombreUs = 'Por favor ingrese un nombre';}
                     else if (!/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(valores.nombreUs)) {errores.nombreUs = 'El nombre debe contener letras';}

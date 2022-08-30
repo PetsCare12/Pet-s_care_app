@@ -389,8 +389,13 @@
     width: 400px;
     height: 200px;
 }
-.mascotaInfo__container #edit{
-    filter: brightness(0.4);
+.mascotaInfo__container .container__updateImg{
+    height: 200px;
+    position: absolute;
+    width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .mascotaInfo__container .updateImg{
     display: flex;
@@ -399,8 +404,10 @@
     cursor: pointer;
     position: absolute;
     padding: 20px;
-    width: 400px;
-    height: 200px;
+    width: 120px;
+    height: 120px;
+    background: #00000073;
+    border-radius: 50%;
 }
 .mascotaInfo__container .updateImg:hover{
     border-radius: 5px;

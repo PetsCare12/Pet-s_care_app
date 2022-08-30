@@ -1,25 +1,71 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import { getUsuario_mascotas } from '../../../helpers/API Consumer/test';
 import { getAllClinicas } from '../../../helpers/API Consumer/useClinicasConsumer';
+import { getMascotaEspecifica } from '../../../helpers/API Consumer/useMascotasConsumer';
+import { pets_images } from '../../../helpers/Pets_care_images';
 import {Header} from '../../layout/HeaderHome/HeaderHome';
+import moment from "moment";
 import './style.css';
+import { getVeterinarios } from '../../../helpers/API Consumer/useVeterinariosConsumer';
 
 export const Agenda = () => {
 
     const [active, setActive] = useState();
     const [clinica, setClinica] = useState([]);
+    const [clinicaSeleccion, setClinicaSeleccion] = useState("");
+    const [veterinarios, setVeterinarios] = useState([]);
+
+    const [mascotas, setMascotas] = useState([]);
+    const [miMascota, setMiMascota] = useState([]);
     const [hour, setHour] = useState("");
+    const { id } = JSON.parse(localStorage.getItem("usuario"));
 
     const { id:clinicaEsp } = useParams();
 
     useEffect( () => {
 
         getAllClinicas().then( info => {
-            setClinica(info.data)
+            setClinica(info.data);
 
         });
 
+        getUsuario_mascotas( id ).then( info => {
+            setMascotas( info.mascotas );
+        })
+
+        if ( !!clinicaEsp ) {
+            setClinicaSeleccion( clinicaEsp )
+            getVeterinarios( clinicaEsp ).then( info => setVeterinarios( info ));
+    }
+        else {
+            setClinicaSeleccion( "" );
+        }
+
     },[])
+
+    const handleMiMascota = ( e ) => {
+
+        e.target.value === "none" 
+
+        ? 
+            setMiMascota([])
+        :
+        
+        getMascotaEspecifica( id , e.target.value )
+            .then( info => {
+                setMiMascota( [info.data] );
+
+            })
+
+    }
+
+    const handleClinicaSelect = ( e ) => {
+
+        setClinicaSeleccion( e.target.value );
+        
+        getVeterinarios( e.target.value ).then( info => setVeterinarios( info ));
+    }
     
     const schedules = [
         { hora : "1:45"},
@@ -35,28 +81,32 @@ export const Agenda = () => {
         { hora : "11:45"},
         { hora : "12:45"},
     ]
-
-    console.log( !!clinicaEsp );
-    console.log( hour );
+    console.log(miMascota);
 
     return (
         <>
         <Header />
-        <div className='agenda__container'>
+        <div className='agenda__container animate__animated animate__fadeIn'>
             <div className='card'>
                 <h1 className="title">Agenda</h1>
                     <div className="selectors">
-                        <select id='select' name='mascota'>
-                            <option value="none" >Selecciona una mascota</option>
-                            <option value="sa">Optioon</option>
-                            <option value="sa">Optioon</option>
-                            <option value="sa">Optioon</option>
+                        <select id='select' name='mascota' onChange={handleMiMascota}>
+                            <option id='selected' value="none">Selecciona una clínica</option>
+                            {
+                                mascotas.length !== 0 ?
+                                    mascotas.map( mascota => (
+                                        <option key={mascota.codigo} value={mascota.codigo} >{mascota.nombre} - {mascota.raza}</option>
+                                    ))
+                                :
+                                <option value="" > Aún no hay mascotas registradas </option>
+                            }
                         </select>
 
-                        <select id='select' name='clinica' value={!!clinicaEsp && clinicaEsp}>
+                        <select id='select' name='clinica' value={clinicaSeleccion} onChange={handleClinicaSelect}>
                             <option id='selected' value="none">Selecciona una clínica</option>
                             {
                                 clinica.map( cli => (
+                                    cli.estadoCli === 1 &&
                                     <option 
                                         key={cli.nit} 
                                         value={cli.nit}
@@ -68,61 +118,63 @@ export const Agenda = () => {
                             
                         </select>
 
-                        <div className="agenda__info-veterinarios mt-5">
+                        <div className="agenda__info-veterinarios mt-5 animate__animated animate__fadeIn">
 
-                            <button className='agenda__button-card'>
-                                <div className="agenda__veterinarios-card">
-                                    <img src="https://i0.wp.com/revista.weepec.com/wp-content/uploads/2021/02/vet-and-pet-EESKSLX.jpg?fit=1200%2C800&ssl=1" alt="" />
-                                    <h1 id='h1Veterinario'>My name</h1>
-                                    
+                            {
+                                veterinarios.length === 0 ? 
+                                <div>
+                                    <img style={{width:"150px"}} src={pets_images("./agenda/veterinarioEmpty.webp")} alt="img" />
+                                    <p>¡Ops!, aún no hay veterinarios en esta clínica</p>
                                 </div>
-                            </button>
 
-                            <button className='agenda__button-card'>
-                                <div className="agenda__veterinarios-card">
-                                    <img src="https://irp.cdn-website.com/8812c427/dms3rep/multi/DSC_0067-2a1ad164.JPG" alt="" />
-                                    <h1 id='h1Veterinario'>My name</h1>
-                                    
-                                </div>
-                            </button>
+                                : 
+                                veterinarios.map( vet => (
+                                    <button className='agenda__button-card' key={vet.documento}>
+                                        <div className="agenda__veterinarios-card">
+                                            <img src="https://i0.wp.com/revista.weepec.com/wp-content/uploads/2021/02/vet-and-pet-EESKSLX.jpg?fit=1200%2C800&ssl=1" alt="" />
+                                            <h1 id='h1Veterinario'>{vet.nombre} {vet.apellidos}</h1>
+                                            
+                                        </div>
+                                    </button>
+                                ))
 
-                            <button className='agenda__button-card'>
-                                <div className="agenda__veterinarios-card">
-                                    <img src="https://storage.contextoganadero.com/s3fs-public/ganaderia/field_image/2022-01/veterinarios-bienestar-animal-produccion-leche.jpeg" alt="" />
-                                    <h1 id='h1Veterinario'>My name</h1>
-                
-                                </div>
-                            </button>
-
-                            <button className='agenda__button-card'>
-                                <div className="agenda__veterinarios-card">
-                                    <img src="https://www.edx.org/static/18afddae77f96175cd5aa3ecc456672c/Aprende_Veterinaria_y_etologi__a.jpg" alt="" />
-                                    <h1 id='h1Veterinario'>My name</h1>
-                
-                                </div>
-                            </button>
+                            }
 
                         </div>
 
                     </div>
                     <div className="imgSchedule">
-                        <div className="imgPet">
-                            <img className='pet' src="https://www.prensalibre.com/wp-content/uploads/2019/05/Perro-1.jpg?quality=52" alt="img" />
-                            <div className="info">
-                                <div>
-                                    <p className='titulo'>Trululu <span className='infodata'>perro</span></p>
-                                    <p className="infodata">Raza Desconocida</p>
+                            {
+                                miMascota.length === 0 ? 
+                                <div className="imgPet">
+                                    <img src={pets_images("./agenda/confused.jpg")} alt="" />
                                 </div>
-                                <div>
-                                    <p className="infodata more">2 Años</p>
-                                    <p className="infodata more">Macho</p>
-                                    <p className="infodata more">Discapacidad: NO</p>
-                                </div>
+                                : 
+                                miMascota.map( mascota => (
 
-                            </div>
-                        </div>
+                                    <div className="imgPet" key={mascota.codigo}>
+                                        <img className='pet' src={mascota.imagenMascota} alt="img" />
+                                        <div className="info">
+                                            <div>
+                                                <p className='titulo'>{mascota.nombre} <span className='infodata'>{mascota.tipoAnimal}</span></p>
+                                                <p className="infodata">{mascota.raza}</p>
+                                            </div>
+                                            <div>
+                                                {
+                                                    mascota.edad < 2 ? <p className="infodata more">{mascota.edad} Año</p>
+                                                    : <p className="infodata more">{mascota.edad} Años</p>
+                                                }
+                                                
+                                                <p className="infodata more">{mascota.sexo}</p>
+                                                <p className="infodata more">Discapacidad: {mascota.discapacidad}</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                ))
+                            }
                         <div className="schedule">
-                            <h1 className='day'>Lunes</h1>
+                            <h1 className='day'>{moment().format('dddd')}</h1>
                             <div className="momento">
                                 <div className='columna mañana'>
                                     <h2 className='h2'>Mañana</h2>
