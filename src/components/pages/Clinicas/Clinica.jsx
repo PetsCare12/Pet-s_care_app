@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import { useNavigate, useParams } from 'react-router';
-import { getClinicaId } from '../../../helpers/getItemsByID';
 import {IoLocationOutline} from "react-icons/io5";
 import {AiOutlineDollarCircle} from "react-icons/ai";
 import {MdOutlineSchedule} from "react-icons/md";
@@ -18,7 +17,7 @@ export const Clinica = (  ) => {
 
     const [clinica, setClinica] = useState([]);
 
-    const { imagenclinica, nombre, direccion, telefono,  } = clinica;
+    const { imagenclinica, nombre, direccion, telefono, tarifa, nit  } = clinica;
 
     const { id } = useParams();
 
@@ -50,7 +49,7 @@ export const Clinica = (  ) => {
                     <h2 className='txt'> <span><IoLocationOutline /></span> {direccion} </h2>
                     <h2 className='txt'> <span><BsTelephoneInbound /></span> {telefono} </h2>
                     <hr className='hr__clinicas'/>
-                    {/* <h3 className='txt'> <span><AiOutlineDollarCircle /></span> Desde <b> $ {valor_consulta}</b> </h3> */}
+                    <h3 className='txt'> <span><AiOutlineDollarCircle /></span> Desde <b> $ {tarifa}</b> </h3>
                     {/* {
                         horarios.map( day => (
                             <details>
@@ -72,7 +71,7 @@ export const Clinica = (  ) => {
                             style="btnShort"
                             event={handleReturn}
                         />
-                        <Link to="" className='btn clinica__enlace'><FaRegCalendarPlus />Pedir cita</Link>
+                        <Link to={`/agenda/${nit}`} className='btn clinica__enlace'><FaRegCalendarPlus />Pedir cita</Link>
                     </div>
                 </div>
             </div>
