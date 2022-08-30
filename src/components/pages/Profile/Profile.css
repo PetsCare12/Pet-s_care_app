@@ -275,14 +275,14 @@
     color: #ff6767;
     align-items: center;
     border: none;
-    border-radius: 0px;
-    border-left: 2px solid #ff6767;
-    bottom: 10px;
-    left: 0;
+    border-radius: 5px;
+    border: 1px solid #ff6767;
+    right: 15px;
     display: flex;
     padding: 10px 0px;
     height: 35px;
     width: 125px;
+    top: 15px;
 }
 #perfil__logout:hover{
     background-color: #ff6767;

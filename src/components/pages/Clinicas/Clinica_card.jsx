@@ -15,6 +15,11 @@ export const Clinica_card = ( {
     estado
 } ) => {
 
+    const handleAgenda = () => {
+
+        window.location = "/agenda/"+id;
+    }
+
 
     return (
         <>
@@ -48,6 +53,7 @@ export const Clinica_card = ( {
                     </Link>
                     
                     <ButtonUI 
+                        event={handleAgenda}
                         text={<FaRegCalendarPlus />}
                         style={"btnCalendar mt-3"}
                     />

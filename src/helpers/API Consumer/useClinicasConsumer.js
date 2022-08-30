@@ -168,7 +168,7 @@ export const registroClinicaTest = () => {
 
     let posicion = 0;
 
-    for (let index = 0; index < 20; index++) {
+    for (let index = 0; index < 10; index++) {
 
         console.log("hola");
 
