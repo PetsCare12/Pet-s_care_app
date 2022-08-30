@@ -2,62 +2,73 @@ import React from 'react'
 import { ButtonUI } from '../../../../UI/ButtonUI/ButtonUI';
 import { Dias_Horario_UI } from '../../../../UI/Dias_Horario_UI/Dias_Horario_UI';
 
-export const HorarioClinica = () => {
+export const HorarioClinica = ( {data} ) => {
 
-    const getDates = (e) => {
+  let nit = data.nit;
+  console.log(nit);
+    const setDates = (e) => {
         e.preventDefault();
-        console.log("Horario Clinica");
         let hoursAvalibles = 
-        {
-          "Lunes" : 
-            {
-              "Entrada" : e.target[0].value,
-              "Salida"  : e.target[1].value
+        [
+            { 
+              "idHorarios" : `${nit+1}`,
+              "diaHorarios" : "Lunes",
+              "horaInicio" : e.target[0].value,
+              "horaSalida"  : e.target[1].value
             }
           ,
-          "Martes" : 
             {
-              "Entrada" : e.target[2].value,
-              "Salida"  : e.target[3].value
+              "idHorarios" : `${nit+2}`,
+              "diaHorarios" : "Martes",
+              "horaInicio" : e.target[2].value,
+              "horaSalida"  : e.target[3].value
             }
           ,
-          "Miercoles" : 
             {
-              "Entrada" : e.target[4].value,
-              "Salida"  : e.target[5].value
+              "idHorarios" : `${nit+3}`,
+              "diaHorarios" : "Miercoles",
+              "horaInicio" : e.target[4].value,
+              "horaSalida"  : e.target[5].value
             }
           ,
-          "Jueves" : 
             {
-              "Entrada" : e.target[6].value,
-              "Salida"  : e.target[7].value
+              "idHorarios" : `${nit+4}`,
+              "diaHorarios" : "Jueves",
+              "horaInicio" : e.target[6].value,
+              "horaSalida"  : e.target[7].value
             }
           ,
-          "Viernes" : 
             {
-              "Entrada" : e.target[8].value,
-              "Salida"  : e.target[9].value
+              "idHorarios" : `${nit+5}`,
+              "diaHorarios" : "Viernes",
+              "horaInicio" : e.target[8].value,
+              "horaSalida"  : e.target[9].value
             }
           ,
-          "Sabado" : 
             {
-              "Entrada" : e.target[10].value,
-              "Salida"  : e.target[11].value
+              "idHorarios" : `${nit+6}`,
+              "diaHorarios" : "Sabado",
+              "horaInicio" : e.target[10].value,
+              "horaSalida"  : e.target[11].value
             }
           ,
-          "Domingos - Festivos" : 
             {
-              "Entrada" : e.target[12].value,
-              "Salida"  : e.target[13].value
+              "idHorarios" : `${nit+7}`,
+              "diaHorarios" : "Domingo",
+              "horaInicio" : e.target[12].value,
+              "horaSalida"  : e.target[13].value
             }
-        }
+        ]
     
         console.log(hoursAvalibles);
       }
 
   return (
-    <form onSubmit={getDates} className="horario_form animate__animated animate__fadeIn">
+    <form onSubmit={setDates} className="horario_form animate__animated animate__fadeIn">
 
+      <div className="title_cont">
+        <h3 className='profile__editarPerfil title_hour'>{"Horario Clinica"}</h3><div id='login-spin-clinic' className='spiner'></div>
+      </div>
       <div className="part1_horarios">
 
         <Dias_Horario_UI 
@@ -108,7 +119,7 @@ export const HorarioClinica = () => {
 
      </div>
      <div className="part1_horarios">
-      <ButtonUI text="Actualizar"  type="submit" style="submit"></ButtonUI>
+      <ButtonUI text="Actualizar"  type="submit" style="submit btn_marg"></ButtonUI>
      </div>
     </form>
   )
