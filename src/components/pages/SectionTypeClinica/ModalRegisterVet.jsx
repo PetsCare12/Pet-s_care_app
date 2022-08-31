@@ -5,6 +5,7 @@ import { ButtonUI } from '../../UI/ButtonUI/ButtonUI';
 import { useForm } from '../../../helpers/useForm';
 import { imageRandom } from '../../../helpers/RandomImages/imagenessa';
 import { getVeterinarioById } from '../../../helpers/API Consumer/useVeterinariosConsumer';
+import { useRef } from 'react';
 import "./ModalRegisterVet.css";
 
 export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit }) => {
@@ -14,6 +15,32 @@ export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit 
   const [val_exist, setval_exist] = useState(404);
   const {myWidgetVeter,urlImage} = useSendImage();
   const [imgUrl, setimg] = useState(imgDefault);
+
+  // const form_vet = useRef(null);
+  
+  // const handleSubmitForm_vet = (e) => {
+
+  //   const formData = new FormData(form_vet.current);
+
+  //   const data = {
+
+  //     documento: formData.get('documento'),
+  //     nombre: formData.get('nombre'),
+  //     apellidos: formData.get('apellidos'),
+  //     sexovt: formData.get('sexovt'),
+  //     telefono: formData.get('telefono'),
+  //     correo: formData.get('correo'),
+  //     especialidad: formData.get('especialidad'),
+  //     password: formData.get('password'),
+  //     imagenVete: "",
+  //     estadoVt: formData.get('estadoVt')
+
+  //   }
+  // }
+
+
+
+  //////////////////////////////////////////////////////
 
   const initialForm = {
     documento: "",
@@ -95,7 +122,7 @@ export const ModalRegisterVet = ({ children , isOpen , closeModal , token , nit 
 
           <h2>{"Registra un Veterinario"}</h2>
 
-            <form onSubmit={handleSubmit} className='formVet_register animate__animated animate__fadeIn'>
+            <form onSubmit={handleSubmit} ref={form_vet} className='formVet_register animate__animated animate__fadeIn'>
 
                 {loading && <div id='login-spin-clinic' className='spiner'></div>}
                 {response && <p id='succesP  animate__animated animate__fadeIn'>{estatusResponse}</p>}
