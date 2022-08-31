@@ -8,12 +8,6 @@ export const HorarioClinica = ( {data} ) => {
   const token = localStorage.getItem('token');
   const [requestHour, setrequestHour] = useState("");
   
-  // useEffect(() => {
-  //   for (let index = 1; index <= 14; index++) {
-  //     deleteHorarioGeneral(index,token);
-  //   }
-  // }, [])
-  
 
   let nit = data.nit;
 
@@ -25,49 +19,49 @@ export const HorarioClinica = ( {data} ) => {
         let hoursAvalibles = 
         [
             { 
-              "idHorarios" : `${nit+1}`,
+              "idHorarios" : ``,
               "diaHorarios" : "Lunes",
               "horaInicio" : e.target[0].value,
               "horaSalida"  : e.target[1].value
             }
           ,
             {
-              "idHorarios" : `${nit+2}`,
+              "idHorarios" : ``,
               "diaHorarios" : "Martes",
               "horaInicio" : e.target[2].value,
               "horaSalida"  : e.target[3].value
             }
           ,
             {
-              "idHorarios" : `${nit+3}`,
+              "idHorarios" : ``,
               "diaHorarios" : "Miercoles",
               "horaInicio" : e.target[4].value,
               "horaSalida"  : e.target[5].value
             }
           ,
             {
-              "idHorarios" : `${nit+4}`,
+              "idHorarios" : ``,
               "diaHorarios" : "Jueves",
               "horaInicio" : e.target[6].value,
               "horaSalida"  : e.target[7].value
             }
           ,
             {
-              "idHorarios" : `${nit+5}`,
+              "idHorarios" : ``,
               "diaHorarios" : "Viernes",
               "horaInicio" : e.target[8].value,
               "horaSalida"  : e.target[9].value
             }
           ,
             {
-              "idHorarios" : `${nit+6}`,
+              "idHorarios" : ``,
               "diaHorarios" : "Sabado",
               "horaInicio" : e.target[10].value,
               "horaSalida"  : e.target[11].value
             }
           ,
             {
-              "idHorarios" : `${nit+7}`,
+              "idHorarios" : ``,
               "diaHorarios" : "Domingo",
               "horaInicio" : e.target[12].value,
               "horaSalida"  : e.target[13].value
