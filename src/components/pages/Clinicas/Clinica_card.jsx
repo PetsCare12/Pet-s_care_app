@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { ButtonUI } from "../../UI/ButtonUI/ButtonUI";
 import {IoLocationOutline} from "react-icons/io5"
 import {AiOutlineDollarCircle} from "react-icons/ai"
-import {FaRegCalendarPlus} from "react-icons/fa"
+import {FaRegCalendarPlus} from "react-icons/fa";
+import {BsTelephoneInbound} from "react-icons/bs";
 
 export const Clinica_card = ( {
     id,
@@ -12,8 +13,14 @@ export const Clinica_card = ( {
     direccion,
     tarifa,
     horario,
-    estado
+    estado,
+    telefono
 } ) => {
+
+    const handleAgenda = () => {
+
+        window.location = "/agenda/"+id;
+    }
 
 
     return (
@@ -28,6 +35,7 @@ export const Clinica_card = ( {
                 }
                 <h1> {nombre} </h1>
                 <h2 className='txt'> <span><IoLocationOutline /></span> {direccion} </h2>
+                <h2 className='txt'> <span><BsTelephoneInbound /></span> {telefono} </h2>
                 <hr className='hr__clinicas'/>
                 <h3 className='txt'> <span><AiOutlineDollarCircle /></span> Desde <b>${tarifa}</b> </h3>
                 {
@@ -48,6 +56,7 @@ export const Clinica_card = ( {
                     </Link>
                     
                     <ButtonUI 
+                        event={handleAgenda}
                         text={<FaRegCalendarPlus />}
                         style={"btnCalendar mt-3"}
                     />

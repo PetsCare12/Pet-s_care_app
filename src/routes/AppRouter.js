@@ -10,7 +10,7 @@ import { Profile } from '../components/pages/Profile/Profile';
 import { Registro } from '../components/pages/Registro/Registro';
 import { Registro_mascotas } from '../components/pages/Registro_mascotas/Registro_mascotas';
 import { TypeClinica } from '../components/pages/SectionTypeClinica/TypeClinica';
-import { Agenda } from '../components/pages/Agenda/Agenda'
+import { Agenda } from '../components/pages/Agendamiento/Agenda'
 import AdminScreen from '../components/pages/SectionTypeAdmin/AdminScreen';
 import { ClinicaProfile } from '../components/pages/SectionTypeClinica/ClinicaProfile/ClinicaProfile';
 import { PasswordRecovery } from '../components/pages/Password-recovery/PasswordRecovery';
@@ -35,6 +35,9 @@ export const AppRouter = () => {
                 <Route path="/agenda" element={ <Agenda />  } />
                 <Route path="/admin" element={<AdminScreen/>}/>
                 <Route path="/recovery-password" element={<PasswordRecovery />}/>
+                <Route path="/agenda" element={<Agenda />}/>
+                <Route path="/agenda/:id" element={<Agenda />}/>
+
             </Routes>
         </BrowserRouter>
     )

@@ -58,6 +58,7 @@
 #header__title{
     border-radius: 0;
     width: 180px;
+    cursor: pointer;
 }
 .nav_Home{
     display: flex;
@@ -93,7 +94,7 @@
     gap: 10px;
     padding: 5px 10px;
     position: fixed;
-    top: 1rem;
+    top: 0.5rem;
     right: 1rem;
     width: auto;
     z-index: 1001;

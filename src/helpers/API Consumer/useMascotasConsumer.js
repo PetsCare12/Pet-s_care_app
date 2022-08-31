@@ -1,3 +1,4 @@
+import { wait } from '@testing-library/user-event/dist/utils';
 import axios from 'axios';
 
 export const actualizarMascota = async ( update, codigoMc ) => {
@@ -24,6 +25,20 @@ export const actualizarMascota = async ( update, codigoMc ) => {
         });
         
         return response;
+    } catch (error) {
+        console.log( error );
+    }
+
+}
+
+export const getMascotaEspecifica = async( id, codigoMc) => {
+
+    try {
+
+        const response = await axios(`http://localhost:8080/api/usuario/${id}/mascota/${codigoMc}`);
+
+        return response;
+        
     } catch (error) {
         console.log( error );
     }
