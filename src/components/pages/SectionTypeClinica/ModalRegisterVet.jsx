@@ -6,14 +6,15 @@ import { imageRandom } from '../../../helpers/RandomImages/imagenessa';
 import { setVeterinario } from '../../../helpers/API Consumer/useVeterinariosConsumer';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { AiFillCheckCircle } from 'react-icons/ai';
-import "./ModalRegisterVet.css";
+import { VscFiles } from 'react-icons/vsc';
+import "./ModalRegisterVet.css";  
+
 
 export const ModalRegisterVet = ({ isOpen , closeModal , token , nit }) => {
 
-  let img = imageRandom();
 
   const {myWidgetVeter,urlImage} = useSendImage();
-  const [imgUrl, setimg] = useState(img);
+  const [imgUrl, setimg] = useState("");
 
   const [serverError, setServerError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -92,24 +93,24 @@ export const ModalRegisterVet = ({ isOpen , closeModal , token , nit }) => {
               setVeterinario( valores , nit , token ).then(info => {
                 info = validacion;
 
-                setLoading(true);
-                if ( validacion.status === 400 ) {
-                    setDuplicatedData( true );
-                    setServerError( false );
-                    setLoading(false);
-                }
-                else if( validacion.status === 500 ){
-                    setServerError( true );
-                    setDuplicatedData( false );
-                    setLoading( false );
-                }
-                else {
-                    setDuplicatedData( false );
-                    resetForm();
-                    setLoading(false);
-                    setRegistered( true );
-                    // window.location = '/gestionClinica'
-                }
+                // setLoading(true);
+                // if ( validacion.status === 400 ) {
+                //     setDuplicatedData( true );
+                //     setServerError( false );
+                //     setLoading(false);
+                // }
+                // else if( validacion.status === 500 ){
+                //     setServerError( true );
+                //     setDuplicatedData( false );
+                //     setLoading( false );
+                // }
+                // else {
+                //     setDuplicatedData( false );
+                //     resetForm();
+                //     setLoading(false);
+                //     setRegistered( true );
+                //     // window.location = '/gestionClinica'
+                // }
                 console.log(info);
               })
 
@@ -117,9 +118,10 @@ export const ModalRegisterVet = ({ isOpen , closeModal , token , nit }) => {
                  {({ errors }) => (
                     <Form>
                         <div className="img_cont_1">
-                          <div title='Sube una Imagen!' className="img_cont_vet" onClick={showWidget}>
-                            <img src={ imgUrl } name="imagenVete" alt="" className='imgForm_vet'/>
+                          <div title='Sube una Imagen!' className="img_cont_vet"  onClick={showWidget}>
+                                
                           </div>
+                        <hr className='hrVet'/>
                         </div>
                         {
                             ( duplicatedData ) &&

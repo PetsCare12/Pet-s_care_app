@@ -40,13 +40,9 @@
     height: 3vh;
     display: flex;
     align-items: center;
-}
-.img_cont_1{
-    width: 70vh;
-    display: flex;
-    align-items: center;
     justify-content: center;
 }
+
 .imgForm_vet{
     width: 200px;
     object-fit: contain;
