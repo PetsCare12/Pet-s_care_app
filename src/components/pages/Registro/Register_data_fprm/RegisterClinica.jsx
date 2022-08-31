@@ -56,6 +56,7 @@ export const RegisterClinica = ( {change_step} ) => {
                             telefono:"",
                             correoCv:"",
                             password:"",
+                            tarifa: "",
                             imagenclinica:"https://img.freepik.com/vector-gratis/lindo-perro-medico-estetoscopio-dibujos-animados-vector-icono-ilustracion-animal-salud-icono-aislado_138676-5182.jpg?w=826&t=st=1661365682~exp=1661366282~hmac=f7e6379812296866a0dda877ddaca6a0de61466f04b23baa22bfe2410d401558",
                             estadoCli: 3
                         }}
@@ -131,12 +132,20 @@ export const RegisterClinica = ( {change_step} ) => {
                                 <ErrorMessage name='nit' component={() => (<p className='warn__password-user'>{errors.nit}</p>)} />
                                 <ErrorMessage name='direccion' component={() => (<p className='warn__password-user'>{errors.direccion}</p>)} />
 
-                                <Field 
-                                    type='text'
-                                    className = 'inputLogin inputRegistro'
-                                    placeholder = 'Teléfono'
-                                    name = "telefono"
-                                />
+                                <div id='registro_column1'>
+                                    <Field 
+                                        type='text'
+                                        className = 'inputLogin inputRegistro'
+                                        placeholder = 'Teléfono'
+                                        name = "telefono"
+                                    />
+                                    <Field 
+                                        type='text'
+                                        className = 'inputLogin inputRegistro'
+                                        placeholder = '$ Tarifa'
+                                        name = "tarifa"
+                                    />
+                                </div>
                                 <ErrorMessage name='telefono' component={() => (<p className='warn__password-user'>{errors.telefono}</p>)} />
                                 <div id='registro_column1'>
                                     <Field 

@@ -21,6 +21,8 @@ export const Agenda = () => {
     const [hour, setHour] = useState("");
     const { id } = JSON.parse(localStorage.getItem("usuario"));
 
+    const day = new Date().getDay();
+
     const { id:clinicaEsp } = useParams();
 
     useEffect( () => {
@@ -81,7 +83,6 @@ export const Agenda = () => {
         { hora : "11:45"},
         { hora : "12:45"},
     ]
-    console.log(miMascota);
 
     return (
         <>
@@ -90,13 +91,18 @@ export const Agenda = () => {
             <div className='card'>
                 <h1 className="title">Agenda</h1>
                     <div className="selectors">
+
                         <select id='select' name='mascota' onChange={handleMiMascota}>
-                            <option id='selected' value="none">Selecciona una clínica</option>
                             {
                                 mascotas.length !== 0 ?
-                                    mascotas.map( mascota => (
-                                        <option key={mascota.codigo} value={mascota.codigo} >{mascota.nombre} - {mascota.raza}</option>
-                                    ))
+                                    <>
+                                        <option value="none" >Selecciona una mascota</option>
+                                        {
+                                            mascotas.map( mascota => (
+                                                <option key={mascota.codigo} value={mascota.codigo} >{mascota.nombre} - {mascota.raza}</option>
+                                            ))
+                                        }
+                                    </>
                                 :
                                 <option value="" > Aún no hay mascotas registradas </option>
                             }
@@ -174,7 +180,17 @@ export const Agenda = () => {
                                 ))
                             }
                         <div className="schedule">
-                            <h1 className='day'>{moment().format('dddd')}</h1>
+                            <h1 className='day'>
+                                {
+                                    day === 1 ? "Lunes"
+                                    :day === 2 ? "Martes"
+                                    :day === 3 ? "Miercoles"
+                                    :day === 4 ? "Jueves"
+                                    :day === 5 ? "Viernes"
+                                    :day === 6 ? "Sabado"
+                                    : "Domingo"
+                                }
+                            </h1>
                             <div className="momento">
                                 <div className='columna mañana'>
                                     <h2 className='h2'>Mañana</h2>
