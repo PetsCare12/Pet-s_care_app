@@ -9,6 +9,7 @@ import { getVeterinarios } from '../../../helpers/API Consumer/useVeterinariosCo
 import { divisionHorarios } from '../../../helpers/gestionHorarios';
 import { horariosAgenda } from '../../../hooks/useHorariosAgenda';
 import './style.css';
+import { getHorarioVeterinario } from '../../../helpers/API Consumer/useHorariosConsumer';
 
 export const Agenda = () => {
 
@@ -31,9 +32,18 @@ export const Agenda = () => {
     const { id } = JSON.parse(localStorage.getItem("usuario"));
     
     const day = new Date().getDay();
+
+    const diasSemana = {
+        1 : "lunes",
+        2 : "martes",
+        3 : "miercoles",
+        4 : "jueves",
+        5 : "viernes",
+        6 : "sabado",
+        7 : "domingo",
+    }
     
     const { id:clinicaEsp } = useParams();
-    console.log( active + "  " + hour);
 
     useEffect( () => {
 
@@ -73,11 +83,48 @@ export const Agenda = () => {
     }
 
     const handleSelectVeterinario = ( id ) => {
-
-        const [ morning, newAfternoon ] = horariosAgenda( divisionHorarios( 8,18 ) );
+        
         setActiveVeterinario( id );
-        setSchedulesMor( morning );
-        setSchedulesAft( newAfternoon );
+        setActive();
+        setHour();
+
+        let _morning = [];
+        let _after = [];
+
+        getHorarioVeterinario( id ).then( info => {
+
+            if ( info.length !== 0 ) {
+                
+                info.map( dato => {
+    
+                    if ( dato.diaHorarios === diasSemana[day]) {
+                        
+                        const [ morning, newAfternoon ] = horariosAgenda( 
+                            divisionHorarios( 
+                                dato.horaInicio.split(":")[0],
+                                dato.horaSalida.split(":")[0]
+                            ) 
+                        );
+                        
+                        _morning = morning ;
+                        _after   = newAfternoon ;
+
+                    }
+    
+                })
+            }
+            else{
+                setSchedulesMor([]);
+                setSchedulesAft([]);
+            }
+            
+            ( _morning.length !== 0 ) ? setSchedulesMor( _morning ) : setSchedulesMor([]);
+
+            ( _after.length !== 0 ) ? setSchedulesAft( _after ) : setSchedulesAft([]);
+            
+
+        })
+
     }
 
 
@@ -144,12 +191,12 @@ export const Agenda = () => {
                                 : 
                                 veterinarios.map( vet => (
                                     <button onClick={ () => handleSelectVeterinario(vet.documento)} 
-                                            className={`agenda__button-card ${activeVeterinario === vet.documento} && "vet-active"`}
+                                            className={`agenda__button-card`}
                                             key={vet.documento}
                                         >
                                         <div className="agenda__veterinarios-card">
-                                            <img src="https://i0.wp.com/revista.weepec.com/wp-content/uploads/2021/02/vet-and-pet-EESKSLX.jpg?fit=1200%2C800&ssl=1" alt="" />
-                                            <h1 id='h1Veterinario'>{vet.nombre} {vet.apellidos}</h1>
+                                            <img src={vet.imagenVete} alt="" />
+                                            <h1 className={`${activeVeterinario === vet.documento && "vet_active"}`} id='h1Veterinario'>{vet.nombre} {vet.apellidos}</h1>
                                             
                                         </div>
                                     </button>
@@ -202,8 +249,8 @@ export const Agenda = () => {
                             </h1>
                             <div className="momento">
                                 <div className='columna mañana'>
-                                    <h2 className='h2'>Mañana</h2>
-                                    { schedulesMor.length === 0 && <p className='horarioEmpty'>No hay horas disponibles</p> }
+                                    <h2 className='h2'>Mañana <small className='small'>AM</small></h2>
+                                    { schedulesMor.length === 0 && <p className='horarioEmpty animate__animated animate__fadeIn'>No hay horas disponibles</p> }
                                     {
                                         schedulesMor.map( (hour,index) => (
 
@@ -224,8 +271,8 @@ export const Agenda = () => {
 
                                 </div>
                                 <div className='columna tarde'>
-                                    <h2 className='h2'>Tarde</h2>
-                                    { schedulesAft.length === 0 && <p className='horarioEmpty'>No hay horas disponibles</p> }
+                                    <h2 className='h2'>Tarde <small className='small'>PM</small></h2>
+                                    { schedulesAft.length === 0 && <p className='horarioEmpty animate__animated animate__fadeIn'>No hay horas disponibles</p> }
                                     {
                                         schedulesAft.map( (hour,index) => (
 
@@ -237,7 +284,9 @@ export const Agenda = () => {
                                                 }}
                                                 key={ "tarde_"+index }
                                             >     
-                                                { hour.split(":")[1] === "0" ? hour+"0" : hour }
+                                                { 
+                                                    hour.split(":")[1] === "0" ? hour+"0" : hour 
+                                                }
                                             </button>
                                         ))
                                     }

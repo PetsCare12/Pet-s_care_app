@@ -23,7 +23,12 @@ export const divisionHorarios = ( ah , ch , am = 0 , cm = 0 ) => {
         day.setMinutes( day.getMinutes() + tiempoCita );
         
         hora =  day.getHours()+":"+day.getMinutes();
-        horarios.push( hora );
+
+        if ( Number(hora.split(":")[0]) < ch ) {
+
+            horarios.push( hora )
+        }
+
         
     }
 

@@ -38,15 +38,6 @@ export const Clinica_card = ( {
                 <h2 className='txt'> <span><BsTelephoneInbound /></span> {telefono} </h2>
                 <hr className='hr__clinicas'/>
                 <h3 className='txt'> <span><AiOutlineDollarCircle /></span> Desde <b>${tarifa}</b> </h3>
-                {
-                    horario.map( day => (
-                        <p key={id}> 
-                            Lunes {day.Lunes}<br />
-                            Sabado {day.Sabado}<br />
-                            ...
-                        </p>
-                    ))
-                }
                 <div className='buttons_clinicas'>
                     <Link to={`/clinica/${id}`} style={{width:"38%",height:"35px"}}>
                         <ButtonUI 
