@@ -5,28 +5,30 @@ import { ButtonUI } from '../../UI/ButtonUI/ButtonUI';
 import { setVeterinario } from '../../../helpers/API Consumer/useVeterinariosConsumer';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { AiFillCheckCircle } from 'react-icons/ai';
+import { imageRandom } from '../../../helpers/RandomImages/imagenessa'
+import {VscFiles} from 'react-icons/vsc';
 import "./ModalRegisterVet.css";  
 
 
 export const ModalRegisterVet = ({ isOpen , closeModal , token , nit }) => {
 
-  let img = "https://img.freepik.com/vector-gratis/doctores-pequenos-cuidando-perros-oficina-veterinario_74855-6677.jpg?w=1380&t=st=1662039562~exp=1662040162~hmac=bb0e15a9ba87937cde11c57cfce9ccbdee4a3becb14ec57419fd559e46cdfd16";
+  let img = imageRandom();
+
   const {myWidgetVeter,urlImage} = useSendImage();
   const [serverError, setServerError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [duplicatedData, setDuplicatedData] = useState(false);
   const [registered, setRegistered] = useState(false);
-  const [image_vet, setimage_vet] = useState("");
+  const [image_vet, setimage_vet] = useState(img);
   const showWidget = () => {myWidgetVeter.open();}
   
   useEffect(() => {
-    setimage_vet(img);
-  }, [])
-  
-
-  useEffect(() => {
     setimage_vet(urlImage);
   }, [urlImage])
+
+  useEffect(() => {
+    setimage_vet(img)
+  }, [img])
 
   return (
 
@@ -110,7 +112,7 @@ export const ModalRegisterVet = ({ isOpen , closeModal , token , nit }) => {
                     resetForm();
                     setLoading(false);
                     setRegistered( true );
-                    // window.location = '/gestionClinica'
+                    window.location = '/gestionClinica'
                 }
                 console.log(info);
               })
@@ -121,6 +123,7 @@ export const ModalRegisterVet = ({ isOpen , closeModal , token , nit }) => {
                         <div className="img_cont_1">
                           <div title='Sube una Imagen!' className="img_cont_vet"  onClick={showWidget}>
                             <img src={image_vet} className="img_vet_form_reg" alt=''/>
+                            <div className='icon_vet_img'><VscFiles /></div>
                           </div>
                           <hr className='hrVet'/>
                         </div>

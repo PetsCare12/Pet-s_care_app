@@ -30,7 +30,6 @@ export const TypeClinica = () => {
   const [vetState, setvetState] = useState("");
   
   useEffect(() => {
-
     if ( !!tokenUser ) {
       getClinicaById( tokenUser.id ).then( resp => {
         if ( resp.status === 200 ) {
@@ -39,8 +38,6 @@ export const TypeClinica = () => {
         }
       });
     }
-
-    eliminarVeterinario( 1095550395 , tokenClinic );
   }, [tokenUser]);
 
   useEffect(() => {
@@ -69,6 +66,10 @@ export const TypeClinica = () => {
       setarrState(true);
     }   
   }
+  
+  useEffect(() => {
+    setimg(urlImage);
+  }, [urlImage])
 
   const getVet = (e) => {
     setimg(e.imagenVete);
@@ -76,9 +77,6 @@ export const TypeClinica = () => {
     form.password = e.password;
   }
 
-  useEffect(() => {
-    setimg(urlImage);
-  }, [urlImage])
   
   const showWidget = () => {myWidgetVeter.open();};
 
@@ -164,7 +162,6 @@ export const TypeClinica = () => {
             <div id='titleP3'>
                 <h1>{nameClinic}</h1>
                 <hr className='hrVet'/>
-                {/* <h6>{"Clinica"}</h6> */}
             </div>
           </div>
           <div className='st3'>

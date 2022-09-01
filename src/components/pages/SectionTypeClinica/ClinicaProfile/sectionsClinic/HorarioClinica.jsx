@@ -1,108 +1,125 @@
 import React, { useEffect, useState } from 'react'
-import { deleteHorarioGeneral, setHorarioClinica } from '../../../../../helpers/API Consumer/useHorariosConsumer';
+import { deleteHorarioGeneral, getHorarioClinica, putHorarioGeneral, setHorarioClinica } from '../../../../../helpers/API Consumer/useHorariosConsumer';
 import { ButtonUI } from '../../../../UI/ButtonUI/ButtonUI';
 import { Dias_Horario_UI } from '../../../../UI/Dias_Horario_UI/Dias_Horario_UI';
 
 export const HorarioClinica = ( {data} ) => {
 
   const token = localStorage.getItem('token');
+
+  const [horarios, sethorarios] = useState([])
   const [requestHour, setrequestHour] = useState("");
-  
 
   let nit = data.nit;
+  
+  console.log(horarios);
 
     const setDates = (e) => {
 
-      let errors = {};
+      e.preventDefault();  
 
-        e.preventDefault();
-        let hoursAvalibles = 
-        [
-            { 
-              "idHorarios" : ``,
-              "diaHorarios" : "Lunes",
-              "horaInicio" : e.target[0].value,
-              "horaSalida"  : e.target[1].value
-            }
-          ,
-            {
-              "idHorarios" : ``,
-              "diaHorarios" : "Martes",
-              "horaInicio" : e.target[2].value,
-              "horaSalida"  : e.target[3].value
-            }
-          ,
-            {
-              "idHorarios" : ``,
-              "diaHorarios" : "Miercoles",
-              "horaInicio" : e.target[4].value,
-              "horaSalida"  : e.target[5].value
-            }
-          ,
-            {
-              "idHorarios" : ``,
-              "diaHorarios" : "Jueves",
-              "horaInicio" : e.target[6].value,
-              "horaSalida"  : e.target[7].value
-            }
-          ,
-            {
-              "idHorarios" : ``,
-              "diaHorarios" : "Viernes",
-              "horaInicio" : e.target[8].value,
-              "horaSalida"  : e.target[9].value
-            }
-          ,
-            {
-              "idHorarios" : ``,
-              "diaHorarios" : "Sabado",
-              "horaInicio" : e.target[10].value,
-              "horaSalida"  : e.target[11].value
-            }
-          ,
-            {
-              "idHorarios" : ``,
-              "diaHorarios" : "Domingo",
-              "horaInicio" : e.target[12].value,
-              "horaSalida"  : e.target[13].value
-            }
-        ]
-
-        for (let j in hoursAvalibles) {
-
-          let obj1 = hoursAvalibles[j];
-
-          if (obj1.horaInicio === "") {
-
-            errors.validacion = `Campo Vacío Hora Entrada del día ${obj1.diaHorarios}`
-            break;
-
-          }else if (obj1.horaSalida === "") {
-            
-            errors.validacion = `Campo Vacío Hora Salida del día ${obj1.diaHorarios}`
-            break;
-
-          }
-        }
-
-        if (JSON.stringify(errors) === '{}') {
+        // if (JSON.stringify(errors) === '{}') {
           
-          for (let k in hoursAvalibles){
+          let arrHours = build_horario(e);
 
-            let obj2 = hoursAvalibles[k];
-            setHorarioClinica( obj2 , nit , token).then( data => {
+          for (let k in arrHours){
+
+            let obj2 = arrHours[k];
+            putHorarioGeneral( obj2[k] , horarios.idHorarios , token).then( data => {
               console.log(data);
             });
-
+            console.log(obj2);
           }
 
-        }else{
+        // }else{
 
-          console.log("No se puede registrar el horario");
-          console.log(errors.validacion);
+        //   console.log("No se puede Actualizar el horario");
+        //   console.log(errors.validacion);
+
+        // }
+      }
+
+
+    const build_horario = (e) => {
+
+      let errors = {};
+
+      let hoursAvalibles =  [
+          { 
+            "idHorarios" : ``,
+            "diaHorarios" : "lunes",
+            "horaInicio" : e.target[0].value,
+            "horaSalida"  : e.target[1].value
+          }
+        ,
+          {
+            "idHorarios" : ``,
+            "diaHorarios" : "martes",
+            "horaInicio" : e.target[2].value,
+            "horaSalida"  : e.target[3].value
+          }
+        ,
+          {
+            "idHorarios" : ``,
+            "diaHorarios" : "miercoles",
+            "horaInicio" : e.target[4].value,
+            "horaSalida"  : e.target[5].value
+          }
+        ,
+          {
+            "idHorarios" : ``,
+            "diaHorarios" : "jueves",
+            "horaInicio" : e.target[6].value,
+            "horaSalida"  : e.target[7].value
+          }
+        ,
+          {
+            "idHorarios" : ``,
+            "diaHorarios" : "viernes",
+            "horaInicio" : e.target[8].value,
+            "horaSalida"  : e.target[9].value
+          }
+        ,
+          {
+            "idHorarios" : ``,
+            "diaHorarios" : "sabado",
+            "horaInicio" : e.target[10].value,
+            "horaSalida"  : e.target[11].value
+          }
+        ,
+          {
+            "idHorarios" : ``,
+            "diaHorarios" : "domingo",
+            "horaInicio" : e.target[12].value,
+            "horaSalida"  : e.target[13].value
+          }
+      ]
+
+      for (let j in hoursAvalibles) {
+
+        let obj1 = hoursAvalibles[j];
+
+        if (obj1.horaInicio === "") {
+
+          errors.validacion = `Campo Vacío Hora Entrada del día ${obj1.diaHorarios}`
+          break;
+
+        }else if (obj1.horaSalida === "") {
+          
+          errors.validacion = `Campo Vacío Hora Salida del día ${obj1.diaHorarios}`
+          break;
 
         }
       }
+
+      return hoursAvalibles;
+
+    }
+
+    useEffect(() => {
+      getHorarioClinica(nit).then(info => {sethorarios([info])});
+    }, [data])
+    
 
   return (
     <form onSubmit={setDates} className="horario_form animate__animated animate__fadeIn">

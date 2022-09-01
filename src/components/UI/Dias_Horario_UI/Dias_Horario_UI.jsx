@@ -9,12 +9,12 @@ export const Dias_Horario_UI = ( { dia , name_hour_in , name_hour_out } ) => {
                 <div className="hours">
                     
                     <div className="cont 1_hours">
-                        <h4 style={{color:'black'}}>{"Entrada"}</h4>
+                        <h4 style={{color:'#4a4a4a'}}>{"Entrada"}</h4>
                         <input type="time" name={name_hour_in} className="input_time hour_in"/>
                     </div>
 
                     <div className="cont 2_hours">
-                      <h4 style={{color:'black'}}>{"Salida"}</h4>
+                      <h4 style={{color:'#4a4a4a'}}>{"Salida"}</h4>
                       <input type="time" name={name_hour_out} className="input_time hour_out"/>
                     </div>
 
