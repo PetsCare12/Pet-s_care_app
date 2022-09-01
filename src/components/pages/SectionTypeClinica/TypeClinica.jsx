@@ -207,7 +207,7 @@ export const TypeClinica = () => {
                                     </div>
                                   </div> 
                                   <div className='idc'>
-                                    <a onClick={() => getVet(item)} href>
+                                    <a onClick={() => getVet(item)} href="">
                                       <img src={pets_images('./veterinarios/proximo.png')} alt="" id='imgLi'/>
                                     </a>
                                   </div>

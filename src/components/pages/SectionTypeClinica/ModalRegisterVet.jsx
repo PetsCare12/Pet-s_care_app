@@ -2,29 +2,30 @@ import React, { useEffect, useState } from 'react'
 import { MdOutlineCancel } from 'react-icons/md';
 import { useSendImage } from '../../../helpers/Cloudinary_Images/useSendImages';
 import { ButtonUI } from '../../UI/ButtonUI/ButtonUI';
-import { imageRandom } from '../../../helpers/RandomImages/imagenessa';
 import { setVeterinario } from '../../../helpers/API Consumer/useVeterinariosConsumer';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { AiFillCheckCircle } from 'react-icons/ai';
-import { VscFiles } from 'react-icons/vsc';
 import "./ModalRegisterVet.css";  
 
 
 export const ModalRegisterVet = ({ isOpen , closeModal , token , nit }) => {
 
-
+  let img = "https://img.freepik.com/vector-gratis/doctores-pequenos-cuidando-perros-oficina-veterinario_74855-6677.jpg?w=1380&t=st=1662039562~exp=1662040162~hmac=bb0e15a9ba87937cde11c57cfce9ccbdee4a3becb14ec57419fd559e46cdfd16";
   const {myWidgetVeter,urlImage} = useSendImage();
-  const [imgUrl, setimg] = useState("");
-
   const [serverError, setServerError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [duplicatedData, setDuplicatedData] = useState(false);
   const [registered, setRegistered] = useState(false);
-
+  const [image_vet, setimage_vet] = useState("");
   const showWidget = () => {myWidgetVeter.open();}
+  
+  useEffect(() => {
+    setimage_vet(img);
+  }, [])
+  
 
   useEffect(() => {
-    setimg(urlImage);
+    setimage_vet(urlImage);
   }, [urlImage])
 
   return (
@@ -86,31 +87,31 @@ export const ModalRegisterVet = ({ isOpen , closeModal , token , nit }) => {
 
             onSubmit={( valores, {resetForm} ) => {
 
-              valores.imagenVete = imgUrl;
+              valores.imagenVete = image_vet;
 
               let validacion = {};
               console.log(valores);
               setVeterinario( valores , nit , token ).then(info => {
                 info = validacion;
 
-                // setLoading(true);
-                // if ( validacion.status === 400 ) {
-                //     setDuplicatedData( true );
-                //     setServerError( false );
-                //     setLoading(false);
-                // }
-                // else if( validacion.status === 500 ){
-                //     setServerError( true );
-                //     setDuplicatedData( false );
-                //     setLoading( false );
-                // }
-                // else {
-                //     setDuplicatedData( false );
-                //     resetForm();
-                //     setLoading(false);
-                //     setRegistered( true );
-                //     // window.location = '/gestionClinica'
-                // }
+                setLoading(true);
+                if ( validacion.status === 400 ) {
+                    setDuplicatedData( true );
+                    setServerError( false );
+                    setLoading(false);
+                }
+                else if( validacion.status === 500 ){
+                    setServerError( true );
+                    setDuplicatedData( false );
+                    setLoading( false );
+                }
+                else {
+                    setDuplicatedData( false );
+                    resetForm();
+                    setLoading(false);
+                    setRegistered( true );
+                    // window.location = '/gestionClinica'
+                }
                 console.log(info);
               })
 
@@ -119,9 +120,9 @@ export const ModalRegisterVet = ({ isOpen , closeModal , token , nit }) => {
                     <Form>
                         <div className="img_cont_1">
                           <div title='Sube una Imagen!' className="img_cont_vet"  onClick={showWidget}>
-                                
+                            <img src={image_vet} className="img_vet_form_reg" alt=''/>
                           </div>
-                        <hr className='hrVet'/>
+                          <hr className='hrVet'/>
                         </div>
                         {
                             ( duplicatedData ) &&
