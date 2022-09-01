@@ -14,7 +14,7 @@ export const Home = () => {
               <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores, ea!voluptatibus fuodi, adipisci natus deleniti? Nemo, quis?</p>
           </div>
           <div className="headerHome__right">
-              <img src={pets_images("./home/undraw_good_doggy_re_eet7yellow.svg")} alt="header-img" />
+              <img src={pets_images("./home/test.svg")} alt="header-img" />
           </div>
           <div className="wave wave1"></div>
           <div className="wave wave2"></div>
