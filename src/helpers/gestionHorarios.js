@@ -8,7 +8,7 @@ export const divisionHorarios = ( ah , ch , am = 0 , cm = 0 ) => {
     let hora = "";
 
     const apertura = ah;
-    const cierre = 21;
+    const cierre = ch;
 
     day.setHours(apertura);
     day.setMinutes(0);
@@ -23,7 +23,10 @@ export const divisionHorarios = ( ah , ch , am = 0 , cm = 0 ) => {
         day.setMinutes( day.getMinutes() + tiempoCita );
         
         hora =  day.getHours()+":"+day.getMinutes();
+        horarios.push( hora );
         
     }
+
+    return horarios;
 
 }
