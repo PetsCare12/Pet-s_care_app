@@ -1,4 +1,3 @@
-import { useState } from "react";
 
 export const horariosAgenda = ( horarios = [] ) => {
 
@@ -15,17 +14,15 @@ export const horariosAgenda = ( horarios = [] ) => {
         let hora = Number(afternoon[index].split(":")[0]);
         let minutos = afternoon[index].split(":")[1];
 
-        let horaFinal = (hora-2).toString();
+        let horaFinal = (hora-12).toString();
 
-        let final = horaFinal.charAt(1)+":"+minutos;
+        let final = horaFinal+":"+minutos;
 
         final.split(":")[0] !== "0"
-        ? newAfternoon.push( horaFinal.charAt(1)+":"+minutos )
+        ? newAfternoon.push( horaFinal+":"+minutos )
         : newAfternoon.push( "12:"+minutos )
 
     }
-
-    console.log( newAfternoon );
 
     return [
         morning,
