@@ -29,7 +29,7 @@ export const Login = () => {
   return (
     <div className="loginContainer">
         <div className="login_cont_iz">
-            <img src={pets_images("./login/logo.jpg")} alt="" />
+            <img src={pets_images("./login/logo.png")} alt="" />
         </div>
         <div className='login_cont_dr'>
             <ImagenUI 
