@@ -9,13 +9,12 @@
     width: 100%;
 }
 .contenedorClinicasMenu{
-    margin-left: 100px;
+    display: flex;
+    justify-content: center;
     margin-top: 24px;
 
 }
-.menuTitulo{
-    position: fixed;
-}
+
 
 
 .menuBar{   
@@ -83,17 +82,18 @@ transform: rotate(45deg) translate(-8px, -8px);
 }
 
 .btnOpcionesC{
-    background-color: #008eff;
-    color: #ffffff;
-    padding: 7px 5px;
+    background-color: #fffefa;
+    color: #101010;
+    padding: 7px 30px;
     background-size: cover;
+    border: 1px solid #008eff;
     cursor: pointer;
     transition: all 0.4s;
 }
 .btnOpcionesC:hover
 {
     transition: all 0.4s;
-    background-color: #036cc2;
+    background-color: #008eff;
 }
 
 #tilte__clinicas{

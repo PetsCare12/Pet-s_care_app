@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './clinicas.css'
+import './query.css'
 import { Clinica_card } from './Clinica_card'
 import { IoIosArrowDropdown } from "react-icons/io";
 import { AiOutlineMenu } from "react-icons/ai";
@@ -62,8 +63,8 @@ export const Clinicas = () => {
                 ?
 
                 <div className='menuClinicas'>
-                    <button className='btnOpcionesC'>Inicio</button>
-                    <button className='btnOpcionesC'>Volver</button>
+                   <a href="/"><button  className='btnOpcionesC'>Inicio</button></a> 
+                   <a href="/perfil"><button  className='btnOpcionesC'>Perfil</button></a> 
                 </div>
                 :
                 null
