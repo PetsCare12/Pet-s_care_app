@@ -43,7 +43,7 @@ export const Profile = () => {
         <div className='profile__contenedor animate__animated animate__fadeIn'>
             { ( !!token ) &&
                 <div className='profile'>
-                    <div className={`profile__left ${desplegar && "mostrar animate__animated animate__fadeInLeft"}`}>
+                    <div className={`profile__left ${desplegar ? "mostrar animate__animated animate__fadeInLeft" : "mostrar animate__animated animate__fadeOutLeft" }`}>
                         {desplegar && <div onClick={ () => setDesplegar( false )} className="cancel">x</div>}
 
                         <PhotoProfile 
