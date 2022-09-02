@@ -3,7 +3,7 @@
         display: none;
     }
     #header__title {
-        width: 110px;
+        width: 145px;
     }
     #liHome {
         list-style: none;
@@ -12,5 +12,70 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-around;
+    }
+    header {
+        background: linear-gradient(360deg, #0051b5,#0072ff);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        position: relative;
+        padding: 3% 5% 25%;
+        overflow: hidden;
+    }
+    .headerHome__left p {
+        font-size: 20px;
+        width: 100%;
+    }
+    .headerHome__left {
+        width: 85%;
+    }
+    .headerHome__left h1 {
+        font-size: 5rem;
+        font-family: 'Bebas Neue', cursive;
+        margin-bottom: 2%;
+        letter-spacing: 8px;
+        width: 100%;
+        line-height: 4.8rem;
+    }
+    .home__aboutUs {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 45px;
+        padding: 30px;
+        width: 100%;
+    }
+    .home__aboutUs-text {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .home__aboutUs p {
+        color: #363636;
+        font-size: 20px;
+        width: 100%;
+    }
+    .home__aboutUs-img {
+        height: 250px;
+        width: 100%;
+        justify-content: center;
+    }
+    .home__aboutUs-img img {
+        height: 235px;
+        width: 85%;
+    }
+    .home__aboutUs.nuestro{
+        display: flex;
+        flex-direction: column;
+        gap: 45px;
+        padding: 30px;
+        width: 100%;
+    }
+    .home__proyecto-text {
+        width: 100%;
+    }
+    .home__proyecto-img {
+        display: flex;
+        justify-content: center;
+        width: 100%;
     }
 }

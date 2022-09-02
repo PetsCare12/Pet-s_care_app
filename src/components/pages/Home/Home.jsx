@@ -32,7 +32,7 @@ export const Home = () => {
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat similique sint consequatur odio officiis, quisquam pariatur necessitatibus nisi, optio tempore perspiciatis debitis consectetur! Consequuntur incidunt adipisci voluptate assumenda nihil ex.</p>
           </div>
       </div>
-      <div className="home__proyecto home__aboutUs">
+      <div className="home__proyecto home__aboutUs nuestro">
           <div className="home__proyecto-text">
             <h1>Nuestro proyecto <br/><span>Pet's Care</span></h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat similique sint consequatur odio officiis, quisquam pariatur necessitatibus nisi, optio tempore perspiciatis debitis consectetur! Consequuntur incidunt adipisci voluptate assumenda nihil ex.</p>
