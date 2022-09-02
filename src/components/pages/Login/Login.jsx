@@ -9,6 +9,7 @@ import { inicioSesionUsuario } from '../../../helpers/API Consumer/test'
 import { SimpleModal } from '../../layout/Modals/SimpleModal';
 
 import './LoginStyle.css'
+import './query.css'
 
 export const Login = () => {
 

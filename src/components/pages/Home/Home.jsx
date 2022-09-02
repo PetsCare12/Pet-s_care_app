@@ -1,6 +1,7 @@
 import { pets_images } from "../../../helpers/Pets_care_images";
 import { Header} from '../../layout/HeaderHome/HeaderHome'
 import './Home.css';
+import './query.css';
 
 export const Home = () => {
 
@@ -31,7 +32,7 @@ export const Home = () => {
             <p>Nuestro equipo de desarrollo esta conformado por 5 personas, las cuales se encargaron de crear la mejor herramienta de gestion de citas, para el beneficio de nuestros clientes</p>
           </div>
       </div>
-      <div className="home__proyecto home__aboutUs">
+      <div className="home__proyecto home__aboutUs nuestro">
           <div className="home__proyecto-text">
             <h1>Nuestro proyecto <br/><span>Pet's Care</span></h1>
             <p>El proyecto PET 'S CARE es un aplicativo WEB, el cual llega como una nueva alternativa para facilitar el proceso de un agendamiento de citas para las mascotas, a la que los dueños de mascotas puedan interactuar en una interfaz amigable con el objetivo de solicitar el servicio desde su casa, y los dueños de las mascotas puedan agendar una cita con la veterinaria de su preferencia. La investigación en campo se realiza en veterinarias del departamento del Quindío, con el objetivo de conocer si cuentan con algún aplicativo web para la atención de sus clientes y a su vez, conocer si cuentan con el servicio de agendamiento de citas online, adicionalmente, se realiza varias investigaciones sobre proyectos en donde se desarrollen aplicaciones web con actividades similares a la de solicitud de citas virtuales.</p>
