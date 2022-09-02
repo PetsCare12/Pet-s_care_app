@@ -11,7 +11,7 @@ export const Home = () => {
         <header>
           <div className="headerHome__left">
               <h1>TU <span className="headerHome__span">MASCOTA</span><br/> ES NUESTRA<br/> PRIORIDAD</h1>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores, ea!voluptatibus fuodi, adipisci natus deleniti? Nemo, quis?</p>
+              <p>Tenemos la mejor atencion, control y manejo para el cuidado y salud de tus mascotas.</p>
           </div>
           <div className="headerHome__right">
               <img src={pets_images("./home/undraw_good_doggy_re_eet7yellow.svg")} alt="header-img" />
@@ -28,13 +28,13 @@ export const Home = () => {
           </div>
           <div className="home__aboutUs-text">
             <h1>Equipo de <br/><span>desarrollo</span></h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat similique sint consequatur odio officiis, quisquam pariatur necessitatibus nisi, optio tempore perspiciatis debitis consectetur! Consequuntur incidunt adipisci voluptate assumenda nihil ex.</p>
+            <p>Nuestro equipo de desarrollo esta conformado por 5 personas, las cuales se encargaron de crear la mejor herramienta de gestion de citas, para el beneficio de nuestros clientes</p>
           </div>
       </div>
       <div className="home__proyecto home__aboutUs">
           <div className="home__proyecto-text">
             <h1>Nuestro proyecto <br/><span>Pet's Care</span></h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat similique sint consequatur odio officiis, quisquam pariatur necessitatibus nisi, optio tempore perspiciatis debitis consectetur! Consequuntur incidunt adipisci voluptate assumenda nihil ex.</p>
+            <p>El proyecto PET 'S CARE es un aplicativo WEB, el cual llega como una nueva alternativa para facilitar el proceso de un agendamiento de citas para las mascotas, a la que los dueños de mascotas puedan interactuar en una interfaz amigable con el objetivo de solicitar el servicio desde su casa, y los dueños de las mascotas puedan agendar una cita con la veterinaria de su preferencia. La investigación en campo se realiza en veterinarias del departamento del Quindío, con el objetivo de conocer si cuentan con algún aplicativo web para la atención de sus clientes y a su vez, conocer si cuentan con el servicio de agendamiento de citas online, adicionalmente, se realiza varias investigaciones sobre proyectos en donde se desarrollen aplicaciones web con actividades similares a la de solicitud de citas virtuales.</p>
           </div>
           <div className="home__proyecto-img">
             <img src={pets_images("./home/undraw_real_time_analytics_re_yliv.svg")} alt="about-us" />
@@ -46,7 +46,7 @@ export const Home = () => {
           </div>
           <div className="home__tiempo home__aboutUs-text">
             <h1>No <span>pierdas</span> más<br/> tu tiempo</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat similique sint consequatur odio officiis, quisquam pariatur necessitatibus nisi, optio tempore perspiciatis debitis consectetur! Consequuntur incidunt adipisci voluptate assumenda nihil ex.</p>
+            <p>Los usuarios de las veterinarias, se queja al agendar citas, ya sea por hacer tanta fila o demasiada demora para que atiendan a sus mascotas, en nuestro sitio web daremos una solución que será un agendamiento de citas más organizado para que nuestros usuarios manejen la hora y el día para la cita que desee; nuestros servicios también serán brindados a las veterinarias y clínicas de animales para la gestión y desarrollo de estas citas.</p>
           </div>
       </div>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
