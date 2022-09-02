@@ -1,6 +1,7 @@
 import { pets_images } from "../../../helpers/Pets_care_images";
 import { Header} from '../../layout/HeaderHome/HeaderHome'
 import './Home.css';
+import './query.css';
 
 export const Home = () => {
 

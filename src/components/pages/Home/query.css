@@ -1,0 +1,16 @@
+@media (min-width: 400px) {
+    .headerHome__right{
+        display: none;
+    }
+    #header__title {
+        width: 110px;
+    }
+    #liHome {
+        list-style: none;
+        width: 90px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+    }
+}
