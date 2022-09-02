@@ -5,21 +5,54 @@ import { Dias_Horario_UI } from '../../../../UI/Dias_Horario_UI/Dias_Horario_UI'
 
 export const HorarioClinica = ( {data} ) => {
 
-  const token = localStorage.getItem('token');
+      const token = localStorage.getItem('token');
 
-  const [loader, setloader] = useState(false);
-  const [horarios, sethorarios] = useState([]);
-  const [toSetHorarios, settoSetHorarios] = useState(false);
+      const [loader, setloader] = useState(false);
+      const [horarios, sethorarios] = useState([]);
+      const [str_warn, setstr_warn] = useState("");
+      const [toSetHorarios, settoSetHorarios] = useState(false);
 
-  let nit = data.nit;
+      let nit = data.nit;
+
+    useEffect(() => {
+      setloader(true);
+      getHorarioClinica(nit).then(info => {
+
+        if (!!info) {
+          settoSetHorarios(true);
+          setloader(false);
+        }else{
+          sethorarios([info]);
+          settoSetHorarios(false);
+          setloader(false);
+        }
+
+      });
+    }, [data])
+  
 
     const setDates = (e) => {
 
       e.preventDefault();
 
+      console.log(horarios);
+
+      if (toSetHorarios === false) {
+
+        console.log("Actualizar");
+
+      }else if (toSetHorarios === true) {
+        
+        console.log("Registra");
+        build_horario(e);
+
+      }
+
     } 
 
     const build_horario = (e) => {
+
+      setloader(true);
 
       let errors = {};
 
@@ -81,11 +114,15 @@ export const HorarioClinica = ( {data} ) => {
         if (obj1.horaInicio === "") {
 
           errors.validacion = `Campo Vacío Hora Entrada del día ${obj1.diaHorarios}`
+          setloader(false);
+          setstr_warn(errors.validacion);
           break;
 
         }else if (obj1.horaSalida === "") {
           
           errors.validacion = `Campo Vacío Hora Salida del día ${obj1.diaHorarios}`
+          setloader(false);
+          setstr_warn(errors.validacion);
           break;
 
         }
@@ -102,10 +139,14 @@ export const HorarioClinica = ( {data} ) => {
           console.log(obj2);
         }
 
+        setloader(false);
+
       }else{
 
         console.log("No se puede Actualizar el horario");
         console.log(errors.validacion);
+        setloader(false);
+        setstr_warn(errors.validacion);
 
       }
 
@@ -113,95 +154,146 @@ export const HorarioClinica = ( {data} ) => {
 
     }
 
-    useEffect(() => {
-      setloader(true);
-      getHorarioClinica(nit).then(info => {
+    return (
+      <form onSubmit={setDates} className="horario_form animate__animated animate__fadeIn">
 
-        if (!!info) {
-          settoSetHorarios(true);
-          setloader(false);
-        }else{
-          sethorarios([info]);
-          settoSetHorarios(false);
-          setloader(false);
-        }
+        <div className="title_cont">
+          <h3 className='profile__editarPerfil title_hour'>{"Horario Clinica"}</h3>
 
-      });
-    }, [data])
-    
+          { (toSetHorarios) && <p>No hay Horarios Resgistrados!</p> }
+          { (loader) && <div id='login-spin-clinic' className='spiner'></div> }
+          { (!str_warn) && <p>{ str_warn }</p> }
 
-  return (
-    <form onSubmit={setDates} className="horario_form animate__animated animate__fadeIn">
-
-      <div className="title_cont">
-        <h3 className='profile__editarPerfil title_hour'>{"Horario Clinica"}</h3>
-        { (toSetHorarios) && <p>No hay Horarios Resgistrados!</p> }
-        { (loader) && <div id='login-spin-clinic' className='spiner'></div> }
-      </div>
-      
-      <div className="part1_horarios">
-
-        <Dias_Horario_UI 
-          dia={"Lunes"}
-          name_hour_in={"lunes_in"}
-          name_hour_out={"lunes_out"}
-          value={""}
-        />
-
-        <Dias_Horario_UI 
-          dia={"Martes"}
-          name_hour_in={"martes_in"}
-          name_hour_out={"martes_out"}
-          value={""}
-        />
-  
-        <Dias_Horario_UI 
-          dia={"Miercoles"}
-          name_hour_in={"martes_in"}
-          name_hour_out={"martes_out"}
-          value={""}
-        />
+        </div>
         
-      </div>
+        {
+          (toSetHorarios === false)
+          ? 
+            <>
+                <div className="part1_horarios">
+                  <Dias_Horario_UI 
+                    dia={"Lunes"}
+                    name_hour_in={"lunes_in"}
+                    name_hour_out={"lunes_out"}
+                    value_hora_entrada={horarios[0].horaInicio}
+                    value_hora_salida={horarios[0].horaSalida}
+                  />
 
-     <div className="part2_horarios">
+                  <Dias_Horario_UI 
+                    dia={"Martes"}
+                    name_hour_in={"martes_in"}
+                    name_hour_out={"martes_out"}
+                    value_hora_entrada={horarios[1].horaInicio}
+                    value_hora_salida={horarios[1].horaSalida}
+                  />
 
-      <Dias_Horario_UI 
-          dia={"Jueves"}
-          name_hour_in={"jueves_in"}
-          name_hour_out={"jueves_out"}
-          value={""}
-        />
+                  <Dias_Horario_UI 
+                    dia={"Miercoles"}
+                    name_hour_in={"martes_in"}
+                    name_hour_out={"martes_out"}
+                    value_hora_entrada={horarios[2].horaInicio}
+                    value_hora_salida={horarios[2].horaSalida}
+                  />
 
-        <Dias_Horario_UI 
-          dia={"Viernes"}
-          name_hour_in={"viernes_in"}
-          name_hour_out={"viernes_out"}
-          value={""}
-        />
+                  </div>
 
-        <Dias_Horario_UI 
-          dia={"Sabado"}
-          name_hour_in={"sabado_in"}
-          name_hour_out={"sabado_out"}
-          value={""}
-        />
+                  <div className="part2_horarios">
 
-        <Dias_Horario_UI 
-          dia={"Domingo"}
-          name_hour_in={"domingo_in"}
-          name_hour_out={"domingo_out"}
-          value={""}
-        />
+                  <Dias_Horario_UI 
+                    dia={"Jueves"}
+                    name_hour_in={"jueves_in"}
+                    name_hour_out={"jueves_out"}
+                    value_hora_entrada={horarios[3].horaInicio}
+                    value_hora_salida={horarios[3].horaSalida}
+                  />
 
-     </div>
-     <div className="part1_horarios">
-      { 
-        (toSetHorarios === false) 
-          ? <ButtonUI text="Actualizar"  type="submit" style="submit btn_marg"></ButtonUI> 
-          : <ButtonUI text="Registrar"  type="submit" style="submit btn_marg"></ButtonUI>
-      }
-     </div>
-    </form>
-  )
+                  <Dias_Horario_UI 
+                    dia={"Viernes"}
+                    name_hour_in={"viernes_in"}
+                    name_hour_out={"viernes_out"}
+                    value_hora_entrada={horarios[4].horaInicio}
+                    value_hora_salida={horarios[4].horaSalida}
+                  />
+
+                  <Dias_Horario_UI 
+                    dia={"Sabado"}
+                    name_hour_in={"sabado_in"}
+                    name_hour_out={"sabado_out"}
+                    value_hora_entrada={horarios[5].horaInicio}
+                    value_hora_salida={horarios[5].horaSalida}
+                  />
+
+                  <Dias_Horario_UI 
+                    dia={"Domingo"}
+                    name_hour_in={"domingo_in"}
+                    name_hour_out={"domingo_out"}
+                    value_hora_entrada={horarios[6].horaInicio}
+                    value_hora_salida={horarios[6].horaSalida}
+                  />
+
+                  </div>
+                  <div className="part1_horarios">
+                    <ButtonUI text="Registrar"  type="submit" style="submit btn_marg"></ButtonUI>
+                  </div>
+            </>
+            :
+            <>
+
+                <div className="part1_horarios">
+
+                  <Dias_Horario_UI 
+                    dia={"Lunes"}
+                    name_hour_in={"lunes_in"}
+                    name_hour_out={"lunes_out"}
+                  />
+
+                  <Dias_Horario_UI 
+                    dia={"Martes"}
+                    name_hour_in={"martes_in"}
+                    name_hour_out={"martes_out"}
+                  />
+
+                  <Dias_Horario_UI 
+                    dia={"Miercoles"}
+                    name_hour_in={"martes_in"}
+                    name_hour_out={"martes_out"}
+                  />
+
+                  </div>
+
+                  <div className="part2_horarios">
+
+                  <Dias_Horario_UI 
+                    dia={"Jueves"}
+                    name_hour_in={"jueves_in"}
+                    name_hour_out={"jueves_out"}
+                  />
+
+                  <Dias_Horario_UI 
+                    dia={"Viernes"}
+                    name_hour_in={"viernes_in"}
+                    name_hour_out={"viernes_out"}
+                  />
+
+                  <Dias_Horario_UI 
+                    dia={"Sabado"}
+                    name_hour_in={"sabado_in"}
+                    name_hour_out={"sabado_out"}
+                  />
+
+                  <Dias_Horario_UI 
+                    dia={"Domingo"}
+                    name_hour_in={"domingo_in"}
+                    name_hour_out={"domingo_out"}
+                  />
+
+                  </div>
+                  <div className="part1_horarios">
+                    <ButtonUI text="Actualizar"  type="submit" style="submit btn_marg"></ButtonUI>
+                  </div>
+            
+            </>
+          }
+      </form>
+    )
 }
