@@ -8,6 +8,15 @@
     padding: 100px 9%;
     width: 100%;
 }
+.contenedorClinicasMenu{
+    margin-left: 100px;
+    margin-top: 24px;
+
+}
+.menuTitulo{
+    position: fixed;
+}
+
 
 .menuBar{   
     display: flex;
