@@ -29,12 +29,11 @@ export const Login = () => {
     <div className="loginContainer">
         <div className="login_cont_iz">
             <img src={pets_images("./login/logo.jpg")} alt="" />
-            <img id='eslogan' src={ pets_images("./login/esloganNew.png")} alt="" />
         </div>
         <div className='login_cont_dr'>
             <ImagenUI 
 
-                img={pets_images("./login/titleAzul.png")}
+                img={pets_images("./varios/titleBlue.png")}
             />
             <div className="loginData">
                 <p>Iniciar sesión en Pet's Care</p>
