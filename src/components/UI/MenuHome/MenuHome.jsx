@@ -31,7 +31,7 @@ const MenuHome = () => {
     return (
         <div className='MenuHome__div animate__animated animate__flipInX'>
             <p onClick={handlePerfil} className='MenuHome__perfil'>Gestion</p>
-            <hr/>
+            <p onClick={() => window.location = "/clinicas"} className='MenuHome__perfil cli'>Clínicas</p>
             <p onClick={handleLogout} className='MenuHome__logout'>Cerrar sesión</p>
         </div>
     )

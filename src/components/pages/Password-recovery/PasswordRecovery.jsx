@@ -157,10 +157,10 @@ export const PasswordRecovery = () => {
 
     return (
         <div className='recoveryPass__container'>
+            <img className='logo' src={pets_images("./varios/hueso.png")} alt="" />
             {
                 step === 0 &&
-                <div className='recoveryPass animate__animated animate__zoomIn'>
-                <img className='logo' src={pets_images("./varios/hueso.png")} alt="" />
+            <div className='recoveryPass animate__animated animate__zoomIn'>
                 <div className='backgroundIcon'><RiLockPasswordFill className='icon' /></div>
                 <p>Por favor introduce tu correo electrónico<br/> para recuperar tu contraseña</p>
                 <div className='correo'>
