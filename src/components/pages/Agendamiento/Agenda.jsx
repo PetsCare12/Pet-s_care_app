@@ -9,11 +9,12 @@ import { getVeterinarios } from '../../../helpers/API Consumer/useVeterinariosCo
 import { divisionHorarios } from '../../../helpers/gestionHorarios';
 import { horariosAgenda } from '../../../hooks/useHorariosAgenda';
 import './style.css';
-import { getHorarioVeterinario } from '../../../helpers/API Consumer/useHorariosConsumer';
+import { getAgendasVeterinario, getHorarioVeterinario } from '../../../helpers/API Consumer/useHorariosConsumer';
+import moment from 'moment';
 
 export const Agenda = () => {
 
-    // TODO - Crear estilo para vet-active
+    // TODO - Poner en blanco los horaios cunado el dia no esté incluido
 
     
     const [active, setActive] = useState();
@@ -82,33 +83,60 @@ export const Agenda = () => {
 
     }
 
-    const handleSelectVeterinario = ( id ) => {
+    const handleSelectVeterinario = ( idVet ) => {
         
-        setActiveVeterinario( id );
+        setActiveVeterinario( idVet );
         setActive();
         setHour();
 
         let _morning = [];
         let _after = [];
 
-        getHorarioVeterinario( id ).then( info => {
+        let horasUsadas = [];
+
+        getHorarioVeterinario( idVet ).then( info => {
 
             if ( info.length !== 0 ) {
                 
                 info.map( dato => {
     
                     if ( dato.diaHorarios === diasSemana[day]) {
-                        
-                        const [ morning, newAfternoon ] = horariosAgenda( 
-                            divisionHorarios( 
-                                dato.horaInicio.split(":")[0],
-                                dato.horaSalida.split(":")[0]
-                            ) 
-                        );
-                        
-                        _morning = morning ;
-                        _after   = newAfternoon ;
 
+                        getAgendasVeterinario( idVet ).then( info => {
+
+                            if ( info.data !== 0 ) {
+
+                                info.data.map( hora => {
+                                    if ( hora.fecha === moment().format('L') ) {
+                                        
+                                        horasUsadas.push( hora.horaInicio );
+                                    }
+
+                                })
+
+                            }
+
+                            const [ morning, newAfternoon ] = horariosAgenda( 
+                                divisionHorarios( 
+                                    horasUsadas,
+                                    dato.horaInicio.split(":")[0],
+                                    dato.horaSalida.split(":")[0],
+                                    dato.horaInicio.split(":")[1]
+                                )
+                            );
+                            
+                            _morning = morning ;
+                            _after   = newAfternoon ;
+
+                            ( _morning.length !== 0 ) ? setSchedulesMor( _morning ) : setSchedulesMor([]);
+                            ( _after.length !== 0 ) ? setSchedulesAft( _after ) : setSchedulesAft([]);
+                        })
+                        
+
+                    }
+                    else {
+                        setSchedulesMor([]);
+                        setSchedulesAft([]);
                     }
     
                 })
@@ -118,9 +146,6 @@ export const Agenda = () => {
                 setSchedulesAft([]);
             }
             
-            ( _morning.length !== 0 ) ? setSchedulesMor( _morning ) : setSchedulesMor([]);
-
-            ( _after.length !== 0 ) ? setSchedulesAft( _after ) : setSchedulesAft([]);
             
 
         })
@@ -293,6 +318,7 @@ export const Agenda = () => {
                                 </div>
                             </div>
                         </div>
+                        <button className='btnActualizarMascota'>Agendar</button>
                     </div>
             </div>
         </div>

@@ -174,3 +174,16 @@ export const deleteHorarioGeneral = async( id , access_token ) => {
     }
 
 };
+
+// veterinario/{documentoVeterinario}/agendas
+export const getAgendasVeterinario  = async( idVet ) => {
+
+    try {    
+        
+        return await axios(`${url}/veterinario/${idVet}/agendas`);
+
+    } catch (error) {
+        console.log( error );
+    }
+
+}

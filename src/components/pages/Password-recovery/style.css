@@ -10,6 +10,7 @@
 }
 .recoveryPass__container .logo{
     width: 100px;
+    border-radius: 0px;
 }
 .recoveryPass__container .error{
     align-items: center;

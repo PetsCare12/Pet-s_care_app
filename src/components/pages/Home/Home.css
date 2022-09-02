@@ -6,7 +6,7 @@ header h1,p{
 }
 
 header {
-    background: linear-gradient(360deg, #61bbd6,#0072ff);
+    background: linear-gradient(360deg, #0051b5,#0072ff);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -44,7 +44,7 @@ header {
 
 .headerHome__right img{
     position: relative;
-    width: 100%;
+    width: 70%;
 }
 
 .headerHome__span{
