@@ -7,38 +7,17 @@ export const HorarioClinica = ( {data} ) => {
 
   const token = localStorage.getItem('token');
 
-  const [horarios, sethorarios] = useState([])
-  const [requestHour, setrequestHour] = useState("");
+  const [loader, setloader] = useState(false);
+  const [horarios, sethorarios] = useState([]);
+  const [toSetHorarios, settoSetHorarios] = useState(false);
 
   let nit = data.nit;
-  
-  console.log(horarios);
 
     const setDates = (e) => {
 
-      e.preventDefault();  
+      e.preventDefault();
 
-        // if (JSON.stringify(errors) === '{}') {
-          
-          let arrHours = build_horario(e);
-
-          for (let k in arrHours){
-
-            let obj2 = arrHours[k];
-            putHorarioGeneral( obj2[k] , horarios.idHorarios , token).then( data => {
-              console.log(data);
-            });
-            console.log(obj2);
-          }
-
-        // }else{
-
-        //   console.log("No se puede Actualizar el horario");
-        //   console.log(errors.validacion);
-
-        // }
-      }
-
+    } 
 
     const build_horario = (e) => {
 
@@ -112,12 +91,42 @@ export const HorarioClinica = ( {data} ) => {
         }
       }
 
+      if (JSON.stringify(errors) === '{}') {
+
+        for (let k in hoursAvalibles){
+
+          let obj2 = hoursAvalibles[k];
+          setHorarioClinica( obj2 , nit , token).then( data => {
+            console.log(data);
+          });
+          console.log(obj2);
+        }
+
+      }else{
+
+        console.log("No se puede Actualizar el horario");
+        console.log(errors.validacion);
+
+      }
+
       return hoursAvalibles;
 
     }
 
     useEffect(() => {
-      getHorarioClinica(nit).then(info => {sethorarios([info])});
+      setloader(true);
+      getHorarioClinica(nit).then(info => {
+
+        if (!!info) {
+          settoSetHorarios(true);
+          setloader(false);
+        }else{
+          sethorarios([info]);
+          settoSetHorarios(false);
+          setloader(false);
+        }
+
+      });
     }, [data])
     
 
@@ -125,8 +134,11 @@ export const HorarioClinica = ( {data} ) => {
     <form onSubmit={setDates} className="horario_form animate__animated animate__fadeIn">
 
       <div className="title_cont">
-        <h3 className='profile__editarPerfil title_hour'>{"Horario Clinica"}</h3><div id='login-spin-clinic' className='spiner'></div>
+        <h3 className='profile__editarPerfil title_hour'>{"Horario Clinica"}</h3>
+        { (toSetHorarios) && <p>No hay Horarios Resgistrados!</p> }
+        { (loader) && <div id='login-spin-clinic' className='spiner'></div> }
       </div>
+      
       <div className="part1_horarios">
 
         <Dias_Horario_UI 
@@ -184,7 +196,11 @@ export const HorarioClinica = ( {data} ) => {
 
      </div>
      <div className="part1_horarios">
-      <ButtonUI text="Actualizar"  type="submit" style="submit btn_marg"></ButtonUI>
+      { 
+        (toSetHorarios === false) 
+          ? <ButtonUI text="Actualizar"  type="submit" style="submit btn_marg"></ButtonUI> 
+          : <ButtonUI text="Registrar"  type="submit" style="submit btn_marg"></ButtonUI>
+      }
      </div>
     </form>
   )

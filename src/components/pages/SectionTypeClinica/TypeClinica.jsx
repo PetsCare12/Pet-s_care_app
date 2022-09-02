@@ -10,6 +10,7 @@ import { SimpleModal } from "../../layout/Modals/SimpleModal";
 import { MdOutlineCancel } from 'react-icons/md';
 import { getClinicaById } from '../../../helpers/API Consumer/useClinicasConsumer';
 import { NoAutenticado } from '../NoAutenticado/NoAutenticado';
+import { Link } from 'react-router-dom';
 import "./TypeClinica.css";
 
 export const TypeClinica = () => {
@@ -204,9 +205,9 @@ export const TypeClinica = () => {
                                     </div>
                                   </div> 
                                   <div className='idc'>
-                                    <a onClick={() => getVet(item)} href="">
+                                    <div onClick={() => getVet(item)}>
                                       <img src={pets_images('./veterinarios/proximo.png')} alt="" id='imgLi'/>
-                                    </a>
+                                    </div>
                                   </div>
                               </li>
                             ))
