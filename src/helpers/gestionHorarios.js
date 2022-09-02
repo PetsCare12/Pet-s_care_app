@@ -2,6 +2,7 @@
 export const divisionHorarios = ( horasUsadas=[], ah , ch, am = 0 , cm = 0 ) => {
 
     const day = new Date();
+    const dayCi = new Date();
     let horarios = [];
     let hora = "";
     const apertura = ah;
@@ -11,7 +12,10 @@ export const divisionHorarios = ( horasUsadas=[], ah , ch, am = 0 , cm = 0 ) => 
     day.setHours(apertura);
     day.setMinutes(am);
 
-    console.log( horasUsadas );
+    dayCi.setHours(cierre);
+    dayCi.setMinutes(cierre);
+
+    console.log(cm);
     
     hora = day.getHours()+":"+day.getMinutes();
     if ( !horasUsadas.includes( hora ) ) {

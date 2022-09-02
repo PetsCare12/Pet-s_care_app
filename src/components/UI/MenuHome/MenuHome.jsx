@@ -4,7 +4,6 @@ import './MenuHome.css';
 const MenuHome = () => {
 
     const data = JSON.parse( localStorage.getItem("usuario") );
-    console.log( data );
 
     const handleLogout = () => {
         localStorage.removeItem("usuario");
