@@ -1,4 +1,5 @@
 import { Routes, Route, BrowserRouter} from 'react-router-dom';
+import { Navigate } from "react-router";
 import { NotFound } from '../components/pages/404/NotFound';
 import { CitaEspecifica } from '../components/pages/Citas/CitaEspecifica';
 import { Citas } from '../components/pages/Citas/Citas';
@@ -17,13 +18,23 @@ import { PasswordRecovery } from '../components/pages/Password-recovery/Password
 
 export const AppRouter = () => {
 
+    const token = localStorage.getItem("token");
+    const user = JSON.parse(localStorage.getItem("usuario"));
+    let rol = "";
+
+    !!user ? rol = user.aud : rol = ""
+
+    console.log( !!token );
+    console.log(!!user);
+    console.log( rol==="[ROLE_ADMIN]" );
+
     return (
         <BrowserRouter>            
             <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route path="/registro" element={<Registro />} />
+                <Route path="/login" element={ !!token ? <Navigate to="/" /> : <Login />} />
+                <Route path="/registro" element={!!token ? <Navigate to="/" /> : <Registro />} />
                 <Route path="/registro_mascotas" element={<Registro_mascotas />} />
-                <Route path='/perfil' element={<Profile />} />
+                <Route path='/perfil' element={!token ? <Navigate to="/" /> : <Profile />} />
                 <Route path='clinicas' element={<Clinicas />} />
                 <Route path='clinica/:id' element={<Clinica />} />
                 <Route path="/*" element={ <NotFound />  } />
@@ -33,7 +44,7 @@ export const AppRouter = () => {
                 <Route path="/gestionClinica" element={ <TypeClinica />  } />
                 <Route path="/tuClinica" element={ <ClinicaProfile />  } />
                 <Route path="/agenda" element={ <Agenda />  } />
-                <Route path="/admin" element={<AdminScreen/>}/>
+                <Route path="/admin" element={(!!user && rol!=="[ROLE_ADMIN]") ? <Navigate to="/" /> : <AdminScreen/> }/>
                 <Route path="/recovery-password" element={<PasswordRecovery />}/>
                 <Route path="/agenda" element={<Agenda />}/>
                 <Route path="/agenda/:id" element={<Agenda />}/>
