@@ -8,6 +8,93 @@
     padding: 100px 9%;
     width: 100%;
 }
+.contenedorClinicasMenu{
+    margin-left: 100px;
+    margin-top: 24px;
+
+}
+.menuTitulo{
+    position: fixed;
+}
+
+
+.menuBar{   
+    display: flex;
+    align-items: center;
+    position: fixed;
+    flex-direction: column;
+    background-color: #008eff;
+    border-radius: 50%;
+    color: white;
+    gap: 6px;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1;
+    padding: 10px;
+    top: 20px;
+    left: 20px;
+    transition: 1s;
+}
+.menuBar.change{
+    left: 40px;
+    transition: 1s;
+    
+}
+.menuBar:hover{
+    background-color: #036cc2;
+}
+.iconMenu{
+    display: inline-block;
+    align-items: center;
+    
+    
+}
+
+.bar1, .bar2, .bar3 {
+    border-radius:6px;
+      width: 25px;
+      height: 3px;
+      background-color: #ffffff;
+      transition: 0.4s;
+    }
+
+.change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+    transform: rotate(-45deg) translate(-9px, 6px);
+    margin-bottom: 4px;
+    }
+    
+.change .bar2 {opacity: 0;}
+
+.change .bar3 {
+-webkit-transform: rotate(45deg) translate(-8px, -8px);
+transform: rotate(45deg) translate(-8px, -8px);
+}
+
+.menuClinicas{
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: fixed;
+    top: 75px;
+    left: 10px;
+    
+}
+
+.btnOpcionesC{
+    background-color: #008eff;
+    color: #ffffff;
+    padding: 7px 5px;
+    background-size: cover;
+    cursor: pointer;
+    transition: all 0.4s;
+}
+.btnOpcionesC:hover
+{
+    transition: all 0.4s;
+    background-color: #036cc2;
+}
 
 #tilte__clinicas{
     font-family: 'Nunito', sans-serif;
