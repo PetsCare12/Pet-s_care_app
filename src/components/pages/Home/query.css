@@ -1,4 +1,7 @@
-@media (min-width: 400px) {
+@media (max-width: 400px) {
+    .headerHome {
+        padding: 10px 10px;
+    }
     .headerHome__right{
         display: none;
     }
@@ -7,11 +10,18 @@
     }
     #liHome {
         list-style: none;
-        width: 90px;
+        width: auto;
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-around;
+    }
+    .aNavHome {
+        width: 65px;
+        height: 35px;
+    }
+    .nav_Home {
+        gap: 7px;
     }
     header {
         background: linear-gradient(360deg, #0051b5,#0072ff);
