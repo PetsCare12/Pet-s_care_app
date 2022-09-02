@@ -14,7 +14,7 @@ export const Home = () => {
               <p>Tenemos la mejor atencion, control y manejo para el cuidado y salud de tus mascotas.</p>
           </div>
           <div className="headerHome__right">
-              <img src={pets_images("./home/undraw_good_doggy_re_eet7yellow.svg")} alt="header-img" />
+              <img src={pets_images("./home/test.svg")} alt="header-img" />
           </div>
           <div className="wave wave1"></div>
           <div className="wave wave2"></div>
@@ -24,7 +24,7 @@ export const Home = () => {
       </div>
       <div className="home__aboutUs">
           <div className="home__aboutUs-img">
-            <img src={pets_images("./home/undraw_real_time_collaboration_c62i.svg")} alt="images" />
+            <img src={pets_images("./home/teamwork.svg")} alt="images" />
           </div>
           <div className="home__aboutUs-text">
             <h1>Equipo de <br/><span>desarrollo</span></h1>
@@ -42,7 +42,7 @@ export const Home = () => {
       </div>
       <div className="home__tiempo home__aboutUs">
           <div className="home__tiempo home__aboutUs-img">
-            <img className="home__tiempo-img" src={pets_images("./home/undraw_season_change_f99v.svg")} alt="about-us" />
+            <img className="home__tiempo-img" src={pets_images("./home/time.svg")} alt="about-us" />
           </div>
           <div className="home__tiempo home__aboutUs-text">
             <h1>No <span>pierdas</span> más<br/> tu tiempo</h1>
