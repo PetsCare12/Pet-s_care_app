@@ -29,7 +29,7 @@ export const AppRouter = () => {
     console.log( rol==="[ROLE_ADMIN]" );
 
     return (
-        <BrowserRouter>            
+        <BrowserRouter>
             <Routes>
                 <Route path="/login" element={ !!token ? <Navigate to="/" /> : <Login />} />
                 <Route path="/registro" element={!!token ? <Navigate to="/" /> : <Registro />} />

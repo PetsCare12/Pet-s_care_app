@@ -1,0 +1,10 @@
+@media (max-width: 400px) {
+
+    .profile__left {
+        display: none;
+    }
+    /* .profile__left.despliegue{
+        display: block;
+    } */
+
+}

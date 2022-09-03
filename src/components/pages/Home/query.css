@@ -1,3 +1,117 @@
+@media (max-width: 800px) {
+    header {
+        padding: 3% 2% 13%;
+    }
+    .headerHome__left h1 {
+        font-size: 5rem;
+        width: 100%;
+    }
+    .headerHome__left p {
+        font-size: 23px;
+        line-height: 33px;
+        width: 100%;
+    }
+    .headerHome__right img {
+        position: relative;
+        width: 82%;
+    }
+    .home__aboutUs p {
+        width: 100%;
+    }
+    .home__aboutUs-img {
+        height: 382px;
+    }
+    .home__aboutUs-img img {
+        width: 95%;
+    }
+    .home__proyecto {
+        flex-direction: column;
+        gap: 60px;
+    }
+    .home__proyecto-text {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 12px 30px;
+    }
+    .home__aboutUs h1 {
+        text-align: center;
+    }
+    .home__proyecto-img {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    .home__proyecto-img img {
+        height: 338px;
+        width: 70%;
+    }
+    .home__aboutUs.q800 {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 50px;
+    }
+    .home__tiempo {
+        height: auto;
+        width: 100%;
+        padding: 12px 30px;
+    }
+    .home__tiempo-img.qimg800{
+        width: 70%;
+    }
+    .home__tiempo.home__aboutUs-img{
+        display: flex;
+        justify-content: center;
+    }
+    .login_cont_iz img {
+        display: none;
+    }
+}
+
+
+@media (max-width: 600px) {
+    #header__title {
+        width: 170px;
+    }
+    .headerHome__left h1 {
+        font-size: 4rem;
+        width: 100%;
+    }
+    .headerHome__right img {
+        width: 85%;
+    }
+    .headerHome__left {
+        height: 525px;
+    }
+    .home__aboutUs {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 5%;
+        padding: 4%;
+        width: 100%;
+    }
+    .home__aboutUs-text {
+        width: 100%;
+    }
+    .home__aboutUs-img {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .home__aboutUs-img img {
+        width: 60%;
+    }
+    .home__aboutUs p {
+        text-align: center;
+    }
+    .home__proyecto.q600{
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+    }
+}
+
+
 @media (max-width: 400px) {
     .headerHome {
         padding: 10px 10px;

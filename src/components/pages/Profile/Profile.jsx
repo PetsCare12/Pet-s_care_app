@@ -8,6 +8,7 @@ import { CitaCard } from "../Citas/CitaCard";
 import { NoAutenticado } from '../NoAutenticado/NoAutenticado';
 import { getUsuarioId } from '../../../helpers/API Consumer/test';
 import './Profile.css';
+import './query.css';
 
 export const Profile = () => {
 
@@ -15,7 +16,8 @@ export const Profile = () => {
     const [citasAll, setCitasAll] = useState( citas );
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("usuario")));
     const [token, setToken] = useState(localStorage.getItem("token"));
-    const [userData, setUserData] = useState({}); 
+    const [userData, setUserData] = useState({});
+    const [desplegar, setDesplegar] = useState(false);
 
 
     useEffect(()=>{
@@ -41,7 +43,8 @@ export const Profile = () => {
         <div className='profile__contenedor animate__animated animate__fadeIn'>
             { ( !!token ) &&
                 <div className='profile'>
-                    <div className="profile__left">
+                    <div className={`profile__left ${desplegar ? "mostrar animate__animated animate__fadeInLeft" : "mostrar animate__animated animate__fadeOutLeft" }`}>
+                        {desplegar && <div onClick={ () => setDesplegar( false )} className="cancel">x</div>}
 
                         <PhotoProfile 
                             img={userData.imagenUsu}
@@ -53,13 +56,21 @@ export const Profile = () => {
 
                             <div className='profile__titleBtn'><FaHome style={{fontSize:"20px"}} /></div>
                         </button>
-                        <button onClick={() => {setActiveBtn("perfil")}} className={`profile__btnProfile ${(activeBtn === "perfil") && "perfil_active"}`}>
+                        <button onClick={() => {
+                            setActiveBtn("perfil")
+                            setDesplegar( false )
+                            }} className={`profile__btnProfile ${(activeBtn === "perfil") && "perfil_active"}`}>
                             <div className='profile__titleBtn'>Perfil</div>
                         </button>
-                        <button onClick={() => {setActiveBtn("mascotas")}} className={`profile__btnProfile ${(activeBtn === "mascotas") && "perfil_active"}`}>
+                        <button onClick={() => {
+                            setActiveBtn("mascotas")
+                            setDesplegar( false )
+                            }} className={`profile__btnProfile ${(activeBtn === "mascotas") && "perfil_active"}`}>
                             <div className='profile__titleBtn'>Mascotas</div>
                         </button>
-                        <button onClick={() => {setActiveBtn("citas")}} className={`profile__btnProfile ${(activeBtn === "citas") && "perfil_active"}`}>
+                        <button onClick={() => {
+                            setActiveBtn("citas")
+                        }} className={`profile__btnProfile ${(activeBtn === "citas") && "perfil_active"}`}>
                             <div className='profile__titleBtn'>Citas pendientes</div>
                         </button>
                         <button onClick={() => {
@@ -82,8 +93,8 @@ export const Profile = () => {
                     }
                     {
                         ( activeBtn === "perfil" ) && <SectionPerfil userData={userData}/>
-                    }    
-                    { 
+                    }
+                    {
                         ( activeBtn === "citas" ) &&
                         <>
                         <h1 className='profile__section' style={{marginBottom:"50px"}}>Citas pendientes</h1>
@@ -116,6 +127,16 @@ export const Profile = () => {
                 ( !token || !user ) &&
                 <NoAutenticado txt={"Al parecer no has iniciado sesión, te invitamos a hacerlo."} />
             }
+            
+            <div className="boton_despliegue">
+                <div className='contenedorClinicasMenu'>
+                    <div className={`menuBar`} onClick={ () => setDesplegar( !desplegar ) }>
+                        <div class="bar1"></div>
+                        <div class="bar2"></div>
+                        <div class="bar3"></div>
+                    </div>
+                </div>
+            </div>
         </div>
         
     )
