@@ -248,4 +248,29 @@
     padding: 3px;
 }
 
-
+.agendaDescription{
+    background-color: white;
+    border-radius: 6px;
+    padding: 40px;
+    min-width: 400px;
+    width: 600px;
+}
+.agendaDescription .h1,.p,.small,.description{
+    font-family: 'Nunito', sans-serif;
+}
+.agendaDescription .description{
+    border:2px solid #81c6ff;
+    border-radius: 6px;
+    padding: 10px;
+    resize: none;
+    margin-top: 25px;
+    height: auto;
+    width: 100%;
+}
+.agendaDescription .description:focus{
+    border: none;
+    outline:3px solid #a7d7ff;
+}
+.agendaDescription .h1{
+    color: #008eff;
+}

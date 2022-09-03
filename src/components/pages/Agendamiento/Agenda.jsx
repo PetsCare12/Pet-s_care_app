@@ -11,6 +11,7 @@ import { horariosAgenda } from '../../../hooks/useHorariosAgenda';
 import './style.css';
 import { getAgendasVeterinario, getHorarioVeterinario } from '../../../helpers/API Consumer/useHorariosConsumer';
 import moment from 'moment';
+import { SimpleModal } from '../../layout/Modals/SimpleModal';
 
 export const Agenda = () => {
 
@@ -29,6 +30,10 @@ export const Agenda = () => {
     
     const [mascotas, setMascotas] = useState([]);
     const [miMascota, setMiMascota] = useState([]);
+
+    const [description, setDescription] = useState("");
+    const [descriptionModal, setDescriptionModal] = useState(false);
+
     const [hour, setHour] = useState("");
     const { id } = JSON.parse(localStorage.getItem("usuario"));
     
@@ -160,6 +165,11 @@ export const Agenda = () => {
         getVeterinarios( e.target.value ).then( info => setVeterinarios( info ));
         setSchedulesMor([]);
         setSchedulesAft([]);
+    }
+
+    const handleDescription = ( e ) => {
+
+        setDescription( e.target.value )
     }
 
     
@@ -318,9 +328,30 @@ export const Agenda = () => {
                                 </div>
                             </div>
                         </div>
-                        <button className='btnActualizarMascota'>Agendar</button>
+                        <button 
+                            className='btnActualizarMascota'
+                            onClick={ () => setDescriptionModal( true )}
+                        >Agendar</button>
                     </div>
             </div>
+            {
+                descriptionModal &&
+                <SimpleModal>
+                    <div className='agendaDescription animate__animated animate__fadeIn'>
+                        <h1 className='h1'>Descripción</h1>
+                        <p className='p'>¡Un último paso!<br/>Escribe el porqué estas solicutando esta cita. <small className='small'>(El campo no debe estar vacío)</small></p>
+                        <textarea 
+                            name="description" 
+                            className='description'
+                            id="description" 
+                            cols="30" 
+                            rows="10"
+                            value={description}
+                            onChange={ handleDescription }
+                        ></textarea>
+                    </div>
+                </SimpleModal>
+            }
         </div>
         </>
     )
