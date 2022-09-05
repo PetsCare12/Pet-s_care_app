@@ -29,7 +29,7 @@
     font-weight: 600;
     background-color: #00376c;
     color: aliceblue;
-    /* border: solid 1px #024c6e; */
+
 }
 .logIn:hover{
     transition: .7s;
@@ -76,7 +76,7 @@
     justify-content: center;
     gap: 30px;
 }
-/*//////////////////////*/
+
 .home{
     display: flex;
     flex-direction: column;

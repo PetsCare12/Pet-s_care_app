@@ -72,7 +72,7 @@
     font-weight: 100;
 }
 
-/* DATETIME */
+
 .citaCard__datetime {
     border-radius: 6px;
     color: white;
@@ -97,7 +97,7 @@
 }
 
 
-/* ---------------- CITAS ---------------- */
+
 .typePage {
     background-color: #61bbd6;
     border-bottom-right-radius: 6px;
@@ -117,7 +117,7 @@
     padding: 20px 60px;
 }
 
-/* ------------------ CITA ESPECÍFICA ------------------ */
+
 .citaEspecifica__cont h1,p{
     color: #4c4c4c;
     font-family: 'Nunito', sans-serif;
@@ -184,7 +184,7 @@
     color: #4c4c4c;
 }
 
-/* h1 */
+
 .citaEspecifica__mcName{
     font-weight: 800;
     font-size: 50px;

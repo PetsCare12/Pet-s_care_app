@@ -2,16 +2,12 @@ import { pets_images } from "../../../helpers/Pets_care_images";
 import { Header} from '../../layout/HeaderHome/HeaderHome'
 import './Home.css';
 import './query.css';
-import {Helmet} from "react-helmet";
 
 
 export const Home = () => {
 
   return (
     <div className="home__contenedor animate__animated animate__fadeIn">
-      <Helmet>
-        <title>pets care | home</title>
-      </Helmet>
       <div>
         <Header />
         <header>
