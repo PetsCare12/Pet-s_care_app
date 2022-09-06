@@ -33,15 +33,16 @@ export const HorarioClinica = ( {data} ) => {
     useEffect(() => {
       setloader(true);
       getHorarioClinica(nit).then(info => {
-
-        if (info.status == 400) {
+        if (info.length === 0) {
           settoSetHorarios(true);
           setloader(false);
-          console.log("Arr vacio");
+          console.log(toSetHorarios);
+          console.log(info);
         }else{
           sethorarios([info]);
           settoSetHorarios(false);
           setloader(false);
+          console.log(info);
         }
       });
     }, [data])
@@ -54,37 +55,37 @@ export const HorarioClinica = ( {data} ) => {
 
         let obj3 = arr[c];
 
-        if (obj3.diaHorarios == "lunes") {
+        if (obj3.diaHorarios === "lunes") {
           
           setlunes_in_hour(obj3.horaInicio);
           setlunes_out_hour(obj3.horaSalida);
 
-        }else if (obj3.diaHorarios == "martes") {
+        }else if (obj3.diaHorarios === "martes") {
 
           setmartes_in_hour(obj3.horaInicio);
           setmartes_out_hour(obj3.horaSalida);
           
-        }else if (obj3.diaHorarios == "miercoles") {
+        }else if (obj3.diaHorarios === "miercoles") {
 
           setmiercoles_in_hour(obj3.horaInicio);
           setmiercoles_out_hour(obj3.horaSalida);
           
-        }else if (obj3.diaHorarios == "jueves") {
+        }else if (obj3.diaHorarios === "jueves") {
 
           setjueves_in_hour(obj3.horaInicio);
           setjueves_out_hour(obj3.horaSalida);
           
-        }else if (obj3.diaHorarios == "viernes") {
+        }else if (obj3.diaHorarios === "viernes") {
 
           setviernes_in_hour(obj3.horaInicio);
           setviernes_out_hour(obj3.horaSalida);
           
-        }else if (obj3.diaHorarios == "sabado") {
+        }else if (obj3.diaHorarios === "sabado") {
 
           setsabado_in_hour(obj3.horaInicio);
           setsabado_out_hour(obj3.horaSalida);
           
-        }else if (obj3.diaHorarios == "domingo") {
+        }else if (obj3.diaHorarios === "domingo") {
 
           setdomingo_in_hour(obj3.horaInicio);
           setdomingo_out_hour(obj3.horaSalida);
@@ -210,7 +211,7 @@ export const HorarioClinica = ( {data} ) => {
 
       }else{
 
-        console.log("No se puede Actualizar el horario");
+        console.log("No se puede Registrar el horario");
         console.log(errors.validacion);
         setloader(false);
         setstr_warn(errors.validacion);
@@ -290,107 +291,163 @@ export const HorarioClinica = ( {data} ) => {
         }
       ]
 
-      let days = {
+      const days = {
 
-        1 : e.target[0].checked,
-        2 : e.target[5].checked,
-        3 : e.target[10].checked,
-        4 : e.target[15].checked,
-        5 : e.target[20].checked,
-        6 : e.target[25].checked,
-        7 : e.target[30].checked,
+        "lunes" : e.target[0].checked,
+        "martes" : e.target[5].checked,
+        "miercoles" : e.target[10].checked,
+        "jueves" : e.target[15].checked,
+        "viernes" : e.target[20].checked,
+        "sabado" : e.target[25].checked,
+        "domingo" : e.target[30].checked,
 
       }
+
+      setloader(true);
+
+      let index_days_val = 0;
+
+      for (let index in days) { if ( days[index] === false ) { index_days_val += 1;  } }
+      
+      console.table(days);
+      console.log(index_days_val);
 
       for (let p in days){
 
         let obj6 = days[p];
 
-        if (obj6 == true) {
+        if (obj6 === true) {
           
-          console.log("Se actualiza el dia " + p);
+          let var_val_day = "";
+          
+          hoursAvalibles.forEach(element => {
 
-        }else{
+            if (element.diaHorarios === p) {
+              var_val_day = element;
+            }
+
+          });
+          
+          console.log("Se actualiza: " + p);
+
+          if (var_val_day.horaInicio === "") {
+
+            errors.validacion = `Campo Vacío Hora Entrada del día ${var_val_day.diaHorarios}`
+            setloader(false);
+            setstr_warn(errors.validacion);
+            break;
+  
+          }else if (var_val_day.horaSalida === "") {
+            
+            errors.validacion = `Campo Vacío Hora Salida del día ${var_val_day.diaHorarios}`
+            setloader(false);
+            setstr_warn(errors.validacion);
+            break;
+  
+          }
+          if (JSON.stringify(errors) === '{}') {
+
+            console.log("Se puede actualizar !!");
+
+            console.log(var_val_day.idHorarios);
+
+            putHorarioGeneral( var_val_day , var_val_day.idHorarios , token).then( data => {
+        
+              setresponse_update(data)
+  
+            });
+            
+          }else{
+
+          console.log("No se puede Actualizar el horario");
+          console.log(errors.validacion);
+          setloader(false);
+          setstr_warn(errors.validacion);
+        }
+
+      }
+      else if (index_days_val === 7) {
+
+        console.log("Se actulaliza los 7 dias!!");
+        
+        let var_val_day = "";
+          
+          hoursAvalibles.forEach(element => {
+
+            if (element.diaHorarios === p) {
+              var_val_day = element;
+            }
+
+          });
+
+          if (var_val_day.horaInicio === "") {
+
+            errors.validacion = `Campo Vacío Hora Entrada del día ${var_val_day.diaHorarios}`
+            setloader(false);
+            setstr_warn(errors.validacion);
+            break;
+  
+          }else if (var_val_day.horaSalida === "") {
+            
+            errors.validacion = `Campo Vacío Hora Salida del día ${var_val_day.diaHorarios}`
+            setloader(false);
+            setstr_warn(errors.validacion);
+            break;
+  
+          }
+          if (JSON.stringify(errors) === '{}') {
+
+            console.log("Se puede actualizar !!");
+            putHorarioGeneral( var_val_day , var_val_day.idHorarios , token).then( data => {
+        
+              setresponse_update(data)
+  
+            });
+            
+          }else{
+
+          console.log("No se puede Actualizar el horario");
+          console.log(errors.validacion);
+          setloader(false);
+          setstr_warn(errors.validacion);
+        }
+
+      }
+      else{
 
           console.log("No se actualiza el dia " + p);
 
         }
+    }
 
-      }
-
-      // for (let j in hoursAvalibles) {
-
-      //   let obj5 = hoursAvalibles[j];
-
-      //   if (obj5.horaInicio === "") {
-
-      //     errors.validacion = `Campo Vacío Hora Entrada del día ${obj5.diaHorarios}`
-      //     setloader(false);
-      //     setstr_warn(errors.validacion);
-      //     break;
-
-      //   }else if (obj5.horaSalida === "") {
+        if (response_update === "Horario actualizada con exito") {
           
-      //     errors.validacion = `Campo Vacío Hora Salida del día ${obj5.diaHorarios}`
-      //     setloader(false);
-      //     setstr_warn(errors.validacion);
-      //     break;
+          setstr_warn("Horario actualizada con exito")
+          setTimeout(() => {
+            setstr_warn("");
+          }, 3000);
 
-      //   }
-      // }
+          setloader(false);
 
-      // setloader(true);
+        }else{
 
-      // if (JSON.stringify(errors) === '{}') {
+          setstr_warn("Error actualizacion Horario")
+          setTimeout(() => {
+            setstr_warn("");
+          }, 3000);
 
-      //   for (let k in hoursAvalibles){
+          setloader(false);
 
-      //     let obj2 = hoursAvalibles[k];
-      //     putHorarioGeneral( obj2 , obj2.idHorarios , token).then( data => {
-            
-      //       setresponse_update(data)
-
-      //     });
-      //   }
-
-      //   if (response_update == "Horario actualizada con exito") {
-          
-      //     setstr_warn("Horario actualizada con exito")
-      //     setTimeout(() => {
-      //       setstr_warn("");
-      //     }, 3000);
-
-      //     setloader(false);
-
-      //   }else{
-
-      //     setstr_warn("Error actualizacion Horario")
-      //     setTimeout(() => {
-      //       setstr_warn("");
-      //     }, 3000);
-
-      //     setloader(false);
-
-      //   }
-
-      // }else{
-
-      //   console.log("No se puede Actualizar el horario");
-      //   console.log(errors.validacion);
-      //   setloader(false);
-      //   setstr_warn(errors.validacion);
-
-      // }
+        }
 
     }
 
     return (
       <form onSubmit={setDates} className="horario_form animate__animated animate__fadeIn">
-
+        
         <div className="title_cont">
           <h3 className='profile__editarPerfil title_hour'>{"Horario Clinica"}</h3>
 
-          { (toSetHorarios) && <p>No hay Horarios Resgistrados!</p> }
           { (loader) && <div id='login-spin-clinic' className='spiner'></div> }
           { (str_warn) && <p>{ str_warn }</p> }
 
