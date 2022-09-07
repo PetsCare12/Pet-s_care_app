@@ -31,6 +31,7 @@ const MenuHome = () => {
         <div className='MenuHome__div animate__animated animate__flipInX'>
             <p onClick={handlePerfil} className='MenuHome__perfil'>Gestion</p>
             <p onClick={() => window.location = "/clinicas"} className='MenuHome__perfil cli'>Clínicas</p>
+            { data.aud === "[ROLE_ADMIN]" && <p onClick={() => window.location = "/admin"} className='MenuHome__perfil cli'>Administrar</p> }
             <p onClick={handleLogout} className='MenuHome__logout'>Cerrar sesión</p>
         </div>
     )
