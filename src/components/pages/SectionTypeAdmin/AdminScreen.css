@@ -251,17 +251,13 @@
 .peticiones__refreh{
     color: #0072ff;
     cursor: pointer;
-    font-size: 70px;
-    background-color: #cbe7ff;
+    font-size: 50px;
     border-radius: 6px;
+    height: 80px;
 }
 .peticiones__refreh:hover{
-    color: white;
-    cursor: pointer;
-    font-size: 70px;
-    background-color: #0072ff;
+    color: #72b1ff;
     transition: .4s;
-    border-radius: 6px;
 }
 .admin__peticiones-modalVerify{
     padding: 20px;
@@ -427,4 +423,35 @@
     height: 50px;
     align-self: center;
     top: 20vh;
+}
+
+.buttonPaginacion{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.buttonPaginacion .btn{
+    display: flex;
+    background-color: #008eff;
+    color: white;
+    font-size: 20px;
+    padding: 5px 15px;
+    width: 50px;
+}
+
+.input.number{
+    width: 80px;
+    padding: 5px 5px 5px 15px;
+    height: 25px;
+    margin-left: 50px;
+}
+.input.number:focus{
+    outline: none;
+}
+.paginacionp{
+    margin-left: 50px;
+    margin-top: 20px;
 }

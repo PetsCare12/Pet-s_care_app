@@ -1,0 +1,41 @@
+@media (max-width: 500px) {
+
+    .boton_despliegue-profile.block{
+        display: flex;
+    }
+
+    .profile__left {
+        display: none;
+    }
+    .profile__right {
+        padding: 50px 15px;
+        width: 100%;
+    }
+    .profile__seccion1 {
+        flex-direction: column;
+        margin-top: 25px;
+        width: 100%;
+    }
+    .profile__seccion1 .profile__info {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        width: 100%;
+    }
+    .profile__right-perfil {
+        align-items: center;
+    }
+    .profile p {
+        align-self: flex-start;
+    }
+    .profile__section2 {
+        width: 100%;
+    }
+    .profile__left.mostrar {
+        overflow: hidden;
+    }
+    /* .profile__left.despliegue{
+        display: block;
+    } */
+
+}

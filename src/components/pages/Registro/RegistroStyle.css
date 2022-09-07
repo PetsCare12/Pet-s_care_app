@@ -8,6 +8,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    z-index: 1;
 }
 
 .registerData{
@@ -21,6 +22,7 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
     gap: 15px;
+    position: relative;
 }
 
 .registerDataAuto{
@@ -34,14 +36,16 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
     gap: 15px;
+    position: relative;
 }
 
 #MdOutlineCancel {
     font-size: 33px;
     color: #ff7d7d;
     cursor: pointer;
-    margin-top: -25px;
-    margin-right: -5px;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 #MdOutlineCancel:hover {
@@ -53,8 +57,7 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    gap: 135px;
-    justify-content: flex-end;
+    justify-content: center;
 }
 #titulo_MdOutlineCancel h2 {
     color: #008eff;
@@ -65,7 +68,7 @@
     display: flex;
     flex-direction: row;
     gap: 215px;
-    justify-content: flex-end;
+    justify-content: center;
 }
 #titulo_MdOutlineCancel1 h2 {
     color: #008eff;

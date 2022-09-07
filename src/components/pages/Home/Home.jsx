@@ -1,6 +1,8 @@
 import { pets_images } from "../../../helpers/Pets_care_images";
 import { Header} from '../../layout/HeaderHome/HeaderHome'
 import './Home.css';
+import './query.css';
+
 
 export const Home = () => {
 
@@ -31,7 +33,7 @@ export const Home = () => {
             <p>Nuestro equipo de desarrollo esta conformado por 5 personas, las cuales se encargaron de crear la mejor herramienta de gestion de citas, para el beneficio de nuestros clientes</p>
           </div>
       </div>
-      <div className="home__proyecto home__aboutUs">
+      <div className="home__proyecto home__aboutUs nuestro q600">
           <div className="home__proyecto-text">
             <h1>Nuestro proyecto <br/><span>Pet's Care</span></h1>
             <p>El proyecto PET 'S CARE es un aplicativo WEB, el cual llega como una nueva alternativa para facilitar el proceso de un agendamiento de citas para las mascotas, a la que los dueños de mascotas puedan interactuar en una interfaz amigable con el objetivo de solicitar el servicio desde su casa, y los dueños de las mascotas puedan agendar una cita con la veterinaria de su preferencia. La investigación en campo se realiza en veterinarias del departamento del Quindío, con el objetivo de conocer si cuentan con algún aplicativo web para la atención de sus clientes y a su vez, conocer si cuentan con el servicio de agendamiento de citas online, adicionalmente, se realiza varias investigaciones sobre proyectos en donde se desarrollen aplicaciones web con actividades similares a la de solicitud de citas virtuales.</p>
@@ -40,9 +42,9 @@ export const Home = () => {
             <img src={pets_images("./home/undraw_real_time_analytics_re_yliv.svg")} alt="about-us" />
           </div>
       </div>
-      <div className="home__tiempo home__aboutUs">
+      <div className="home__tiempo home__aboutUs q800">
           <div className="home__tiempo home__aboutUs-img">
-            <img className="home__tiempo-img" src={pets_images("./home/time.svg")} alt="about-us" />
+            <img className="home__tiempo-img qimg800" src={pets_images("./home/time.svg")} alt="about-us" />
           </div>
           <div className="home__tiempo home__aboutUs-text">
             <h1>No <span>pierdas</span> más<br/> tu tiempo</h1>
@@ -50,7 +52,7 @@ export const Home = () => {
           </div>
       </div>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path fill="#0072ff" fill-opacity="1" d="M0,256L48,250.7C96,245,192,235,288,208C384,181,480,139,576,144C672,149,768,203,864,218.7C960,235,1056,213,1152,197.3C1248,181,1344,171,1392,165.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        <path fill="#0072ff" fillOpacity="1" d="M0,256L48,250.7C96,245,192,235,288,208C384,181,480,139,576,144C672,149,768,203,864,218.7C960,235,1056,213,1152,197.3C1248,181,1344,171,1392,165.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
       </svg>
       <h1 className="home__contactUs-title">Contáctanos</h1>
       <div className="home__contactUs">
@@ -166,7 +168,7 @@ export const Home = () => {
 
       </div>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path fill="#0072ff" fill-opacity="1" d="M0,256L48,250.7C96,245,192,235,288,208C384,181,480,139,576,144C672,149,768,203,864,218.7C960,235,1056,213,1152,197.3C1248,181,1344,171,1392,165.3L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+        <path fill="#0072ff" fillOpacity="1" d="M0,256L48,250.7C96,245,192,235,288,208C384,181,480,139,576,144C672,149,768,203,864,218.7C960,235,1056,213,1152,197.3C1248,181,1344,171,1392,165.3L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
       </svg>
 
       <footer>

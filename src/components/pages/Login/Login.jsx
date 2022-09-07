@@ -7,8 +7,10 @@ import { useState } from 'react'
 import { parseJwt } from '../../../helpers/getPayLoad'
 import { inicioSesionUsuario } from '../../../helpers/API Consumer/test'
 import { SimpleModal } from '../../layout/Modals/SimpleModal';
+import { VscEye,VscEyeClosed } from "react-icons/vsc";
 
 import './LoginStyle.css'
+import './query.css'
 
 export const Login = () => {
 
@@ -22,13 +24,23 @@ export const Login = () => {
     const [mssStatus, setMssStatus] = useState(false);
     const [messageStatus, setMessageStatus] = useState("");
 
+    const [showPassword, setShowPassword] = useState("password")
 
+    const handlePassword = () => {
 
+        if ( showPassword === "password") {
+            
+            setShowPassword("text");
+        }
+        else {
+            setShowPassword("password")
+        }
+    }
 
   return (
     <div className="loginContainer">
         <div className="login_cont_iz">
-            <img src={pets_images("./login/logo.jpg")} alt="" />
+            <img src={pets_images("./login/logo.png")} alt="" />
         </div>
         <div className='login_cont_dr'>
             <ImagenUI 
@@ -134,12 +146,20 @@ export const Login = () => {
                                 name = "nombreoCorreo"
                             />
                             <ErrorMessage name='nombreoCorreo' component={() => (<p id='warn-login'>{errors.nombreoCorreo}</p>)} />
-                            <Field 
-                                type='password'
-                                className = 'inputLogin'
-                                placeholder = 'Contraseña'
-                                name = "password"
-                            />
+                            <div className="login_password_div">
+                                <Field 
+                                    type={showPassword}
+                                    className = 'inputLogin'
+                                    placeholder = 'Contraseña'
+                                    maxlength= '30'
+                                    name = "password"
+                                />
+                                <button className='btn' type='button' onClick={ handlePassword }>
+                                    {
+                                        showPassword === "password" ? <VscEye /> : <VscEyeClosed />
+                                    }
+                                </button>
+                            </div>
                             <ErrorMessage name='password' component={() => (<p id='warn-login'>{errors.password}</p>)} />
                             <p onClick={()=>{window.location = "/recovery-password"}} id='login__forgotPassword'>Olvidé mi contraseña</p>
                             <ButtonUI 

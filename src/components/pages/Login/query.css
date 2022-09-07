@@ -1,0 +1,16 @@
+@media (max-width: 400px) {
+    .login_cont_iz img {
+        display: none;
+    }
+    .loginData {
+        width: 315px;
+    }
+    .btnLoginCrear {
+        font-size: 15px;
+        padding: 9px 12px;
+        width: 53%;
+    }
+    .btnLogin {
+        padding: 10px 16px;
+    }
+}
