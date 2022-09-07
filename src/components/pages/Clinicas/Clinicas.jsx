@@ -3,9 +3,10 @@ import './clinicas.css'
 import './query.css'
 import { Clinica_card } from './Clinica_card'
 import { IoIosArrowDropdown } from "react-icons/io";
-import { AiOutlineMenu } from "react-icons/ai";
+
 
 import { getAllClinicas } from '../../../helpers/API Consumer/useClinicasConsumer';
+import { Link } from 'react-router-dom';
 
 export const Clinicas = () => {
 
@@ -31,6 +32,7 @@ export const Clinicas = () => {
             <div class="bar2"></div>
             <div class="bar3"></div>
             </div>
+    
             <h2 className='menuTitulo'>Pet's Care</h2>
             </div>
             <div className='contenedor__clinicas animate__animated animate__fadeIn'>
@@ -63,12 +65,17 @@ export const Clinicas = () => {
                 ?
 
                 <div className='menuClinicas'>
-                   <a href="/"><button  className='btnOpcionesC'>Inicio</button></a> 
-                   <a href="/perfil"><button  className='btnOpcionesC'>Perfil</button></a> 
+                    
+                        <Link className='btnOpcionesC' to={"/"}> Inicio</Link> 
+                        <Link className='btnOpcionesC' to={"/perfil"}> Perfil</Link> 
+                    
                 </div>
                 :
                 null
             }
+            <footer>
+                <p>&copy; <span>Pet's Care </span> Todos los derechos reservados.</p>
+            </footer>
         </>
     )
 }
