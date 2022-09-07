@@ -32,7 +32,7 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-        padding: 12px 30px;
+        padding: 0px 0px;
     }
     .home__aboutUs h1 {
         text-align: center;
@@ -66,22 +66,29 @@
     .login_cont_iz img {
         display: none;
     }
+    .home__contactUs-title {
+        font-size: 5rem;
+    }
 }
 
 
 @media (max-width: 600px) {
+    header {
+        padding: 2% 5% 0%;
+    }
     #header__title {
         width: 170px;
     }
     .headerHome__left h1 {
-        font-size: 4rem;
+        font-size: 5rem;
         width: 100%;
     }
-    .headerHome__right img {
-        width: 85%;
+    .headerHome__right{
+        display: none;
     }
     .headerHome__left {
         height: 525px;
+        width: 100%;
     }
     .home__aboutUs {
         display: flex;
@@ -108,6 +115,10 @@
         display: flex;
         flex-direction: column;
         gap: 50px;
+    }
+    .home__contactUs-title {
+        font-size: 4rem;
+        height: 105px;
     }
 }
 
@@ -143,7 +154,7 @@
         flex-wrap: wrap;
         justify-content: center;
         position: relative;
-        padding: 3% 5% 25%;
+        padding: 3% 1% 25%;
         overflow: hidden;
     }
     .headerHome__left p {
@@ -154,7 +165,7 @@
         width: 85%;
     }
     .headerHome__left h1 {
-        font-size: 5rem;
+        font-size: 4rem;
         font-family: 'Bebas Neue', cursive;
         margin-bottom: 2%;
         letter-spacing: 8px;
@@ -165,13 +176,14 @@
         display: flex;
         flex-direction: column-reverse;
         gap: 45px;
-        padding: 30px;
+        padding: 5px;
         width: 100%;
     }
     .home__aboutUs-text {
         display: flex;
         flex-direction: column;
         width: 100%;
+        padding: 0px 0px;
     }
     .home__aboutUs p {
         color: #363636;
@@ -182,6 +194,7 @@
         height: 250px;
         width: 100%;
         justify-content: center;
+        padding: 0px 0px;
     }
     .home__aboutUs-img img {
         height: 235px;
@@ -201,5 +214,8 @@
         display: flex;
         justify-content: center;
         width: 100%;
+    }
+    .home__contactUs-title {
+        font-size: 3rem;
     }
 }
