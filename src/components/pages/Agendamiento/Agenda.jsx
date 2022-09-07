@@ -36,6 +36,7 @@ export const Agenda = () => {
 
     const [hour, setHour] = useState("");
     const { id } = JSON.parse(localStorage.getItem("usuario"));
+
     
     const day = new Date().getDay();
 
@@ -331,7 +332,7 @@ export const Agenda = () => {
                         <button 
                             className='btnActualizarMascota'
                             onClick={ () => setDescriptionModal( true )}
-                        >Agendar</button>
+                        >Continuar</button>
                     </div>
             </div>
             {
@@ -341,6 +342,7 @@ export const Agenda = () => {
                         <h1 className='h1'>Descripción</h1>
                         <p className='p'>¡Un último paso!<br/>Escribe el porqué estas solicutando esta cita. <small className='small'>(El campo no debe estar vacío)</small></p>
                         <textarea 
+                            maxLength='250'
                             name="description" 
                             className='description'
                             id="description" 
@@ -349,6 +351,9 @@ export const Agenda = () => {
                             value={description}
                             onChange={ handleDescription }
                         ></textarea>
+                        <button className={`btnActualizarMascota ${ description.length < 10 && "block" }`}>Agendar</button>
+
+                        <button onClick={ () => setDescriptionModal( false ) } className="cancel">x</button>
                     </div>
                 </SimpleModal>
             }

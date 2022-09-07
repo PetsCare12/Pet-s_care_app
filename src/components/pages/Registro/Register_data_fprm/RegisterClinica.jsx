@@ -6,6 +6,7 @@ import {  AiFillCheckCircle } from 'react-icons/ai';
 import { ButtonUI } from '../../../UI/ButtonUI/ButtonUI';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { registroClinica } from '../../../../helpers/API Consumer/useClinicasConsumer';
+import { VscEye,VscEyeClosed } from "react-icons/vsc";
 import './type_registers.css';
 
 export const RegisterClinica = ( {change_step} ) => {
@@ -15,6 +16,19 @@ export const RegisterClinica = ( {change_step} ) => {
     const [dataCli, setDataCli] = useState([]);
     const [duplicatedData, setDuplicatedData] = useState(false);
     const [registered, setRegistered] = useState(false);
+
+    const [showPassword, setShowPassword] = useState("password")
+
+    const handlePassword = () => {
+
+        if ( showPassword === "password") {
+            
+            setShowPassword("text");
+        }
+        else {
+            setShowPassword("password")
+        }
+    }
 
 
     return (
@@ -154,12 +168,19 @@ export const RegisterClinica = ( {change_step} ) => {
                                         placeholder = 'Correo Electrónico'
                                         name = "correoCv"
                                     />
-                                    <Field 
-                                        type='text'
-                                        className = 'inputLogin inputRegistro'
-                                        placeholder = 'Password'
-                                        name = "password"
-                                    />
+                                    <div className="login_password_div">
+                                        <Field 
+                                            type={showPassword}
+                                            className = 'inputLogin inputRegistro'
+                                            placeholder = 'Password'
+                                            name = "password"
+                                        />
+                                        <button style={{top:"7px"}} className='btn' type='button' onClick={ handlePassword }>
+                                            {
+                                                showPassword === "password" ? <VscEye /> : <VscEyeClosed />
+                                            }
+                                        </button>
+                                     </div>
                                 </div>
                                 <ErrorMessage name='correoCv' component={() => (<p className='warn__password-user'>{errors.correoCv}</p>)} />
                                 <ErrorMessage name='password' component={() => (<p className='warn__password-user'>{errors.password}</p>)} />

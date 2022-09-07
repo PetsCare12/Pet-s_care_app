@@ -172,3 +172,23 @@
     width: 250px;
     height: auto;
 }
+
+.login_password_div{
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+.login_password_div .btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border-radius: 50%;
+    color: #008eff;
+    height: 30px;
+    font-size: 1.5rem;
+    right: 10px;
+    top: 10px;
+    position: absolute;
+    width: 30px;
+}

@@ -123,7 +123,7 @@ export const MascotasCard = ( props ) => {
                     {
                         !edit &&
                         <>
-                        <img className='img animate__animated animate__fadeIn' src={image} />
+                        <img className='img animate__animated animate__fadeIn' src={image} alt= "img"/>
                         <div className="specificInfo animate__animated animate__fadeIn">
                             <p className='name'>{name} <span className='tipo'>/ {tipo}</span></p>
                             <p>{raza}</p>
@@ -136,6 +136,7 @@ export const MascotasCard = ( props ) => {
                                 <img 
                                     style={{width:"17px", marginBottom:"-4px",marginLeft:"5px"}} 
                                     src={pets_images("./perfil/color-circle.png")} 
+                                    alt= "img"
                                 />
                             </p>
 
@@ -152,7 +153,7 @@ export const MascotasCard = ( props ) => {
                     {
                         edit &&
                         <>
-                        <img id='edit' className='img animate__animated animate__fadeIn' src={actImage} />
+                        <img id='edit' className='img animate__animated animate__fadeIn' src={actImage} alt= "img" />
                         <div className='container__updateImg'>
                             <div onClick={handleImageEdit} className='updateImg'><VscFiles size="50px" /></div>
                             

@@ -6,7 +6,7 @@
     overflow: auto;
     min-height: 100vh;
     flex-direction: column;
-    justify-content: space-evenly;
+    gap: 20px;
 }
 .recoveryPass__container .logo{
     width: 100px;
