@@ -6,10 +6,11 @@ import { BsTelephoneForward } from "react-icons/bs";
 import { MdPermIdentity,MdOutlineLocationOn } from "react-icons/md";
 import { TbPencil } from "react-icons/tb";
 import { AiFillDelete,AiFillEye } from "react-icons/ai";
+import { RiBuilding2Line } from "react-icons/ri";
 
 
 
-const InfoUser = ( { id, nombre, apellido="" , correo, img, telefono, estado, direccion="" } ) => {
+const InfoUser = ( { id, nombre, apellido="" , correo, img, telefono, estado, direccion="", vetCli="" } ) => {
 
     const [showInfo, setShowInfo] = useState(false);
     const liDeleted = useRef(null);
@@ -41,6 +42,9 @@ const InfoUser = ( { id, nombre, apellido="" , correo, img, telefono, estado, di
                             <img src={img} alt="img" />
                         </div>
                         <div className='info-div'>
+                            {
+                                vetCli && <p><RiBuilding2Line className='icon'/> { vetCli } </p>
+                            }
                             <p><HiOutlineIdentification className='icon'/> { id } </p>
                             <p><MdPermIdentity className='icon'/> { nombre } { apellido }</p>
                             <p><HiOutlineMail className='icon'/> { correo } </p>
