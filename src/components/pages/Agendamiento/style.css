@@ -254,6 +254,24 @@
     padding: 40px;
     min-width: 400px;
     width: 600px;
+    position: relative;
+}
+.agendaDescription .cancel{
+    background-color: #ff3c3c;
+    border-radius: 50%;
+    font-size: 1rem;
+    height: 20px;
+    width: 20px;
+    color: white;
+    top: 10px;
+    right: 10px;
+    position: absolute;
+    transition: .5s;
+}
+.agendaDescription .cancel:hover{
+    background-color: #ff7272;
+    transition: .5s;
+    color: white;
 }
 .agendaDescription .h1,.p,.small,.description{
     font-family: 'Nunito', sans-serif;
@@ -264,7 +282,7 @@
     padding: 10px;
     resize: none;
     margin-top: 25px;
-    height: auto;
+    height: 130px;
     width: 100%;
 }
 .agendaDescription .description:focus{
