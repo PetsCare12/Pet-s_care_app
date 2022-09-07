@@ -7,6 +7,8 @@ import { citas } from '../Citas/dataCitas';
 import { CitaCard } from "../Citas/CitaCard";
 import { NoAutenticado } from '../NoAutenticado/NoAutenticado';
 import { getUsuarioId } from '../../../helpers/API Consumer/test';
+import { CgMenu } from "react-icons/cg";
+import { BiLeftArrowCircle } from "react-icons/bi";
 import './Profile.css';
 import './query.css';
 
@@ -43,8 +45,8 @@ export const Profile = () => {
         <div className='profile__contenedor animate__animated animate__fadeIn'>
             { ( !!token ) &&
                 <div className='profile'>
-                    <div className={`profile__left ${desplegar ? "mostrar animate__animated animate__fadeInLeft" : "mostrar animate__animated animate__fadeOutLeft" }`}>
-                        {desplegar && <div onClick={ () => setDesplegar( false )} className="cancel">x</div>}
+                    <div className={`profile__left ${desplegar ? "mostrar animate__animated animate__fadeInLeft" : "" }`}>
+                        {desplegar && <div onClick={ () => setDesplegar( false )}><BiLeftArrowCircle size={'30px'} className='left-row'/></div>}
 
                         <PhotoProfile 
                             img={userData.imagenUsu}
@@ -83,7 +85,7 @@ export const Profile = () => {
                     <button id='perfil__logout' onClick={handleLogout} className={`profile__btnProfile ${(activeBtn === "logout") && "perfil_active"}`}>
                         <div className='profile__titleBtn'>Cerrar sesión</div>
                     </button>
-                    <div className="profile__right">
+                    <div className={`profile__right ${ desplegar && "ocultar"}`}>
                     {
                         ( activeBtn === "home" ) && 
                         <div id='spiner-home' className='spiner'></div>
@@ -127,16 +129,11 @@ export const Profile = () => {
                 ( !token || !user ) &&
                 <NoAutenticado txt={"Al parecer no has iniciado sesión, te invitamos a hacerlo."} />
             }
-            
-            <div className="boton_despliegue">
-                <div className='contenedorClinicasMenu'>
-                    <div className={`menuBar`} onClick={ () => setDesplegar( !desplegar ) }>
-                        <div class="bar1"></div>
-                        <div class="bar2"></div>
-                        <div class="bar3"></div>
-                    </div>
+
+                <div onClick={ () => setDesplegar(true)} className="boton_despliegue-profile block">
+                    <CgMenu />
                 </div>
-            </div>
+
         </div>
         
     )
