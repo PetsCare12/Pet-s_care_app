@@ -26,6 +26,10 @@
     min-width: 800px;
 }
 
+.agenda__container .card p::selection{
+    background: #c8e0ff;
+}
+
 .agenda__container .card .title{
     background-color: #008eff;
     border-radius: 6px;

@@ -10,6 +10,8 @@
     .profile__right {
         padding: 50px 15px;
         width: 100%;
+        height: 100vh;
+        overflow: scroll;
     }
     .profile__seccion1 {
         flex-direction: column;
@@ -34,8 +36,13 @@
     .profile__left.mostrar {
         overflow: hidden;
     }
-    /* .profile__left.despliegue{
-        display: block;
-    } */
-
+    .profile__misMascotas {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .profile__right-mascotas {
+        display: flex;
+        align-items: center;
+    }
 }
