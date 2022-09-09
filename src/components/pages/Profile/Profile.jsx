@@ -69,7 +69,8 @@ export const Profile = () => {
                             <div className='profile__titleBtn'>Mascotas</div>
                         </button>
                         <button onClick={() => {
-                            setActiveBtn("citas")
+                            setActiveBtn("citas");
+                            setDesplegar( false );
                         }} className={`profile__btnProfile ${(activeBtn === "citas") && "perfil_active"}`}>
                             <div className='profile__titleBtn'>Citas pendientes</div>
                         </button>
