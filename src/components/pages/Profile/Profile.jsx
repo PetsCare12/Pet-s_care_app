@@ -3,7 +3,6 @@ import { PhotoProfile } from './PhotoProfile';
 import { SectionMascotas } from './sections/SectionMascotas';
 import { SectionPerfil } from './sections/SectionPerfil';
 import { FaHome } from 'react-icons/fa';
-import { citas } from '../Citas/dataCitas';
 import { CitaCard } from "../Citas/CitaCard";
 import { NoAutenticado } from '../NoAutenticado/NoAutenticado';
 import { getUsuarioId } from '../../../helpers/API Consumer/test';
@@ -15,7 +14,6 @@ import './query.css';
 export const Profile = () => {
 
     const [activeBtn, setActiveBtn] = useState("perfil");
-    const [citasAll, setCitasAll] = useState( citas );
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("usuario")));
     const [token, setToken] = useState(localStorage.getItem("token"));
     const [userData, setUserData] = useState({});
@@ -71,7 +69,8 @@ export const Profile = () => {
                             <div className='profile__titleBtn'>Mascotas</div>
                         </button>
                         <button onClick={() => {
-                            setActiveBtn("citas")
+                            setActiveBtn("citas");
+                            setDesplegar( false );
                         }} className={`profile__btnProfile ${(activeBtn === "citas") && "perfil_active"}`}>
                             <div className='profile__titleBtn'>Citas pendientes</div>
                         </button>
@@ -102,24 +101,7 @@ export const Profile = () => {
                         <>
                         <h1 className='profile__section' style={{marginBottom:"50px"}}>Citas pendientes</h1>
                         <div className='profile__citas'>
-                            {
-                            citasAll.map( cita => (
-                                <CitaCard
-                                    key={cita.id}
-                                    id={cita.id}
-                                    date = {cita.date}
-                                    time = {cita.time}
-                                    nombreMc = {cita.nombreMc}
-                                    nombreDn = {cita.nombreDn}
-                                    telDn = {cita.telDn}
-                                    raza = {cita.raza}
-                                    anios = {cita.anios}
-                                    veterinario = {cita.veterinario}
-                                    gender = {cita.gender}
-                                    imgUrl = {cita.imgUrl}
-                                />
-                            ))
-                            }
+                            <CitaCard />
                         </div>
                         </>
                     }

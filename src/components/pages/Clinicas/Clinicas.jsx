@@ -32,8 +32,7 @@ export const Clinicas = () => {
             <div class="bar2"></div>
             <div class="bar3"></div>
             </div>
-    
-            <h2 className='menuTitulo'>Pet's Care</h2>
+
             </div>
             <div className='contenedor__clinicas animate__animated animate__fadeIn'>
             <h1 id='tilte__clinicas'>

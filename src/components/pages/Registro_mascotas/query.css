@@ -1,0 +1,12 @@
+@media (max-width: 400px) {
+    .loginData {
+        width: 350px;
+    }
+    .btnLogin#idquery{
+        width: 75%;
+        padding: 0px 0px;
+    }
+    .btnRegistroMascota-cancel#idquery{
+        padding: 0px 0px;
+    }
+}

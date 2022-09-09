@@ -1,0 +1,39 @@
+@media (max-width: 800px) {
+
+}
+
+@media (max-width: 600px) {
+
+}
+
+@media (max-width: 500px) {
+    .home__autenticado img {
+        height: 37px;
+        width: 37px;
+    }
+    .home__autenticado {
+        height: 37px;
+    }
+    .agenda__container .card {
+        display: flex;
+        flex-direction: column;
+        padding: 45px 0vw;
+        min-width: 100%;
+    }
+    .agenda__container {
+        padding: 8vh 15px;
+    }
+    .agenda__container .card .selectors {
+        width: 75%;
+    }
+    .agenda__container .card .imgSchedule {
+        width: 85%;
+    }
+    .agendaDescription {
+        width: 90%;
+    }
+}
+
+@media (max-width: 400px) {
+
+}

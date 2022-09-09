@@ -42,7 +42,7 @@ export const setHorarioClinica = async( horario , nit , access_token ) => {
 
         });
                 
-        return console.log(sendRequest.data);
+        return (sendRequest.data);
 
     } catch (error) {
 
@@ -114,7 +114,7 @@ export const putHorarioGeneral= async( horario , id , access_token ) => {
     try {
 
         const sendRequest = await axios({
-            url : `${url}/clinica/${id}/horarios`,
+            url : `${url}/horarios/${id}`,
             method : 'PUT',
             headers : {
                 "Content-Type":"application/json",

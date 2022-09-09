@@ -8,10 +8,11 @@ import {Header} from '../../layout/HeaderHome/HeaderHome';
 import { getVeterinarios } from '../../../helpers/API Consumer/useVeterinariosConsumer';
 import { divisionHorarios } from '../../../helpers/gestionHorarios';
 import { horariosAgenda } from '../../../hooks/useHorariosAgenda';
-import './style.css';
 import { getAgendasVeterinario, getHorarioVeterinario } from '../../../helpers/API Consumer/useHorariosConsumer';
 import moment from 'moment';
 import { SimpleModal } from '../../layout/Modals/SimpleModal';
+import './style.css';
+import './query.css'
 
 export const Agenda = () => {
 

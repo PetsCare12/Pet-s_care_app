@@ -30,8 +30,8 @@ export const Clinica_card = ( {
             <div className="card__cli">
                 {
                     (img === "")
-                    ? <img src="https://thumbs.dreamstime.com/b/ejemplo-de-color-plano-exterior-la-cl%C3%ADnica-veterinaria-hospital-veterinario-en-paisaje-urbano-edificio-c%C3%B3modo-con-el-letrero-141242172.jpg" alt="" />
-                    : <img src={img} alt={id} />
+                    ? <img loading='lazy' src="https://thumbs.dreamstime.com/b/ejemplo-de-color-plano-exterior-la-cl%C3%ADnica-veterinaria-hospital-veterinario-en-paisaje-urbano-edificio-c%C3%B3modo-con-el-letrero-141242172.jpg" alt="" />
+                    : <img loading='lazy' src={img} alt={id} />
                 }
                 <h1> {nombre} </h1>
                 <h2 className='txt'> <span><IoLocationOutline /></span> {direccion} </h2>
