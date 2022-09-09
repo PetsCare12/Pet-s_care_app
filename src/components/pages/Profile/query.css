@@ -1,4 +1,4 @@
-@media (max-width: 500px) {
+@media (max-width: 600px) {
 
     .boton_despliegue-profile.block{
         display: flex;
@@ -8,10 +8,13 @@
         display: none;
     }
     .profile__right {
-        padding: 50px 15px;
+        padding: 65px 11px;
         width: 100%;
         height: 100vh;
         overflow: scroll;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     .profile__seccion1 {
         flex-direction: column;
@@ -44,5 +47,9 @@
     .profile__right-mascotas {
         display: flex;
         align-items: center;
+    }
+    .cita_card .p {
+
+        align-self: auto;
     }
 }

@@ -4,6 +4,7 @@ import { InputUI } from '../../UI/InputUI/InputUI'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { pets_images } from '../../../helpers/Pets_care_images';
 import './Registro_mascotas.css'
+import './query.css'
 import { crearMascota } from '../../../helpers/API Consumer/test';
 import { NoAutenticado } from '../NoAutenticado/NoAutenticado';
 
@@ -237,11 +238,13 @@ export const Registro_mascotas = () => {
                             { !loading && 
                             <div className='registroMascotas__button-div'>
                                 <ButtonUI 
+                                    id="idquery"
                                     style='btnLogin h_35 mt-3'
                                     text='Registrar'
                                     type={"submit"}
                                 />
                                 <ButtonUI 
+                                    id="idquery"
                                     type={"button"}
                                     event={()=>window.location = "/perfil"}
                                     style='btnRegistroMascota-cancel h_35 mt-3'

@@ -1,4 +1,4 @@
-@media (max-width: 600px) {
+@media (max-width: 1000px) {
     .contenedor__clinicas{
         align-items: center;
         display: flex;
@@ -341,7 +341,6 @@
         text-decoration: none;
     }
 }
-
 
 @media (max-width: 800px) {
     .contenedor__clinicas{
@@ -688,7 +687,7 @@
 }
 
 
-@media (max-width: 1000px) {
+@media (max-width: 600px) {
     .contenedor__clinicas{
         align-items: center;
         display: flex;
@@ -1032,4 +1031,10 @@
     }
 }
 
+@media (max-width: 500px) {
 
+    .contenedor__clinicas {
+        padding: 60px 9%;
+    }
+
+}
