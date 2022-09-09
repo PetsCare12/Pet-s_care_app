@@ -10,6 +10,7 @@ import { SimpleModal } from "../../layout/Modals/SimpleModal";
 import { MdOutlineCancel } from 'react-icons/md';
 import { getClinicaById } from '../../../helpers/API Consumer/useClinicasConsumer';
 import { NoAutenticado } from '../NoAutenticado/NoAutenticado';
+import { Link } from 'react-router-dom';
 import "./TypeClinica.css";
 
 export const TypeClinica = () => {
@@ -30,7 +31,6 @@ export const TypeClinica = () => {
   const [vetState, setvetState] = useState("");
   
   useEffect(() => {
-
     if ( !!tokenUser ) {
       getClinicaById( tokenUser.id ).then( resp => {
         if ( resp.status === 200 ) {
@@ -39,8 +39,6 @@ export const TypeClinica = () => {
         }
       });
     }
-
-    eliminarVeterinario( 1095550395 , tokenClinic );
   }, [tokenUser]);
 
   useEffect(() => {
@@ -69,6 +67,10 @@ export const TypeClinica = () => {
       setarrState(true);
     }   
   }
+  
+  useEffect(() => {
+    setimg(urlImage);
+  }, [urlImage])
 
   const getVet = (e) => {
     setimg(e.imagenVete);
@@ -76,9 +78,6 @@ export const TypeClinica = () => {
     form.password = e.password;
   }
 
-  useEffect(() => {
-    setimg(urlImage);
-  }, [urlImage])
   
   const showWidget = () => {myWidgetVeter.open();};
 
@@ -164,7 +163,6 @@ export const TypeClinica = () => {
             <div id='titleP3'>
                 <h1>{nameClinic}</h1>
                 <hr className='hrVet'/>
-                {/* <h6>{"Clinica"}</h6> */}
             </div>
           </div>
           <div className='st3'>
@@ -207,9 +205,9 @@ export const TypeClinica = () => {
                                     </div>
                                   </div> 
                                   <div className='idc'>
-                                    <a onClick={() => getVet(item)} href>
+                                    <div onClick={() => getVet(item)}>
                                       <img src={pets_images('./veterinarios/proximo.png')} alt="" id='imgLi'/>
-                                    </a>
+                                    </div>
                                   </div>
                               </li>
                             ))

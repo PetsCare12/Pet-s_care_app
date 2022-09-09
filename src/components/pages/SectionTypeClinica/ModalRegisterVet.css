@@ -20,7 +20,7 @@
     color: #616161;
     border-radius: 6px;
     width: 80vh;
-    height: 85vh;
+    height: 80vh;
     overflow-y: scroll;
     padding: 1rem;
 }
@@ -39,7 +39,30 @@
     width: 75vh;
     height: 3vh;
     display: flex;
+}
+.img_cont_1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    margin-top: 25px;
+}
+.img_vet_form_reg:hover{
+    transition: 0.2s;
+    filter: brightness(50%);
+}
+.img_vet_form_reg{
+    filter: brightness(70%);
+    border: rgb(199, 199, 199) 2px dotted;
+    transition: 0.2s;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 15px;
+}
+.icon_vet_img{
+    font-size: 4rem;
+    position: absolute;
+    color: azure;
 }
 /* //////////////////// */
 .input.selects{
@@ -58,12 +81,6 @@
     display: flex;
     flex-direction: row;
     gap: 5px;
-}
-.formVet_register{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 /* ///////////////////// */
 .submit.vetRes{

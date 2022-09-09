@@ -9,13 +9,12 @@
     width: 100%;
 }
 .contenedorClinicasMenu{
-    margin-left: 100px;
+    display: flex;
+    justify-content: center;
     margin-top: 24px;
 
 }
-.menuTitulo{
-    position: fixed;
-}
+
 
 
 .menuBar{   
@@ -72,28 +71,50 @@ transform: rotate(45deg) translate(-8px, -8px);
 }
 
 .menuClinicas{
-    width: 100px;
+    background-color: white;
+    border-radius: 4px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    height: auto;
     position: fixed;
-    top: 75px;
-    left: 10px;
+    top: 4rem;
+    width: 6vw;
+    padding: 8px 7px;
+    min-width: 120px;
+    z-index: 1001;
     
 }
 
+.menuClinicas::after {
+    content: '';
+    border-top: 5px solid #008eff;
+    border-bottom: 5px solid transparent;
+    border-right: 9px solid #ff000000;
+    border-left: 9px solid transparent;
+    position: absolute;
+    right: 49px;
+    top: 1px;
+}
+
 .btnOpcionesC{
-    background-color: #008eff;
-    color: #ffffff;
-    padding: 7px 5px;
-    background-size: cover;
+    color: #444444;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 1px;
+    border-radius: 5px;
+    border-top: 1px solid #1d2129;
+    border-right: 1px solid #5a5a5a;
+    border-left: 1px solid #1d2129;
+    text-decoration: none;
+    border-bottom: 1px solid #a2a2a2;
     cursor: pointer;
-    transition: all 0.4s;
+    padding: 10px 11px;
+    text-align: center;
 }
 .btnOpcionesC:hover
 {
     transition: all 0.4s;
-    background-color: #036cc2;
+    background-color: #008eff;
+    color: white;
 }
 
 #tilte__clinicas{

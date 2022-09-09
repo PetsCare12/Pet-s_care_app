@@ -93,8 +93,8 @@ export const ClinicaProfile = () => {
                           <div className='profile__titleBtn'>Horario Veterinarios</div>
                       </button>  
                       <button onClick={() => {setActiveBtn("gestion") 
-                      window.location = "/gestionClinica"}} className={`profile__btnProfile mt-10 ${(activeBtn === "gestion") && "perfil_active"}`}>
-                          <div className='profile__titleBtn gestion_space'><BsFillArrowRightCircleFill style={{fontSize:"20px"}} /><p>Gestiona tus Veterinarios</p></div>
+                      window.location = "/gestionClinica"}} className={`profile__btnProfile ${(activeBtn === "gestion") && "perfil_active"}`}>
+                          <div className='profile__titleBtn gestion_space'><p>Gestiona tus Veterinarios</p></div>
                       </button>
 
                       <button id='perfil__logout' onClick={handleLogout} className={`profile__btnProfile ${(activeBtn === "logout") && "perfil_active"}`}>
