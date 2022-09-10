@@ -338,7 +338,7 @@ export const Agenda = () => {
             </div>
             {
                 descriptionModal &&
-                <SimpleModal>
+                <SimpleModal close={setDescriptionModal}>
                     <div className='agendaDescription animate__animated animate__fadeIn'>
                         <h1 className='h1'>Descripción</h1>
                         <p className='p'>¡Un último paso!<br/>Escribe el porqué estas solicutando esta cita. <small className='small'>(El campo no debe estar vacío)</small></p>

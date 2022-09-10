@@ -297,7 +297,7 @@ const AdminScreen = () => {
 
             {
                 solicitudesScreen && 
-                <SimpleModal>
+                <SimpleModal close={setSolicitudesScreen}>
                     <div className='admin__peticiones-modal animate__animated animate__fadeIn'>
                         <div onClick={()=>setSolicitudesScreen( false )} className="cancel"><p>x</p></div>
 
