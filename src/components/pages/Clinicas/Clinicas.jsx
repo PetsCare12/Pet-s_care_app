@@ -63,7 +63,7 @@ export const Clinicas = () => {
                 menuToggle 
                 ?
 
-                <div className='menuClinicas'>
+                <div className='menuClinicas animate__animated  animate__slideInLeft'>
                     
                         <Link className='btnOpcionesC' to={"/"}> Inicio</Link> 
                         <Link className='btnOpcionesC' to={"/perfil"}> Perfil</Link> 
