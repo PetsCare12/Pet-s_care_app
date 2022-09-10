@@ -347,10 +347,10 @@
     margin-top: 5px;
 }
 #login-spin-sectionPerfil{
-    border-bottom: 7px dotted #008eff;
-    border-top: 7px solid #ffffff00;
-    border-left: 7px dotted #008eff;
-    /* border-right: 7px solid #ffffff00; */
+    border-bottom: 7px solid#cbe0ff;
+    border-top: 7px solid #cbe0ff;
+    border-left: 7px solid#008eff;
+    border-right: 7px solid #cbe0ff;
     position: relative;
     width: 100px;
     height: 100px;
@@ -421,6 +421,7 @@
 }
 .mascotaInfo__container .updateImg{
     display: flex;
+    color: white;
     align-items: center;
     justify-content: center;
     cursor: pointer;

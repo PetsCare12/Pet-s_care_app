@@ -173,6 +173,7 @@ export const Home = () => {
 
       <footer>
         <p>&copy; <span>Pet's Care </span> Todos los derechos reservados.</p>
+        <hr />
       </footer>
     </div>
     
