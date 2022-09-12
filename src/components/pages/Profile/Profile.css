@@ -390,6 +390,7 @@
     height: auto;
     padding-bottom: 1rem;
     position: relative;
+    z-index: 1000;
 }
 .mascotaInfo__container .name{
     color: #2196f3;

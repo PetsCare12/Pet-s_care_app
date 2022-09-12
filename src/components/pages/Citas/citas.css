@@ -53,3 +53,16 @@
     color: white;
     padding: 5px 10px;
 }
+
+.citas__contenedor{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+.citasEmpty{
+    background-color: #008eff;
+    border-radius: 5px;
+    color: white !important;
+    padding: 10px;
+}
