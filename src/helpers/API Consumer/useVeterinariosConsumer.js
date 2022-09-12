@@ -1,13 +1,14 @@
 import axios from "axios";
-const url = "http://localhost:8080/api";
 
-export const getAllVeterinarios = async () => await axios(`${url}/veterinarios`);
+const URL = "https://petscareapi.uc.r.appspot.com/api";
+
+export const getAllVeterinarios = async () => await axios(`${URL}/veterinarios`);
 
 export const getVeterinarios = async( nit ) => {
 
     try {
 
-        const sendRequest = await axios.get(`${url}/clinica/${nit}/veterinarios`);
+        const sendRequest = await axios.get(`${URL}/clinica/${nit}/veterinarios`);
         
         return sendRequest.data;
 
@@ -25,7 +26,7 @@ export const getVeterinarioById = async( id ) => {
 
     try {
 
-        const sendRequest = await axios.get(`${url}/veterinarios/${id}`); 
+        const sendRequest = await axios.get(`${URL}/veterinarios/${id}`); 
 
         return sendRequest.data;            
 
@@ -43,7 +44,7 @@ export const getVeterinarioByName = async( name ) => {
 
     try {
 
-        const sendRequest = await axios.get(`${url}/veterinarios/nombre/${name}`); 
+        const sendRequest = await axios.get(`${URL}/veterinarios/nombre/${name}`); 
                 
         return sendRequest.data;           
 
@@ -63,7 +64,7 @@ export const setVeterinario = async( veterinario , nit , access_token ) => {
     try {
         
         const sendRequest = await axios({
-            url : `${url}/veterinarios/${nit}`,
+            url : `${URL}/veterinarios/${nit}`,
             method : 'POST',
             headers : {
                 "Content-Type":"application/json",
@@ -97,7 +98,7 @@ export const putVeterinario = async( veterinario , id , access_token ) => {
     try {
 
         const sendRequest = await axios({
-            url : `${url}/veterinarios/${id}`,
+            url : `${URL}/veterinarios/${id}`,
             method : 'PUT',
             headers : {
                 "Content-Type":"application/json",
@@ -130,7 +131,7 @@ export const setStateVeterinario = async( id , estado , access_token ) => {
     try {
 
         const sendRequest = await axios({
-            url : `${url}/veterinarios/${id}/estado/${estado}`,
+            url : `${URL}/veterinarios/${id}/estado/${estado}`,
             method : 'PUT',
             headers : {
                 "Content-Type":"application/json",
@@ -165,7 +166,7 @@ export const eliminarVeterinario = async( id , access_token ) => {
     try {
 
         const sendRequest = await axios({
-            url : `${url}/veterinarios/${id}`,
+            url : `${URL}/veterinarios/${id}`,
             method : 'DELETE',
             headers : {
                 "Content-Type":"application/json",

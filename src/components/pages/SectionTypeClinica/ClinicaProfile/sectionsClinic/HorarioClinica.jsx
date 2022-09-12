@@ -36,13 +36,10 @@ export const HorarioClinica = ( {data} ) => {
         if (info.length === 0) {
           settoSetHorarios(true);
           setloader(false);
-          console.log(toSetHorarios);
-          console.log(info);
         }else{
           sethorarios([info]);
           settoSetHorarios(false);
           setloader(false);
-          console.log(info);
         }
       });
     }, [data])
@@ -202,6 +199,7 @@ export const HorarioClinica = ( {data} ) => {
 
           let obj2 = hoursAvalibles[k];
           setHorarioClinica( obj2 , nit , token).then( data => {
+            setresponse_update(data);
             console.log(data);
           });
           console.log(obj2);

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = "http://localhost:8080";
+const URL = "https://petscareapi.uc.r.appspot.com/api";
 
 export const createAgenda = async ( data_, idUser, idVet ) => {
 
@@ -9,7 +9,7 @@ export const createAgenda = async ( data_, idUser, idVet ) => {
     try {
         
         const resp = await axios({
-            url : URL+"/api/usuario/"+ idUser +"/veterinario/"+ idVet +"/agendas",
+            url : URL+"/usuario/"+ idUser +"/veterinario/"+ idVet +"/agendas",
             method : 'POST',
             headers : {
                 "Content-Type":"application/json",

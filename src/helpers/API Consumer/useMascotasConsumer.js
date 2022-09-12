@@ -1,5 +1,6 @@
-import { wait } from '@testing-library/user-event/dist/utils';
 import axios from 'axios';
+
+const URL = "https://petscareapi.uc.r.appspot.com/api";
 
 export const actualizarMascota = async ( update, codigoMc ) => {
 
@@ -8,7 +9,7 @@ export const actualizarMascota = async ( update, codigoMc ) => {
 
     try {
         const response = await axios({
-            url: `http://localhost:8080/api/usuario/${id}/mascota/${codigoMc}`,
+            url: `${URL}/usuario/${id}/mascota/${codigoMc}`,
             method: "PUT",
             headers: {
                 "Content-Type":"application/json",
@@ -35,7 +36,7 @@ export const getMascotaEspecifica = async( id, codigoMc) => {
 
     try {
 
-        const response = await axios(`http://localhost:8080/api/usuario/${id}/mascota/${codigoMc}`);
+        const response = await axios(`${URL}/usuario/${id}/mascota/${codigoMc}`);
 
         return response;
         

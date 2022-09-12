@@ -1,8 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useEffect } from 'react';
+import { getVeterinarios } from '../../../../../helpers/API Consumer/useVeterinariosConsumer';
 import { ButtonUI } from '../../../../UI/ButtonUI/ButtonUI';
 import { Dias_Horario_UI } from '../../../../UI/Dias_Horario_UI/Dias_Horario_UI';
 
-export const HorarioVeterinarios = () => {
+export const HorarioVeterinarios = ( {data} ) => {
+
+  const [nit, setnit] = useState("");
+  const [loader, setloader] = useState(false);
+  const [str_warn, setstr_warn] = useState("");
+
+  const [vets, setvets] = useState({});
+
+  useEffect(() => {
+    if (!!data.nit) { 
+      setnit(data.nit); 
+      getVeterinarios( data.nit ).then( data => { 
+        setvets(data);
+        console.log(vets);
+      } )
+    }
+  }, [data])
+  
 
   const getDates = (e) => {
     e.preventDefault();
@@ -58,8 +77,12 @@ export const HorarioVeterinarios = () => {
 return (
 <form onSubmit={getDates} className="horario_form animate__animated animate__fadeIn">
   
-  <div className="title_cont">
-    <h3 className='profile__editarPerfil title_hour'>{"Horario Veterinarios"}</h3><div id='login-spin-clinic' className='spiner'></div>
+<div className="title_cont">
+    <h3 className='profile__editarPerfil title_hour'>{"Horario Clinica"}</h3>
+
+    { (loader) && <div id='login-spin-clinic' className='spiner'></div> }
+    { (str_warn) && <p>{ str_warn }</p> }
+
   </div>
   <div className="part1_horarios">
       <Dias_Horario_UI 

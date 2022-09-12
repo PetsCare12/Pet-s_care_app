@@ -10,9 +10,12 @@ export const Citas = () => {
     const [gender, setGender] = useState("");
     const [citasAll, setCitasAll] = useState([]);
 
+    const token = JSON.parse(localStorage.getItem( 'usuario' ));
+    
+
     useEffect( () => {
 
-        getAgendas().then( info => console.log( info ))
+        getAgendas(token.id).then( info => setCitasAll(info.data))
 
     }, [])
 
@@ -22,7 +25,7 @@ export const Citas = () => {
     return (
         <>
             <div className="citas__contenedor animate__animated animate__fadeIn">
-                <CitaCard />
+                <CitaCard arr={citasAll}/>
             </div>
 
         </>
