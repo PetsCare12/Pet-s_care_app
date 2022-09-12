@@ -25,9 +25,18 @@ export const Citas = () => {
     return (
         <>
             <div className="citas__contenedor animate__animated animate__fadeIn">
-                <CitaCard arr={citasAll}/>
+                {
+                    citasAll.length !== 0 ?
+                    citasAll.map( cita => (
+                        <CitaCard 
+                        key={ cita.codigoA }
+                            {...cita}
+                        />
+                    ))
+                    :
+                    <p className='citasEmpty'>No hay citas pendientes</p>
+                }
             </div>
-
         </>
     )
 }
