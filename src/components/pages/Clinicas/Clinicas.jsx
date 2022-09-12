@@ -55,7 +55,7 @@ export const Clinicas = () => {
                     ))
                 }
                 {
-                    clinicas.length === 0 && <p style={{textAlign:"center"}}>Aún no hay clínicas registradas <br/>😪🏥</p>
+                    clinicas.length === 0 &&  <div style={{ position:"revert" }} id='spiner-home' className='spiner'></div>
                 }
                 
             </div>
