@@ -10,9 +10,22 @@ export const Citas = () => {
     const [gender, setGender] = useState("");
     const [citasAll, setCitasAll] = useState([]);
 
+    let id = "";
+
+    if ( localStorage.getItem("usuario") ) {
+        
+        const user = JSON.parse(localStorage.getItem("usuario"));
+        id = user.id;
+    }
+
     useEffect( () => {
 
-        getAgendas().then( info => console.log( info ))
+        getAgendas( id ).then( info => {
+
+            setCitasAll( info.data )
+            console.log( info.data );
+
+        })
 
     }, [])
 
@@ -22,7 +35,17 @@ export const Citas = () => {
     return (
         <>
             <div className="citas__contenedor animate__animated animate__fadeIn">
-                <CitaCard />
+                {
+                    citasAll.length !== 0 ?
+                    citasAll.map( cita => (
+                        <CitaCard 
+                        key={ cita.codigoA }
+                            {...cita}
+                        />
+                    ))
+                    :
+                    <p className='citasEmpty'>No hay citas pendientes</p>
+                }
             </div>
 
         </>

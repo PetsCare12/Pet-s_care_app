@@ -36,7 +36,7 @@ export const createAgenda = async ( data_, idUser, idVet ) => {
 
 export const getAgendas = async ( id ) => {
 
-    const response = await axios(`${URL}/usuario/${id}/agendas`)
+    const response = await axios(`${URL}/api/usuario/${id}/agendas`)
 
     return response;
 
