@@ -55,7 +55,7 @@ const InfoUser = ( { id, nombre, apellido="" , correo, img, telefono, estado, di
             </li>
             {
                 showInfo &&
-                <SimpleModal>
+                <SimpleModal close={setShowInfo}>
                     <div className='infoUser-modal animate__animated animate__fadeIn'>
                         <div className='img-div'>
                             <img src={img} alt="img" />

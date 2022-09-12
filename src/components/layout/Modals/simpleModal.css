@@ -10,6 +10,7 @@
     align-items: center;
 }
 .cierre{
+    cursor: pointer;
     background: none;
     position: absolute;
     top: -10px;
