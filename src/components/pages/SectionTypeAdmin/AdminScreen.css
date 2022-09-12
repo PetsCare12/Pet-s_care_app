@@ -282,6 +282,7 @@
     min-width: 500px;
     justify-content: space-between;
     gap: 20px;
+    z-index: 1000;
 }
 .infoUser-modal .title_modal {
     background-color: white;

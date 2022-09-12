@@ -14,13 +14,10 @@ export const divisionHorarios = ( horasUsadas=[], ah , ch, am = 0 , cm = 0 ) => 
 
     dayCi.setHours(cierre);
     dayCi.setMinutes(cierre);
-
-    console.log(cm);
     
     hora = day.getHours()+":"+day.getMinutes();
     if ( !horasUsadas.includes( hora ) ) {
         
-        console.log( hora );
         horarios.push( hora );
     }
 

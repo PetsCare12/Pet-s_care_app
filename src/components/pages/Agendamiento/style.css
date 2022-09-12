@@ -297,3 +297,32 @@
 .agendaDescription .h1{
     color: #008eff;
 }
+
+.agenda_success{
+    align-items: center;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 60px 40px;
+    z-index: 1000;
+}
+.agenda_success .h1{
+    color: green;
+    font-size: 20px;
+}
+.agenda_success .icon{
+    background-color: green;
+    border-radius: 50%;
+    color: white;
+    font-size: 30px;
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+}
+.agenda_success .buttons{
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
