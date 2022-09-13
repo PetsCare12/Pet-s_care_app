@@ -8,35 +8,18 @@ import { TbPencil } from "react-icons/tb";
 import { AiFillDelete,AiFillEye } from "react-icons/ai";
 import { RiBuilding2Line } from "react-icons/ri";
 import { UserUpdate } from './UserUpdate';
-import { VeterinarioUpdate } from './VeterinarioUpdate';
-import { ClinicaUpdate } from './ClinicaUpdate';
 
 
 
 const InfoUser = ( { id, nombre, apellido="" , correo, img, telefono, estado, direccion="", vetCli="", mascotas, especialidad, data } ) => {
 
     const [showInfo, setShowInfo] = useState(false);
-    let edit = 0;
+    const [edit, setEdit] = useState(false);
     const liDeleted = useRef(null);
-    const [editable, setEditable] = useState(0);
     
     const handleDelete = () => {
         
         
-    }
-    const handleEdit = () => {
-
-        mascotas ? edit = 1 : especialidad ? edit = 2 : direccion ? edit = 3 : edit = 0;
-
-        if ( edit === 1 ) {
-            setEditable( 1 );
-        }
-        else if ( edit === 2 ){
-            setEditable( 2 );
-        }
-        else if ( edit === 3 ){
-            setEditable( 3 );
-        }
     }
 
     return (
@@ -47,8 +30,13 @@ const InfoUser = ( { id, nombre, apellido="" , correo, img, telefono, estado, di
                 <div className="col col-3 cor" data-label="Correo">{correo}</div>
                 <div className="col col-4 but" data-label="Payment Status">
                     <button className='infoUser__managment'>
-                        <p onClick={handleEdit} className='casilla edit'><TbPencil/></p>
-                        <p onClick={handleDelete} className='casilla delete'><AiFillDelete/></p>
+                        {
+                            mascotas &&
+                            <>
+                                <p onClick={ () => setEdit(  true )} className='casilla edit'><TbPencil/></p>
+                                <p onClick={handleDelete} className='casilla delete'><AiFillDelete/></p>
+                            </>
+                        }
                         <p onClick={()=>setShowInfo(true)} className='casilla show' ><AiFillEye/></p>
                     </button>
                 </div>
@@ -88,13 +76,7 @@ const InfoUser = ( { id, nombre, apellido="" , correo, img, telefono, estado, di
                 </SimpleModal>
             }
             {
-                editable === 1
-                ? <UserUpdate user={data} />
-                : editable === 2
-                ? <VeterinarioUpdate user={data} />
-                : editable === 3
-                ? <ClinicaUpdate user={data} />
-                : null
+                edit && <UserUpdate user={data} close={setEdit} />
             }
         </>
     )

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { getAgendas } from '../../../helpers/API Consumer/useAgendaConsumer';
 import { Header } from '../../layout/HeaderHome/HeaderHome'
+import { LoaderCards } from '../../UI/LoaderCards/LoaderCards';
 import { CitaCard } from './CitaCard';
 import './citas.css'
 
@@ -9,6 +10,7 @@ export const Citas = () => {
 
     const [gender, setGender] = useState("");
     const [citasAll, setCitasAll] = useState([]);
+    const [loader, setLoader] = useState(true);
 
     let id = "";
 
@@ -23,7 +25,7 @@ export const Citas = () => {
         getAgendas( id ).then( info => {
 
             setCitasAll( info.data )
-            console.log( info.data );
+            setLoader( false );
 
         })
 
@@ -36,7 +38,8 @@ export const Citas = () => {
         <>
             <div className="citas__contenedor animate__animated animate__fadeIn">
                 {
-                    citasAll.length !== 0 ?
+                    loader ? <LoaderCards extra="m40"/>
+                    : citasAll.length !== 0 ?
                     citasAll.map( cita => (
                         <CitaCard 
                         key={ cita.codigoA }

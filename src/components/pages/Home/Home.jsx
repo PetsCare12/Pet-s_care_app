@@ -81,7 +81,7 @@ export const Home = () => {
 
         <div className="home__contactUs-card">
           <div className="home__contactUs-card-img">
-            <img src="https://t3.ftcdn.net/jpg/03/36/97/32/360_F_336973263_QTBn9GvqIIJ86LS0hFAObqujuqFH8XWP.jpg" alt="" />
+            <img src="https://res.cloudinary.com/samuelrm5/image/upload/v1663100259/kevyn_f0rqpo.jpg" alt="" />
           </div>
           <div className="home__contactUs-card-info">
             <div className="home__contactUs-card-info-personal">
