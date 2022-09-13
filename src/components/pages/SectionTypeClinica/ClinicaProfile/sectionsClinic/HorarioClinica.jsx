@@ -36,13 +36,10 @@ export const HorarioClinica = ( {data} ) => {
         if (info.length === 0) {
           settoSetHorarios(true);
           setloader(false);
-          console.log(toSetHorarios);
-          console.log(info);
         }else{
           sethorarios([info]);
           settoSetHorarios(false);
           setloader(false);
-          console.log(info);
         }
       });
     }, [data])
@@ -101,8 +98,6 @@ export const HorarioClinica = ( {data} ) => {
     const setDates = (e) => {
 
       e.preventDefault();
-
-      console.log(e);
 
       if (toSetHorarios === false) {
 
@@ -201,10 +196,7 @@ export const HorarioClinica = ( {data} ) => {
         for (let k in hoursAvalibles){
 
           let obj2 = hoursAvalibles[k];
-          setHorarioClinica( obj2 , nit , token).then( data => {
-            console.log(data);
-          });
-          console.log(obj2);
+          setHorarioClinica( obj2 , nit , token).then( data => {setresponse_update(data)});
         }
 
         setloader(false);
@@ -212,7 +204,6 @@ export const HorarioClinica = ( {data} ) => {
       }else{
 
         console.log("No se puede Registrar el horario");
-        console.log(errors.validacion);
         setloader(false);
         setstr_warn(errors.validacion);
 
@@ -223,8 +214,6 @@ export const HorarioClinica = ( {data} ) => {
     }
 
     const update_horario = (e) => {
-      
-      console.log(e);
 
       setloader(true);
       let errors = {};
@@ -319,9 +308,7 @@ export const HorarioClinica = ( {data} ) => {
             
             hoursAvalibles.forEach(element => {
 
-              if (element.diaHorarios === p) {
-                var_val_day = element;
-              }
+              if (element.diaHorarios === p) {var_val_day = element;}
 
             });
             
@@ -344,19 +331,10 @@ export const HorarioClinica = ( {data} ) => {
             }
             if (JSON.stringify(errors) === '{}') {
 
-              console.log("Se puede actualizar !!");
-              console.log(var_val_day.idHorarios);
-
-              putHorarioGeneral( var_val_day , var_val_day.idHorarios , token).then( data => {
-          
-                setresponse_update(data)
-    
-              });
+              putHorarioGeneral( var_val_day , var_val_day.idHorarios , token).then( data => {setresponse_update(data)});
               
             }else{
 
-            console.log("No se puede Actualizar el horario");
-            console.log(errors.validacion);
             setloader(false);
             setstr_warn(errors.validacion);
           }
@@ -364,8 +342,6 @@ export const HorarioClinica = ( {data} ) => {
         }
         else if (index_days_val === 7) {
 
-          console.log("Se actulaliza los 7 dias!!");
-          
             let var_val_day = "";
             
             hoursAvalibles.forEach(element => {
@@ -391,17 +367,10 @@ export const HorarioClinica = ( {data} ) => {
 
               console.log("Se puede actualizar el dia !!" + var_val_day.diaHorarios + " " + var_val_day.idHorarios);
 
-              putHorarioGeneral( var_val_day , var_val_day.idHorarios , token).then( data => {
-          
-                setresponse_update(data);
-                console.log(data);
-    
-              });
+              putHorarioGeneral( var_val_day , var_val_day.idHorarios , token).then( data => {setresponse_update(data);});
               
             }else{
 
-            console.log("No se puede Actualizar el horario");
-            console.log(errors.validacion);
             setloader(false);
             setstr_warn(errors.validacion);
           }
@@ -417,9 +386,7 @@ export const HorarioClinica = ( {data} ) => {
         if (response_update === "Horario actualizada con exito") {
           
           setstr_warn("Horario actualizada con exito")
-          setTimeout(() => {
-            setstr_warn("");
-          }, 3000);
+          setTimeout(() => {setstr_warn("");}, 3000);
 
           setloader(false);
 

@@ -3,6 +3,11 @@
     margin: 0;
     padding: 0;
 }
+
+.horarios_veterinarios_comp{
+    display: flex;
+}
+
 .gestion_space{
     display: flex;
     gap: 15px;
@@ -197,4 +202,25 @@
 .checkbox_input{
     width: 20px;
     height: 20px;
+}
+/* Lista Veterinarios Horario Veterinarios */
+.list_vets{
+    height: 30vh;
+    overflow-y: scroll;
+    width: 40vh;
+    display: flex;
+    flex-direction: column;
+}
+.li_horarios{
+    width: 37vh;
+    margin-left: 10px;
+}
+.cont_vet_li{
+    display: flex;
+    flex-direction: column;
+}
+.space_li{
+    gap: 20px;
+    margin: 0;
+    padding: 0;
 }
