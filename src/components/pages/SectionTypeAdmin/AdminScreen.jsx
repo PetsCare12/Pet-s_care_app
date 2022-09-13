@@ -108,6 +108,8 @@ const AdminScreen = () => {
         setItemsPerPage( e.target.value );
     }
 
+    console.log( dataToShow );
+
     return (
         <>
             {
@@ -126,22 +128,15 @@ const AdminScreen = () => {
                         
                         {
                             <>
-                            {    userType===1 &&
-                                <>
-                                <p className='paginacionp'>Paginación</p>
-                                <input 
-                                type="number" 
-                                className='input number'
-                                value={itemsPerPage}
-                                onChange={handlePaginacion}
-                                />
-                                <form className='admin__filter' action="">
-                                    <label htmlFor="documento">N° Documento</label>
-                                    <input type="text" name='documento'/>
-                                    <button id='search' className='btnAdmin'>Buscar</button>
-                                </form>
-                                </>
-                            }
+                                {    userType===1 &&
+                                    <>
+                                        <form className='admin__filter' action="">
+                                            <label htmlFor="documento">N° Documento</label>
+                                            <input type="text" name='documento'/>
+                                            <button id='search' className='btnAdmin'>Buscar</button>
+                                        </form>
+                                    </>
+                                }
                             </>
                         }    
                         
@@ -149,13 +144,7 @@ const AdminScreen = () => {
                             <>
                             {    userType===2 &&
                                 <>
-                                <p className='paginacionp'>Paginación</p>
-                                <input 
-                                type="number" 
-                                className='input number'
-                                value={itemsPerPage}
-                                onChange={handlePaginacion}
-                                />
+
                                 <form className='admin__filter' action="">
                                     <label htmlFor="documento">N° Documento</label>
                                     <input type="text" name='documento'/>
@@ -170,13 +159,7 @@ const AdminScreen = () => {
                             <>
                             {    userType===3 &&
                                 <>
-                                <p className='paginacionp'>Paginación</p>
-                                <input 
-                                type="number" 
-                                className='input number'
-                                value={itemsPerPage}
-                                onChange={handlePaginacion}
-                                />
+
                                 <form className='admin__filter' action="">
                                     <label htmlFor="documento">N° NIT</label>
                                     <input type="text" name='documento'/>
@@ -220,6 +203,8 @@ const AdminScreen = () => {
                                                 img = {user.imagenUsu}
                                                 telefono={user.telefonoUs} 
                                                 estado={user.estadoUs} 
+                                                mascotas={user.mascotas}
+                                                data={user}
                                             
                                         />
                                                 
@@ -248,7 +233,9 @@ const AdminScreen = () => {
                                                     img={user.imagenVete}
                                                     estado={user.estadoVt}
                                                     vetCli={user.clinica.nombre}
+                                                    especialidad = {user.especialidad}
                                                     { ... user }
+                                                    data={user}
                                                 />
                                                 
                                                 )
@@ -279,7 +266,7 @@ const AdminScreen = () => {
                                                     img = {user.imagenclinica}
                                                     telefono={user.telefono} 
                                                     estado={user.estadoCli} 
-                                                    
+                                                    data={user}
                                                 />
                                                 
                                                 )
@@ -310,7 +297,7 @@ const AdminScreen = () => {
 
             {
                 solicitudesScreen && 
-                <SimpleModal>
+                <SimpleModal close={setSolicitudesScreen}>
                     <div className='admin__peticiones-modal animate__animated animate__fadeIn'>
                         <div onClick={()=>setSolicitudesScreen( false )} className="cancel"><p>x</p></div>
 

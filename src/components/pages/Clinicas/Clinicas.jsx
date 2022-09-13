@@ -55,20 +55,22 @@ export const Clinicas = () => {
                     ))
                 }
                 {
-                    clinicas.length === 0 && <p style={{textAlign:"center"}}>Aún no hay clínicas registradas <br/>😪🏥</p>
+                    clinicas.length === 0 && <div style={{position:"revert"}} id='spiner-home' className='spiner'></div>
                 }
                 
             </div>
             {
                 menuToggle 
                 ?
-
-                <div className='menuClinicas'>
-                    
-                        <Link className='btnOpcionesC' to={"/"}> Inicio</Link> 
-                        <Link className='btnOpcionesC' to={"/perfil"}> Perfil</Link> 
-                    
-                </div>
+                <>
+                    <div className='menuClinicas animate__animated  animate__slideInLeft'>
+                        
+                            <Link className='btnOpcionesC' to={"/"}> Inicio</Link> 
+                            <Link className='btnOpcionesC' to={"/perfil"}> Perfil</Link> 
+                        
+                    </div>
+                    <div className='cover'></div>
+                </>
                 :
                 null
             }

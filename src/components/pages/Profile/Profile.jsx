@@ -10,6 +10,8 @@ import { CgMenu } from "react-icons/cg";
 import { BiLeftArrowCircle } from "react-icons/bi";
 import './Profile.css';
 import './query.css';
+import { useNavigate } from 'react-router';
+import { Citas } from '../Citas/Citas';
 
 export const Profile = () => {
 
@@ -18,6 +20,8 @@ export const Profile = () => {
     const [token, setToken] = useState(localStorage.getItem("token"));
     const [userData, setUserData] = useState({});
     const [desplegar, setDesplegar] = useState(false);
+
+    const navigate = useNavigate();
 
 
     useEffect(()=>{
@@ -50,7 +54,7 @@ export const Profile = () => {
                             img={userData.imagenUsu}
                         />
                         <button onClick={() => {setActiveBtn("home") 
-                                                window.location = "/"
+                                                navigate("/")
                                                 }} 
                         className={`profile__btnProfile mt-10 ${(activeBtn === "home") && "perfil_active"}`}>
 
@@ -75,7 +79,7 @@ export const Profile = () => {
                             <div className='profile__titleBtn'>Citas pendientes</div>
                         </button>
                         <button onClick={() => {
-                                window.location = "/clinicas"
+                                navigate("/clinicas")
                                 setActiveBtn("clinicas")
                             }} className={`profile__btnProfile ${(activeBtn === "clinicas") && "perfil_active"}`}>
                             <div className='profile__titleBtn'>Clínicas</div>
@@ -101,7 +105,7 @@ export const Profile = () => {
                         <>
                         <h1 className='profile__section' style={{marginBottom:"50px"}}>Citas pendientes</h1>
                         <div className='profile__citas'>
-                            <CitaCard />
+                            <Citas />
                         </div>
                         </>
                     }

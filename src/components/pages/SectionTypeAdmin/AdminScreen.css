@@ -166,6 +166,7 @@
     padding: 4vw;
     position: absolute;
     width: 50vw;
+    z-index: 1000;
 }
 .admin__peticiones-modal .cancel{
     border-radius: 100%;
@@ -281,6 +282,7 @@
     min-width: 500px;
     justify-content: space-between;
     gap: 20px;
+    z-index: 1000;
 }
 .infoUser-modal .title_modal {
     background-color: white;

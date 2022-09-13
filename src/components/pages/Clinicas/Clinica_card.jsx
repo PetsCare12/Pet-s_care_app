@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ButtonUI } from "../../UI/ButtonUI/ButtonUI";
 import {IoLocationOutline} from "react-icons/io5"
 import {AiOutlineDollarCircle} from "react-icons/ai"
@@ -17,9 +17,11 @@ export const Clinica_card = ( {
     telefono
 } ) => {
 
+    const navigate = useNavigate();
+
     const handleAgenda = () => {
 
-        window.location = "/agenda/"+id;
+        navigate("/agenda/"+id);
     }
 
 

@@ -9,10 +9,13 @@ import { getVeterinarios } from '../../../helpers/API Consumer/useVeterinariosCo
 import { divisionHorarios } from '../../../helpers/gestionHorarios';
 import { horariosAgenda } from '../../../hooks/useHorariosAgenda';
 import { getAgendasVeterinario, getHorarioVeterinario } from '../../../helpers/API Consumer/useHorariosConsumer';
+import { BsCheckAll } from "react-icons/bs";
 import moment from 'moment';
 import { SimpleModal } from '../../layout/Modals/SimpleModal';
+import { createAgenda } from '../../../helpers/API Consumer/useAgendaConsumer';
 import './style.css';
 import './query.css'
+import { Link } from 'react-router-dom';
 
 export const Agenda = () => {
 
@@ -34,21 +37,45 @@ export const Agenda = () => {
 
     const [description, setDescription] = useState("");
     const [descriptionModal, setDescriptionModal] = useState(false);
+    const [hourValidate, setHourValidate] = useState([false,""]);
 
     const [hour, setHour] = useState("");
     const { id } = JSON.parse(localStorage.getItem("usuario"));
 
+    const [agendaSuccess, setAgendaSuccess] = useState(false);
+
     
     const day = new Date().getDay();
 
+    const handleSubmitAgenda = () => {
+
+        const data = {
+            fecha: moment().format('L'),
+            horaInicio: hour,
+            horaSalida: "00:00",
+            notas: description,
+            estado: 1
+        }
+        console.log( data  );
+        console.log( id + "  " + activeVeterinario  );
+        createAgenda( data, id, activeVeterinario ).then( info => {
+            if ( info.status === 201 ) {
+
+                setDescriptionModal( false );
+                setAgendaSuccess( true );
+            }
+        });
+
+    }
+
     const diasSemana = {
+        0 : "domingo",
         1 : "lunes",
         2 : "martes",
         3 : "miercoles",
         4 : "jueves",
         5 : "viernes",
         6 : "sabado",
-        7 : "domingo",
     }
     
     const { id:clinicaEsp } = useParams();
@@ -117,6 +144,7 @@ export const Agenda = () => {
                                     if ( hora.fecha === moment().format('L') ) {
                                         
                                         horasUsadas.push( hora.horaInicio );
+                                        console.log( horasUsadas );
                                     }
 
                                 })
@@ -330,15 +358,22 @@ export const Agenda = () => {
                                 </div>
                             </div>
                         </div>
+                        {hourValidate[0] && <p style={{color:"red"}} className='animate__animated animate__fadeIn'>{hourValidate[1]}</p>}
                         <button 
                             className='btnActualizarMascota'
-                            onClick={ () => setDescriptionModal( true )}
+                            onClick={ () => {
+                                if (hour) {
+                                    setDescriptionModal( true )
+                                    setHourValidate([false,""])
+                                }
+                                else {setHourValidate([true,"Selecciona un horario antes de continuar"])}
+                            }}
                         >Continuar</button>
                     </div>
             </div>
             {
                 descriptionModal &&
-                <SimpleModal>
+                <SimpleModal close={setDescriptionModal}>
                     <div className='agendaDescription animate__animated animate__fadeIn'>
                         <h1 className='h1'>Descripción</h1>
                         <p className='p'>¡Un último paso!<br/>Escribe el porqué estas solicutando esta cita. <small className='small'>(El campo no debe estar vacío)</small></p>
@@ -352,9 +387,27 @@ export const Agenda = () => {
                             value={description}
                             onChange={ handleDescription }
                         ></textarea>
-                        <button className={`btnActualizarMascota ${ description.length < 10 && "block" }`}>Agendar</button>
+                        <button onClick={handleSubmitAgenda} className={`btnActualizarMascota ${ description.length < 10 && "block" }`}>Agendar</button>
 
                         <button onClick={ () => setDescriptionModal( false ) } className="cancel">x</button>
+                    </div>
+                </SimpleModal>
+            }
+            {
+                agendaSuccess &&
+                <SimpleModal close={setAgendaSuccess}>
+                    <div className='agenda_success'>
+                        <BsCheckAll className='icon'/>
+                        <h1 className='h1'>Tu cita se creó correctamente</h1>
+                        <div className='buttons'>
+                            <Link to="/clinicas">
+                                <button className='btnActualizarMascota'>Volver</button>
+                            </Link>
+                            <Link to="/perfil">
+                                <button className='btnActualizarMascota'>Ver cita</button>
+                            </Link>
+                            
+                        </div>
                     </div>
                 </SimpleModal>
             }

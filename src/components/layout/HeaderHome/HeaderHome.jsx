@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { getUsuarioId } from '../../../helpers/API Consumer/test';
 import { pets_images } from '../../../helpers/Pets_care_images';
 import MenuHome from '../../UI/MenuHome/MenuHome';
@@ -13,6 +13,8 @@ export const Header = () => {
   const [userData, setUserData] = useState({});
   const [toggle, setToggle] = useState(false);
   let token = localStorage.getItem("token"); 
+
+  const navigate = useNavigate();
 
   useEffect(()=>{
       if ( user ) {
@@ -34,7 +36,7 @@ export const Header = () => {
   return (
     <div className='headerHome'>
         <div className="logo">
-          <img onClick={ () => window.location = "/"} src={pets_images('./varios/titleWhite.png')} alt="logo" id='header__title' />
+          <img onClick={ () => navigate('/') } src={pets_images('./varios/titleWhite.png')} alt="logo" id='header__title' />
         </div>
 
         <div className="options">
