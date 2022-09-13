@@ -224,3 +224,8 @@
     margin: 0;
     padding: 0;
 }
+/* Modal Vets Horario */
+.modal_vets{
+    background-color: #ebebeb;
+    z-index: 1000;
+}
