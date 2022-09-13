@@ -4,17 +4,24 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { getUsuario_mascotas } from '../../../../helpers/API Consumer/test'
 import { pets_images } from '../../../../helpers/Pets_care_images'
+import { LoaderCards } from '../../../UI/LoaderCards/LoaderCards'
 import { MascotasCard } from '../MascotasCard'
 
 export const SectionMascotas = ( {userData} ) => {
 
     const [mascotaData, setMascotaData] = useState([])
+    const [loader, setLoader] = useState(true);
 
     useEffect(()=>{
 
-        getUsuario_mascotas( userData.documentoUs )
-        .then( mascota => setMascotaData( mascota.mascotas ) )
+        setTimeout(() => {
+            getUsuario_mascotas( userData.documentoUs )
+            .then( mascota => {
+                setMascotaData( mascota.mascotas )
+                setLoader( false );
+            } )
 
+        }, 5000)
     }, [userData])
 
     return (
@@ -43,12 +50,13 @@ export const SectionMascotas = ( {userData} ) => {
                     ))
                 }
                 {
-                    ( mascotaData.length === 0 ) && 
+                    loader ? <LoaderCards extra="m40"/>
+                    : ( mascotaData.length === 0 ) ?
                         <div className='perfil__mascotas-empty'>
                             <img src={pets_images("./perfil/perroempty.png")} alt="" />
                             <p>¿Aún no tienes mascotas? <Link to={'/registro_mascotas'}>registra una aquí.</Link></p>
                         </div>
-
+                    : null
                     
                 }
             </div>

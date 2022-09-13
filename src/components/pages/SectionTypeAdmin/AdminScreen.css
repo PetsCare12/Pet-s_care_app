@@ -457,3 +457,7 @@
     margin-left: 50px;
     margin-top: 20px;
 }
+
+.update__container{
+    z-index: 1000;
+}
