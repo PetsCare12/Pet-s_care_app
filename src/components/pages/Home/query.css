@@ -221,4 +221,7 @@
     .home__contactUs-title {
         font-size: 3rem;
     }
+    footer {
+        margin-top: 0px;
+    }
 }

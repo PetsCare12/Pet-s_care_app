@@ -7,6 +7,7 @@ import { pets_images } from '../../../helpers/Pets_care_images'
 import { validacionCorreo, validacionPassword } from '../../../helpers/validacionesInput/validacionGeneral';
 import emailjs from '@emailjs/browser';
 import './style.css'
+import './query.css'
 import { Link } from 'react-router-dom';
 
 export const PasswordRecovery = () => {
