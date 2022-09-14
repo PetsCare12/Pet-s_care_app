@@ -136,11 +136,10 @@ export const ClinicaProfile = () => {
                       
                       {
                         ( horarios ) && 
-                        <SimpleModal close={sethorarios}>
-                          
+                        <SimpleModal close={sethorarios} click={() => {setActiveBtn("horario")}}>
+
                           <div className="modal_vets">
-                            <p>No hay horarios registrados</p>
-                            <div onClick={() => {setActiveBtn("horario")}} style={{backgroundColor:"red",width:"120px"}}>Horarios</div>
+                            <p>{"Primero registra tu horario!"}</p>
                           </div>
 
                         </SimpleModal>

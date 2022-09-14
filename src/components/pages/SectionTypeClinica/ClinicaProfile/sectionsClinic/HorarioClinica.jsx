@@ -200,6 +200,7 @@ export const HorarioClinica = ( {data} ) => {
         }
 
         setloader(false);
+        window.location = "/tuClinica";
 
       }else{
 
@@ -217,7 +218,6 @@ export const HorarioClinica = ( {data} ) => {
 
       setloader(true);
       let errors = {};
-
       let arr = horarios[0];
       let keys = [];
       
@@ -306,11 +306,7 @@ export const HorarioClinica = ( {data} ) => {
             
             let var_val_day = "";
             
-            hoursAvalibles.forEach(element => {
-
-              if (element.diaHorarios === p) {var_val_day = element;}
-
-            });
+            hoursAvalibles.forEach(element => {if (element.diaHorarios === p) {var_val_day = element;}});
             
             console.log("Se actualiza: " + p);
 
@@ -318,29 +314,32 @@ export const HorarioClinica = ( {data} ) => {
 
               errors.validacion = `Campo Vacío Hora Entrada del día ${var_val_day.diaHorarios}`
               setloader(false);
-              setstr_warn(errors.validacion);
-              break;
     
             }else if (var_val_day.horaSalida === "") {
               
               errors.validacion = `Campo Vacío Hora Salida del día ${var_val_day.diaHorarios}`
               setloader(false);
-              setstr_warn(errors.validacion);
-              break;
     
             }
             if (JSON.stringify(errors) === '{}') {
 
-              putHorarioGeneral( var_val_day , var_val_day.idHorarios , token).then( data => {setresponse_update(data)});
+              putHorarioGeneral( var_val_day , var_val_day.idHorarios , token).then( data => {
+                setresponse_update(data)
+                console.log(data);
+              });
               
             }else{
 
-            setloader(false);
+              setloader(false);
+
+            }
             setstr_warn(errors.validacion);
-          }
+            console.log(errors.validacion);
 
         }
         else if (index_days_val === 7) {
+
+          console.log(7);
 
             let var_val_day = "";
             
@@ -353,21 +352,22 @@ export const HorarioClinica = ( {data} ) => {
               errors.validacion = `Campo Vacío Hora Entrada del día ${var_val_day.diaHorarios}`
               setloader(false);
               setstr_warn(errors.validacion);
-              break;
     
             }else if (var_val_day.horaSalida === "") {
               
               errors.validacion = `Campo Vacío Hora Salida del día ${var_val_day.diaHorarios}`
               setloader(false);
               setstr_warn(errors.validacion);
-              break;
     
             }
             if (JSON.stringify(errors) === '{}') {
 
               console.log("Se puede actualizar el dia !!" + var_val_day.diaHorarios + " " + var_val_day.idHorarios);
 
-              putHorarioGeneral( var_val_day , var_val_day.idHorarios , token).then( data => {setresponse_update(data);});
+              putHorarioGeneral( var_val_day , var_val_day.idHorarios , token).then( data => {
+                setresponse_update(data);
+                console.log(data);
+              });
               
             }else{
 
@@ -378,9 +378,9 @@ export const HorarioClinica = ( {data} ) => {
         }
         else{
 
-            console.log("No se actualiza el dia " + p);
+          console.log("No se actualiza el dia " + p);
 
-          }
+        }
       }
 
         if (response_update === "Horario actualizada con exito") {
