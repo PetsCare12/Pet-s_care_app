@@ -602,3 +602,15 @@
     display: none;
 }
 
+.verifyPassword{
+    background-color: white;
+    width: 350px;
+    padding: 50px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+}
+.verifyPassword .label{
+    font-size: 12px;
+    font-family: 'Nunito', sans-serif;
+}
