@@ -141,6 +141,9 @@ export const Agenda = () => {
                             if ( info.data !== 0 ) {
 
                                 info.data.map( hora => {
+
+                                    // TODO __ VERIFICAR QUE EL ESTADO DE LAS CITAS SEAN 1- ACTIVO
+                                    
                                     if ( hora.fecha === moment().format('L') ) {
                                         
                                         horasUsadas.push( hora.horaInicio );
