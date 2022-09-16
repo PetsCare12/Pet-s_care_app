@@ -62,7 +62,6 @@ export const HorarioVeterinarios = ( {data} ) => {
   useEffect(() => {
       
     let arr = temp_horarios[0];
-    console.log(arr);
     // for (let c in arr) {
 
     //   let obj3 = arr[c];
@@ -109,7 +108,7 @@ export const HorarioVeterinarios = ( {data} ) => {
 
   }, [temp_horarios])
   
-  const get_horario_vet_byID = (e) => { settemp_horarios(e.horarios); }
+  const get_horario_vet_byID = (e) => { settemp_horarios(e); console.log(e.horarios);}
 
   const getDates = (e) => {
 

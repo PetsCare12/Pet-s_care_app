@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getHorarioClinica, putHorarioGeneral, setHorarioClinica } from '../../../../../helpers/API Consumer/useHorariosConsumer';
+import { getVeterinarios } from '../../../../../helpers/API Consumer/useVeterinariosConsumer';
 import { ButtonUI } from '../../../../UI/ButtonUI/ButtonUI';
 import { Dias_Horario_UI } from '../../../../UI/Dias_Horario_UI/Dias_Horario_UI';
 
@@ -7,10 +8,10 @@ export const HorarioClinica = ( {data} ) => {
 
       const token = localStorage.getItem('token');
 
-      const [loader, setloader] = useState(false);
       const [horarios, sethorarios] = useState([]);
-      const [str_warn, setstr_warn] = useState("");
+      const [loader, setloader] = useState(false);
       const [toSetHorarios, settoSetHorarios] = useState(false);
+      const [str_warn, setstr_warn] = useState("");
       const [response_update, setresponse_update] = useState("");
 
       const [lunes_in_hour, setlunes_in_hour] = useState("");
@@ -179,14 +180,12 @@ export const HorarioClinica = ( {data} ) => {
           errors.validacion = `Campo Vacío Hora Entrada del día ${obj1.diaHorarios}`
           setloader(false);
           setstr_warn(errors.validacion);
-          break;
 
         }else if (obj1.horaSalida === "") {
           
           errors.validacion = `Campo Vacío Hora Salida del día ${obj1.diaHorarios}`
           setloader(false);
           setstr_warn(errors.validacion);
-          break;
 
         }
       }

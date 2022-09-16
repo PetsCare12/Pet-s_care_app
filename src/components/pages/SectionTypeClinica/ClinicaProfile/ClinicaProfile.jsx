@@ -6,7 +6,6 @@ import { HorarioVeterinarios } from './sectionsClinic/HorarioVeterinarios';
 import { getClinicaById } from '../../../../helpers/API Consumer/useClinicasConsumer';
 import { NoAutenticado } from "../../NoAutenticado/NoAutenticado";
 import { SectionPerfilClinica } from "../ClinicaProfile/sectionsClinic/SectionPerfilClinica";
-import { Link } from 'react-router-dom';
 import '../ClinicaProfile/ClinicaProfile.css';
 import { SimpleModal } from '../../../layout/Modals/SimpleModal';
 

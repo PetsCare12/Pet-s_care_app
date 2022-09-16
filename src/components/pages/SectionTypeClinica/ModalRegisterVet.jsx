@@ -8,6 +8,7 @@ import { AiFillCheckCircle } from 'react-icons/ai';
 import { imageRandom } from '../../../helpers/RandomImages/imagenessa'
 import {VscFiles} from 'react-icons/vsc';
 import "./ModalRegisterVet.css";  
+import { getHorarioClinica } from '../../../helpers/API Consumer/useHorariosConsumer';
 
 
 export const ModalRegisterVet = ({ isOpen , closeModal , token , nit }) => {
@@ -20,6 +21,8 @@ export const ModalRegisterVet = ({ isOpen , closeModal , token , nit }) => {
   const [duplicatedData, setDuplicatedData] = useState(false);
   const [registered, setRegistered] = useState(false);
   const [image_vet, setimage_vet] = useState(img);
+  const [horario_clinica, sethorario_clinica] = useState([]);
+
   const showWidget = () => {myWidgetVeter.open();}
   
   useEffect(() => {
@@ -29,6 +32,25 @@ export const ModalRegisterVet = ({ isOpen , closeModal , token , nit }) => {
   useEffect(() => {
     setimage_vet(img)
   }, [img])
+
+  useEffect(() => {
+    let arr = [];
+    getHorarioClinica(nit).then(info => { 
+
+      for (const key in info) {
+        let obj_horaios = {};
+        let obj2 = info[key];
+
+        obj_horaios.idHorarios = "";
+        obj_horaios.horaInicio = obj2.horaInicio;
+        obj_horaios.horaSalida = obj2.horaSalida;
+        obj_horaios.diaHorarios = obj2.diaHorarios;
+
+        arr.push(obj_horaios);
+      }
+    })
+    sethorario_clinica(arr);
+  }, [token])
 
   return (
 
