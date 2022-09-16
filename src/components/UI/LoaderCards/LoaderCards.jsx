@@ -3,6 +3,6 @@ import './style.css'
 
 export const LoaderCards = ( {extra} ) => {
     return (
-        <span class={`loader ${extra}`}></span>
+        <span className={`loader ${extra}`}></span>
     )
 }

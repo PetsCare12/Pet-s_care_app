@@ -27,6 +27,10 @@ const MenuHome = () => {
 
             navigate("/perfil");
         }
+        else if ( data.aud === "[ROLE_VETERINARIO]" ) {
+
+            navigate("/perfil_veterinario");
+        }
     }
 
     return (

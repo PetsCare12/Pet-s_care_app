@@ -307,7 +307,7 @@ export const SectionPerfil = ( {userData} ) => {
                     <p>Solo queremos estar seguros de que eres tú</p>
                     <div>
                         <label className='label' htmlFor="password">Contraseña</label>
-                        <input className='inputLogin' type="text" name='password'/>
+                        <input className='inputLogin' type="password" name='password'/>
                     </div>
                     {
                         errorVerify[0] && <p style={{color:"red",fontSize:"15px"}}>{errorVerify[1]}</p> 
