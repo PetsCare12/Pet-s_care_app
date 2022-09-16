@@ -5,6 +5,7 @@ import {VscFiles} from 'react-icons/vsc';
 import { inicioSesionUsuario, usuarioUpdate } from '../../../../helpers/API Consumer/test';
 import { actualizacionPasswordUser, validacionActualizacionUser }  from "../../../../helpers/validacionesInput/validacionActualizacionUser";
 import { useSendImage } from '../../../../helpers/Cloudinary_Images/useSendImages';
+import { SimpleModal } from '../../../layout/Modals/SimpleModal';
 
 
 
@@ -19,6 +20,7 @@ export const SectionPerfil = ( {userData} ) => {
     
     const form = useRef(null);
     const formPassword = useRef(null);
+    const formVerifyPassword = useRef(null);
 
     const {myWidgetUser,urlImage} = useSendImage();
 
@@ -54,6 +56,8 @@ export const SectionPerfil = ( {userData} ) => {
     const [actPass, setActPass] = useState("");
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
+    const [verifyPassword, setVerifyPassword] = useState(false);
+    const [errorVerify, setErrorVerify] = useState([false,""])
 
     const handleNombre = ( e ) => { setActNombre( e.target.value ) }
     const handleApellido = ( e ) => { setActApellido( e.target.value ) }
@@ -68,8 +72,52 @@ export const SectionPerfil = ( {userData} ) => {
         }
     }, [urlImage])
 
+    const userValidation = ( e ) => {
+        e.preventDefault();
+
+        const formData = new FormData(formVerifyPassword.current);
+        const data = {
+            nombreoCorreo: actCorreo,
+            password: formData.get('password')
+        }
+        
+        inicioSesionUsuario( data )
+        .then( info => {
+            
+            if ( info.status === 200 ) {
+
+                const formData2 = new FormData(form.current);
+                const dataUpdate = {
+                    nombreUs: formData2.get('nombre'),
+                    apellidoUs: formData2.get('apellido'),
+                    telefonoUs: formData2.get('telefono'),
+                    sexoUs: formData2.get('sexo')
+                }
+                dataUpdate.correoUs = actCorreo;
+                dataUpdate.imagenUsu = actImage;
+                dataUpdate.passwordUs = data.password;
+                
+                usuarioUpdate( dataUpdate, userData.documentoUs, token).then( info => {
+                    if ( info.status === 200 ) {
+                        window.location = "/perfil"
+                    }
+                    else{
+                        setErrorVerify([true,"Hubo un error en el registro, intentalo más tarde"])
+                    }
+                });
+
+            }
+            else {
+                setErrorVerify([true,"Al parecer esta contraseña no es correcta"])
+            }
+            
+        })
+        
+    }
+
     const handleSubmitInfo = ( e ) => {
         e.preventDefault();
+        
         const formData = new FormData(form.current);
         const data = {
             nombreUs: formData.get('nombre'),
@@ -80,14 +128,8 @@ export const SectionPerfil = ( {userData} ) => {
         const resp = validacionActualizacionUser( data, setErrorForm, setErrorFormTxt );
 
         if ( resp === "ok" ) {
-            data.correoUs = actCorreo;
-            data.imagenUsu = actImage;
-            data.passwordUs = actPass;
-            usuarioUpdate( data, userData.documentoUs, token).then( info => {
-                if ( info.status === 200 ) {
-                    window.location = "/perfil"
-                }
-            });
+
+            setVerifyPassword( true );
         }
     }
 
@@ -257,6 +299,22 @@ export const SectionPerfil = ( {userData} ) => {
                     </div>
                 </div>
             </div>
+        }
+        {
+            verifyPassword &&
+            <SimpleModal close={setVerifyPassword}>
+                <form onSubmit={userValidation} className='verifyPassword' ref={formVerifyPassword} action="">
+                    <p>Solo queremos estar seguros de que eres tú</p>
+                    <div>
+                        <label className='label' htmlFor="password">Contraseña</label>
+                        <input className='inputLogin' type="text" name='password'/>
+                    </div>
+                    {
+                        errorVerify[0] && <p style={{color:"red",fontSize:"15px"}}>{errorVerify[1]}</p> 
+                    }
+                    <button className='btnAgregarMascota' type='submit'>Enviar</button>
+                </form>
+            </SimpleModal>
         }
         </>
     )

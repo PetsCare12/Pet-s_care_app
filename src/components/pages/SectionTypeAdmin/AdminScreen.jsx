@@ -108,8 +108,6 @@ const AdminScreen = () => {
         setItemsPerPage( e.target.value );
     }
 
-    console.log( dataToShow );
-
     return (
         <>
             {
@@ -194,18 +192,19 @@ const AdminScreen = () => {
                                             userType===1 &&
                                         
                                             dataToShow.map( (user,key) => 
+
+                                            user.correoUs !== "admin@gmail.com" &&
                                                 
                                             <InfoUser
                                                 key={key}
-                                                id={user.documentoUs} 
-                                                nombre={user.nombreUs} 
-                                                correo={user.correoUs} 
+                                                id={user.documentoUs}
+                                                nombre={user.nombreUs}
+                                                correo={user.correoUs}
                                                 img = {user.imagenUsu}
-                                                telefono={user.telefonoUs} 
-                                                estado={user.estadoUs} 
+                                                telefono={user.telefonoUs}
+                                                estado={user.estadoUs}
                                                 mascotas={user.mascotas}
                                                 data={user}
-                                            
                                         />
                                                 
                                                 )

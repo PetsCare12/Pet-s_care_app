@@ -151,7 +151,7 @@ export const Login = () => {
                                     type={showPassword}
                                     className = 'inputLogin'
                                     placeholder = 'Contraseña'
-                                    maxLength= '30'
+                                    // maxLength= '30'
                                     name = "password"
                                 />
                                 <button className='btn' type='button' onClick={ handlePassword }>

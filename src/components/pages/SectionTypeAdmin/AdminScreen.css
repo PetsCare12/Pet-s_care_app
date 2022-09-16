@@ -461,3 +461,27 @@
 .update__container{
     z-index: 1000;
 }
+
+.delete-modal{
+    border-radius: 6px;
+    padding: 40px;
+    background-color: white;
+    z-index: 1000;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#optionEstadoa{
+    color: #00d100;
+}
+#optionEstadob{
+    color: #ff1717;
+}
+.statusa{
+    color: #00d100;
+}
+.statusb{
+    color: #ff1717;
+}
