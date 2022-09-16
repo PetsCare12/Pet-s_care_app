@@ -194,6 +194,8 @@ export const Agenda = () => {
 
     const handleClinicaSelect = ( e ) => {
 
+        if (e.target.value === "none") return;
+
         setClinicaSeleccion( e.target.value );
         
         getVeterinarios( e.target.value ).then( info => setVeterinarios( info ));
