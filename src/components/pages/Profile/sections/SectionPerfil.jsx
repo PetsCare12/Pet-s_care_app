@@ -305,13 +305,13 @@ export const SectionPerfil = ( {userData} ) => {
             <SimpleModal close={setVerifyPassword}>
                 <form onSubmit={userValidation} className='verifyPassword' ref={formVerifyPassword} action="">
                     <p>Solo queremos estar seguros de que eres tú</p>
-                    {
-                        errorVerify[0] && errorVerify[1]
-                    }
                     <div>
                         <label className='label' htmlFor="password">Contraseña</label>
                         <input className='inputLogin' type="text" name='password'/>
                     </div>
+                    {
+                        errorVerify[0] && <p style={{color:"red",fontSize:"15px"}}>{errorVerify[1]}</p> 
+                    }
                     <button className='btnAgregarMascota' type='submit'>Enviar</button>
                 </form>
             </SimpleModal>

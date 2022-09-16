@@ -4,22 +4,46 @@ import { SimpleModal } from '../../../layout/Modals/SimpleModal';
 import { HiOutlineIdentification,HiOutlineMail } from "react-icons/hi";
 import { BsTelephoneForward } from "react-icons/bs";
 import { MdPermIdentity,MdOutlineLocationOn } from "react-icons/md";
-import { TbPencil } from "react-icons/tb";
 import { AiFillDelete,AiFillEye } from "react-icons/ai";
 import { RiBuilding2Line } from "react-icons/ri";
-import { UserUpdate } from './UserUpdate';
-
+import { cambiarEstadoUsuario } from '../../../../helpers/API Consumer/test';
 
 
 const InfoUser = ( { id, nombre, apellido="" , correo, img, telefono, estado, direccion="", vetCli="", mascotas, especialidad, data } ) => {
 
     const [showInfo, setShowInfo] = useState(false);
-    const [edit, setEdit] = useState(false);
+    const [deleteModal, setDeleteModal] = useState(false);
+    const [estadoUser, setEstadoUser] = useState(estado);
     const liDeleted = useRef(null);
+    const formEstado = useRef(null);
+
+    const handleEstado = e => {
+        e.preventDefault();
+
+        
+        const formData = new FormData(formEstado.current);
+        const data = {
+            estadoUs: formData.get('estado'),
+            documento: id
+        }
+        cambiarEstadoUsuario( data ).then( info => {
+
+            if ( info.status === 200) {
+                window.location = "/admin";
+            }
+            else return;
+        })
+    }
+
+    const handleSelectEstado = e => {
+
+        setEstadoUser( e.target.value );
+    }
+
     
     const handleDelete = () => {
         
-        
+        setDeleteModal( true );
     }
 
     return (
@@ -33,7 +57,6 @@ const InfoUser = ( { id, nombre, apellido="" , correo, img, telefono, estado, di
                         {
                             mascotas &&
                             <>
-                                <p onClick={ () => setEdit(  true )} className='casilla edit'><TbPencil/></p>
                                 <p onClick={handleDelete} className='casilla delete'><AiFillDelete/></p>
                             </>
                         }
@@ -76,7 +99,23 @@ const InfoUser = ( { id, nombre, apellido="" , correo, img, telefono, estado, di
                 </SimpleModal>
             }
             {
-                edit && <UserUpdate user={data} close={setEdit} />
+                deleteModal &&
+                <SimpleModal close={setDeleteModal}>
+                    <div className='delete-modal'>
+                        <h3>Cambio de estado</h3>
+                        {
+                            estado === 1 ? <p>El estado del usuario actualmente está <span className='statusa'>ACTIVO</span></p>
+                            : <p>El estado del usuario actualmente está <span className='statusb'>INACTIVO</span></p>
+                        }
+                    <form onSubmit={handleEstado} ref={formEstado}>
+                        <select onChange={handleSelectEstado} name="estado" id="select" value={estadoUser}>
+                            <option id='optionEstadoa' value="1">Activo</option>
+                            <option id='optionEstadob' value="2">Inactivo</option>
+                        </select>
+                        <button type='submit' className='btnAgregarMascota'>Cambiar</button>
+                    </form>
+                    </div>
+                </SimpleModal>
             }
         </>
     )
