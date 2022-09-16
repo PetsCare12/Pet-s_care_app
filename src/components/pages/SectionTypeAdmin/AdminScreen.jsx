@@ -10,6 +10,7 @@ import PeticionClinica from './components/PeticionClinica';
 import { usuariosTodos } from '../../../helpers/API Consumer/test';
 import { NoAutenticado } from '../NoAutenticado/NoAutenticado';
 import { getAllVeterinarios } from '../../../helpers/API Consumer/useVeterinariosConsumer';
+import { FooterPrincipal } from '../../layout/FooterPrincipal/FooterPrincipal';
 
 const AdminScreen = () => {
 
@@ -314,7 +315,9 @@ const AdminScreen = () => {
                         </div>
                     </div>
                 </SimpleModal>
+                
             }
+            <FooterPrincipal/>
         </>
     )
 }

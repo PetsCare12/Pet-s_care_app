@@ -1,4 +1,6 @@
 import { pets_images } from "../../../helpers/Pets_care_images";
+import { FooterPrincipal } from "../../layout/FooterPrincipal/FooterPrincipal";
+import nave from '../../../assets/images/varios/cohete.png'
 import { Header} from '../../layout/HeaderHome/HeaderHome'
 import './Home.css';
 import './query.css';
@@ -7,13 +9,13 @@ import './query.css';
 export const Home = () => {
 
   return (
-    <div className="home__contenedor animate__animated animate__fadeIn">
+    <div id="home__contenedor" className="home__contenedor animate__animated animate__fadeIn">
       <div>
         <Header />
         <header>
           <div className="headerHome__left">
               <h1>TU <span className="headerHome__span">MASCOTA</span><br/> ES NUESTRA<br/> PRIORIDAD</h1>
-              <p>Tenemos la mejor atencion, control y manejo para el cuidado y salud de tus mascotas.</p>
+              <p>Tenemos la mejor atención, control y manejo para el cuidado y salud de tus mascotas.</p>
           </div>
           <div className="headerHome__right">
               <img src={pets_images("./home/test.svg")} alt="header-img" />
@@ -30,13 +32,13 @@ export const Home = () => {
           </div>
           <div className="home__aboutUs-text">
             <h1>Equipo de <br/><span>desarrollo</span></h1>
-            <p>Nuestro equipo de desarrollo esta conformado por 5 personas, las cuales se encargaron de crear la mejor herramienta de gestion de citas, para el beneficio de nuestros clientes</p>
+            <p>Nuestro equipo de desarrollo está conformado por 5 personas, las cuales se encargaron de crear la mejor herramienta de gestión de citas, para el beneficio de nuestros clientes.</p>
           </div>
       </div>
       <div className="home__proyecto home__aboutUs nuestro q600">
           <div className="home__proyecto-text">
             <h1>Nuestro proyecto <br/><span>Pet's Care</span></h1>
-            <p>El proyecto PET 'S CARE es un aplicativo WEB, el cual llega como una nueva alternativa para facilitar el proceso de un agendamiento de citas para las mascotas, a la que los dueños de mascotas puedan interactuar en una interfaz amigable con el objetivo de solicitar el servicio desde su casa, y los dueños de las mascotas puedan agendar una cita con la veterinaria de su preferencia. La investigación en campo se realiza en veterinarias del departamento del Quindío, con el objetivo de conocer si cuentan con algún aplicativo web para la atención de sus clientes y a su vez, conocer si cuentan con el servicio de agendamiento de citas online, adicionalmente, se realiza varias investigaciones sobre proyectos en donde se desarrollen aplicaciones web con actividades similares a la de solicitud de citas virtuales.</p>
+            <p>El proyecto PET 'S CARE es un aplicativo WEB, el cual llega como una nueva alternativa para facilitar el proceso de un agendamiento de citas para las mascotas, a la que los dueños de mascotas puedan interactuar en una interfaz amigable con el objetivo de solicitar el servicio desde su casa, y los dueños de las mascotas puedan agendar una cita con la veterinaria de su preferencia. </p>
           </div>
           <div className="home__proyecto-img">
             <img src={pets_images("./home/undraw_real_time_analytics_re_yliv.svg")} alt="about-us" />
@@ -170,11 +172,9 @@ export const Home = () => {
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
         <path fill="#0072ff" fillOpacity="1" d="M0,256L48,250.7C96,245,192,235,288,208C384,181,480,139,576,144C672,149,768,203,864,218.7C960,235,1056,213,1152,197.3C1248,181,1344,171,1392,165.3L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
       </svg>
+      <a className="nave"  href="#home__contenedor" ><img src={nave} alt="nave" /></a>
 
-      <footer>
-        <p>&copy; <span>Pet's Care </span> Todos los derechos reservados.</p>
-        <hr />
-      </footer>
+     <FooterPrincipal/>
     </div>
     
     

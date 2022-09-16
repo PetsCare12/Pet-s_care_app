@@ -16,6 +16,7 @@ import { createAgenda } from '../../../helpers/API Consumer/useAgendaConsumer';
 import './style.css';
 import './query.css'
 import { Link } from 'react-router-dom';
+import { FooterPrincipal } from '../../layout/FooterPrincipal/FooterPrincipal';
 
 export const Agenda = () => {
 
@@ -412,6 +413,7 @@ export const Agenda = () => {
                 </SimpleModal>
             }
         </div>
+        <FooterPrincipal/>
         </>
     )
 }
