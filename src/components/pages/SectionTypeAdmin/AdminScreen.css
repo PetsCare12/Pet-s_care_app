@@ -166,6 +166,7 @@
     padding: 4vw;
     position: absolute;
     width: 50vw;
+    z-index: 1000;
 }
 .admin__peticiones-modal .cancel{
     border-radius: 100%;
@@ -281,6 +282,7 @@
     min-width: 500px;
     justify-content: space-between;
     gap: 20px;
+    z-index: 1000;
 }
 .infoUser-modal .title_modal {
     background-color: white;
@@ -454,4 +456,32 @@
 .paginacionp{
     margin-left: 50px;
     margin-top: 20px;
+}
+
+.update__container{
+    z-index: 1000;
+}
+
+.delete-modal{
+    border-radius: 6px;
+    padding: 40px;
+    background-color: white;
+    z-index: 1000;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#optionEstadoa{
+    color: #00d100;
+}
+#optionEstadob{
+    color: #ff1717;
+}
+.statusa{
+    color: #00d100;
+}
+.statusb{
+    color: #ff1717;
 }

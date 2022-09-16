@@ -117,7 +117,7 @@ export const MascotasCard = ( props ) => {
         </button>
         {
             mascotaActive &&
-            <SimpleModal>
+            <SimpleModal close={setMascotaActive}>
                 <div className='mascotaInfo__container'>
                     {/* ............. Sección para presentar ............. */}
                     {

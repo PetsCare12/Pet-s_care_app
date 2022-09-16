@@ -146,3 +146,28 @@ export const usuarioUpdate = async( user, id, token) => {
 
 }
 
+export const cambiarEstadoUsuario = async(estado) => {
+    const token = localStorage.getItem("token");
+    try {
+        const resp = await axios({
+            url: `http://localhost:8080/api/usuarios/${estado.documento}/estado/${estado.estadoUs}`,
+            method: "PUT",
+            headers: {
+                "Content-Type":"application/json",
+                'Authorization': 'Bearer '+token,
+            },
+        }).catch( function( error ) {
+
+            if (error.response) {
+                return { status : error.response.status};
+            } 
+        });
+        console.log( resp );
+        return resp;
+
+    } catch (error) {
+        console.log( error );
+    }
+
+}
+

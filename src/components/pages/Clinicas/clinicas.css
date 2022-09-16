@@ -28,14 +28,14 @@
     gap: 6px;
     justify-content: center;
     cursor: pointer;
-    z-index: 1;
+    z-index: 2;
     padding: 10px;
     top: 20px;
     left: 20px;
     transition: 1s;
 }
 .menuBar.change{
-    left: 40px;
+    left: 50px;
     transition: 1s;
     
 }
@@ -71,50 +71,47 @@ transform: rotate(45deg) translate(-8px, -8px);
 }
 
 .menuClinicas{
-    background-color: white;
+    background-color: #008eff;
+    border: 1px solid #008eff;
     border-radius: 4px;
     display: flex;
     flex-direction: column;
-    height: auto;
     position: fixed;
-    top: 4rem;
-    width: 6vw;
-    padding: 8px 7px;
-    min-width: 120px;
-    z-index: 1001;
-    
-}
-
-.menuClinicas::after {
-    content: '';
-    border-top: 5px solid #008eff;
-    border-bottom: 5px solid transparent;
-    border-right: 9px solid #ff000000;
-    border-left: 9px solid transparent;
-    position: absolute;
-    right: 49px;
-    top: 1px;
+    top: 12px;
+    height: 140px;
+    padding: 10px 0px;
+    justify-content: flex-end;
+    left: 10px;
+    width: 125px;
+    min-width: 125px;
+    z-index: 1;
 }
 
 .btnOpcionesC{
-    color: #444444;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 1px;
-    border-radius: 5px;
-    border-top: 1px solid #1d2129;
-    border-right: 1px solid #5a5a5a;
-    border-left: 1px solid #1d2129;
+    color: white;
+    border-radius: 0;
     text-decoration: none;
-    border-bottom: 1px solid #a2a2a2;
     cursor: pointer;
     padding: 10px 11px;
     text-align: center;
+    transition: all 0.4s;
 }
 .btnOpcionesC:hover
 {
     transition: all 0.4s;
-    background-color: #008eff;
-    color: white;
+    background-color: white;
+    color: #008eff;
+}
+.cover{
+    background: rgba(32,35,41,.8);
+    position: fixed;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #tilte__clinicas{

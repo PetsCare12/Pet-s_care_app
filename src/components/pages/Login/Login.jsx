@@ -131,11 +131,11 @@ export const Login = () => {
                             { ( status === 0 ) && <p id='formLogin__badData'>Estamos presentando problemas. Intentalo más tarde</p> }
                             { mssStatus && 
                             
-                                <SimpleModal>
+                                <SimpleModal close={setMssStatus}>
                                     <div className='perfil__statusUser'>
-                                        <h1>¡Atención!</h1>
+                                        <h1>Atención</h1>
                                         <p>{messageStatus}</p>
-                                        <button onClick={()=> setMssStatus( false )} id="btnh30" className='btn200'>Ok</button>
+                                        <button style={{marginBottom:"20px"}} onClick={()=> setMssStatus( false )} id="btnh30" className='btn200'>Ok</button>
                                     </div>
                                 </SimpleModal> }
 
@@ -151,7 +151,7 @@ export const Login = () => {
                                     type={showPassword}
                                     className = 'inputLogin'
                                     placeholder = 'Contraseña'
-                                    maxlength= '30'
+                                    // maxLength= '30'
                                     name = "password"
                                 />
                                 <button className='btn' type='button' onClick={ handlePassword }>
