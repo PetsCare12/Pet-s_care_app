@@ -90,9 +90,9 @@ export const Login = () => {
                                     
                                         window.location = '/perfil';
                                     }
-                                    else if ( data.aud === "[ROLE_USER]" ){
+                                    else if ( data.aud === "[ROLE_VETERINARIO]" ){
                                     
-                                        // window.location = '/perfil';
+                                        window.location = '/perfil_veterinario';
                                     }
                                 }
                                 else if( data.estado === 2 ) {

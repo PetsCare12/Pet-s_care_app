@@ -8,6 +8,8 @@ import './citas.css'
 
 export const Citas = () => {
 
+    // TODO __ VERIFICAR QUE EL ESTADO DE LAS CITAS SEAN 1- ACTIVO
+
     const [gender, setGender] = useState("");
     const [citasAll, setCitasAll] = useState([]);
     const [loader, setLoader] = useState(true);

@@ -41,3 +41,9 @@ export const getAgendas = async ( id ) => {
     return response;
 
 };
+
+export const getAgendasVeterinario = async ( id ) => {
+    const response = await axios(`${URL}/api/veterinario/${id}/agendas`)
+
+    return response;
+}
