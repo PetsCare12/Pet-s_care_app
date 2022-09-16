@@ -11,7 +11,23 @@ export const HorarioVeterinarios = ( {data} ) => {
   const [toSetVets, settoSetVets] = useState(false);
   const [loader, setloader] = useState(false);
   const [str_warn, setstr_warn] = useState("");
-  const [checkedState, setCheckedState] = useState([]);
+  const [style_list, setstyle_list] = useState("");
+  const [temp_horarios, settemp_horarios] = useState([]);
+
+  const [lunes_in_hour, setlunes_in_hour] = useState("");
+  const [lunes_out_hour, setlunes_out_hour] = useState("");
+  const [martes_in_hour, setmartes_in_hour] = useState("");
+  const [martes_out_hour, setmartes_out_hour] = useState("");
+  const [miercoles_in_hour, setmiercoles_in_hour] = useState("");
+  const [miercoles_out_hour, setmiercoles_out_hour] = useState("");
+  const [jueves_in_hour, setjueves_in_hour] = useState("");
+  const [jueves_out_hour, setjueves_out_hour] = useState("");
+  const [viernes_in_hour, setviernes_in_hour] = useState("");
+  const [viernes_out_hour, setviernes_out_hour] = useState("");
+  const [sabado_in_hour, setsabado_in_hour] = useState("");
+  const [sabado_out_hour, setsabado_out_hour] = useState("");
+  const [domingo_in_hour, setdomingo_in_hour] = useState("");
+  const [domingo_out_hour, setdomingo_out_hour] = useState("");
 
     let nit = data.nit;
 
@@ -35,13 +51,65 @@ export const HorarioVeterinarios = ( {data} ) => {
     })
   }, [data])
 
-  const isChecked = (e) => { 
-    console.log(e); 
-  }
+  useEffect(() => {
+    let horariosVets = {};
+    for (const key in vets) {
+      let k = vets[key].documento;
+      horariosVets[k] = vets[key].horarios;
+    }
+  }, [vets])
+  
+  useEffect(() => {
+      
+    let arr = temp_horarios[0];
+    console.log(arr);
+    // for (let c in arr) {
 
-  const handleOnClick = ( item ) => { 
-    console.log(item); 
-  }
+    //   let obj3 = arr[c];
+    //   console.log(obj3 + c);
+
+    //   if (obj3.diaHorarios === "lunes") {
+        
+    //     setlunes_in_hour(obj3.horaInicio);
+    //     setlunes_out_hour(obj3.horaSalida);
+
+    //   }else if (obj3.diaHorarios === "martes") {
+
+    //     setmartes_in_hour(obj3.horaInicio);
+    //     setmartes_out_hour(obj3.horaSalida);
+        
+    //   }else if (obj3.diaHorarios === "miercoles") {
+
+    //     setmiercoles_in_hour(obj3.horaInicio);
+    //     setmiercoles_out_hour(obj3.horaSalida);
+        
+    //   }else if (obj3.diaHorarios === "jueves") {
+
+    //     setjueves_in_hour(obj3.horaInicio);
+    //     setjueves_out_hour(obj3.horaSalida);
+        
+    //   }else if (obj3.diaHorarios === "viernes") {
+
+    //     setviernes_in_hour(obj3.horaInicio);
+    //     setviernes_out_hour(obj3.horaSalida);
+        
+    //   }else if (obj3.diaHorarios === "sabado") {
+
+    //     setsabado_in_hour(obj3.horaInicio);
+    //     setsabado_out_hour(obj3.horaSalida);
+        
+    //   }else if (obj3.diaHorarios === "domingo") {
+
+    //     setdomingo_in_hour(obj3.horaInicio);
+    //     setdomingo_out_hour(obj3.horaSalida);
+        
+    //   }
+
+    // }
+
+  }, [temp_horarios])
+  
+  const get_horario_vet_byID = (e) => { settemp_horarios(e.horarios); }
 
   const getDates = (e) => {
 
@@ -117,51 +185,66 @@ return (
 
     </div>
       <div className="part1_horarios">
-          <Dias_Horario_UI 
-            dia={"Lunes"}
-            name_hour_in={"lunes_in"}
-            name_hour_out={"lunes_out"}
-          />
+        <Dias_Horario_UI 
+          dia={"Lunes"}
+          name_hour_in={"lunes_in"}
+          name_hour_out={"lunes_out"}
+          value_hora_entrada={lunes_in_hour}
+          value_hora_salida={lunes_out_hour}
+        />
 
-          <Dias_Horario_UI 
-            dia={"Martes"}
-            name_hour_in={"martes_in"}
-            name_hour_out={"martes_out"}
-          />
+        <Dias_Horario_UI 
+          dia={"Martes"}
+          name_hour_in={"martes_in"}
+          name_hour_out={"martes_out"}
+          value_hora_entrada={martes_in_hour}
+          value_hora_salida={martes_out_hour}
+        />
 
-          <Dias_Horario_UI 
-            dia={"Miercoles"}
-            name_hour_in={"martes_in"}
-            name_hour_out={"martes_out"}
-          />
-          
+        <Dias_Horario_UI 
+          dia={"Miercoles"}
+          name_hour_in={"martes_in"}
+          name_hour_out={"martes_out"}
+          value_hora_entrada={miercoles_in_hour}
+          value_hora_salida={miercoles_out_hour}
+        />
+
         </div>
 
         <div className="part2_horarios">
 
         <Dias_Horario_UI 
-            dia={"Jueves"}
-            name_hour_in={"jueves_in"}
-            name_hour_out={"jueves_out"}
-          />
+          dia={"Jueves"}
+          name_hour_in={"jueves_in"}
+          name_hour_out={"jueves_out"}
+          value_hora_entrada={jueves_in_hour}
+          value_hora_salida={jueves_out_hour}
+        />
 
-          <Dias_Horario_UI 
-            dia={"Viernes"}
-            name_hour_in={"viernes_in"}
-            name_hour_out={"viernes_out"}
-          />
+        <Dias_Horario_UI 
+          dia={"Viernes"}
+          name_hour_in={"viernes_in"}
+          name_hour_out={"viernes_out"}
+          value_hora_entrada={viernes_in_hour}
+          value_hora_salida={viernes_out_hour}
+        />
 
-          <Dias_Horario_UI 
-            dia={"Sabado"}
-            name_hour_in={"sabado_in"}
-            name_hour_out={"sabado_out"}
-          />
+        <Dias_Horario_UI 
+          dia={"Sabado"}
+          name_hour_in={"sabado_in"}
+          name_hour_out={"sabado_out"}
+          value_hora_entrada={sabado_in_hour}
+          value_hora_salida={sabado_out_hour}
+        />
 
-          <Dias_Horario_UI 
-            dia={"Domingo"}
-            name_hour_in={"domingo_in"}
-            name_hour_out={"domingo_out"}
-          />
+        <Dias_Horario_UI 
+          dia={"Domingo"}
+          name_hour_in={"domingo_in"}
+          name_hour_out={"domingo_out"}
+          value_hora_entrada={domingo_in_hour}
+          value_hora_salida={domingo_out_hour}
+        />
+
 
         </div>
         <div className="part1_horarios">
@@ -174,17 +257,19 @@ return (
       <ul>
           {
             vets.map((item , index) => (
-              <li className='liVetSpace animate__animated animate__backInUp li_horarios'>
-                <div className="liVet space_li">
+              <li className="liVetSpace animate__animated animate__backInUp li_horarios" onClick={() => get_horario_vet_byID(item)}>
+                <div className="liVet space_li" >
                                     
                   <div className="cont_vet_li">
-                    <p style={{ color:"#0072ff",fontSize:"13px" }}>Nombre: </p>
                     <p>{item.nombre}</p>
                   </div>
 
                   <div className="cont_vet_li">
-                    <p style={{ color:"#0072ff",fontSize:"13px" }}>Doc: </p>
-                    <p>{item.documento}</p>
+                    <p>Doc. {item.documento}</p>
+                  </div>
+
+                  <div className="cont_vet_li">
+                    <p style={{color:"#008eff"}}>{item.especialidad}</p>
                   </div>
 
                 </div>

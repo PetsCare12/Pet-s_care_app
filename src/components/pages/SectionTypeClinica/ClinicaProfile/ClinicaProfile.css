@@ -207,14 +207,20 @@
 .list_vets{
     height: 30vh;
     overflow-y: scroll;
-    width: 40vh;
+    width: 45vh;
     display: flex;
     flex-direction: column;
 }
 .li_horarios{
-    width: 37vh;
+    width: 40vh;
+    height: 3rem;
     margin-left: 10px;
+    cursor: pointer;
 }
+.li_horarios:hover{
+    filter: brightness(85%);
+}
+.li_select{filter: brightness(85%);}
 .cont_vet_li{
     display: flex;
     flex-direction: column;
