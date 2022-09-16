@@ -4,7 +4,16 @@
 header h1,p{
     font-family: 'Nunito', sans-serif;
 }
+html{
+    scroll-behavior: smooth;
+}
+.nave{
+    width: 50px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px
 
+}
 header {
     background: linear-gradient(360deg, #0051b5,#0072ff);
     display: flex;
@@ -148,18 +157,6 @@ header .wave.wave4{
     color: #363636;
     font-size: 20px;
     width: 85%;
-}
-/*.....................Footer.............................*/
-footer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 140px;
-    flex-direction: column;
-    justify-content: space-around;
-}
-footer hr{
-    width: 50%;
 }
 
 /* ...................... Proyecto Pet's Care ...................... */
