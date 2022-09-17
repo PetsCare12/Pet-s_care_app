@@ -58,11 +58,99 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    gap: 50px;
+    gap: 55px;
+    justify-content: flex-start;
 }
 .citasEmpty{
     background-color: #008eff;
     border-radius: 5px;
     color: white !important;
     padding: 10px;
+}
+.cancelCita{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: #ff3c3c;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+.cancelCita_warn{
+    display: none;
+    position: absolute;
+    top: 35px;
+    right: -30px;
+    background-color: #ff3c3c;
+    padding: 5px;
+    border-radius: 6px;
+    color: white;
+}
+.cancelCita_warn::after{
+    content: '';
+    border-top: none;
+    border-bottom: 5px solid #ff3c3c;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    position: absolute;
+    right: 40px;
+    top: -5px;
+}
+.cancelCita:hover + .cancelCita_warn{
+    display: flex;
+}
+
+.verificar-cancelacion{
+    border-radius: 6px;
+    background-color: white;
+    padding: 30px 50px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    z-index: 1000;
+}
+.verificar-cancelacion .buttons{
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+}
+.verificar-cancelacion .buttons .btnActualizarMascota.si{
+    background-color:#00c839;
+}
+.verificar-cancelacion .buttons .btnActualizarMascota.no{
+    background-color:#ff3c3c;
+}
+.verificar-cancelacion .buttons .btnActualizarMascota.si:hover{
+    background-color:#00972b;
+}
+.verificar-cancelacion .buttons .btnActualizarMascota.no:hover{
+    background-color:#cc3939;
+}
+.verificar-cancelacion .hour{
+    background-color: #008eff;
+    border-radius: 6px;
+    color: white;
+    padding: 2px 10px;
+    margin-right: 5px;
+}
+
+.citaDeleted{
+    background-color: #4caf50;
+    border-radius: 6px;
+    color: white !important;
+    position: absolute;
+    top: 100px;
+    right: 50px;
+    padding: 15px 50px 15px 30px;
+}
+
+.citaDeleted .icon{
+    font-size: 30px;
+    position: absolute;
+    right: 10px;
+    top: 11px;
 }
