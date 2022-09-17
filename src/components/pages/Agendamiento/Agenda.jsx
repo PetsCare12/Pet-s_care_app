@@ -40,7 +40,7 @@ export const Agenda = () => {
     const [descriptionModal, setDescriptionModal] = useState(false);
     const [hourValidate, setHourValidate] = useState([false,""]);
 
-    const [hour, setHour] = useState("");
+    const [hour, setHour] = useState(["",""]);
     const { id } = JSON.parse(localStorage.getItem("usuario"));
 
     const [agendaSuccess, setAgendaSuccess] = useState(false);
@@ -50,15 +50,20 @@ export const Agenda = () => {
 
     const handleSubmitAgenda = () => {
 
+        let currentHour = hour[0];
+
+        if (hour[1] === "pm") {
+            currentHour = Number(hour[0].split(":")[0])+ 12 + ":" + hour[0].split(":")[1]
+        }
+
         const data = {
             fecha: moment().format('L'),
-            horaInicio: hour,
+            horaInicio: currentHour,
             horaSalida: "00:00",
             notas: description,
             estado: 1
         }
-        console.log( data  );
-        console.log( id + "  " + activeVeterinario  );
+
         createAgenda( data, id, activeVeterinario ).then( info => {
             if ( info.status === 201 ) {
 
@@ -122,7 +127,7 @@ export const Agenda = () => {
         
         setActiveVeterinario( idVet );
         setActive();
-        setHour();
+        setHour([]);
 
         let _morning = [];
         let _after = [];
@@ -144,12 +149,16 @@ export const Agenda = () => {
                                 info.data.map( hora => {
 
                                     // TODO __ VERIFICAR QUE EL ESTADO DE LAS CITAS SEAN 1- ACTIVO
-                                    
-                                    if ( hora.fecha === moment().format('L') ) {
+
+                                    if ( hora.estado === 1 ) {
+                                        if ( hora.fecha === moment().format('L') ) {
+                                            
+                                            horasUsadas.push( hora.horaInicio );
+                                            console.log( horasUsadas );
+                                        }
                                         
-                                        horasUsadas.push( hora.horaInicio );
-                                        console.log( horasUsadas );
                                     }
+                                    
 
                                 })
 
@@ -329,7 +338,7 @@ export const Agenda = () => {
                                                 className={`btn ${active === index && "hourActive"} animate__animated animate__fadeIn`}
                                                 onClick={ () => {
                                                     setActive( index );
-                                                    setHour( hour );
+                                                    setHour( [hour,"am"] );
                                                 }}
                                                 key={ index }
                                             >
@@ -351,7 +360,7 @@ export const Agenda = () => {
                                                 className={`btn ${active === "tarde_"+index && "hourActive"} animate__animated animate__fadeIn`}
                                                 onClick={ () => {
                                                     setActive( "tarde_"+index );
-                                                    setHour( hour );
+                                                    setHour( [hour,"pm"] );
                                                 }}
                                                 key={ "tarde_"+index }
                                             >     
@@ -368,7 +377,7 @@ export const Agenda = () => {
                         <button 
                             className='btnActualizarMascota'
                             onClick={ () => {
-                                if (hour) {
+                                if (hour[0]) {
                                     setDescriptionModal( true )
                                     setHourValidate([false,""])
                                 }

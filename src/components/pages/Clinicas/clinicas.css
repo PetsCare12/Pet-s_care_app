@@ -78,7 +78,7 @@ transform: rotate(45deg) translate(-8px, -8px);
     flex-direction: column;
     position: fixed;
     top: 12px;
-    height: 140px;
+    height: 150px;
     padding: 10px 0px;
     justify-content: flex-end;
     left: 10px;
