@@ -8,7 +8,7 @@ import './citas.css'
 
 export const Citas = () => {
 
-    // TODO __ VERIFICAR QUE EL ESTADO DE LAS CITAS SEAN 1- ACTIVO
+    // TODO - EL USUARIO SOLO PODRÁ AGENDAR 3 CITAS POR DÍA
 
     const [citasAll, setCitasAll] = useState([]);
     const [loader, setLoader] = useState(true);

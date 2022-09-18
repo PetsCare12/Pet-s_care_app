@@ -154,3 +154,40 @@
     right: 10px;
     top: 11px;
 }
+
+.cita_card .icon{
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 20px;
+    color: #4196ff;
+}
+.cita_card .description {
+    display: none;
+    border-radius: 6px;
+    background-color: #414f63;
+    color: white;
+    font-size: 13px;
+    height: auto;
+    padding: 5px;
+    position: absolute;
+    left: -100px;
+    top: 40px;
+    width: 200px;
+    z-index: 2;
+}
+.cita_card .description::after {
+    content: '';
+    border-top: none;
+    border-bottom: 5px solid #414f63;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    position: absolute;
+    left: 110px;
+    top: -5px;
+}
+
+.cita_card .icon:hover + .description{
+    display: flex;
+}
