@@ -19,9 +19,6 @@ import { Link } from 'react-router-dom';
 import { FooterPrincipal } from '../../layout/FooterPrincipal/FooterPrincipal';
 
 export const Agenda = () => {
-
-    // TODO - Poner en blanco los horaios cunado el dia no esté incluido
-
     
     const [active, setActive] = useState();
     const [clinica, setClinica] = useState([]);
@@ -147,8 +144,6 @@ export const Agenda = () => {
                             if ( info.data !== 0 ) {
 
                                 info.data.map( hora => {
-
-                                    // TODO __ VERIFICAR QUE EL ESTADO DE LAS CITAS SEAN 1- ACTIVO
 
                                     if ( hora.estado === 1 ) {
                                         if ( hora.fecha === moment().format('L') ) {

@@ -3,10 +3,10 @@ import { useState } from 'react';
 import { MdFreeCancellation } from "react-icons/md";
 import { cancelarAgenda } from '../../../helpers/API Consumer/useAgendaConsumer';
 import { SimpleModal } from '../../layout/Modals/SimpleModal';
+import { MdDescription } from "react-icons/md";
+
 
 export const CitaCard = ( props ) => { 
-
-    // TODO - CREAR UNA NOTIFICACIÓN QUE AVISE QUE SE ELMINO LA CITA
 
     const { msj, setReload, reload, data={}} = props;
 
@@ -48,6 +48,10 @@ export const CitaCard = ( props ) => {
                 <MdFreeCancellation className='cancelCita' onClick={ () => setCancelModal( true )}/>
                 <div className='cancelCita_warn animate__animated animate__fadeIn'>
                     Cancelar cita
+                </div>
+                <MdDescription className='icon'/>
+                <div className="description animate__animated animate__fadeIn">
+                    { data.notas }
                 </div>
             </div>
             {

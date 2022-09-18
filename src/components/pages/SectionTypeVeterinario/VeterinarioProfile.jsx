@@ -39,9 +39,6 @@ export const VeterinarioProfile = () => {
   
   return (
     <div>
-        {
-          ( token )
-          ?
           <>
               <div className='profile_clinica animate__animated animate__fadeIn'>
 
@@ -98,7 +95,7 @@ export const VeterinarioProfile = () => {
                         : 
                         <>
                           {
-                            activeBtn==="perfil" ? <Perfil data={{...veterinario}}/>  : activeBtn==="agenda" ? <Agendas id={id} /> : null
+                            activeBtn==="perfil" ? <Perfil data={{...veterinario}}/>  : activeBtn==="agenda" && <Agendas id={id} />
                           }
                         </>
                       }
@@ -107,11 +104,7 @@ export const VeterinarioProfile = () => {
                       
                   </div>
               </div>
-            
           </>
-          :
-            <NoAutenticado txt={"Al parecer no has iniciado sesión, te invitamos a hacerlo."} />
-        }
     </div>
   )
 }
