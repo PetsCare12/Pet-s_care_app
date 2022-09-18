@@ -50,7 +50,9 @@ export const Agenda = () => {
         let currentHour = hour[0];
 
         if (hour[1] === "pm") {
-            currentHour = Number(hour[0].split(":")[0])+ 12 + ":" + hour[0].split(":")[1]
+            if (Number(hour[0].split(":")[0]) !== 12 ) {
+                currentHour = Number(hour[0].split(":")[0])+ 12 + ":" + hour[0].split(":")[1]           
+            }
         }
 
         const data = {
