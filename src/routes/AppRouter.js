@@ -39,15 +39,13 @@ export const AppRouter = () => {
                 <Route path='clinicas' element={<Clinicas />} />
                 <Route path='clinica/:id' element={<Clinica />} />
                 <Route path="/*" element={ <NotFound />  } />
-                <Route path="/citas" element={ <Citas />  } />
                 <Route path="/" element={ <Home />  } />
-                <Route path="/gestionClinica" element={ <TypeClinica />  } />
-                <Route path="/tuClinica" element={ <ClinicaProfile />  } />
-                <Route path="/agenda" element={ <Agenda />  } />
+                <Route path="/gestionClinica" element={ (!!user && rol!=="[ROLE_CLINICA]") ? <Navigate to="/" /> : <TypeClinica />  } />
+                <Route path="/tuClinica" element={(!!user && rol!=="[ROLE_CLINICA]") ? <Navigate to="/" /> : <ClinicaProfile />  } />
+                <Route path="/agenda" element={!token ? <Navigate to="/" /> : <Agenda />  } />
                 <Route path="/admin" element={(!!user && rol!=="[ROLE_ADMIN]") ? <Navigate to="/" /> : <AdminScreen/> }/>
                 <Route path="/recovery-password" element={<PasswordRecovery />}/>
-                <Route path="/agenda" element={<Agenda />}/>
-                <Route path="/agenda/:id" element={<Agenda />}/>
+                <Route path="/agenda/:id" element={!token ? <Navigate to="/" /> : <Agenda />}/>
             </Routes>
         </BrowserRouter>
     )

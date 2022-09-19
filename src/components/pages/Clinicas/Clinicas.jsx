@@ -19,7 +19,7 @@ export const Clinicas = () => {
 
         getAllClinicas()
         .then( info => {
-            console.log( info.data );
+
             setClinicas( info.data );
         })
 
