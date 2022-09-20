@@ -79,7 +79,7 @@ export const setVeterinario = async( veterinario , nit , access_token ) => {
 
         });
                 
-        return console.log(sendRequest.data);
+        return sendRequest.data;
 
     } catch (error) {
 

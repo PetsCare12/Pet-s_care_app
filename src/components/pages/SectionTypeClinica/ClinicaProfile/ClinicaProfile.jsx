@@ -95,14 +95,9 @@ export const ClinicaProfile = () => {
                       <button onClick={() => {
 
                           setActiveBtn("gestion");
-                          console.log(clinicObjt);
                           let horario = clinicObjt.horarios;
-                          if ( horario.length === 0 ) { sethorarios(true) 
-                            console.log(horario.length); }
-                          else { sethorarios(false);
-                            window.location = "/gestionClinica";
-                            console.log(horario.length);
-                          }
+                          if ( horario.length === 0 ) { sethorarios(true) }
+                          else { sethorarios(false); window.location = "/gestionClinica"; }
 
                       }} className={`profile__btnProfile ${(activeBtn === "gestion") && "perfil_active"}`}>
                           <div className='profile__titleBtn gestion_space'>Gestiona tus Veterinarios</div>

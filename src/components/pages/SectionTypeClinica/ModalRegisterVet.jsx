@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { MdOutlineCancel } from 'react-icons/md';
 import { useSendImage } from '../../../helpers/Cloudinary_Images/useSendImages';
 import { ButtonUI } from '../../UI/ButtonUI/ButtonUI';
-import { setVeterinario } from '../../../helpers/API Consumer/useVeterinariosConsumer';
+import { getVeterinarioById, setVeterinario } from '../../../helpers/API Consumer/useVeterinariosConsumer';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { AiFillCheckCircle } from 'react-icons/ai';
 import { imageRandom } from '../../../helpers/RandomImages/imagenessa'
 import {VscFiles} from 'react-icons/vsc';
 import "./ModalRegisterVet.css";  
-import { getHorarioClinica } from '../../../helpers/API Consumer/useHorariosConsumer';
+import { getHorarioClinica, setHorarioVeterinario } from '../../../helpers/API Consumer/useHorariosConsumer';
 
 
 export const ModalRegisterVet = ({ isOpen , closeModal , token , nit }) => {
@@ -22,6 +22,7 @@ export const ModalRegisterVet = ({ isOpen , closeModal , token , nit }) => {
   const [registered, setRegistered] = useState(false);
   const [image_vet, setimage_vet] = useState(img);
   const [horario_clinica, sethorario_clinica] = useState([]);
+  const [id_vet_horario, setid_vet_horario] = useState("");
 
   const showWidget = () => {myWidgetVeter.open();}
   
@@ -35,7 +36,7 @@ export const ModalRegisterVet = ({ isOpen , closeModal , token , nit }) => {
 
   useEffect(() => {
     let arr = [];
-    getHorarioClinica(nit).then(info => { 
+    getHorarioClinica(nit).then(info => {
 
       for (const key in info) {
         let obj_horaios = {};
@@ -52,6 +53,30 @@ export const ModalRegisterVet = ({ isOpen , closeModal , token , nit }) => {
     sethorario_clinica(arr);
   }, [token])
 
+  useEffect(() => {
+    if (id_vet_horario !== "") {
+      let arr = [];
+      getVeterinarioById( id_vet_horario ).then( data => { 
+        if (data.documento !== "") {
+          for (const key in horario_clinica) {
+            let obj3 = horario_clinica[key];
+            setHorarioVeterinario( obj3 , id_vet_horario , token ).then(info => {
+              if (info === "Horario del veterinario creada con exito") {
+                arr.push(true);
+              }
+            });
+          }
+        }else{
+          console.log("No existe");
+        }
+      });
+      if (arr.length === 7) { window.location = "/gestionClinica" }
+    }else{
+      console.log("Free");
+    }
+    setid_vet_horario("");
+  }, [id_vet_horario])
+  
   return (
 
     <div className={`modal ${isOpen && 'modalOpen'}`}>
@@ -114,7 +139,7 @@ export const ModalRegisterVet = ({ isOpen , closeModal , token , nit }) => {
               valores.imagenVete = image_vet;
 
               let validacion = {};
-              console.log(valores);
+
               setVeterinario( valores , nit , token ).then(info => {
                 info = validacion;
 
@@ -128,17 +153,21 @@ export const ModalRegisterVet = ({ isOpen , closeModal , token , nit }) => {
                     setServerError( true );
                     setDuplicatedData( false );
                     setLoading( false );
-                }
-                else {
+
+                }else if (validacion.mensaje === "el veterinario ya existe con este documento"){
+                    setServerError( true );
+                    setDuplicatedData( false );
+                    setLoading( false );
+
+                }else {
                     setDuplicatedData( false );
                     resetForm();
                     setLoading(false);
                     setRegistered( true );
-                    window.location = '/gestionClinica'
+                    setid_vet_horario(valores.documento);
                 }
                 console.log(info);
               })
-
           }}>
                  {({ errors }) => (
                     <Form>

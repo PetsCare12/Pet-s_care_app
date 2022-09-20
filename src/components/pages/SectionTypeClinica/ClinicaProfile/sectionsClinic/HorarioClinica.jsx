@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { getHorarioClinica, putHorarioGeneral, setHorarioClinica } from '../../../../../helpers/API Consumer/useHorariosConsumer';
-import { getVeterinarios } from '../../../../../helpers/API Consumer/useVeterinariosConsumer';
 import { ButtonUI } from '../../../../UI/ButtonUI/ButtonUI';
 import { Dias_Horario_UI } from '../../../../UI/Dias_Horario_UI/Dias_Horario_UI';
 
