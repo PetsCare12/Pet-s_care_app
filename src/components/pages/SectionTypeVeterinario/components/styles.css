@@ -71,6 +71,12 @@
     color: #4196ff;
 }
 
+.citas-veterinario .icon.delete{
+    color: #ff3434;
+    left: 5px;
+    right: 0;
+}
+
 .citas-veterinario .description {
     display: none;
     border-radius: 6px;
@@ -98,4 +104,9 @@
 
 .citas-veterinario .icon:hover + .description{
     display: flex;
+}
+small.agendaVete{
+    font-size: 14px;
+    color: #686868;
+    margin-left: 25px;
 }

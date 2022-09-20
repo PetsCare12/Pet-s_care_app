@@ -17,6 +17,7 @@ import './style.css';
 import './query.css'
 import { Link } from 'react-router-dom';
 import { FooterPrincipal } from '../../layout/FooterPrincipal/FooterPrincipal';
+import { LoaderCards } from "../../UI/LoaderCards/LoaderCards";
 
 export const Agenda = () => {
     
@@ -29,9 +30,6 @@ export const Agenda = () => {
     
     const [schedulesMor, setSchedulesMor] = useState([]);
     const [schedulesAft, setSchedulesAft] = useState([]);
-    
-    const [mascotas, setMascotas] = useState([]);
-    const [miMascota, setMiMascota] = useState([]);
 
     const [description, setDescription] = useState("");
     const [descriptionModal, setDescriptionModal] = useState(false);
@@ -41,6 +39,10 @@ export const Agenda = () => {
     const { id } = JSON.parse(localStorage.getItem("usuario"));
 
     const [agendaSuccess, setAgendaSuccess] = useState(false);
+
+    const [loadingSchedule, setLoadingSchedule] = useState(false);
+    const [loadingVet, setLoadingVet] = useState(true);
+    const [loadingGeneral, setLoadingGeneral] = useState(true);
 
     
     const day = new Date().getDay();
@@ -89,16 +91,15 @@ export const Agenda = () => {
 
         getAllClinicas().then( info => {
             setClinica(info.data);
-
+            setLoadingGeneral(false);
         });
-
-        getUsuario_mascotas( id ).then( info => {
-            setMascotas( info.mascotas );
-        })
 
         if ( !!clinicaEsp ) {
             setClinicaSeleccion( clinicaEsp )
-            getVeterinarios( clinicaEsp ).then( info => setVeterinarios( info ));
+            getVeterinarios( clinicaEsp ).then( info => {
+                setVeterinarios( info )
+                setLoadingVet( false )
+            });
     }
         else {
             setClinicaSeleccion( "" );
@@ -106,23 +107,9 @@ export const Agenda = () => {
 
     },[])
 
-    const handleMiMascota = ( e ) => {
-
-        e.target.value === "none" 
-
-        ? 
-            setMiMascota([])
-        :
-        
-        getMascotaEspecifica( id , e.target.value )
-            .then( info => {
-                setMiMascota( [info.data] );
-
-            })
-
-    }
-
     const handleSelectVeterinario = ( idVet ) => {
+
+        setLoadingSchedule( true );
         
         setActiveVeterinario( idVet );
         setActive();
@@ -173,6 +160,9 @@ export const Agenda = () => {
                             _morning = morning ;
                             _after   = newAfternoon ;
 
+                            setLoadingSchedule( false );
+
+
                             ( _morning.length !== 0 ) ? setSchedulesMor( _morning ) : setSchedulesMor([]);
                             ( _after.length !== 0 ) ? setSchedulesAft( _after ) : setSchedulesAft([]);
                         })
@@ -182,11 +172,13 @@ export const Agenda = () => {
                     else {
                         setSchedulesMor([]);
                         setSchedulesAft([]);
+                        setLoadingSchedule( false );
                     }
     
                 })
             }
             else{
+                setLoadingSchedule( false );
                 setSchedulesMor([]);
                 setSchedulesAft([]);
             }
@@ -204,7 +196,10 @@ export const Agenda = () => {
 
         setClinicaSeleccion( e.target.value );
         
-        getVeterinarios( e.target.value ).then( info => setVeterinarios( info ));
+        getVeterinarios( e.target.value ).then( info => {
+            setLoadingVet( false );
+            setVeterinarios( info )
+        });
         setSchedulesMor([]);
         setSchedulesAft([]);
     }
@@ -220,172 +215,158 @@ export const Agenda = () => {
         <>
         <Header />
         <div className='agenda__container animate__animated animate__fadeIn'>
-            <div className='card'>
-                <h1 className="title">Agenda</h1>
-                    <div className="selectors">
+            {
+                loadingGeneral ? <><div style={{
+                    display:"flex",
+                    flexDirection:"column",
+                    justifyContent:"center",
+                    alignItems:"center",
+                    gap:"20px"
+                }}><LoaderCards /><p>Cargando...</p></div></>
+                :
+                <div className='card'>
+                    <h1 className="title">Agenda</h1>
+                        <div className="selectors">
 
-                        <select id='select' name='mascota' onChange={handleMiMascota}>
-                            {
-                                mascotas.length !== 0 ?
-                                    <>
-                                        <option value="none" >Selecciona una mascota</option>
-                                        {
-                                            mascotas.map( mascota => (
-                                                <option key={mascota.codigo} value={mascota.codigo} >{mascota.nombre} - {mascota.raza}</option>
-                                            ))
-                                        }
-                                    </>
-                                :
-                                <option value="none" > Aún no hay mascotas registradas </option>
-                            }
-                        </select>
-
-                        <select id='select' name='clinica' value={clinicaSeleccion} onChange={handleClinicaSelect}>
-                            <option id='selected' value="none">Selecciona una clínica</option>
-                            {
-                                clinica.map( cli => (
-                                    cli.estadoCli === 1 &&
-                                    <option 
-                                        key={cli.nit} 
-                                        value={cli.nit}
-                                    >
-                                        {cli.nombre}
-                                    </option>
-                                ))
-                            }
-                            
-                        </select>
-
-                        <div className="agenda__info-veterinarios mt-5 animate__animated animate__fadeIn">
-
-                            {
-                                veterinarios.length === 0 ? 
-                                <div>
-                                    <img style={{width:"150px"}} src={pets_images("./agenda/veterinarioEmpty.webp")} alt="img" />
-                                    <p>¡Ops!, aún no hay veterinarios en esta clínica</p>
-                                </div>
-
-                                : 
-                                veterinarios.map( vet => (
-                                    <button onClick={ () => handleSelectVeterinario(vet.documento)} 
-                                            className={`agenda__button-card`}
-                                            key={vet.documento}
+                            <select id='select' name='clinica' value={clinicaSeleccion} onChange={handleClinicaSelect}>
+                                <option id='selected' value="none">Selecciona una clínica</option>
+                                {
+                                    clinica.map( cli => (
+                                        cli.estadoCli === 1 &&
+                                        <option 
+                                            key={cli.nit} 
+                                            value={cli.nit}
                                         >
-                                        <div className="agenda__veterinarios-card">
-                                            <img src={vet.imagenVete} alt="" />
-                                            <h1 className={`${activeVeterinario === vet.documento && "vet_active"}`} id='h1Veterinario'>{vet.nombre} {vet.apellidos}</h1>
-                                            
-                                        </div>
-                                    </button>
-                                ))
+                                            {cli.nombre}
+                                        </option>
+                                    ))
+                                }
+                                
+                            </select>
 
-                            }
+                            <div className="agenda__info-veterinarios mt-5 animate__animated animate__fadeIn">
+                                {
+                                    loadingVet ? <div style={{width:"30px",height:"30px"}} id='login-spin-sectionPerfil' className='spiner'></div>
+                                    :
+                                    <>
+                                    {
+                                        veterinarios.length === 0 ? 
+                                        <div>
+                                            <img style={{width:"150px"}} src={pets_images("./agenda/veterinarioEmpty.webp")} alt="img" />
+                                            <p>¡Ops!, aún no hay veterinarios en esta clínica</p>
+                                        </div>
+
+                                        : 
+                                        veterinarios.map( vet => (
+                                            <button onClick={ () => handleSelectVeterinario(vet.documento)} 
+                                                    className={`agenda__button-card`}
+                                                    key={vet.documento}
+                                                >
+                                                <div className="agenda__veterinarios-card">
+                                                    <img src={vet.imagenVete} alt="" />
+                                                    <h1 className={`${activeVeterinario === vet.documento && "vet_active"}`} id='h1Veterinario'>{vet.nombre} {vet.apellidos}</h1>
+                                                    
+                                                </div>
+                                            </button>
+                                        ))
+
+                                    }
+                                    </>
+                                }
+
+
+                            </div>
 
                         </div>
+                        <div className="imgSchedule">
+                            <div className="schedule">
+                                <h1 className='day'>
+                                    {
+                                        day === 1 ? "Lunes"
+                                        :day === 2 ? "Martes"
+                                        :day === 3 ? "Miercoles"
+                                        :day === 4 ? "Jueves"
+                                        :day === 5 ? "Viernes"
+                                        :day === 6 ? "Sabado"
+                                        : "Domingo"
+                                    }
+                                </h1>
+                                <div className="momento">
+                                    <div className='columna mañana'>
+                                        <h2 className='h2'>Mañana <small className='small'>AM</small></h2>
+                                        {
+                                            loadingSchedule ? <div style={{width:"30px",height:"30px"}} id='login-spin-sectionPerfil' className='spiner'></div>
+                                            :
+                                            <>
+                                            { schedulesMor.length === 0 && <p className='horarioEmpty animate__animated animate__fadeIn'>No hay horas disponibles</p> }
+                                            {
+                                                schedulesMor.map( (hour,index) => (
 
-                    </div>
-                    <div className="imgSchedule">
-                            {
-                                miMascota.length === 0 ? 
-                                <div className="imgPet"></div>
-                                : 
-                                miMascota.map( mascota => (
+                                                    <button
+                                                        className={`btn ${active === index && "hourActive"} animate__animated animate__fadeIn`}
+                                                        onClick={ () => {
+                                                            setActive( index );
+                                                            setHour( [hour,"am"] );
+                                                        }}
+                                                        key={ index }
+                                                    >
+                                                        { hour.split(":")[1] === "0" ? hour+"0" : hour }
+                                                    </button>
+                                                ))
+                                            }
+                                            </>
+                                        }
+                                        
+                                        
 
-                                    <div className="imgPet" key={mascota.codigo}>
-                                        <img className='pet' src={mascota.imagenMascota} alt="img" />
-                                        <div className="info">
-                                            <div>
-                                                <p className='titulo'>{mascota.nombre} <span className='infodata'>{mascota.tipoAnimal}</span></p>
-                                                <p className="infodata">{mascota.raza}</p>
-                                            </div>
-                                            <div>
-                                                {
-                                                    mascota.edad < 2 ? <p className="infodata more">{mascota.edad} Año</p>
-                                                    : <p className="infodata more">{mascota.edad} Años</p>
-                                                }
-                                                
-                                                <p className="infodata more">{mascota.sexo}</p>
-                                                <p className="infodata more">Discapacidad: {mascota.discapacidad}</p>
-                                            </div>
-
-                                        </div>
                                     </div>
-                                ))
-                            }
-                        <div className="schedule">
-                            <h1 className='day'>
-                                {
-                                    day === 1 ? "Lunes"
-                                    :day === 2 ? "Martes"
-                                    :day === 3 ? "Miercoles"
-                                    :day === 4 ? "Jueves"
-                                    :day === 5 ? "Viernes"
-                                    :day === 6 ? "Sabado"
-                                    : "Domingo"
-                                }
-                            </h1>
-                            <div className="momento">
-                                <div className='columna mañana'>
-                                    <h2 className='h2'>Mañana <small className='small'>AM</small></h2>
-                                    { schedulesMor.length === 0 && <p className='horarioEmpty animate__animated animate__fadeIn'>No hay horas disponibles</p> }
-                                    {
-                                        schedulesMor.map( (hour,index) => (
+                                    <div className='columna tarde'>
+                                        <h2 className='h2'>Tarde <small className='small'>PM</small></h2>
+                                        {
+                                            loadingSchedule ? <div style={{width:"30px",height:"30px"}} id='login-spin-sectionPerfil' className='spiner'></div>
+                                            :
+                                            <>
+                                            { schedulesAft.length === 0 && <p className='horarioEmpty animate__animated animate__fadeIn'>No hay horas disponibles</p> }
+                                            {
+                                                schedulesAft.map( (hour,index) => (
 
-                                            <button
-                                                className={`btn ${active === index && "hourActive"} animate__animated animate__fadeIn`}
-                                                onClick={ () => {
-                                                    setActive( index );
-                                                    setHour( [hour,"am"] );
-                                                }}
-                                                key={ index }
-                                            >
-                                                { hour.split(":")[1] === "0" ? hour+"0" : hour }
-                                            </button>
-                                        ))
-                                    }
-                                    
-                                    
-
-                                </div>
-                                <div className='columna tarde'>
-                                    <h2 className='h2'>Tarde <small className='small'>PM</small></h2>
-                                    { schedulesAft.length === 0 && <p className='horarioEmpty animate__animated animate__fadeIn'>No hay horas disponibles</p> }
-                                    {
-                                        schedulesAft.map( (hour,index) => (
-
-                                            <button
-                                                className={`btn ${active === "tarde_"+index && "hourActive"} animate__animated animate__fadeIn`}
-                                                onClick={ () => {
-                                                    setActive( "tarde_"+index );
-                                                    setHour( [hour,"pm"] );
-                                                }}
-                                                key={ "tarde_"+index }
-                                            >     
-                                                { 
-                                                    hour.split(":")[1] === "0" ? hour+"0" : hour 
-                                                }
-                                            </button>
-                                        ))
-                                    }
+                                                    <button
+                                                        className={`btn ${active === "tarde_"+index && "hourActive"} animate__animated animate__fadeIn`}
+                                                        onClick={ () => {
+                                                            setActive( "tarde_"+index );
+                                                            setHour( [hour,"pm"] );
+                                                        }}
+                                                        key={ "tarde_"+index }
+                                                    >     
+                                                        { 
+                                                            hour.split(":")[1] === "0" ? hour+"0" : hour 
+                                                        }
+                                                    </button>
+                                                ))
+                                            }
+                                            </>
+                                        }
+                                    </div>
                                 </div>
                             </div>
+                            {hourValidate[0] && <p style={{color:"red"}} className='animate__animated animate__fadeIn'>{hourValidate[1]}</p>}
+                            <button 
+                                className='btnActualizarMascota'
+                                onClick={ () => {
+                                    if (hour[0]) {
+                                        setDescriptionModal( true )
+                                        setHourValidate([false,""])
+                                    }
+                                    else {setHourValidate([true,"Selecciona un horario antes de continuar"])}
+                                }}
+                            >Continuar</button>
                         </div>
-                        {hourValidate[0] && <p style={{color:"red"}} className='animate__animated animate__fadeIn'>{hourValidate[1]}</p>}
-                        <button 
-                            className='btnActualizarMascota'
-                            onClick={ () => {
-                                if (hour[0]) {
-                                    setDescriptionModal( true )
-                                    setHourValidate([false,""])
-                                }
-                                else {setHourValidate([true,"Selecciona un horario antes de continuar"])}
-                            }}
-                        >Continuar</button>
-                    </div>
-            </div>
+                </div>
+
+            }
             {
                 descriptionModal &&
-                <SimpleModal close={setDescriptionModal}>
+                <SimpleModal>
                     <div className='agendaDescription animate__animated animate__fadeIn'>
                         <h1 className='h1'>Descripción</h1>
                         <p className='p'>¡Un último paso!<br/>Escribe el porqué estas solicutando esta cita. <small className='small'>(El campo no debe estar vacío)</small></p>

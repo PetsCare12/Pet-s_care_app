@@ -26,6 +26,11 @@ export const Clinica = (  ) => {
 
         getClinicaByNit( id )
         .then( info => {
+            
+            if( info.status === 404 ){
+                return navigate("/clinicas")
+            }
+            
             setClinica( info.data )
         })
 

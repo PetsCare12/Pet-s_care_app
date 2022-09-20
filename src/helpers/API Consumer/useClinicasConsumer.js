@@ -126,10 +126,18 @@ export const getAllClinicas = async () => {
 export const getClinicaByNit = async ( nit ) => {
 
     try {
-        const response = await axios("http://localhost:8080/api/clinicas/"+nit);
+        const response = await axios("http://localhost:8080/api/clinicas/"+nit)
+        .catch( function( error ) {
 
-        console.log( response );
+            if ( error.response ) {
+                console.log( error );
+                return { status : error.response.status }
+            }
+
+        });
+
         return response;
+        
     } catch (error) {
         console.log( error );
     }

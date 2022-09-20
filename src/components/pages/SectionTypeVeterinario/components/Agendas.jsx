@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { getAgendasVeterinario } from '../../../../helpers/API Consumer/useAgendaConsumer';
+import { cancelarAgenda, getAgendasVeterinario } from '../../../../helpers/API Consumer/useAgendaConsumer';
 import { LoaderCards } from '../../../UI/LoaderCards/LoaderCards';
-import { MdDescription } from "react-icons/md";
+import { MdDescription,MdFreeCancellation } from "react-icons/md";
+import { AiFillCheckCircle } from "react-icons/ai";
+import { SimpleModal } from '../../../layout/Modals/SimpleModal';
 
 export const Agendas = ( {id} ) => {
 
     const [loader, setLoader] = useState(true);
     const [agendas, setAgendas] = useState([]);
+    const [reload, setReload] = useState(false);
+    const [agendaDeleted, setAgendaDeleted] = useState("");
 
     useEffect( () => {
 
@@ -21,13 +25,28 @@ export const Agendas = ( {id} ) => {
 
         })
 
-    },[])
+    },[reload])
 
-    console.log( agendas );
+    const cancelDate = ( codigo ) => {
 
+        cancelarAgenda( codigo ).then( info => {
+
+            if ( info.status === 200) {
+                setReload( !reload );
+                setAgendaDeleted( "La cita ha sido eliminada" )
+                setTimeout( () => {
+                    setAgendaDeleted("")
+                }, 5000 )
+                
+            }
+            console.log( info );
+        })
+
+        
+    }
     return (
         <>
-            <h1 style={{position:"absolute"}}>Mis citas pendientes</h1>
+            <h1 style={{position:"absolute"}}>Mis citas pendientes <small className='agendaVete'>(recuerda dar doble click para finalizar una cita)</small></h1>
             <div className='agendasVeterinario'>
             {
                 loader ? 
@@ -43,7 +62,7 @@ export const Agendas = ( {id} ) => {
                     <>
                         {
                             agendas.map( (cita) => (
-                                <div className='citas-veterinario'>
+                                <div className='citas-veterinario' key={cita.codigoA}>
                                     <img className='img' src={cita.documentous.imagenUsu} alt="" />
                                     <div className="contenido">
                                         <p>N° {cita.documentous.documentoUs}</p>
@@ -55,6 +74,7 @@ export const Agendas = ( {id} ) => {
                                                 cita.horaInicio.split(":")[1] === "0" ? cita.horaInicio.split(":")[0]+":00" : cita.horaInicio
                                             }
                                         </div>
+                                        <MdFreeCancellation onDoubleClick={ () => cancelDate( cita.codigoA ) } className='icon delete' title='Finalizar cita'/>
                                         <MdDescription className='icon'/>
                                         <div className="description animate__animated animate__fadeIn">
                                             { cita.notas }
@@ -66,6 +86,10 @@ export const Agendas = ( {id} ) => {
                     </>
                 }
                 </>
+            }
+            {
+                agendaDeleted && 
+                <p className='citaDeleted animate__animated animate__backInRight'>Tu cita ha sido eliminada <AiFillCheckCircle className='icon'/></p>
             }
             </div>
         </>

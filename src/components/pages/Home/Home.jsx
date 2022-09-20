@@ -11,6 +11,7 @@ import kevyn from './kevyn.jpg'
 export const Home = () => {
 
   return (
+
     <div id="home__contenedor" className="home__contenedor animate__animated animate__fadeIn">
       <div>
         <Header />

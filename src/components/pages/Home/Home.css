@@ -62,7 +62,7 @@ header {
     text-shadow: 5px 5px #333;
 }
 
-/* ................ WAVES ................ */
+
 .wave {
     position: absolute;
     bottom: 0;
@@ -120,7 +120,6 @@ header .wave.wave4{
 }
 
 
-/* ...................... ABOUT US ...................... */
 .home__aboutUs{
     display: flex;
     flex-wrap: wrap;
@@ -159,7 +158,7 @@ header .wave.wave4{
     width: 85%;
 }
 
-/* ...................... Proyecto Pet's Care ...................... */
+
 .home__proyecto{
     background-color: aliceblue;
     display: flex;
@@ -191,7 +190,7 @@ header .wave.wave4{
     height: auto;
 }
 
-/* CONTACT US */
+
 .wave__contactUs{
     margin-top: -190px;
     width: 100%;

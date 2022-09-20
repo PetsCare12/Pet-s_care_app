@@ -9,8 +9,7 @@ import { RiBuilding2Line } from "react-icons/ri";
 import { cambiarEstadoUsuario } from '../../../../helpers/API Consumer/test';
 
 
-const InfoUser = ( { id, nombre, apellido="" , correo, img, telefono, estado, direccion="", vetCli="", mascotas, especialidad, data } ) => {
-
+const InfoUser = ( { id, nombre, apellido="" , correo, img, telefono, estado, direccion="", vetCli="", mascotas, especialidad, data, reload } ) => { 
     const [showInfo, setShowInfo] = useState(false);
     const [deleteModal, setDeleteModal] = useState(false);
     const [estadoUser, setEstadoUser] = useState(estado);
@@ -29,7 +28,7 @@ const InfoUser = ( { id, nombre, apellido="" , correo, img, telefono, estado, di
         cambiarEstadoUsuario( data ).then( info => {
 
             if ( info.status === 200) {
-                window.location = "/admin";
+                reload( 1 );
             }
             else return;
         })
@@ -49,7 +48,7 @@ const InfoUser = ( { id, nombre, apellido="" , correo, img, telefono, estado, di
     return (
         <>
             <li ref={liDeleted} className="table-row animate__animated">
-                <div className="col col-1 doc" data-label="Job Id">{id}</div>
+                <div className="col col-1 doc" data-label="Job Id"><span className={`estado-point ${estado===1 ? "a" : estado===2 ? "b" : "c"}`}></span>{id}</div>
                 <div className="col col-2 nom" data-label="Customer Name">{nombre}</div>
                 <div className="col col-3 cor" data-label="Correo">{correo}</div>
                 <div className="col col-4 but" data-label="Payment Status">
