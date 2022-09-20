@@ -14,7 +14,7 @@ import { actualizarMascota } from '../../../helpers/API Consumer/useMascotasCons
 
 export const MascotasCard = ( props ) => {
 
-    const { codigoMc, name, age, raza, image, discapacidad, sexo, peso, tipo, color } = props;
+    const { codigoMc, name, age, raza, image, discapacidad, sexo, peso, tipo, color, setSuccess, reload, setReload } = props;
 
     const [mascotaActive, setMascotaActive] = useState(false);
     const [edit, setEdit] = useState(false);
@@ -28,7 +28,6 @@ export const MascotasCard = ( props ) => {
     const [inpColor, setInpColor] = useState(color);
     const [actImage, setActImage] = useState(image);
     const [loading, setLoading] = useState(false);
-    const [success, setSuccess] = useState(false);
 
     const [validacionForm, setValidacionForm] = useState([false,""]);
 
@@ -77,11 +76,12 @@ export const MascotasCard = ( props ) => {
 
                 if ( info.status === 200 ) {
 
-                    setTimeout(()=>{
-                        setLoading( false );
-                        setSuccess( true );
-                        window.location = "/perfil";
-                    },1000)
+                    setLoading( false );
+                    setSuccess("Tu mascota ha sido actualizada");
+                    setReload( !reload );
+                    setEdit( false );
+                    setMascotaActive( false );
+                    setTimeout( ()=>{setSuccess("")} ,5000 );
                     
                 }
             });
@@ -117,13 +117,13 @@ export const MascotasCard = ( props ) => {
         </button>
         {
             mascotaActive &&
-            <SimpleModal>
+            <SimpleModal close={setMascotaActive}>
                 <div className='mascotaInfo__container'>
                     {/* ............. Sección para presentar ............. */}
                     {
                         !edit &&
                         <>
-                        <img className='img animate__animated animate__fadeIn' src={image} />
+                        <img className='img animate__animated animate__fadeIn' src={image} alt= "img"/>
                         <div className="specificInfo animate__animated animate__fadeIn">
                             <p className='name'>{name} <span className='tipo'>/ {tipo}</span></p>
                             <p>{raza}</p>
@@ -136,6 +136,7 @@ export const MascotasCard = ( props ) => {
                                 <img 
                                     style={{width:"17px", marginBottom:"-4px",marginLeft:"5px"}} 
                                     src={pets_images("./perfil/color-circle.png")} 
+                                    alt= "img"
                                 />
                             </p>
 
@@ -152,14 +153,14 @@ export const MascotasCard = ( props ) => {
                     {
                         edit &&
                         <>
-                        <img id='edit' className='img animate__animated animate__fadeIn' src={actImage} />
+                        <img id='edit' className='img animate__animated animate__fadeIn' src={actImage} alt= "img" />
                         <div className='container__updateImg'>
                             <div onClick={handleImageEdit} className='updateImg'><VscFiles size="50px" /></div>
                             
                         </div>
                         <div className="specificInfo animate__animated animate__fadeIn">
                             { !validacionForm[0] && <p className='validacionForm'>{ validacionForm[1] }</p> }
-                            { success && <p className='validacionFormSuccess'>Tu mascota ha sido actualizada con exito</p> }
+
                             <form ref={formEditMascota} onSubmit={handleSubmit} style={{gap:"0px"}}>
                                 <div><label htmlFor="nombre">Nombre</label><InputUI eventChange={hadleName} name="nombre" type="text" style="inputEditMascota" value={inpNombre}/></div>
                                 <div className="sameLine">

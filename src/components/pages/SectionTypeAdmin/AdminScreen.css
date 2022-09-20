@@ -166,6 +166,7 @@
     padding: 4vw;
     position: absolute;
     width: 50vw;
+    z-index: 1000;
 }
 .admin__peticiones-modal .cancel{
     border-radius: 100%;
@@ -251,17 +252,13 @@
 .peticiones__refreh{
     color: #0072ff;
     cursor: pointer;
-    font-size: 70px;
-    background-color: #cbe7ff;
+    font-size: 50px;
     border-radius: 6px;
+    height: 80px;
 }
 .peticiones__refreh:hover{
-    color: white;
-    cursor: pointer;
-    font-size: 70px;
-    background-color: #0072ff;
+    color: #72b1ff;
     transition: .4s;
-    border-radius: 6px;
 }
 .admin__peticiones-modalVerify{
     padding: 20px;
@@ -285,6 +282,7 @@
     min-width: 500px;
     justify-content: space-between;
     gap: 20px;
+    z-index: 1000;
 }
 .infoUser-modal .title_modal {
     background-color: white;
@@ -427,4 +425,63 @@
     height: 50px;
     align-self: center;
     top: 20vh;
+}
+
+.buttonPaginacion{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.buttonPaginacion .btn{
+    display: flex;
+    background-color: #008eff;
+    color: white;
+    font-size: 20px;
+    padding: 5px 15px;
+    width: 50px;
+}
+
+.input.number{
+    width: 80px;
+    padding: 5px 5px 5px 15px;
+    height: 25px;
+    margin-left: 50px;
+}
+.input.number:focus{
+    outline: none;
+}
+.paginacionp{
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
+.update__container{
+    z-index: 1000;
+}
+
+.delete-modal{
+    border-radius: 6px;
+    padding: 40px;
+    background-color: white;
+    z-index: 1000;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#optionEstadoa{
+    color: #00d100;
+}
+#optionEstadob{
+    color: #ff1717;
+}
+.statusa{
+    color: #00d100;
+}
+.statusb{
+    color: #ff1717;
 }

@@ -6,7 +6,7 @@
 }
 
 .profile{
-    align-items: center;
+    align-items: flex-start;
     background-color: aliceblue;
     display: flex;
     flex-direction: row;
@@ -17,10 +17,8 @@
 /* ............. Scciones Profile ............. */
 .profile__right {
     border-radius: 0px;
-    height: 100vh;
     padding: 50px 100px;
     width: 80%;
-    overflow-y: scroll;
 }
 .profile__left.mostrar{
     display: flex;
@@ -349,10 +347,10 @@
     margin-top: 5px;
 }
 #login-spin-sectionPerfil{
-    border-bottom: 7px dotted #008eff;
-    border-top: 7px solid #ffffff00;
-    border-left: 7px dotted #008eff;
-    /* border-right: 7px solid #ffffff00; */
+    border-bottom: 7px solid#cbe0ff;
+    border-top: 7px solid #cbe0ff;
+    border-left: 7px solid#008eff;
+    border-right: 7px solid #cbe0ff;
     position: relative;
     width: 100px;
     height: 100px;
@@ -392,6 +390,7 @@
     height: auto;
     padding-bottom: 1rem;
     position: relative;
+    z-index: 1000;
 }
 .mascotaInfo__container .name{
     color: #2196f3;
@@ -423,6 +422,7 @@
 }
 .mascotaInfo__container .updateImg{
     display: flex;
+    color: white;
     align-items: center;
     justify-content: center;
     cursor: pointer;
@@ -570,4 +570,47 @@
     border-left: 2px solid green;
     padding-left: 15px;
 }
+.boton_despliegue-profile{
+    cursor: pointer;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    padding: 4px;
+    background-color: #008eff;
+    border-radius: 50%;
+    color: white;
+    font-size: 20px;
+}
+.profile__left .left-row{
+    cursor: pointer;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    background-color: #008eff;
+    color: white;
+    border-radius: 50%;
+}
+.profile__right.ocultar{
+    display: none;
+}
+.boton_despliegue-profile:hover,.profile__left .left-row:hover{
+    transition: .4s;
+    background-color: #5fb7ff;
+}
+.boton_despliegue-profile.block{
+    display: none;
+}
 
+.verifyPassword{
+    background-color: white;
+    width: 350px;
+    padding: 50px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+}
+.verifyPassword .label{
+    font-size: 12px;
+    font-family: 'Nunito', sans-serif;
+}

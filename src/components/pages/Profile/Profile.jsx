@@ -3,21 +3,25 @@ import { PhotoProfile } from './PhotoProfile';
 import { SectionMascotas } from './sections/SectionMascotas';
 import { SectionPerfil } from './sections/SectionPerfil';
 import { FaHome } from 'react-icons/fa';
-import { citas } from '../Citas/dataCitas';
 import { CitaCard } from "../Citas/CitaCard";
 import { NoAutenticado } from '../NoAutenticado/NoAutenticado';
 import { getUsuarioId } from '../../../helpers/API Consumer/test';
+import { CgMenu } from "react-icons/cg";
+import { BiLeftArrowCircle } from "react-icons/bi";
 import './Profile.css';
 import './query.css';
+import { useNavigate } from 'react-router';
+import { Citas } from '../Citas/Citas';
 
 export const Profile = () => {
 
     const [activeBtn, setActiveBtn] = useState("perfil");
-    const [citasAll, setCitasAll] = useState( citas );
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("usuario")));
     const [token, setToken] = useState(localStorage.getItem("token"));
     const [userData, setUserData] = useState({});
     const [desplegar, setDesplegar] = useState(false);
+
+    const navigate = useNavigate();
 
 
     useEffect(()=>{
@@ -43,14 +47,14 @@ export const Profile = () => {
         <div className='profile__contenedor animate__animated animate__fadeIn'>
             { ( !!token ) &&
                 <div className='profile'>
-                    <div className={`profile__left ${desplegar ? "mostrar animate__animated animate__fadeInLeft" : "mostrar animate__animated animate__fadeOutLeft" }`}>
-                        {desplegar && <div onClick={ () => setDesplegar( false )} className="cancel">x</div>}
+                    <div className={`profile__left ${desplegar ? "mostrar animate__animated animate__fadeInLeft" : "" }`}>
+                        {desplegar && <div onClick={ () => setDesplegar( false )}><BiLeftArrowCircle size={'30px'} className='left-row'/></div>}
 
                         <PhotoProfile 
                             img={userData.imagenUsu}
                         />
                         <button onClick={() => {setActiveBtn("home") 
-                                                window.location = "/"
+                                                navigate("/")
                                                 }} 
                         className={`profile__btnProfile mt-10 ${(activeBtn === "home") && "perfil_active"}`}>
 
@@ -69,21 +73,23 @@ export const Profile = () => {
                             <div className='profile__titleBtn'>Mascotas</div>
                         </button>
                         <button onClick={() => {
-                            setActiveBtn("citas")
+                            setActiveBtn("citas");
+                            setDesplegar( false );
                         }} className={`profile__btnProfile ${(activeBtn === "citas") && "perfil_active"}`}>
                             <div className='profile__titleBtn'>Citas pendientes</div>
                         </button>
                         <button onClick={() => {
-                                window.location = "/clinicas"
+                                navigate("/clinicas")
                                 setActiveBtn("clinicas")
                             }} className={`profile__btnProfile ${(activeBtn === "clinicas") && "perfil_active"}`}>
                             <div className='profile__titleBtn'>Clínicas</div>
                         </button>
+
                     </div>
                     <button id='perfil__logout' onClick={handleLogout} className={`profile__btnProfile ${(activeBtn === "logout") && "perfil_active"}`}>
                         <div className='profile__titleBtn'>Cerrar sesión</div>
                     </button>
-                    <div className="profile__right">
+                    <div className={`profile__right ${ desplegar && "ocultar"}`}>
                     {
                         ( activeBtn === "home" ) && 
                         <div id='spiner-home' className='spiner'></div>
@@ -99,24 +105,7 @@ export const Profile = () => {
                         <>
                         <h1 className='profile__section' style={{marginBottom:"50px"}}>Citas pendientes</h1>
                         <div className='profile__citas'>
-                            {
-                            citasAll.map( cita => (
-                                <CitaCard
-                                    key={cita.id}
-                                    id={cita.id}
-                                    date = {cita.date}
-                                    time = {cita.time}
-                                    nombreMc = {cita.nombreMc}
-                                    nombreDn = {cita.nombreDn}
-                                    telDn = {cita.telDn}
-                                    raza = {cita.raza}
-                                    anios = {cita.anios}
-                                    veterinario = {cita.veterinario}
-                                    gender = {cita.gender}
-                                    imgUrl = {cita.imgUrl}
-                                />
-                            ))
-                            }
+                            <Citas />
                         </div>
                         </>
                     }
@@ -127,16 +116,11 @@ export const Profile = () => {
                 ( !token || !user ) &&
                 <NoAutenticado txt={"Al parecer no has iniciado sesión, te invitamos a hacerlo."} />
             }
-            
-            <div className="boton_despliegue">
-                <div className='contenedorClinicasMenu'>
-                    <div className={`menuBar`} onClick={ () => setDesplegar( !desplegar ) }>
-                        <div class="bar1"></div>
-                        <div class="bar2"></div>
-                        <div class="bar3"></div>
-                    </div>
+
+                <div onClick={ () => setDesplegar(true)} className="boton_despliegue-profile block">
+                    <CgMenu />
                 </div>
-            </div>
+
         </div>
         
     )

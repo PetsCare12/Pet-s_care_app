@@ -3,11 +3,14 @@ import { getAllClinicas, getPeticionesClinicas } from '../../../helpers/API Cons
 import {Header} from '../../layout/HeaderHome/HeaderHome';
 import { SimpleModal } from '../../layout/Modals/SimpleModal';
 import { BiRefresh } from "react-icons/bi";
+import { BiArrowToLeft,BiArrowToRight } from "react-icons/bi";
 import './AdminScreen.css';
 import InfoUser from './components/InfoUser';
 import PeticionClinica from './components/PeticionClinica';
 import { usuariosTodos } from '../../../helpers/API Consumer/test';
 import { NoAutenticado } from '../NoAutenticado/NoAutenticado';
+import { getAllVeterinarios } from '../../../helpers/API Consumer/useVeterinariosConsumer';
+import { FooterPrincipal } from '../../layout/FooterPrincipal/FooterPrincipal';
 
 const AdminScreen = () => {
 
@@ -28,27 +31,38 @@ const AdminScreen = () => {
     const token = localStorage.getItem("token");
     const [userType, setUserType] = useState(0);
     const [data, setData] = useState([]);
+    const [dataToShow, setDataToShow] = useState([]);
     const [loadingData, setLoadingData] = useState(false);
+    const [currentPage, setCurrentPage] = useState(0);
+    const [itemsPerPage, setItemsPerPage] = useState(5);
 
     const handleSelect = ( type ) => {
+
+        setCurrentPage( 0 );
 
         setLoadingData( true );
 
         if ( type === 1 ) {
             usuariosTodos().then( info => {
                 setData( info );
+                setDataToShow( [...info].slice(0,itemsPerPage) )
                 setLoadingData( false );
             });
             setUserType( 1 );
         }
         else if ( type === 2 ) {
-            // usuariosTodos().then( info => setData( info ));
+            getAllVeterinarios().then( info => {
+                setData( info.data )
+                setDataToShow( [...info.data].slice(0,itemsPerPage) );
+                setLoadingData( false );
+            });
             setUserType(2);
         }
         else if( type === 3 ) {
             getAllClinicas().then( info => {
 
                 setData(info.data);
+                setDataToShow( [...info.data].slice(0,itemsPerPage) )
                 setLoadingData( false );
 
             });
@@ -57,11 +71,42 @@ const AdminScreen = () => {
 
     }
 
+    const prevtHandler = () => {
+
+        const prevPage = currentPage - 1;
+        
+        if ( prevPage < 0 ) return;
+
+        const firstIndex = prevPage * itemsPerPage;
+
+        setDataToShow([...data].splice(firstIndex, itemsPerPage));
+        setCurrentPage( prevPage );
+        
+    }
+    const nextHandler = () => {
+
+        const totalElements = data.length;
+
+        const nextPage = currentPage + 1;
+
+        const firstIndex = nextPage * itemsPerPage;
+
+        if ( firstIndex >= totalElements ) return;
+
+        setDataToShow([...data].splice(firstIndex, itemsPerPage));
+        setCurrentPage( nextPage );
+
+    }
 
     const handleRequest = () => {
         getPeticionesClinicas()
             .then( data => setRequestCli(data))
         setSolicitudesScreen( true );
+    }
+
+    const handlePaginacion = ( e ) => {
+
+        setItemsPerPage( e.target.value );
     }
 
     return (
@@ -81,29 +126,49 @@ const AdminScreen = () => {
                         </div>
                         
                         {
-                            userType===1 &&
-                            <form className='admin__filter' action="">
-                                <label htmlFor="documento">N° Documento</label>
-                                <input type="text" name='documento'/>
-                                <button id='search' className='btnAdmin'>Buscar</button>
-                            </form>
-                        }
+                            <>
+                                {    userType===1 &&
+                                    <>
+                                        <form className='admin__filter' action="">
+                                            <label htmlFor="documento">N° Documento</label>
+                                            <input type="text" name='documento'/>
+                                            <button id='search' className='btnAdmin'>Buscar</button>
+                                        </form>
+                                    </>
+                                }
+                            </>
+                        }    
+                        
                         {
-                            userType===2 &&
-                            <form className='admin__filter' action="">
-                                <label htmlFor="documento">N° Documento</label>
-                                <input type="text" name='documento'/>
-                                <button id='search' className='btnAdmin'>Buscar</button>
-                            </form>
-                        }
+                            <>
+                            {    userType===2 &&
+                                <>
+
+                                <form className='admin__filter' action="">
+                                    <label htmlFor="documento">N° Documento</label>
+                                    <input type="text" name='documento'/>
+                                    <button id='search' className='btnAdmin'>Buscar</button>
+                                </form>
+                                </>
+                            }
+                            </>
+                        }    
+                        
                         {
-                            userType===3 &&
-                            <form className='admin__filter' action="">
-                                <label htmlFor="documento">N° NIT</label>
-                                <input type="text" name='documento'/>
-                                <button id='search' className='btnAdmin'>Buscar</button>
-                            </form>
-                        }
+                            <>
+                            {    userType===3 &&
+                                <>
+
+                                <form className='admin__filter' action="">
+                                    <label htmlFor="documento">N° NIT</label>
+                                    <input type="text" name='documento'/>
+                                    <button id='search' className='btnAdmin'>Buscar</button>
+                                </form>
+                                </>
+                            }
+                            </>
+                        }    
+                        
                         {
                             loadingData && <div id='login-spin-adminScreen' className='spiner'></div>
                         }
@@ -127,17 +192,20 @@ const AdminScreen = () => {
                                         {
                                             userType===1 &&
                                         
-                                            data.map( (user,key) => 
+                                            dataToShow.map( (user,key) => 
+
+                                            user.correoUs !== "admin@gmail.com" &&
                                                 
                                             <InfoUser
                                                 key={key}
-                                                id={user.documentoUs} 
-                                                nombre={user.nombreUs} 
-                                                correo={user.correoUs} 
+                                                id={user.documentoUs}
+                                                nombre={user.nombreUs}
+                                                correo={user.correoUs}
                                                 img = {user.imagenUsu}
-                                                telefono={user.telefonoUs} 
-                                                estado={user.estadoUs} 
-                                            
+                                                telefono={user.telefonoUs}
+                                                estado={user.estadoUs}
+                                                mascotas={user.mascotas}
+                                                data={user}
                                         />
                                                 
                                                 )
@@ -157,11 +225,17 @@ const AdminScreen = () => {
                                         {
                                             userType===2 &&
                                             
-                                            data.map( (user,key) => 
+                                            dataToShow.map( (user,key) => 
                                                 
                                                 <InfoUser
                                                     key={key}
+                                                    id={user.documento}
+                                                    img={user.imagenVete}
+                                                    estado={user.estadoVt}
+                                                    vetCli={user.clinica.nombre}
+                                                    especialidad = {user.especialidad}
                                                     { ... user }
+                                                    data={user}
                                                 />
                                                 
                                                 )
@@ -180,8 +254,8 @@ const AdminScreen = () => {
                                         }
                                         {
                                             userType===3 &&
-                                            
-                                            data.map( (user,key) => 
+
+                                            dataToShow.map( (user,key) => 
                                                 
                                                 <InfoUser
                                                     key={key}
@@ -192,11 +266,22 @@ const AdminScreen = () => {
                                                     img = {user.imagenclinica}
                                                     telefono={user.telefono} 
                                                     estado={user.estadoCli} 
-                                                    
+                                                    data={user}
                                                 />
                                                 
                                                 )
+                                            
                                         }
+                                        {
+                                            userType !== 0 &&
+                                            <>
+                                                <div className="buttonPaginacion">
+                                                    <button className='btn' onClick={ prevtHandler }><BiArrowToLeft /></button>
+                                                        { currentPage }
+                                                    <button className='btn' onClick={ nextHandler }><BiArrowToRight /></button>
+                                                </div>
+                                            </>
+                                        }                                                    
                                         
                                     </ul>
                                 </div>
@@ -212,7 +297,7 @@ const AdminScreen = () => {
 
             {
                 solicitudesScreen && 
-                <SimpleModal>
+                <SimpleModal close={setSolicitudesScreen}>
                     <div className='admin__peticiones-modal animate__animated animate__fadeIn'>
                         <div onClick={()=>setSolicitudesScreen( false )} className="cancel"><p>x</p></div>
 
@@ -230,7 +315,9 @@ const AdminScreen = () => {
                         </div>
                     </div>
                 </SimpleModal>
+                
             }
+            <FooterPrincipal/>
         </>
     )
 }

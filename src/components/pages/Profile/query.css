@@ -1,10 +1,55 @@
-@media (max-width: 400px) {
+@media (max-width: 600px) {
+
+    .boton_despliegue-profile.block{
+        display: flex;
+    }
 
     .profile__left {
         display: none;
     }
-    /* .profile__left.despliegue{
-        display: block;
-    } */
+    .profile__right {
+        padding: 65px 11px;
+        width: 100%;
+        height: 100vh;
+        overflow: scroll;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .profile__seccion1 {
+        flex-direction: column;
+        margin-top: 25px;
+        width: 100%;
+    }
+    .profile__seccion1 .profile__info {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        width: 100%;
+    }
+    .profile__right-perfil {
+        align-items: center;
+    }
+    .profile p {
+        align-self: flex-start;
+    }
+    .profile__section2 {
+        width: 100%;
+    }
+    .profile__left.mostrar {
+        overflow: hidden;
+    }
+    .profile__misMascotas {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .profile__right-mascotas {
+        display: flex;
+        align-items: center;
+    }
+    .cita_card .p {
 
+        align-self: auto;
+    }
 }

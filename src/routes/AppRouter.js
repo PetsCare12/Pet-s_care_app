@@ -1,7 +1,6 @@
 import { Routes, Route, BrowserRouter} from 'react-router-dom';
 import { Navigate } from "react-router";
 import { NotFound } from '../components/pages/404/NotFound';
-import { CitaEspecifica } from '../components/pages/Citas/CitaEspecifica';
 import { Citas } from '../components/pages/Citas/Citas';
 import { Clinica } from '../components/pages/Clinicas/Clinica';
 import { Clinicas } from '../components/pages/Clinicas/Clinicas';
@@ -11,6 +10,7 @@ import { Profile } from '../components/pages/Profile/Profile';
 import { Registro } from '../components/pages/Registro/Registro';
 import { Registro_mascotas } from '../components/pages/Registro_mascotas/Registro_mascotas';
 import { TypeClinica } from '../components/pages/SectionTypeClinica/TypeClinica';
+import { VeterinarioProfile } from '../components/pages/SectionTypeVeterinario/VeterinarioProfile';
 import { Agenda } from '../components/pages/Agendamiento/Agenda'
 import AdminScreen from '../components/pages/SectionTypeAdmin/AdminScreen';
 import { ClinicaProfile } from '../components/pages/SectionTypeClinica/ClinicaProfile/ClinicaProfile';
@@ -35,11 +35,11 @@ export const AppRouter = () => {
                 <Route path="/registro" element={!!token ? <Navigate to="/" /> : <Registro />} />
                 <Route path="/registro_mascotas" element={<Registro_mascotas />} />
                 <Route path='/perfil' element={!token ? <Navigate to="/" /> : <Profile />} />
+                <Route path='/perfil_veterinario' element={!token ? <Navigate to="/" /> : <VeterinarioProfile />} />
                 <Route path='clinicas' element={<Clinicas />} />
                 <Route path='clinica/:id' element={<Clinica />} />
                 <Route path="/*" element={ <NotFound />  } />
                 <Route path="/citas" element={ <Citas />  } />
-                <Route path="/cita/:id" element={ <CitaEspecifica />  } />
                 <Route path="/" element={ <Home />  } />
                 <Route path="/gestionClinica" element={ <TypeClinica />  } />
                 <Route path="/tuClinica" element={ <ClinicaProfile />  } />

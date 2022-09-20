@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { parseJwt } from '../../../helpers/getPayLoad'
 import { inicioSesionUsuario } from '../../../helpers/API Consumer/test'
 import { SimpleModal } from '../../layout/Modals/SimpleModal';
+import { VscEye,VscEyeClosed } from "react-icons/vsc";
 
 import './LoginStyle.css'
 import './query.css'
@@ -23,8 +24,18 @@ export const Login = () => {
     const [mssStatus, setMssStatus] = useState(false);
     const [messageStatus, setMessageStatus] = useState("");
 
+    const [showPassword, setShowPassword] = useState("password")
 
+    const handlePassword = () => {
 
+        if ( showPassword === "password") {
+            
+            setShowPassword("text");
+        }
+        else {
+            setShowPassword("password")
+        }
+    }
 
   return (
     <div className="loginContainer">
@@ -79,9 +90,9 @@ export const Login = () => {
                                     
                                         window.location = '/perfil';
                                     }
-                                    else if ( data.aud === "[ROLE_USER]" ){
+                                    else if ( data.aud === "[ROLE_VETERINARIO]" ){
                                     
-                                        // window.location = '/perfil';
+                                        window.location = '/perfil_veterinario';
                                     }
                                 }
                                 else if( data.estado === 2 ) {
@@ -120,11 +131,11 @@ export const Login = () => {
                             { ( status === 0 ) && <p id='formLogin__badData'>Estamos presentando problemas. Intentalo más tarde</p> }
                             { mssStatus && 
                             
-                                <SimpleModal>
+                                <SimpleModal close={setMssStatus}>
                                     <div className='perfil__statusUser'>
-                                        <h1>¡Atención!</h1>
+                                        <h1>Atención</h1>
                                         <p>{messageStatus}</p>
-                                        <button onClick={()=> setMssStatus( false )} id="btnh30" className='btn200'>Ok</button>
+                                        <button style={{marginBottom:"20px"}} onClick={()=> setMssStatus( false )} id="btnh30" className='btn200'>Ok</button>
                                     </div>
                                 </SimpleModal> }
 
@@ -135,12 +146,20 @@ export const Login = () => {
                                 name = "nombreoCorreo"
                             />
                             <ErrorMessage name='nombreoCorreo' component={() => (<p id='warn-login'>{errors.nombreoCorreo}</p>)} />
-                            <Field 
-                                type='password'
-                                className = 'inputLogin'
-                                placeholder = 'Contraseña'
-                                name = "password"
-                            />
+                            <div className="login_password_div">
+                                <Field 
+                                    type={showPassword}
+                                    className = 'inputLogin'
+                                    placeholder = 'Contraseña'
+                                    // maxLength= '30'
+                                    name = "password"
+                                />
+                                <button className='btn' type='button' onClick={ handlePassword }>
+                                    {
+                                        showPassword === "password" ? <VscEye /> : <VscEyeClosed />
+                                    }
+                                </button>
+                            </div>
                             <ErrorMessage name='password' component={() => (<p id='warn-login'>{errors.password}</p>)} />
                             <p onClick={()=>{window.location = "/recovery-password"}} id='login__forgotPassword'>Olvidé mi contraseña</p>
                             <ButtonUI 

@@ -5,6 +5,7 @@ import { ButtonUI } from "../../../UI/ButtonUI/ButtonUI";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { postUsuario } from '../../../../helpers/API Consumer/test';
 import { imageRandom } from '../../../../helpers/RandomImages/imagenessa';
+import { VscEye,VscEyeClosed } from "react-icons/vsc";
 
 export const RegisterUser = ( {change_step} ) => {
 
@@ -12,6 +13,19 @@ export const RegisterUser = ( {change_step} ) => {
     const [loading, setLoading] = useState(false);
     const [duplicatedData, setDuplicatedData] = useState(false);
     const [registered, setRegistered] = useState(false);
+
+    const [showPassword, setShowPassword] = useState("password")
+
+    const handlePassword = () => {
+
+        if ( showPassword === "password") {
+            
+            setShowPassword("text");
+        }
+        else {
+            setShowPassword("password")
+        }
+    }
 
     const handleSubmit = ( e ) => {
         e.preventDefault();
@@ -176,14 +190,20 @@ export const RegisterUser = ( {change_step} ) => {
                         </div>
                         <ErrorMessage name='telefonoUs' component={()   => (<p className='warn__password-user' style={{textAlign:"left"}}>{errors.telefonoUs}</p>)} />
                         <ErrorMessage name='sexoUs' component={() => (<p className='warn__password-user' style={{textAlign:"right"}}>{errors.sexoUs}</p>)} />
-
-                        <Field 
-                            type='password'
-                            className = 'inputLogin inputRegistro'
-                            placeholder = 'Contraseña'
-                            name="passwordUs"
-                            id="password"
-                        />
+                        <div className="login_password_div">
+                                <Field 
+                                    type={showPassword}
+                                    className = 'inputLogin inputRegistro'
+                                    placeholder = 'Contraseña'
+                                    name="passwordUs"
+                                    id="password"
+                                />
+                                <button style={{top:"7px"}} className='btn' type='button' onClick={ handlePassword }>
+                                    {
+                                        showPassword === "password" ? <VscEye /> : <VscEyeClosed />
+                                    }
+                                </button>
+                            </div>
                         <ErrorMessage name='passwordUs' component={() => (<p className='warn__password-user'>{errors.passwordUs}</p>)} />
                         <ButtonUI 
                             text="Registrar"

@@ -1,10 +1,11 @@
 import axios from "axios"
+const URL = "http://localhost:8080";
 
 export const generateCode = async( email ) => {
 
     try {
         const resp = await axios({
-            url : "http://localhost:8080/api/generarkey",
+            url : URL+"/api/generarkey",
             method : 'POST',
             headers : {
                 "Content-Type":"application/json",
@@ -32,7 +33,7 @@ export const changePassword = async( nuevaContrasena, correo, codigo ) => {
 
     try {
         const resp = await axios({
-            url : "http://localhost:8080/api/actualizar/contrasena/"+codigo,
+            url : URL+"/api/actualizar/contrasena/"+codigo,
             method : 'PUT',
             headers : {
                 "Content-Type":"application/json",

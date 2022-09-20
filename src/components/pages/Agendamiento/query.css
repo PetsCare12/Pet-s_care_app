@@ -1,0 +1,81 @@
+@media (max-width: 800px) {
+    .agenda__container .card {
+        padding: 40px 5vw;
+        min-width: 723px;
+    }
+    .agenda__container {
+        padding: 10vh 0px;
+    }
+    .imgSchedule .schedule {
+        min-width: 332px;
+        overflow: scroll;
+    }
+    .btnActualizarMascota {
+        font-size: 15px;
+        padding: 3px 6px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+}
+
+@media (max-width: 500px) {
+    .home__autenticado img {
+        height: 37px;
+        width: 37px;
+    }
+    .home__autenticado {
+        height: 37px;
+    }
+    .agenda__container .card {
+        display: flex;
+        flex-direction: column;
+        padding: 45px 0vw;
+        min-width: 100%;
+    }
+    .agenda__container {
+        padding: 8vh 15px;
+    }
+    .agenda__container .card .selectors {
+        width: 75%;
+    }
+    .agenda__container .card .imgSchedule {
+        width: 85%;
+    }
+    .agendaDescription {
+        width: 90%;
+    }
+}
+
+@media (max-width: 400px) {
+    .home__autenticado img {
+        height: 37px;
+        width: 37px;
+    }
+    .home__autenticado {
+        height: 37px;
+    }
+    .agenda__container .card {
+        display: flex;
+        flex-direction: column;
+        padding: 45px 0vw;
+        min-width: 100%;
+    }
+    .agenda__container {
+        padding: 8vh 15px;
+    }
+    .agenda__container .card .selectors {
+        width: 75%;
+    }
+    .agenda__container .card .imgSchedule {
+        width: 95%;
+    }
+    .agendaDescription {
+        min-width: 95vw;
+    }
+    .agenda__container .card .title {
+        font-size: 19px;
+    }
+}

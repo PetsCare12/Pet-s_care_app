@@ -1,0 +1,11 @@
+@media (max-width:820px) {
+    #tilte__clinicas {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width:470px) {
+    #tilte__clinicas {
+        margin-bottom: 130px;
+    }
+}
