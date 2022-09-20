@@ -8,11 +8,12 @@ import { Dias_Horario_UI } from '../../../../UI/Dias_Horario_UI/Dias_Horario_UI'
 export const HorarioVeterinarios = ( {data} ) => {
 
   const [vets, setvets] = useState([]);
+  const [temp_horarios, settemp_horarios] = useState([]);
+  const [ids_horarios_updated, setids_horarios_updated] = useState([]);
   const [toSetVets, settoSetVets] = useState(false);
   const [loader, setloader] = useState(false);
+  const [vets_disp, setvets_disp] = useState(true);
   const [str_warn, setstr_warn] = useState("");
-  const [style_list, setstyle_list] = useState("");
-  const [temp_horarios, settemp_horarios] = useState([]);
 
   const [lunes_in_hour, setlunes_in_hour] = useState("");
   const [lunes_out_hour, setlunes_out_hour] = useState("");
@@ -35,15 +36,17 @@ export const HorarioVeterinarios = ( {data} ) => {
     setloader(true);
     getVeterinarios( nit ).then(info => {
       let active_vets = [];
-      if (info.length === 1 || info.status === 400) {
+      if (info.status === 400) {
         settoSetVets(true);
         setloader(false);
+        setvets_disp(false)
       }else{
         for (const key in info) {
           if (info[key].estadoVt === 1 ) {
             active_vets.push(info[key]);
           }
         }
+        setvets_disp(true);
         setvets(active_vets);
         settoSetVets(false);
         setloader(false);
@@ -60,114 +63,131 @@ export const HorarioVeterinarios = ( {data} ) => {
   }, [vets])
   
   useEffect(() => {
+
+    
       
-    let arr = temp_horarios[0];
-    // for (let c in arr) {
+    let arr = temp_horarios.horarios;
 
-    //   let obj3 = arr[c];
-    //   console.log(obj3 + c);
+    for (let c in arr) {
 
-    //   if (obj3.diaHorarios === "lunes") {
+      let obj3 = arr[c];
+      // let arr_ids = ids_horarios_updated;
+      // arr_ids.push(obj3.idHorarios);
+      // setids_horarios_updated(arr_ids);
+
+      if (obj3.diaHorarios === "lunes") {
         
-    //     setlunes_in_hour(obj3.horaInicio);
-    //     setlunes_out_hour(obj3.horaSalida);
+        setlunes_in_hour(obj3.horaInicio);
+        setlunes_out_hour(obj3.horaSalida);
 
-    //   }else if (obj3.diaHorarios === "martes") {
+      }else if (obj3.diaHorarios === "martes") {
 
-    //     setmartes_in_hour(obj3.horaInicio);
-    //     setmartes_out_hour(obj3.horaSalida);
+        setmartes_in_hour(obj3.horaInicio);
+        setmartes_out_hour(obj3.horaSalida);
         
-    //   }else if (obj3.diaHorarios === "miercoles") {
+      }else if (obj3.diaHorarios === "miercoles") {
 
-    //     setmiercoles_in_hour(obj3.horaInicio);
-    //     setmiercoles_out_hour(obj3.horaSalida);
+        setmiercoles_in_hour(obj3.horaInicio);
+        setmiercoles_out_hour(obj3.horaSalida);
         
-    //   }else if (obj3.diaHorarios === "jueves") {
+      }else if (obj3.diaHorarios === "jueves") {
 
-    //     setjueves_in_hour(obj3.horaInicio);
-    //     setjueves_out_hour(obj3.horaSalida);
+        setjueves_in_hour(obj3.horaInicio);
+        setjueves_out_hour(obj3.horaSalida);
         
-    //   }else if (obj3.diaHorarios === "viernes") {
+      }else if (obj3.diaHorarios === "viernes") {
 
-    //     setviernes_in_hour(obj3.horaInicio);
-    //     setviernes_out_hour(obj3.horaSalida);
+        setviernes_in_hour(obj3.horaInicio);
+        setviernes_out_hour(obj3.horaSalida);
         
-    //   }else if (obj3.diaHorarios === "sabado") {
+      }else if (obj3.diaHorarios === "sabado") {
 
-    //     setsabado_in_hour(obj3.horaInicio);
-    //     setsabado_out_hour(obj3.horaSalida);
+        setsabado_in_hour(obj3.horaInicio);
+        setsabado_out_hour(obj3.horaSalida);
         
-    //   }else if (obj3.diaHorarios === "domingo") {
+      }else if (obj3.diaHorarios === "domingo") {
 
-    //     setdomingo_in_hour(obj3.horaInicio);
-    //     setdomingo_out_hour(obj3.horaSalida);
+        setdomingo_in_hour(obj3.horaInicio);
+        setdomingo_out_hour(obj3.horaSalida);
         
-    //   }
+      }
 
-    // }
+    }
+
+    console.log(ids_horarios_updated);
 
   }, [temp_horarios])
   
-  const get_horario_vet_byID = (e) => { settemp_horarios(e); console.log(e.horarios);}
+  const get_horario_vet_byID = (e) => { 
+    settemp_horarios(e); 
+    // setids_horarios_updated([]);
+  }
 
   const getDates = (e) => {
 
     e.preventDefault();
 
-    console.log("Horario por veterinarios");
+    if (temp_horarios.length === 0) {
 
-    let hoursAvalibles =  [
-      { 
-        "idHorarios" : ``,
-        "diaHorarios" : "lunes",
-        "horaInicio" : e.target[2].value,
-        "horaSalida"  : e.target[4].value
-      }
-    ,
-      {
-        "idHorarios" : ``,
-        "diaHorarios" : "martes",
-        "horaInicio" : e.target[7].value,
-        "horaSalida"  : e.target[9].value
-      }
-    ,
-      {
-        "idHorarios" : ``,
-        "diaHorarios" : "miercoles",
-        "horaInicio" : e.target[12].value,
-        "horaSalida"  : e.target[14].value
-      }
-    ,
-      {
-        "idHorarios" : ``,
-        "diaHorarios" : "jueves",
-        "horaInicio" : e.target[17].value,
-        "horaSalida"  : e.target[19].value
-      }
-    ,
-      {
-        "idHorarios" : ``,
-        "diaHorarios" : "viernes",
-        "horaInicio" : e.target[22].value,
-        "horaSalida"  : e.target[24].value
-      }
-    ,
-      {
-        "idHorarios" : ``,
-        "diaHorarios" : "sabado",
-        "horaInicio" : e.target[27].value,
-        "horaSalida"  : e.target[29].value
-      }
-    ,
-      {
-        "idHorarios" : ``,
-        "diaHorarios" : "domingo",
-        "horaInicio" : e.target[32].value,
-        "horaSalida"  : e.target[34].value
-      }
-    ]
+      setstr_warn("Selecciona un veterinario!");
+      setTimeout(() => setstr_warn(""), 3500);
+
+    }else{
+
+      let hoursAvalibles =  [
+        { 
+          "idHorarios" : ids_horarios_updated[0],
+          "diaHorarios" : "lunes",
+          "horaInicio" : e.target[2].value,
+          "horaSalida"  : e.target[4].value
+        }
+      ,
+        {
+          "idHorarios" : ids_horarios_updated[1],
+          "diaHorarios" : "martes",
+          "horaInicio" : e.target[7].value,
+          "horaSalida"  : e.target[9].value
+        }
+      ,
+        {
+          "idHorarios" : ids_horarios_updated[2],
+          "diaHorarios" : "miercoles",
+          "horaInicio" : e.target[12].value,
+          "horaSalida"  : e.target[14].value
+        }
+      ,
+        {
+          "idHorarios" : ids_horarios_updated[3],
+          "diaHorarios" : "jueves",
+          "horaInicio" : e.target[17].value,
+          "horaSalida"  : e.target[19].value
+        }
+      ,
+        {
+          "idHorarios" : ids_horarios_updated[4],
+          "diaHorarios" : "viernes",
+          "horaInicio" : e.target[22].value,
+          "horaSalida"  : e.target[24].value
+        }
+      ,
+        {
+          "idHorarios" : ids_horarios_updated[5],
+          "diaHorarios" : "sabado",
+          "horaInicio" : e.target[27].value,
+          "horaSalida"  : e.target[29].value
+        }
+      ,
+        {
+          "idHorarios" : ids_horarios_updated[6],
+          "diaHorarios" : "domingo",
+          "horaInicio" : e.target[32].value,
+          "horaSalida"  : e.target[34].value
+        }
+      ]
 
     console.log(hoursAvalibles);
+
+    }
   }
 
 return (
@@ -255,25 +275,31 @@ return (
       <h3 className='profile__editarPerfil title_hour'>{"Veterinarios Activos"}</h3>
       <ul>
           {
-            vets.map((item , index) => (
-              <li className="liVetSpace animate__animated animate__backInUp li_horarios" onClick={() => get_horario_vet_byID(item)}>
-                <div className="liVet space_li" >
-                                    
-                  <div className="cont_vet_li">
-                    <p>{item.nombre}</p>
-                  </div>
+            (vets_disp == true) 
+            ?
+              vets.map((item , index) => (
+                <li className="liVetSpace animate__animated animate__backInUp li_horarios" onClick={() => get_horario_vet_byID(item)}>
+                  <div className="liVet space_li" >
+                                      
+                    <div className="cont_vet_li">
+                      <p>{item.nombre}</p>
+                    </div>
 
-                  <div className="cont_vet_li">
-                    <p>Doc. {item.documento}</p>
-                  </div>
+                    <div className="cont_vet_li">
+                      <p>Doc. {item.documento}</p>
+                    </div>
 
-                  <div className="cont_vet_li">
-                    <p style={{color:"#008eff"}}>{item.especialidad}</p>
-                  </div>
+                    <div className="cont_vet_li">
+                      <p style={{color:"#008eff"}}>{item.especialidad}</p>
+                    </div>
 
-                </div>
+                  </div>
+                </li>
+              ))
+            :
+              <li  className="liVetSpace animate__animated animate__backInUp li_horarios">
+                <p className='profile__editarPerfil cc'>No hay Veterinarios Registrados</p>
               </li>
-            ))
           }
       </ul>
     </div>
