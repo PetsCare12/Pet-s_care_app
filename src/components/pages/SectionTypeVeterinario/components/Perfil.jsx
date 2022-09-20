@@ -2,7 +2,7 @@ import React from 'react'
 import './styles.css'
 
 export const Perfil = ( {data} ) => {
-    console.log( data );
+
     return (
         <div className='perfilVeterinario'>
             <img className='img' src={data.imagenVete} alt="img" />

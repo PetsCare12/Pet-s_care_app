@@ -313,6 +313,7 @@ export const SectionPerfil = ( {userData} ) => {
                         errorVerify[0] && <p style={{color:"red",fontSize:"15px"}}>{errorVerify[1]}</p> 
                     }
                     <button className='btnAgregarMascota' type='submit'>Enviar</button>
+                    <p onClick={ () => setVerifyPassword( false )} className='cancelPasswordVerify'>x</p>
                 </form>
             </SimpleModal>
         }

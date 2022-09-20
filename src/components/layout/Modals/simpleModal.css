@@ -9,10 +9,6 @@
     justify-content: center;
     align-items: center;
 }
-<<<<<<< HEAD
-
-
-=======
 .cierre{
     background: none;
     position: absolute;
@@ -27,9 +23,6 @@
     z-index: 1;
 }
 /* ------------- DELETE MODAL -------------*/
->>>>>>> daa4fe68480f6d414f78512f66a5fbcb3aa583bd
-
-
 .deleteModal{
     align-items: center;
     background-color:white ;

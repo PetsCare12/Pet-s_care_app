@@ -382,6 +382,7 @@
     margin-bottom: 25px;
     gap: 10px;
     text-align: center;
+    position: relative;
 }
 .tableUsuarios .table-header {
     background-color: #008eff;
@@ -484,4 +485,20 @@
 }
 .statusb{
     color: #ff1717;
+}
+span.estado-point{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: absolute;
+    left: 20px;
+}
+span.estado-point.a{
+    background-color: #12d800;
+}
+span.estado-point.b{
+    background-color: #ff3232;
+}
+span.estado-point.c{
+    background-color: #ffd900;
 }

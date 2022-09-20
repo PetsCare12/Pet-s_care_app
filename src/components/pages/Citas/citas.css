@@ -19,24 +19,7 @@
     flex-direction: column;
     align-content: center;
     justify-content: center;
-<<<<<<< HEAD
-    padding: 7px 10px;
-    width: 350px;
-}
-.citaCard__veterinario h1{
-    font-weight: 100;
-}
-
-
-.citaCard__datetime {
-    border-radius: 6px;
-    color: white;
-    font-size: 7px;
-    left: -40px;
-    padding: 2px 10px;
-=======
     width: 250px;
->>>>>>> daa4fe68480f6d414f78512f66a5fbcb3aa583bd
     position: relative;
     padding: 15px;
     gap: 10px;
@@ -64,19 +47,9 @@
 .cita_card .p{
     text-align: center;
 }
-<<<<<<< HEAD
-
-
-
-.typePage {
-    background-color: #61bbd6;
-    border-bottom-right-radius: 6px;
-    border-top-right-radius: 6px;
-=======
 .cita_card .p.hour{
     background-color: #008eff;
     border-radius: 6px;
->>>>>>> daa4fe68480f6d414f78512f66a5fbcb3aa583bd
     color: white;
     padding: 5px 10px;
 }
@@ -85,20 +58,8 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-<<<<<<< HEAD
-    gap: 50px;
-    justify-content: center;
-    padding: 20px 60px;
-}
-
-
-.citaEspecifica__cont h1,p{
-    color: #4c4c4c;
-    font-family: 'Nunito', sans-serif;
-=======
     gap: 55px;
     justify-content: flex-start;
->>>>>>> daa4fe68480f6d414f78512f66a5fbcb3aa583bd
 }
 .citasEmpty{
     background-color: #008eff;
@@ -216,18 +177,6 @@
     width: 200px;
     z-index: 2;
 }
-<<<<<<< HEAD
-
-
-.citaEspecifica__mcName{
-    font-weight: 800;
-    font-size: 50px;
-}
-.citaEspecifica__raza{
-    margin-left: 50px;
-    font-weight: 100;
-
-=======
 .cita_card .description::after {
     content: '';
     border-top: none;
@@ -237,7 +186,6 @@
     position: absolute;
     left: 110px;
     top: -5px;
->>>>>>> daa4fe68480f6d414f78512f66a5fbcb3aa583bd
 }
 
 .cita_card .icon:hover + .description{

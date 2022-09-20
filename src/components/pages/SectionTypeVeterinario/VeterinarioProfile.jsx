@@ -7,6 +7,7 @@ import { LoaderCards } from '../../UI/LoaderCards/LoaderCards';
 import { getVeterinarioById } from '../../../helpers/API Consumer/useVeterinariosConsumer';
 import { Perfil } from './components/Perfil';
 import { Agendas } from './components/Agendas';
+import { useNavigate } from 'react-router';
 
 export const VeterinarioProfile = () => {
 
@@ -17,6 +18,7 @@ export const VeterinarioProfile = () => {
 
 
   const { id } = JSON.parse(localStorage.getItem("usuario"));
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -69,8 +71,8 @@ export const VeterinarioProfile = () => {
                       </div>
 
                       <div className="section_profile_2_clinics">
-                        <button onClick={() => {setActiveBtn("home") 
-                        window.location = "/"}}className={`profile__btnProfile mt-10 ${(activeBtn === "home") && "perfil_active"}`}>
+                        <button style={{marginTop:"50px"}} onClick={() => {setActiveBtn("home") 
+                        navigate("/")}}className={`profile__btnProfile mt-10 ${(activeBtn === "home") && "perfil_active"}`}>
                             <div className='profile__titleBtn'><FaHome style={{fontSize:"20px"}} /></div>
                         </button>
                         

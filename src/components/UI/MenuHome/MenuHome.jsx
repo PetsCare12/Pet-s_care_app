@@ -38,7 +38,8 @@ const MenuHome = ({close}) => {
         <SimpleModal close={close}>
             <div className='MenuHome__div animate__animated animate__flipInX'>
                 <p onClick={handlePerfil} className='MenuHome__perfil'>Gestion</p>
-                <p onClick={() => navigate("/clinicas")} className='MenuHome__perfil cli'>Clínicas</p>
+                
+                { data.aud !== "[ROLE_ADMIN]" && <p onClick={() => navigate("/clinicas")} className='MenuHome__perfil cli'>Clínicas</p> }
                 { data.aud === "[ROLE_ADMIN]" && <p onClick={() => navigate("/admin")} className='MenuHome__perfil cli'>Administrar</p> }
                 <p onClick={handleLogout} className='MenuHome__logout'>Cerrar sesión</p>
             </div>
