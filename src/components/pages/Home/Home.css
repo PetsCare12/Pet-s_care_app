@@ -11,8 +11,13 @@ html{
     width: 50px;
     position: fixed;
     bottom: 10px;
-    right: 10px
+    right: 10px;
+    
 
+}
+
+.nave:hover{
+    transform: scale(1.1);
 }
 header {
     background: linear-gradient(360deg, #0051b5,#0072ff);

@@ -15,6 +15,8 @@ import { Agenda } from '../components/pages/Agendamiento/Agenda'
 import AdminScreen from '../components/pages/SectionTypeAdmin/AdminScreen';
 import { ClinicaProfile } from '../components/pages/SectionTypeClinica/ClinicaProfile/ClinicaProfile';
 import { PasswordRecovery } from '../components/pages/Password-recovery/PasswordRecovery';
+import { PoliticasPrivacidad } from '../components/pages/PoliticasPrivacidad/PoliticasPrivacidad';
+import { InformacionLegal } from '../components/pages/InformacionLegal/InformacionLegal';
 
 export const AppRouter = () => {
 
@@ -43,9 +45,11 @@ export const AppRouter = () => {
                 <Route path="/gestionClinica" element={ (!!user && rol!=="[ROLE_CLINICA]") ? <Navigate to="/" /> : <TypeClinica />  } />
                 <Route path="/tuClinica" element={(!!user && rol!=="[ROLE_CLINICA]") ? <Navigate to="/" /> : <ClinicaProfile />  } />
                 <Route path="/agenda" element={!token ? <Navigate to="/" /> : <Agenda />  } />
+                <Route path="/agenda/:id" element={!token ? <Navigate to="/" /> : <Agenda />}/>
                 <Route path="/admin" element={(!!user && rol!=="[ROLE_ADMIN]") ? <Navigate to="/" /> : <AdminScreen/> }/>
                 <Route path="/recovery-password" element={<PasswordRecovery />}/>
-                <Route path="/agenda/:id" element={!token ? <Navigate to="/" /> : <Agenda />}/>
+                <Route path="/politicas" element={<PoliticasPrivacidad />}/>
+                <Route path="/informacionLegal" element={<InformacionLegal />}/>
             </Routes>
         </BrowserRouter>
     )
