@@ -1,16 +1,19 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { putHorarioGeneral } from '../../../../../helpers/API Consumer/useHorariosConsumer';
 import { getVeterinarios } from '../../../../../helpers/API Consumer/useVeterinariosConsumer';
 import { ButtonUI } from '../../../../UI/ButtonUI/ButtonUI';
 import { Dias_Horario_UI } from '../../../../UI/Dias_Horario_UI/Dias_Horario_UI';
 
 export const HorarioVeterinarios = ( {data} ) => {
 
+  const token = localStorage.getItem('token');
+
   const [vets, setvets] = useState([]);
   const [temp_horarios, settemp_horarios] = useState([]);
   const [toSetVets, settoSetVets] = useState(false);
-  const [loader, setloader] = useState(false);
+  const [loader, setloader] = useState(true);
   const [vets_disp, setvets_disp] = useState(true);
   const [str_warn, setstr_warn] = useState("");
 
@@ -115,33 +118,34 @@ export const HorarioVeterinarios = ( {data} ) => {
 
     e.preventDefault();
 
-    let ids_horarios_updated = {};
-
-    temp_horarios.horarios.forEach(element => { 
-
-      let day = element.diaHorarios;
-
-      switch (day) {
-        
-        case "lunes"    :ids_horarios_updated.lunes = element.idHorarios;     break;
-        case "martes"   :ids_horarios_updated.martes = element.idHorarios;    break;
-        case "miercoles":ids_horarios_updated.miercoles = element.idHorarios; break;
-        case "jueves"   :ids_horarios_updated.jueves = element.idHorarios;    break;
-        case "viernes"  :ids_horarios_updated.viernes = element.idHorarios;   break;
-        case "sabado"   :ids_horarios_updated.sabado = element.idHorarios;    break;
-        case "domingo"  :ids_horarios_updated.domingo = element.idHorarios;   break;
-      
-        default         :break;
-      }
-
-    });
-
     if (temp_horarios.length === 0) {
 
       setstr_warn("Selecciona un veterinario!");
       setTimeout(() => setstr_warn(""), 3500);
 
     }else{
+
+      let ids_horarios_updated = {};
+      let days_to_send = 0;
+
+      temp_horarios.horarios.forEach(element => { 
+
+        let day = element.diaHorarios;
+
+        switch (day) {
+          
+          case "lunes"    :ids_horarios_updated.lunes = element.idHorarios;     break;
+          case "martes"   :ids_horarios_updated.martes = element.idHorarios;    break;
+          case "miercoles":ids_horarios_updated.miercoles = element.idHorarios; break;
+          case "jueves"   :ids_horarios_updated.jueves = element.idHorarios;    break;
+          case "viernes"  :ids_horarios_updated.viernes = element.idHorarios;   break;
+          case "sabado"   :ids_horarios_updated.sabado = element.idHorarios;    break;
+          case "domingo"  :ids_horarios_updated.domingo = element.idHorarios;   break;
+        
+          default         :break;
+        }
+
+      });
 
       let hoursAvalibles =  [
         { 
@@ -194,10 +198,106 @@ export const HorarioVeterinarios = ( {data} ) => {
         }
       ]
 
-    console.log(hoursAvalibles);
+      const days = {
+
+        "lunes" : e.target[0].checked,
+        "martes" : e.target[5].checked,
+        "miercoles" : e.target[10].checked,
+        "jueves" : e.target[15].checked,
+        "viernes" : e.target[20].checked,
+        "sabado" : e.target[25].checked,
+        "domingo" : e.target[30].checked,
+
+      }
+
+      for (const key in days) { if (days[key] === false) { days_to_send = days_to_send + 1; } }
+
+      if (days_to_send !== 7) {
+        
+        let errors = {};
+          
+        for (const j in days) {
+          
+          if (days[j] === true) {
+
+            let var_day = "";
+            hoursAvalibles.forEach(element => {if (element.diaHorarios === j) {var_day = element;}});
+
+            console.log("Se actualiza el dia " + j);
+            
+            if (var_day.horaInicio === "") {
+
+              errors.validacion = `Campo Vacío Hora Entrada del día ${var_day.diaHorarios}`
+              setloader(false);
+    
+            }else if (var_day.horaSalida === "") {
+              
+              errors.validacion = `Campo Vacío Hora Salida del día ${var_day.diaHorarios}`
+              setloader(false);
+    
+            }
+
+            if (JSON.stringify(errors) === '{}') {
+
+              putHorarioGeneral( var_day , var_day.idHorarios , token).then( data => {
+                setstr_warn(data);
+                setTimeout(() => setstr_warn(""), 3500);
+              });
+              
+            }else{
+
+              setloader(false);
+              setstr_warn(errors.validacion);
+              setTimeout(() => setstr_warn(""), 3500);
+              console.log(errors.validacion);
+            }
+
+          }else{ console.log("No se actualiza el dia " + j); }
+        }
+
+      }else if (days_to_send === 7) {
+
+        let errors = {};
+        let day = "";
+
+        hoursAvalibles.forEach(element => { 
+
+          day = element; 
+          
+          if (day.horaInicio === "") {
+
+            errors.validacion = `Hay Campos Vacios`
+            setloader(false);
+  
+          }else if (day.horaSalida === "") {
+            
+            errors.validacion = `Hay Campos Vacíos`
+            setloader(false);
+  
+          }
+        })
+
+        if (JSON.stringify(errors) === '{}') {
+
+          hoursAvalibles.forEach(element => {
+
+            putHorarioGeneral( element , element.idHorarios , token).then( data => {
+              setstr_warn(data);
+              setTimeout(() => setstr_warn(""), 3500);
+            });
+
+          });
+          
+        }else{
+
+          setloader(false);
+          setstr_warn(errors.validacion);
+          setTimeout(() => setstr_warn(""), 3500);
+          console.log(errors.validacion);
+        }
+      }
     }
   }
-
 return (
 
   <div className='horarios_veterinarios_comp'>
@@ -205,12 +305,12 @@ return (
     <form onSubmit={getDates} className="horario_form animate__animated animate__fadeIn">
       
     <div className="title_cont">
-          <h3 className='profile__editarPerfil title_hour'>{"Horario Veterinarios"}</h3>
-
-          { (loader) && <div id='login-spin-clinic' className='spiner'></div> }
-          { (str_warn) && <p>{ str_warn }</p> }
-
+      <h3 className='profile__editarPerfil title_hour'>{"Horario Veterinarios"}</h3>
+      { (temp_horarios.length !== 0) && <p className='profile__editarPerfil title_hour'>{ "Horario de " }{ temp_horarios.nombre }{ temp_horarios.apellidos }</p> }
+      { (loader === true) && <div id='login-spin-clinic' className='spiner'></div> }
+      { (str_warn) && <p className='profile__editarPerfil title_hour'>{ str_warn }</p> }
     </div>
+
       <div className="part1_horarios">
         <Dias_Horario_UI 
           dia={"Lunes"}
@@ -283,7 +383,7 @@ return (
       <h3 className='profile__editarPerfil title_hour'>{"Veterinarios Activos"}</h3>
       <ul>
           {
-            (vets_disp == true) 
+            (vets_disp === true) 
             ?
               vets.map((item , index) => (
                 <li className="liVetSpace animate__animated animate__backInUp li_horarios" onClick={() => get_horario_vet_byID(item)}>
