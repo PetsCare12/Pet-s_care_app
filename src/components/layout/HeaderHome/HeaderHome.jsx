@@ -57,7 +57,7 @@ export const Header = () => {
               </nav>
           }
         </div>  
-        { toggle && <MenuHome /> }
+        { toggle && <MenuHome close={setToggle}/> }
     </div>
   )
 }

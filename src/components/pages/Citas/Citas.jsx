@@ -1,18 +1,22 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { getAgendas } from '../../../helpers/API Consumer/useAgendaConsumer';
-import { Header } from '../../layout/HeaderHome/HeaderHome'
 import { LoaderCards } from '../../UI/LoaderCards/LoaderCards';
+import { AiFillCheckCircle } from "react-icons/ai";
 import { CitaCard } from './CitaCard';
 import './citas.css'
 
 export const Citas = () => {
 
-    const [gender, setGender] = useState("");
+    // TODO - EL USUARIO SOLO PODRÁ AGENDAR 3 CITAS POR DÍA
+
     const [citasAll, setCitasAll] = useState([]);
     const [loader, setLoader] = useState(true);
+    const [reload, setReload] = useState(false);
+    const [agendaDeleted, setAgendaDeleted] = useState("");
 
     let id = "";
+    console.log( citasAll );
 
     if ( localStorage.getItem("usuario") ) {
         
@@ -24,14 +28,13 @@ export const Citas = () => {
 
         getAgendas( id ).then( info => {
 
-            setCitasAll( info.data )
+            setCitasAll( info.data.filter( cita => cita.estado === 1 ) )
+            
             setLoader( false );
 
         })
 
-    }, [])
-
-    console.log( "HOLA" );
+    }, [reload])
     
 
     return (
@@ -40,16 +43,27 @@ export const Citas = () => {
                 {
                     loader ? <LoaderCards extra="m40"/>
                     : citasAll.length !== 0 ?
-                    citasAll.map( cita => (
-                        <CitaCard 
-                        key={ cita.codigoA }
-                            {...cita}
-                        />
+                    citasAll.map( (cita) => (
+                        <>
+                        {
+                            <CitaCard 
+                            key={ cita.codigoA }
+                            setReload={setReload}
+                            reload={reload}
+                            msj={setAgendaDeleted}
+                            data={cita}
+                            />
+                        }
+                        </>
                     ))
                     :
                     <p className='citasEmpty'>No hay citas pendientes</p>
                 }
             </div>
+            {
+                agendaDeleted && 
+                <p className='citaDeleted animate__animated animate__backInRight'>Tu cita ha sido eliminada <AiFillCheckCircle className='icon'/></p>
+            }
 
         </>
     )

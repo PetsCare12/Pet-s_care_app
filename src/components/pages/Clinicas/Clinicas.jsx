@@ -7,6 +7,7 @@ import { getAllClinicas } from '../../../helpers/API Consumer/useClinicasConsume
 import { Link } from 'react-router-dom';
 import { FooterPrincipal } from '../../layout/FooterPrincipal/FooterPrincipal';
 import nave from '../../../assets/images/varios/cohete.png'
+import { LoaderCards } from '../../UI/LoaderCards/LoaderCards';
 export const Clinicas = () => {
 
     const [clinicas, setClinicas] = useState([]);
@@ -18,7 +19,7 @@ export const Clinicas = () => {
 
         getAllClinicas()
         .then( info => {
-            console.log( info.data );
+
             setClinicas( info.data );
         })
 
@@ -54,7 +55,7 @@ export const Clinicas = () => {
                     ))
                 }
                 {
-                    clinicas.length === 0 && <div style={{position:"revert"}} id='spiner-home' className='spiner'></div>
+                    clinicas.length === 0 && <LoaderCards extra="m40"/>
                 }
                 
             </div>

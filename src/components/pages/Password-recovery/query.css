@@ -1,0 +1,18 @@
+@media (max-width: 400px) {
+    .recoveryPass {
+        min-width: 380px;
+    }
+}
+
+@media (max-width: 300px) {
+    .recoveryPass {
+        min-width: 280px;
+        padding: 0px;
+    }
+    .recoveryPass .correo {
+        width: 90%;
+    }
+    .mascotaCard h1, h2, p {
+        font-size: 14px;
+    }
+}

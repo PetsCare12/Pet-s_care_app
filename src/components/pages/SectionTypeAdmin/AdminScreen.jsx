@@ -100,7 +100,10 @@ const AdminScreen = () => {
 
     const handleRequest = () => {
         getPeticionesClinicas()
-            .then( data => setRequestCli(data))
+            .then( data => {
+                setRequestCli(data);
+                handleSelect( 3 );
+            })
         setSolicitudesScreen( true );
     }
 
@@ -123,51 +126,7 @@ const AdminScreen = () => {
                                 <button onClick={()=>{handleSelect(3)}} className={`btnAdmin ${userType === 3 && "active"}`}>Clínicas</button>
                             </div>
                             <button onClick={handleRequest} className='btnAdmin peticiones'>Peticiones</button>
-                        </div>
-                        
-                        {
-                            <>
-                                {    userType===1 &&
-                                    <>
-                                        <form className='admin__filter' action="">
-                                            <label htmlFor="documento">N° Documento</label>
-                                            <input type="text" name='documento'/>
-                                            <button id='search' className='btnAdmin'>Buscar</button>
-                                        </form>
-                                    </>
-                                }
-                            </>
-                        }    
-                        
-                        {
-                            <>
-                            {    userType===2 &&
-                                <>
-
-                                <form className='admin__filter' action="">
-                                    <label htmlFor="documento">N° Documento</label>
-                                    <input type="text" name='documento'/>
-                                    <button id='search' className='btnAdmin'>Buscar</button>
-                                </form>
-                                </>
-                            }
-                            </>
-                        }    
-                        
-                        {
-                            <>
-                            {    userType===3 &&
-                                <>
-
-                                <form className='admin__filter' action="">
-                                    <label htmlFor="documento">N° NIT</label>
-                                    <input type="text" name='documento'/>
-                                    <button id='search' className='btnAdmin'>Buscar</button>
-                                </form>
-                                </>
-                            }
-                            </>
-                        }    
+                        </div>   
                         
                         {
                             loadingData && <div id='login-spin-adminScreen' className='spiner'></div>
@@ -206,6 +165,7 @@ const AdminScreen = () => {
                                                 estado={user.estadoUs}
                                                 mascotas={user.mascotas}
                                                 data={user}
+                                                reload={handleSelect}
                                         />
                                                 
                                                 )
@@ -302,8 +262,8 @@ const AdminScreen = () => {
                         <div onClick={()=>setSolicitudesScreen( false )} className="cancel"><p>x</p></div>
 
                         <h1 className='titulo'>Peticiones</h1>
-                        <BiRefresh onClick={handleRequest} className='peticiones__refreh' />
                         <p className='descripcion'>Las siguientes clinicas están pendientes.</p>
+                        <p>Refresque <span onClick={handleRequest} style={{cursor:"pointer",color:"blue",textDecoration:"underline"}}>aquí</span></p>
 
                         <div className="peticiones">
                             {

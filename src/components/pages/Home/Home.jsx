@@ -5,10 +5,13 @@ import { Header} from '../../layout/HeaderHome/HeaderHome'
 import './Home.css';
 import './query.css';
 
+import kevyn from './kevyn.jpg'
+
 
 export const Home = () => {
 
   return (
+
     <div id="home__contenedor" className="home__contenedor animate__animated animate__fadeIn">
       <div>
         <Header />
@@ -83,7 +86,7 @@ export const Home = () => {
 
         <div className="home__contactUs-card">
           <div className="home__contactUs-card-img">
-            <img src="https://res.cloudinary.com/samuelrm5/image/upload/v1663100259/kevyn_f0rqpo.jpg" alt="" />
+            <img id="image-team" src={kevyn} alt="" />
           </div>
           <div className="home__contactUs-card-info">
             <div className="home__contactUs-card-info-personal">
