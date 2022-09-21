@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { getUsuario_mascotas } from '../../../helpers/API Consumer/test';
 import { getAllClinicas } from '../../../helpers/API Consumer/useClinicasConsumer';
 import { getMascotaEspecifica } from '../../../helpers/API Consumer/useMascotasConsumer';
@@ -44,6 +44,8 @@ export const Agenda = () => {
     const [loadingVet, setLoadingVet] = useState(true);
     const [loadingGeneral, setLoadingGeneral] = useState(true);
 
+    const navigate = useNavigate();
+
     
     const day = new Date().getDay();
 
@@ -70,6 +72,11 @@ export const Agenda = () => {
 
                 setDescriptionModal( false );
                 setAgendaSuccess( true );
+                setTimeout( () => {
+                    setSchedulesAft([]);
+                    setSchedulesMor([]);
+                    setAgendaSuccess( false );
+            }, 3000)
             }
         });
 
@@ -88,6 +95,10 @@ export const Agenda = () => {
     const { id:clinicaEsp } = useParams();
 
     useEffect( () => {
+
+        if ( clinicaSeleccion === "" ) {
+            setLoadingVet( false );
+        }
 
         getAllClinicas().then( info => {
             setClinica(info.data);
@@ -153,7 +164,9 @@ export const Agenda = () => {
                                     horasUsadas,
                                     dato.horaInicio.split(":")[0],
                                     dato.horaSalida.split(":")[0],
-                                    dato.horaInicio.split(":")[1]
+                                    dato.horaInicio.split(":")[1],
+                                    dato.horaSalida.split(":")[1],
+
                                 )
                             );
                             
@@ -232,7 +245,7 @@ export const Agenda = () => {
                                 <option id='selected' value="none">Selecciona una clínica</option>
                                 {
                                     clinica.map( cli => (
-                                        cli.estadoCli === 1 &&
+                                        (cli.estadoCli === 1 && cli.veterinarios.length>0) &&
                                         <option 
                                             key={cli.nit} 
                                             value={cli.nit}
@@ -251,9 +264,9 @@ export const Agenda = () => {
                                     <>
                                     {
                                         veterinarios.length === 0 ? 
-                                        <div>
-                                            <img style={{width:"150px"}} src={pets_images("./agenda/veterinarioEmpty.webp")} alt="img" />
-                                            <p>¡Ops!, aún no hay veterinarios en esta clínica</p>
+                                        <div style={{width: "70%",textAlign: "center"}}>
+                                            <img style={{width:"150px"}} src={pets_images("./agenda/astronauta.webp")} alt="img" />
+                                            <p style={{borderRadius:"6px",padding:"20px",background:"#00376c",color:"white"}}>Ten en cuenta que las clínicas que no tengan veterinarios no se mostrarán en este apartado</p>
                                         </div>
 
                                         : 
@@ -366,7 +379,7 @@ export const Agenda = () => {
             }
             {
                 descriptionModal &&
-                <SimpleModal>
+                <SimpleModal close={setDescriptionModal}>
                     <div className='agendaDescription animate__animated animate__fadeIn'>
                         <h1 className='h1'>Descripción</h1>
                         <p className='p'>¡Un último paso!<br/>Escribe el porqué estas solicutando esta cita. <small className='small'>(El campo no debe estar vacío)</small></p>
@@ -388,19 +401,10 @@ export const Agenda = () => {
             }
             {
                 agendaSuccess &&
-                <SimpleModal close={setAgendaSuccess}>
+                <SimpleModal>
                     <div className='agenda_success'>
                         <BsCheckAll className='icon'/>
                         <h1 className='h1'>Tu cita se creó correctamente</h1>
-                        <div className='buttons'>
-                            <Link to="/clinicas">
-                                <button className='btnActualizarMascota'>Volver</button>
-                            </Link>
-                            <Link to="/perfil">
-                                <button className='btnActualizarMascota'>Ver cita</button>
-                            </Link>
-                            
-                        </div>
                     </div>
                 </SimpleModal>
             }
