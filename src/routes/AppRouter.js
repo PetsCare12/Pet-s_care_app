@@ -14,6 +14,8 @@ import { Agenda } from '../components/pages/Agendamiento/Agenda'
 import AdminScreen from '../components/pages/SectionTypeAdmin/AdminScreen';
 import { ClinicaProfile } from '../components/pages/SectionTypeClinica/ClinicaProfile/ClinicaProfile';
 import { PasswordRecovery } from '../components/pages/Password-recovery/PasswordRecovery';
+import { PoliticasPrivacidad } from '../components/pages/PoliticasPrivacidad/PoliticasPrivacidad';
+import { InformacionLegal } from '../components/pages/InformacionLegal/InformacionLegal';
 
 export const AppRouter = () => {
 
@@ -46,6 +48,8 @@ export const AppRouter = () => {
                 <Route path="/recovery-password" element={<PasswordRecovery />}/>
                 <Route path="/agenda" element={<Agenda />}/>
                 <Route path="/agenda/:id" element={<Agenda />}/>
+                <Route path="/politicas" element={<PoliticasPrivacidad />}/>
+                <Route path="/informacionLegal" element={<InformacionLegal />}/>
             </Routes>
         </BrowserRouter>
     )
