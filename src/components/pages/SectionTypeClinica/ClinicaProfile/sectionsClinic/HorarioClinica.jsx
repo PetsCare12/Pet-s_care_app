@@ -217,61 +217,73 @@ export const HorarioClinica = ( {data} ) => {
       setloader(true);
       let errors = {};
       let arr = horarios[0];
-      let keys = [];
+      let keys = {};
       
-      for (let i in arr) {
-        
-        let obj4 = arr[i];
-        keys.push(obj4.idHorarios);
+      arr.forEach(element => { 
 
-      }
+        let day = element.diaHorarios;
+  
+        switch (day) {
+          
+          case "lunes"    :keys.lunes = element.idHorarios;     break;
+          case "martes"   :keys.martes = element.idHorarios;    break;
+          case "miercoles":keys.miercoles = element.idHorarios; break;
+          case "jueves"   :keys.jueves = element.idHorarios;    break;
+          case "viernes"  :keys.viernes = element.idHorarios;   break;
+          case "sabado"   :keys.sabado = element.idHorarios;    break;
+          case "domingo"  :keys.domingo = element.idHorarios;   break;
+        
+          default         :break;
+        }
+  
+      });
 
       let hoursAvalibles =  [
 
         { 
-          "idHorarios" : keys[0],
+          "idHorarios" : keys.lunes,
           "diaHorarios" : "lunes",
           "horaInicio" : e.target[2].value,
           "horaSalida"  : e.target[4].value
         }
       ,
         {
-          "idHorarios" : keys[1],
+          "idHorarios" : keys.martes,
           "diaHorarios" : "martes",
           "horaInicio" : e.target[7].value,
           "horaSalida"  : e.target[9].value
         }
       ,
         {
-          "idHorarios" : keys[2],
+          "idHorarios" : keys.miercoles,
           "diaHorarios" : "miercoles",
           "horaInicio" : e.target[12].value,
           "horaSalida"  : e.target[14].value
         }
       ,
         {
-          "idHorarios" : keys[3],
+          "idHorarios" : keys.jueves,
           "diaHorarios" : "jueves",
           "horaInicio" : e.target[17].value,
           "horaSalida"  : e.target[19].value
         }
       ,
         {
-          "idHorarios" : keys[4],
+          "idHorarios" : keys.viernes,
           "diaHorarios" : "viernes",
           "horaInicio" : e.target[22].value,
           "horaSalida"  : e.target[24].value
         }
       ,
         {
-          "idHorarios" : keys[5],
+          "idHorarios" : keys.sabado,
           "diaHorarios" : "sabado",
           "horaInicio" : e.target[27].value,
           "horaSalida"  : e.target[29].value
         }
       ,
         {
-          "idHorarios" : keys[6],
+          "idHorarios" : keys.domingo,
           "diaHorarios" : "domingo",
           "horaInicio" : e.target[32].value,
           "horaSalida"  : e.target[34].value

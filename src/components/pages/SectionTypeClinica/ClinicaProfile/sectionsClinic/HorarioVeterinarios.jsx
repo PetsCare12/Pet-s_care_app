@@ -9,7 +9,6 @@ export const HorarioVeterinarios = ( {data} ) => {
 
   const [vets, setvets] = useState([]);
   const [temp_horarios, settemp_horarios] = useState([]);
-  const [ids_horarios_updated, setids_horarios_updated] = useState([]);
   const [toSetVets, settoSetVets] = useState(false);
   const [loader, setloader] = useState(false);
   const [vets_disp, setvets_disp] = useState(true);
@@ -64,16 +63,11 @@ export const HorarioVeterinarios = ( {data} ) => {
   
   useEffect(() => {
 
-    
-      
     let arr = temp_horarios.horarios;
 
     for (let c in arr) {
 
       let obj3 = arr[c];
-      // let arr_ids = ids_horarios_updated;
-      // arr_ids.push(obj3.idHorarios);
-      // setids_horarios_updated(arr_ids);
 
       if (obj3.diaHorarios === "lunes") {
         
@@ -113,19 +107,34 @@ export const HorarioVeterinarios = ( {data} ) => {
       }
 
     }
-
-    console.log(ids_horarios_updated);
-
   }, [temp_horarios])
   
-  const get_horario_vet_byID = (e) => { 
-    settemp_horarios(e); 
-    // setids_horarios_updated([]);
-  }
+  const get_horario_vet_byID = (e) => { settemp_horarios(e); }
 
   const getDates = (e) => {
 
     e.preventDefault();
+
+    let ids_horarios_updated = {};
+
+    temp_horarios.horarios.forEach(element => { 
+
+      let day = element.diaHorarios;
+
+      switch (day) {
+        
+        case "lunes"    :ids_horarios_updated.lunes = element.idHorarios;     break;
+        case "martes"   :ids_horarios_updated.martes = element.idHorarios;    break;
+        case "miercoles":ids_horarios_updated.miercoles = element.idHorarios; break;
+        case "jueves"   :ids_horarios_updated.jueves = element.idHorarios;    break;
+        case "viernes"  :ids_horarios_updated.viernes = element.idHorarios;   break;
+        case "sabado"   :ids_horarios_updated.sabado = element.idHorarios;    break;
+        case "domingo"  :ids_horarios_updated.domingo = element.idHorarios;   break;
+      
+        default         :break;
+      }
+
+    });
 
     if (temp_horarios.length === 0) {
 
@@ -136,49 +145,49 @@ export const HorarioVeterinarios = ( {data} ) => {
 
       let hoursAvalibles =  [
         { 
-          "idHorarios" : ids_horarios_updated[0],
+          "idHorarios" : ids_horarios_updated.lunes,
           "diaHorarios" : "lunes",
           "horaInicio" : e.target[2].value,
           "horaSalida"  : e.target[4].value
         }
       ,
         {
-          "idHorarios" : ids_horarios_updated[1],
+          "idHorarios" : ids_horarios_updated.martes,
           "diaHorarios" : "martes",
           "horaInicio" : e.target[7].value,
           "horaSalida"  : e.target[9].value
         }
       ,
         {
-          "idHorarios" : ids_horarios_updated[2],
+          "idHorarios" : ids_horarios_updated.miercoles,
           "diaHorarios" : "miercoles",
           "horaInicio" : e.target[12].value,
           "horaSalida"  : e.target[14].value
         }
       ,
         {
-          "idHorarios" : ids_horarios_updated[3],
+          "idHorarios" : ids_horarios_updated.jueves,
           "diaHorarios" : "jueves",
           "horaInicio" : e.target[17].value,
           "horaSalida"  : e.target[19].value
         }
       ,
         {
-          "idHorarios" : ids_horarios_updated[4],
+          "idHorarios" : ids_horarios_updated.viernes,
           "diaHorarios" : "viernes",
           "horaInicio" : e.target[22].value,
           "horaSalida"  : e.target[24].value
         }
       ,
         {
-          "idHorarios" : ids_horarios_updated[5],
+          "idHorarios" : ids_horarios_updated.sabado,
           "diaHorarios" : "sabado",
           "horaInicio" : e.target[27].value,
           "horaSalida"  : e.target[29].value
         }
       ,
         {
-          "idHorarios" : ids_horarios_updated[6],
+          "idHorarios" : ids_horarios_updated.domingo,
           "diaHorarios" : "domingo",
           "horaInicio" : e.target[32].value,
           "horaSalida"  : e.target[34].value
@@ -186,7 +195,6 @@ export const HorarioVeterinarios = ( {data} ) => {
       ]
 
     console.log(hoursAvalibles);
-
     }
   }
 
