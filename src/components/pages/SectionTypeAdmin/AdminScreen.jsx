@@ -35,6 +35,16 @@ const AdminScreen = () => {
     const [loadingData, setLoadingData] = useState(false);
     const [currentPage, setCurrentPage] = useState(0);
     const [itemsPerPage, setItemsPerPage] = useState(5);
+    const [reload, setReload] = useState(false);
+
+    useEffect( () => {
+
+        getPeticionesClinicas()
+        .then( data => {
+            setRequestCli(data);
+        })
+
+    }, [reload])
 
     const handleSelect = ( type ) => {
 
@@ -99,17 +109,8 @@ const AdminScreen = () => {
     }
 
     const handleRequest = () => {
-        getPeticionesClinicas()
-            .then( data => {
-                setRequestCli(data);
-                handleSelect( 3 );
-            })
+        handleSelect( 3 );
         setSolicitudesScreen( true );
-    }
-
-    const handlePaginacion = ( e ) => {
-
-        setItemsPerPage( e.target.value );
     }
 
     return (
@@ -125,7 +126,12 @@ const AdminScreen = () => {
                                 <button onClick={()=>{handleSelect(2)}} className={`btnAdmin ${userType === 2 && "active"}`}>Veterinarios</button>
                                 <button onClick={()=>{handleSelect(3)}} className={`btnAdmin ${userType === 3 && "active"}`}>Clínicas</button>
                             </div>
-                            <button onClick={handleRequest} className='btnAdmin peticiones'>Peticiones</button>
+                            <button onClick={handleRequest} className='btnAdmin peticiones'>Peticiones 
+                            {
+                                requestCli.length !== 0 &&
+                                <div className='number'>{requestCli.length}</div>
+                            }
+                            </button>
                         </div>   
                         
                         {
@@ -263,12 +269,11 @@ const AdminScreen = () => {
 
                         <h1 className='titulo'>Peticiones</h1>
                         <p className='descripcion'>Las siguientes clinicas están pendientes.</p>
-                        <p>Refresque <span onClick={handleRequest} style={{cursor:"pointer",color:"blue",textDecoration:"underline"}}>aquí</span></p>
 
                         <div className="peticiones">
                             {
                                 ( requestCli.length > 0 ) ?
-                                requestCli.map( cli => <PeticionClinica key={cli.nit} token={token} dataCli={cli} nit={cli.nit} nombre={cli.nombre} />)
+                                requestCli.map( cli => <PeticionClinica reload={reload} setReload={setReload} key={cli.nit} token={token} dataCli={cli} nit={cli.nit} nombre={cli.nombre} />)
                                 : <p>No hay peticiones pendientes</p>
                             }
 
