@@ -1,0 +1,112 @@
+.perfilVeterinario{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    margin-left: 25%;
+}
+.perfilVeterinario .img{
+    border: 3px solid #4196ff;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+.perfilVeterinario .cuadro{
+    background-color: #4196ff;
+    border-radius: 6px;
+    color: white;
+    padding: 10px 50px;
+    margin-top: 20px;
+}
+
+/* Agendas Veterinario */
+.agendasVeterinario{
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 50px;
+    width: 95%;
+    gap: 50px;
+}
+.agendasVeterinario .citasempty{
+    background-color: #4196ff;
+    border-radius: 6px;
+    color: white;
+    padding: 20px;
+}
+
+.citas-veterinario{
+    align-items: center;
+    border-radius: 6px;
+    box-shadow: 0px 0px 9px 0px lightgrey;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    width: 350px;
+    height: auto;
+    position: relative;
+}
+.citas-veterinario .img{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+.citas-veterinario .schedule {
+    padding: 5px 10px;
+    text-align: center;
+    background-color: #4196ff;
+    border-radius: 6px;
+    color: white;
+    margin-top: 10px;
+}
+.citas-veterinario .icon{
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 20px;
+    color: #4196ff;
+}
+
+.citas-veterinario .icon.delete{
+    color: #ff3434;
+    left: 5px;
+    right: 0;
+}
+
+.citas-veterinario .description {
+    display: none;
+    border-radius: 6px;
+    background-color: #414f63;
+    color: white;
+    font-size: 13px;
+    height: auto;
+    padding: 5px;
+    position: absolute;
+    right: -100px;
+    top: 40px;
+    width: 200px;
+    z-index: 2;
+}
+.citas-veterinario .description::after {
+    content: '';
+    border-top: none;
+    border-bottom: 5px solid #414f63;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    position: absolute;
+    right: 111px;
+    top: -5px;
+}
+
+.citas-veterinario .icon:hover + .description{
+    display: flex;
+}
+small.agendaVete{
+    font-size: 14px;
+    color: #686868;
+    margin-left: 25px;
+}

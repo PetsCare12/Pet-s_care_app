@@ -4,51 +4,61 @@ import { SimpleModal } from '../../../layout/Modals/SimpleModal';
 import { HiOutlineIdentification,HiOutlineMail } from "react-icons/hi";
 import { BsTelephoneForward } from "react-icons/bs";
 import { MdPermIdentity,MdOutlineLocationOn } from "react-icons/md";
-import { TbPencil } from "react-icons/tb";
 import { AiFillDelete,AiFillEye } from "react-icons/ai";
 import { RiBuilding2Line } from "react-icons/ri";
-import { UserUpdate } from './UserUpdate';
-import { VeterinarioUpdate } from './VeterinarioUpdate';
-import { ClinicaUpdate } from './ClinicaUpdate';
+import { cambiarEstadoUsuario } from '../../../../helpers/API Consumer/test';
 
 
-
-const InfoUser = ( { id, nombre, apellido="" , correo, img, telefono, estado, direccion="", vetCli="", mascotas, especialidad, data } ) => {
-
+const InfoUser = ( { id, nombre, apellido="" , correo, img, telefono, estado, direccion="", vetCli="", mascotas, especialidad, data, reload } ) => { 
     const [showInfo, setShowInfo] = useState(false);
-    let edit = 0;
+    const [deleteModal, setDeleteModal] = useState(false);
+    const [estadoUser, setEstadoUser] = useState(estado);
     const liDeleted = useRef(null);
-    const [editable, setEditable] = useState(0);
+    const formEstado = useRef(null);
+
+    const handleEstado = e => {
+        e.preventDefault();
+
+        
+        const formData = new FormData(formEstado.current);
+        const data = {
+            estadoUs: formData.get('estado'),
+            documento: id
+        }
+        cambiarEstadoUsuario( data ).then( info => {
+
+            if ( info.status === 200) {
+                reload( 1 );
+            }
+            else return;
+        })
+    }
+
+    const handleSelectEstado = e => {
+
+        setEstadoUser( e.target.value );
+    }
+
     
     const handleDelete = () => {
         
-        
-    }
-    const handleEdit = () => {
-
-        mascotas ? edit = 1 : especialidad ? edit = 2 : direccion ? edit = 3 : edit = 0;
-
-        if ( edit === 1 ) {
-            setEditable( 1 );
-        }
-        else if ( edit === 2 ){
-            setEditable( 2 );
-        }
-        else if ( edit === 3 ){
-            setEditable( 3 );
-        }
+        setDeleteModal( true );
     }
 
     return (
         <>
             <li ref={liDeleted} className="table-row animate__animated">
-                <div className="col col-1 doc" data-label="Job Id">{id}</div>
+                <div className="col col-1 doc" data-label="Job Id"><span className={`estado-point ${estado===1 ? "a" : estado===2 ? "b" : "c"}`}></span>{id}</div>
                 <div className="col col-2 nom" data-label="Customer Name">{nombre}</div>
                 <div className="col col-3 cor" data-label="Correo">{correo}</div>
                 <div className="col col-4 but" data-label="Payment Status">
                     <button className='infoUser__managment'>
-                        <p onClick={handleEdit} className='casilla edit'><TbPencil/></p>
-                        <p onClick={handleDelete} className='casilla delete'><AiFillDelete/></p>
+                        {
+                            mascotas &&
+                            <>
+                                <p onClick={handleDelete} className='casilla delete'><AiFillDelete/></p>
+                            </>
+                        }
                         <p onClick={()=>setShowInfo(true)} className='casilla show' ><AiFillEye/></p>
                     </button>
                 </div>
@@ -88,13 +98,23 @@ const InfoUser = ( { id, nombre, apellido="" , correo, img, telefono, estado, di
                 </SimpleModal>
             }
             {
-                editable === 1
-                ? <UserUpdate user={data} />
-                : editable === 2
-                ? <VeterinarioUpdate user={data} />
-                : editable === 3
-                ? <ClinicaUpdate user={data} />
-                : null
+                deleteModal &&
+                <SimpleModal close={setDeleteModal}>
+                    <div className='delete-modal'>
+                        <h3>Cambio de estado</h3>
+                        {
+                            estado === 1 ? <p>El estado del usuario actualmente está <span className='statusa'>ACTIVO</span></p>
+                            : <p>El estado del usuario actualmente está <span className='statusb'>INACTIVO</span></p>
+                        }
+                    <form onSubmit={handleEstado} ref={formEstado}>
+                        <select onChange={handleSelectEstado} name="estado" id="select" value={estadoUser}>
+                            <option id='optionEstadoa' value="1">Activo</option>
+                            <option id='optionEstadob' value="2">Inactivo</option>
+                        </select>
+                        <button type='submit' className='btnAgregarMascota'>Cambiar</button>
+                    </form>
+                    </div>
+                </SimpleModal>
             }
         </>
     )

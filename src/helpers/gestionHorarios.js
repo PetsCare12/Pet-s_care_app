@@ -38,6 +38,16 @@ export const divisionHorarios = ( horasUsadas=[], ah , ch, am = 0 , cm = 0 ) => 
         
     }
 
+    const ultimaPosicionHora = Number(horarios[horarios.length-1].split(":")[0]);
+    const ultimaPosicionMinuto = Number(horarios[horarios.length-1].split(":")[1]);
+    const fechaModificable = new Date();
+    fechaModificable.setHours( ultimaPosicionHora );
+    fechaModificable.setMinutes( ultimaPosicionMinuto + tiempoCita );
+
+    if ((Number(fechaModificable.getHours()) <= Number(ch)) && (Number(fechaModificable.getMinutes()) <= Number(cm))) {
+        horarios.push(fechaModificable.getHours()+":"+fechaModificable.getMinutes())
+    }
+
     return horarios;
 
 }

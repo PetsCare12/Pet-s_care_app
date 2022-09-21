@@ -3,11 +3,11 @@ import './clinicas.css'
 import './query.css'
 import { Clinica_card } from './Clinica_card'
 import { IoIosArrowDropdown } from "react-icons/io";
-
-
 import { getAllClinicas } from '../../../helpers/API Consumer/useClinicasConsumer';
 import { Link } from 'react-router-dom';
-
+import { FooterPrincipal } from '../../layout/FooterPrincipal/FooterPrincipal';
+import nave from '../../../assets/images/varios/cohete.png'
+import { LoaderCards } from '../../UI/LoaderCards/LoaderCards';
 export const Clinicas = () => {
 
     const [clinicas, setClinicas] = useState([]);
@@ -19,14 +19,14 @@ export const Clinicas = () => {
 
         getAllClinicas()
         .then( info => {
-            console.log( info.data );
+
             setClinicas( info.data );
         })
 
     }, [])
     
     return (
-        <> <div className='contenedorClinicasMenu'>
+        <> <div id='contenedorClinicasMenu' className='contenedorClinicasMenu'>
             <div className={`menuBar ${ menuToggle && "change" }`} onClick={ () => setMenuToggle( !menuToggle )} >
             <div class="bar1"></div>
             <div class="bar2"></div>
@@ -55,7 +55,7 @@ export const Clinicas = () => {
                     ))
                 }
                 {
-                    clinicas.length === 0 && <div style={{position:"revert"}} id='spiner-home' className='spiner'></div>
+                    clinicas.length === 0 && <LoaderCards extra="m40"/>
                 }
                 
             </div>
@@ -74,9 +74,8 @@ export const Clinicas = () => {
                 :
                 null
             }
-            <footer>
-                <p>&copy; <span>Pet's Care </span> Todos los derechos reservados.</p>
-            </footer>
+             <a className="nave"  href="#contenedorClinicasMenu" ><img src={nave} alt="nave" /></a>
+           <FooterPrincipal/>
         </>
     )
 }

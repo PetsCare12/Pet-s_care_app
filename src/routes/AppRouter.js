@@ -10,10 +10,13 @@ import { Profile } from '../components/pages/Profile/Profile';
 import { Registro } from '../components/pages/Registro/Registro';
 import { Registro_mascotas } from '../components/pages/Registro_mascotas/Registro_mascotas';
 import { TypeClinica } from '../components/pages/SectionTypeClinica/TypeClinica';
+import { VeterinarioProfile } from '../components/pages/SectionTypeVeterinario/VeterinarioProfile';
 import { Agenda } from '../components/pages/Agendamiento/Agenda'
 import AdminScreen from '../components/pages/SectionTypeAdmin/AdminScreen';
 import { ClinicaProfile } from '../components/pages/SectionTypeClinica/ClinicaProfile/ClinicaProfile';
 import { PasswordRecovery } from '../components/pages/Password-recovery/PasswordRecovery';
+import { PoliticasPrivacidad } from '../components/pages/PoliticasPrivacidad/PoliticasPrivacidad';
+import { InformacionLegal } from '../components/pages/InformacionLegal/InformacionLegal';
 
 export const AppRouter = () => {
 
@@ -34,18 +37,19 @@ export const AppRouter = () => {
                 <Route path="/registro" element={!!token ? <Navigate to="/" /> : <Registro />} />
                 <Route path="/registro_mascotas" element={<Registro_mascotas />} />
                 <Route path='/perfil' element={!token ? <Navigate to="/" /> : <Profile />} />
+                <Route path='/perfil_veterinario' element={!token ? <Navigate to="/" /> : <VeterinarioProfile />} />
                 <Route path='clinicas' element={<Clinicas />} />
                 <Route path='clinica/:id' element={<Clinica />} />
                 <Route path="/*" element={ <NotFound />  } />
-                <Route path="/citas" element={ <Citas />  } />
                 <Route path="/" element={ <Home />  } />
-                <Route path="/gestionClinica" element={ <TypeClinica />  } />
-                <Route path="/tuClinica" element={ <ClinicaProfile />  } />
-                <Route path="/agenda" element={ <Agenda />  } />
+                <Route path="/gestionClinica" element={ (!!user && rol!=="[ROLE_CLINICA]") ? <Navigate to="/" /> : <TypeClinica />  } />
+                <Route path="/tuClinica" element={(!!user && rol!=="[ROLE_CLINICA]") ? <Navigate to="/" /> : <ClinicaProfile />  } />
+                <Route path="/agenda" element={!token ? <Navigate to="/" /> : <Agenda />  } />
+                <Route path="/agenda/:id" element={!token ? <Navigate to="/" /> : <Agenda />}/>
                 <Route path="/admin" element={(!!user && rol!=="[ROLE_ADMIN]") ? <Navigate to="/" /> : <AdminScreen/> }/>
                 <Route path="/recovery-password" element={<PasswordRecovery />}/>
-                <Route path="/agenda" element={<Agenda />}/>
-                <Route path="/agenda/:id" element={<Agenda />}/>
+                <Route path="/politicas" element={<PoliticasPrivacidad />}/>
+                <Route path="/informacionLegal" element={<InformacionLegal />}/>
             </Routes>
         </BrowserRouter>
     )

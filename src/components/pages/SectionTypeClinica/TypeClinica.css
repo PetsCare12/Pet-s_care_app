@@ -394,7 +394,7 @@ span{
     margin: 0;
     padding: 0;
 }
-/* /////////////////////// */
+
 #imgForm{
     height: 100%;
     width: 100%;
@@ -436,7 +436,7 @@ span{
 .inactive{
     color: tomato;
 }
-/* //////////////////// */
+
 .modal_active_inactive{
     background-color: #dee1e2;
     width: 50vh;

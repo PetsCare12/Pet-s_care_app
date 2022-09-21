@@ -1,9 +1,10 @@
 import axios from "axios";
+const URL = "http://localhost:8080";
 
 export const getUsuario_mascotas = async( id ) => {
 
     try {
-        const respuesta = await axios.get("http://localhost:8080/api/usuarios/"+id+"/mascotas");
+        const respuesta = await axios.get(URL+"/api/usuarios/"+id+"/mascotas");
 
         return respuesta.data;
         
@@ -20,7 +21,7 @@ export const crearMascota = async( mascota, id ) => {
     try {
         
         const resp = await axios({
-            url : "http://localhost:8080/api/usuario/"+id+"/mascota",
+            url : URL+"/api/usuario/"+id+"/mascota",
             method : 'POST',
             headers : {
                 "Content-Type":"application/json",
@@ -46,7 +47,7 @@ export const crearMascota = async( mascota, id ) => {
 
 export const getUsuarioId = async ( id ) => {
     try {
-        const respuesta = await axios.get("http://localhost:8080/api/usuarios/"+id);
+        const respuesta = await axios.get(URL+"/api/usuarios/"+id);
         
         return respuesta;
     } catch (error) {
@@ -61,7 +62,7 @@ export const postUsuario = async( user ) => {
 
     try {
         const response = await axios({
-            url: "http://localhost:8080/api/usuarios",
+            url: URL+"/api/usuarios",
             method: "POST",
             headers: {
                 "Content-Type":"application/json"
@@ -87,7 +88,7 @@ export const inicioSesionUsuario = async ( valores ) => {
 
     try {
         const resp = await axios({
-            url: "http://localhost:8080/api/auth/iniciarSesion",
+            url: URL+"/api/auth/iniciarSesion",
             method: "POST",
             headers: {
                 "Content-Type":"application/json"
@@ -110,7 +111,7 @@ export const inicioSesionUsuario = async ( valores ) => {
 export const usuariosTodos = async() => {
 
     try {
-        const respuesta = await axios.get("http://localhost:8080/api/usuarios");
+        const respuesta = await axios.get(URL+"/api/usuarios");
 
         return respuesta.data;
         
@@ -124,13 +125,38 @@ export const usuarioUpdate = async( user, id, token) => {
 
     try {
         const resp = await axios({
-            url: "http://localhost:8080/api/usuarios/"+id,
+            url: URL+"/api/usuarios/"+id,
             method: "PUT",
             headers: {
                 "Content-Type":"application/json",
                 'Authorization': 'Bearer '+token,
             },
             data: user
+        }).catch( function( error ) {
+
+            if (error.response) {
+                return { status : error.response.status};
+            } 
+        });
+        console.log( resp );
+        return resp;
+
+    } catch (error) {
+        console.log( error );
+    }
+
+}
+
+export const cambiarEstadoUsuario = async(estado) => {
+    const token = localStorage.getItem("token");
+    try {
+        const resp = await axios({
+            url: `${URL}/api/usuarios/${estado.documento}/estado/${estado.estadoUs}`,
+            method: "PUT",
+            headers: {
+                "Content-Type":"application/json",
+                'Authorization': 'Bearer '+token,
+            },
         }).catch( function( error ) {
 
             if (error.response) {

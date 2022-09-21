@@ -313,6 +313,12 @@
     transition: 1s;
 }
 
+#perfil__logout:focus{
+    background-color: #ff2424;
+    border: 1px solid #ff2424;
+    color: white;
+}
+
 .perfil__editImage {
     cursor: pointer;
     align-items: center;
@@ -602,3 +608,35 @@
     display: none;
 }
 
+.verifyPassword{
+    background-color: white;
+    width: 350px;
+    padding: 50px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.verifyPassword .label{
+    font-size: 12px;
+    font-family: 'Nunito', sans-serif;
+}
+
+p.cancelPasswordVerify {
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .4s;
+    border-radius: 50%;
+}
+p.cancelPasswordVerify:hover {
+    background-color: #ff5454;
+    color: white;
+    transition: .4s;
+}

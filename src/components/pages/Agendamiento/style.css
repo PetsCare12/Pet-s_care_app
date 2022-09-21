@@ -72,6 +72,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    justify-content: center;
 }
 .agenda__button-card{
     background-color: white;
@@ -140,7 +141,7 @@
 }
 
 
-/* ............. PETS ...............*/
+
 .imgSchedule .imgPet .pet {
     max-width: 200px;
     border-radius: 2px;
@@ -172,7 +173,7 @@
     font-size: 13px;
 }
 
-/* ............ Shedule ..............*/
+
 .imgSchedule .schedule {
     width: 100%;
     min-width: 350px;
@@ -254,6 +255,7 @@
 
 .agendaDescription{
     background-color: white;
+    color: black;
     border-radius: 6px;
     padding: 40px;
     min-width: 400px;

@@ -41,3 +41,40 @@ export const getAgendas = async ( id ) => {
     return response;
 
 };
+
+export const getAgendasVeterinario = async ( id ) => {
+    const response = await axios(`${URL}/api/veterinario/${id}/agendas`)
+
+    return response;
+}
+
+export const cancelarAgenda = async (codigo) => {
+
+    const access_token = localStorage.getItem("token");
+
+    try {
+        
+        const resp = await axios({
+            url : URL+"/api/agendas/"+codigo,
+            method : 'DELETE',
+            headers : {
+                "Content-Type":"application/json",
+                'Authorization': 'Bearer '+access_token,
+            },
+        }).catch( function( error ) {
+
+            if ( error.response ) {
+                console.log( error );
+                return { status : error.response.status }
+            }
+
+        });
+        console.log( resp );
+
+        return resp;
+
+    } catch (error) {
+        console.log( error );
+    }
+
+}

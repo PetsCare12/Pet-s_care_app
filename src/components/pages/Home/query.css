@@ -1,4 +1,7 @@
 @media (max-width: 800px) {
+    .headerHome {
+        padding: 12px 17px;
+    }
     header {
         padding: 3% 2% 13%;
     }
@@ -125,7 +128,7 @@
 
 @media (max-width: 400px) {
     .headerHome {
-        padding: 10px 10px;
+        padding: 12px 10px;
     }
     .headerHome__right{
         display: none;
@@ -217,5 +220,8 @@
     }
     .home__contactUs-title {
         font-size: 3rem;
+    }
+    footer {
+        margin-top: 0px;
     }
 }
