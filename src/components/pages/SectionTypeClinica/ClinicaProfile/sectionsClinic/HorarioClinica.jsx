@@ -96,8 +96,6 @@ export const HorarioClinica = ( {data} ) => {
       }
 
     }, [horarios])
-    
-  
 
     const setDates = (e) => {
 

@@ -55,7 +55,6 @@ export const SectionPerfilClinica = ( {userData , imgCli} ) => {
     const handleImageEdit = () => {
         myWidgetClinics.open();
     }
-    // console.log(monthDays( 2022, 8 ));
 
     const handleTelefono = ( e ) => { setActTele( e.target.value ) }
     const handleDireccion = ( e ) => { setActDireccion( e.target.value ) }
@@ -110,7 +109,8 @@ export const SectionPerfilClinica = ( {userData , imgCli} ) => {
             newPassword: formData.get('newPassword'),
             correoCv: actCorreo,
             direccion: actDireccion,
-            telefono: actTele
+            telefono: actTele,
+            tarifa: actTarifa
         }
         
         const validacion = { nombreoCorreo : actCorreo , password : data.oldPassword };
@@ -136,14 +136,11 @@ export const SectionPerfilClinica = ( {userData , imgCli} ) => {
                         tarifa: actTarifa,
                         password : data.newPassword
                     }
-
-                    console.log("New Passwor: "+data.newPassword);
                     
                     setErrorPassword([false,""]);
-                    putClinica( dataActualizacion, userData.nit ).then( info => {
+                    putClinica( dataActualizacion, userData.nit, token ).then( info => {
                         console.log( info.status );
                         if ( info.status === 200 ) {
-                            console.log( info );
                             setPasswordChanged([true, "Tu contraseña ha sido actualizada"])
                             setTimeout( () => {
                                 setPasswordChanged([false, ""])
