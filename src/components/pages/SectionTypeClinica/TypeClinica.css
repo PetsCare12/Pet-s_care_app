@@ -458,3 +458,6 @@ span{
 .modalactive_text{
     color: #008eff;
 }
+.back:hover{
+    filter: brightness(65%);
+}

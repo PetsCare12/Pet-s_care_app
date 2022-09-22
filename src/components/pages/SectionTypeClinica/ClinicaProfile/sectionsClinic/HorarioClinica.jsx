@@ -7,10 +7,10 @@ export const HorarioClinica = ( {data} ) => {
 
       const token = localStorage.getItem('token');
 
-      const [loader, setloader] = useState(false);
       const [horarios, sethorarios] = useState([]);
-      const [str_warn, setstr_warn] = useState("");
+      const [loader, setloader] = useState(false);
       const [toSetHorarios, settoSetHorarios] = useState(false);
+      const [str_warn, setstr_warn] = useState("");
       const [response_update, setresponse_update] = useState("");
 
       const [lunes_in_hour, setlunes_in_hour] = useState("");
@@ -36,16 +36,17 @@ export const HorarioClinica = ( {data} ) => {
         if (info.length === 0) {
           settoSetHorarios(true);
           setloader(false);
-          console.log(toSetHorarios);
-          console.log(info);
         }else{
           sethorarios([info]);
           settoSetHorarios(false);
           setloader(false);
-          console.log(info);
         }
       });
     }, [data])
+
+    useEffect(() => {
+      if (str_warn === "Horario actualizada con exito") { setTimeout(() => { window.location = "/tuClinica" }, 3500); }
+    }, [str_warn])
 
     useEffect(() => {
       
@@ -95,14 +96,10 @@ export const HorarioClinica = ( {data} ) => {
       }
 
     }, [horarios])
-    
-  
 
     const setDates = (e) => {
 
       e.preventDefault();
-
-      console.log(e);
 
       if (toSetHorarios === false) {
 
@@ -184,14 +181,12 @@ export const HorarioClinica = ( {data} ) => {
           errors.validacion = `Campo Vacío Hora Entrada del día ${obj1.diaHorarios}`
           setloader(false);
           setstr_warn(errors.validacion);
-          break;
 
         }else if (obj1.horaSalida === "") {
           
           errors.validacion = `Campo Vacío Hora Salida del día ${obj1.diaHorarios}`
           setloader(false);
           setstr_warn(errors.validacion);
-          break;
 
         }
       }
@@ -201,18 +196,15 @@ export const HorarioClinica = ( {data} ) => {
         for (let k in hoursAvalibles){
 
           let obj2 = hoursAvalibles[k];
-          setHorarioClinica( obj2 , nit , token).then( data => {
-            console.log(data);
-          });
-          console.log(obj2);
+          setHorarioClinica( obj2 , nit , token).then( data => {setresponse_update(data)});
         }
 
         setloader(false);
+        window.location = "/tuClinica";
 
       }else{
 
         console.log("No se puede Registrar el horario");
-        console.log(errors.validacion);
         setloader(false);
         setstr_warn(errors.validacion);
 
@@ -223,68 +215,75 @@ export const HorarioClinica = ( {data} ) => {
     }
 
     const update_horario = (e) => {
-      
-      console.log(e);
-
-      setloader(true);
-      let errors = {};
 
       let arr = horarios[0];
-      let keys = [];
+      let keys = {};
       
-      for (let i in arr) {
-        
-        let obj4 = arr[i];
-        keys.push(obj4.idHorarios);
+      arr.forEach(element => { 
 
-      }
+        let day = element.diaHorarios;
+  
+        switch (day) {
+          
+          case "lunes"    :keys.lunes = element.idHorarios;     break;
+          case "martes"   :keys.martes = element.idHorarios;    break;
+          case "miercoles":keys.miercoles = element.idHorarios; break;
+          case "jueves"   :keys.jueves = element.idHorarios;    break;
+          case "viernes"  :keys.viernes = element.idHorarios;   break;
+          case "sabado"   :keys.sabado = element.idHorarios;    break;
+          case "domingo"  :keys.domingo = element.idHorarios;   break;
+        
+          default         :break;
+        }
+  
+      });
 
       let hoursAvalibles =  [
 
         { 
-          "idHorarios" : keys[0],
+          "idHorarios" : keys.lunes,
           "diaHorarios" : "lunes",
           "horaInicio" : e.target[2].value,
           "horaSalida"  : e.target[4].value
         }
       ,
         {
-          "idHorarios" : keys[1],
+          "idHorarios" : keys.martes,
           "diaHorarios" : "martes",
           "horaInicio" : e.target[7].value,
           "horaSalida"  : e.target[9].value
         }
       ,
         {
-          "idHorarios" : keys[2],
+          "idHorarios" : keys.miercoles,
           "diaHorarios" : "miercoles",
           "horaInicio" : e.target[12].value,
           "horaSalida"  : e.target[14].value
         }
       ,
         {
-          "idHorarios" : keys[3],
+          "idHorarios" : keys.jueves,
           "diaHorarios" : "jueves",
           "horaInicio" : e.target[17].value,
           "horaSalida"  : e.target[19].value
         }
       ,
         {
-          "idHorarios" : keys[4],
+          "idHorarios" : keys.viernes,
           "diaHorarios" : "viernes",
           "horaInicio" : e.target[22].value,
           "horaSalida"  : e.target[24].value
         }
       ,
         {
-          "idHorarios" : keys[5],
+          "idHorarios" : keys.sabado,
           "diaHorarios" : "sabado",
           "horaInicio" : e.target[27].value,
           "horaSalida"  : e.target[29].value
         }
       ,
         {
-          "idHorarios" : keys[6],
+          "idHorarios" : keys.domingo,
           "diaHorarios" : "domingo",
           "horaInicio" : e.target[32].value,
           "horaSalida"  : e.target[34].value
@@ -307,23 +306,18 @@ export const HorarioClinica = ( {data} ) => {
 
       let index_days_val = 0;
 
-      for (let index in days) { if ( days[index] === false ) { index_days_val += 1;  } }
+      for (let index in days) { if ( days[index] === false ) { index_days_val = index_days_val + 1; } }
 
-      for (let p in days){
+      if (index_days_val !== 7) {
 
-          let obj6 = days[p];
+        let errors = {};
 
-          if (obj6 === true) {
+        for (let p in days){
+
+          if (days[p] === true) {
             
             let var_val_day = "";
-            
-            hoursAvalibles.forEach(element => {
-
-              if (element.diaHorarios === p) {
-                var_val_day = element;
-              }
-
-            });
+            hoursAvalibles.forEach(element => {if (element.diaHorarios === p) {var_val_day = element;}});
             
             console.log("Se actualiza: " + p);
 
@@ -331,119 +325,88 @@ export const HorarioClinica = ( {data} ) => {
 
               errors.validacion = `Campo Vacío Hora Entrada del día ${var_val_day.diaHorarios}`
               setloader(false);
-              setstr_warn(errors.validacion);
-              break;
     
             }else if (var_val_day.horaSalida === "") {
               
               errors.validacion = `Campo Vacío Hora Salida del día ${var_val_day.diaHorarios}`
               setloader(false);
-              setstr_warn(errors.validacion);
-              break;
     
             }
             if (JSON.stringify(errors) === '{}') {
 
-              console.log("Se puede actualizar !!");
-              console.log(var_val_day.idHorarios);
-
               putHorarioGeneral( var_val_day , var_val_day.idHorarios , token).then( data => {
-          
-                setresponse_update(data)
-    
+                setstr_warn(data);
+                setTimeout(() => setstr_warn(""), 3500);
+                console.log(data);
               });
               
             }else{
 
-            console.log("No se puede Actualizar el horario");
-            console.log(errors.validacion);
+              setloader(false);
+              setstr_warn(errors.validacion);
+              setTimeout(() => setstr_warn(""), 3500);
+              console.log(errors.validacion);
+              
+            }
             setloader(false);
-            setstr_warn(errors.validacion);
-          }
 
+          }else{ console.log("No se actualiza el dia " + p); }
         }
-        else if (index_days_val === 7) {
+        
+      }else if (index_days_val === 7) {
 
-          console.log("Se actulaliza los 7 dias!!");
+        let errors = {};
+        let day = "";
+
+        hoursAvalibles.forEach(element => { 
+
+          day = element; 
           
-            let var_val_day = "";
+          if (day.horaInicio === "") {
+
+            errors.validacion = `Hay Campos Vacios`
+            setloader(false);
+  
+          }else if (day.horaSalida === "") {
             
-            hoursAvalibles.forEach(element => {
-              if (element.diaHorarios === p) { var_val_day = element; }
+            errors.validacion = `Hay Campos Vacíos`
+            setloader(false);
+  
+          }
+        })
+
+        if (JSON.stringify(errors) === '{}') {
+
+          hoursAvalibles.forEach(element => {
+
+            putHorarioGeneral( element , element.idHorarios , token).then( data => {
+              setstr_warn(data);
+              setTimeout(() => setstr_warn(""), 3500);
             });
 
-            if (var_val_day.horaInicio === "") {
-
-              errors.validacion = `Campo Vacío Hora Entrada del día ${var_val_day.diaHorarios}`
-              setloader(false);
-              setstr_warn(errors.validacion);
-              break;
-    
-            }else if (var_val_day.horaSalida === "") {
-              
-              errors.validacion = `Campo Vacío Hora Salida del día ${var_val_day.diaHorarios}`
-              setloader(false);
-              setstr_warn(errors.validacion);
-              break;
-    
-            }
-            if (JSON.stringify(errors) === '{}') {
-
-              console.log("Se puede actualizar el dia !!" + var_val_day.diaHorarios + " " + var_val_day.idHorarios);
-
-              putHorarioGeneral( var_val_day , var_val_day.idHorarios , token).then( data => {
+          });
           
-                setresponse_update(data);
-                console.log(data);
-    
-              });
-              
-            }else{
-
-            console.log("No se puede Actualizar el horario");
-            console.log(errors.validacion);
-            setloader(false);
-            setstr_warn(errors.validacion);
-          }
-
-        }
-        else{
-
-            console.log("No se actualiza el dia " + p);
-
-          }
-      }
-
-        if (response_update === "Horario actualizada con exito") {
-          
-          setstr_warn("Horario actualizada con exito")
-          setTimeout(() => {
-            setstr_warn("");
-          }, 3000);
-
-          setloader(false);
-
         }else{
 
-          setstr_warn("Error actualizacion Horario")
-          setTimeout(() => {
-            setstr_warn("");
-          }, 3000);
-
           setloader(false);
-
+          setstr_warn(errors.validacion);
+          setTimeout(() => setstr_warn(""), 3500);
+          console.log(errors.validacion);
         }
 
+        setloader(false);
+
+      }
     }
 
     return (
       <form onSubmit={setDates} className="horario_form animate__animated animate__fadeIn">
-        
+        <p className='profile__editarPerfil cc'>Si tu servicio es de 24 horas, por favor selecciona la apertura 00:00 y el cierre 23:59</p>
         <div className="title_cont">
-          <h3 className='profile__editarPerfil title_hour'>{"Horario Clinica"}</h3>
 
-          { (loader) && <div id='login-spin-clinic' className='spiner'></div> }
-          { (str_warn) && <p>{ str_warn }</p> }
+          <h3 className='profile__editarPerfil title_hour'>{"Horario Clinica"}</h3>
+          { (loader === true) && <div id='login-spin-clinic' className='spiner'></div> }
+          { (str_warn) && <p className='profile__editarPerfil title_hour'>{ str_warn }</p> }
 
         </div>
                 <div className="part1_horarios">

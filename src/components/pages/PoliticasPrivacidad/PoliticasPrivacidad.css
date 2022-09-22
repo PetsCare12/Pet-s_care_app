@@ -1,0 +1,30 @@
+.contentP{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    background-color: #008eff;
+
+}
+.contentPoliticas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 600px;
+    height: 800px;
+    min-width: 300px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0px 0px 9px 0px rgb(99 97 97);
+    font-size: 16px;
+}
+.contentText{
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 15px;
+}
