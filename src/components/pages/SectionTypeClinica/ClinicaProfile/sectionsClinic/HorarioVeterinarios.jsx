@@ -63,6 +63,10 @@ export const HorarioVeterinarios = ( {data} ) => {
       horariosVets[k] = vets[key].horarios;
     }
   }, [vets])
+
+  useEffect(() => {
+    if (str_warn === "Horario actualizada con exito") { setTimeout(() => { window.location = "/tuClinica" }, 3500); }
+  }, [str_warn])
   
   useEffect(() => {
 
@@ -303,10 +307,9 @@ return (
   <div className='horarios_veterinarios_comp'>
 
     <form onSubmit={getDates} className="horario_form animate__animated animate__fadeIn">
-      
     <div className="title_cont">
       <h3 className='profile__editarPerfil title_hour'>{"Horario Veterinarios"}</h3>
-      { (temp_horarios.length !== 0) && <p className='profile__editarPerfil title_hour'>{ "Horario de " }{ temp_horarios.nombre }{ temp_horarios.apellidos }</p> }
+      { (temp_horarios.length !== 0) && <p className='profile__editarPerfil title_hour'>{ "Horario de " }{ temp_horarios.nombre } { temp_horarios.apellidos }</p> }
       { (loader === true) && <div id='login-spin-clinic' className='spiner'></div> }
       { (str_warn) && <p className='profile__editarPerfil title_hour'>{ str_warn }</p> }
     </div>

@@ -45,6 +45,10 @@ export const HorarioClinica = ( {data} ) => {
     }, [data])
 
     useEffect(() => {
+      if (str_warn === "Horario actualizada con exito") { setTimeout(() => { window.location = "/tuClinica" }, 3500); }
+    }, [str_warn])
+
+    useEffect(() => {
       
       let arr = horarios[0]
 
@@ -346,6 +350,7 @@ export const HorarioClinica = ( {data} ) => {
               console.log(errors.validacion);
               
             }
+            setloader(false);
 
           }else{ console.log("No se actualiza el dia " + p); }
         }
@@ -391,12 +396,14 @@ export const HorarioClinica = ( {data} ) => {
           console.log(errors.validacion);
         }
 
+        setloader(false);
+
       }
     }
 
     return (
       <form onSubmit={setDates} className="horario_form animate__animated animate__fadeIn">
-        
+        <p className='profile__editarPerfil cc'>Si tu servicio es de 24 horas, por favor selecciona la apertura 00:00 y el cierre 23:59</p>
         <div className="title_cont">
 
           <h3 className='profile__editarPerfil title_hour'>{"Horario Clinica"}</h3>
