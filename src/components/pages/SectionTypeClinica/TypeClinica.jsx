@@ -10,7 +10,7 @@ import { SimpleModal } from "../../layout/Modals/SimpleModal";
 import { MdOutlineCancel } from 'react-icons/md';
 import { getClinicaById } from '../../../helpers/API Consumer/useClinicasConsumer';
 import { NoAutenticado } from '../NoAutenticado/NoAutenticado';
-import { Link } from 'react-router-dom';
+import { IoMdArrowRoundBack } from "react-icons/io";
 import "./TypeClinica.css";
 
 export const TypeClinica = () => {
@@ -169,12 +169,13 @@ export const TypeClinica = () => {
             <div className='st4'>
               <h1 className='titleP2 -margin'>Veterinarios</h1>
               <hr className='hrVet'/>
-                    <ModalRegisterVet isOpen={isOpenModal1} closeModal={closeModal1} nit={nitClinic} token={tokenClinic} className="animate__animated animated_fadeIn" />
-                    <div className="search">
-                      <input type="text" className="input iSearch" placeholder='ID del Veterinario...' onKeyDown={getVeterId}/>
-                      <img src={pets_images('./veterinarios/lupa.png')} alt="" id='searchIcon' />
-                      <ButtonUI text="Registrar" type="button" style="regs submit" event={openModal1}></ButtonUI>
-                    </div>
+                  <ModalRegisterVet isOpen={isOpenModal1} closeModal={closeModal1} nit={nitClinic} token={tokenClinic} className="animate__animated animated_fadeIn" />
+                  <div className="search">
+                    <IoMdArrowRoundBack className='back' style={{fontSize:"35px",color:"#008eff",cursor:"pointer",borderRadius:"360px"}} title="Volver" onClick={() => {window.location = "/tuClinica"}}></IoMdArrowRoundBack>
+                    <input type="text" className="input iSearch" placeholder='ID del Veterinario...' onKeyDown={getVeterId}/>
+                    <img src={pets_images('./veterinarios/lupa.png')} alt="" id='searchIcon' />
+                    <ButtonUI text="Registrar" type="button" style="regs submit" event={openModal1}></ButtonUI>
+                  </div>
               <ul>
               {
                     arr.length === 0

@@ -3,11 +3,11 @@ import { PhotoProfile } from '../../Profile/PhotoProfile';
 import { FaHome } from 'react-icons/fa';
 import { HorarioClinica } from './sectionsClinic/HorarioClinica';
 import { HorarioVeterinarios } from './sectionsClinic/HorarioVeterinarios';
-import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { getClinicaById } from '../../../../helpers/API Consumer/useClinicasConsumer';
 import { NoAutenticado } from "../../NoAutenticado/NoAutenticado";
 import { SectionPerfilClinica } from "../ClinicaProfile/sectionsClinic/SectionPerfilClinica";
 import '../ClinicaProfile/ClinicaProfile.css';
+import { SimpleModal } from '../../../layout/Modals/SimpleModal';
 
 export const ClinicaProfile = () => {
 
@@ -17,12 +17,12 @@ export const ClinicaProfile = () => {
   const [activeBtn, setActiveBtn] = useState("perfil");
   const [imagenCli, setimagenCli] = useState("");
   const [tokenUser, setTokenUser] = useState(JSON.parse(localStorage.getItem("usuario")));
+  const [horarios, sethorarios] = useState(false);
 
   useEffect(() => {
 
     if ( !!tokenUser ) {
 
-      console.log("No esta vacio");
       getClinicaById(tokenUser.id).then(data => {
         setimagenCli(data.data.imagenclinica);
         setclinicObjt(data.data);
@@ -92,9 +92,15 @@ export const ClinicaProfile = () => {
                       <button onClick={() => {setActiveBtn("horario_veterinario")}} className={`profile__btnProfile ${(activeBtn === "horario_veterinario") && "perfil_active"}`}>
                           <div className='profile__titleBtn'>Horario Veterinarios</div>
                       </button>  
-                      <button onClick={() => {setActiveBtn("gestion") 
-                      window.location = "/gestionClinica"}} className={`profile__btnProfile ${(activeBtn === "gestion") && "perfil_active"}`}>
-                          <div className='profile__titleBtn gestion_space'><p>Gestiona tus Veterinarios</p></div>
+                      <button onClick={() => {
+
+                          setActiveBtn("gestion");
+                          let horario = clinicObjt.horarios;
+                          if ( horario.length === 0 ) { sethorarios(true) }
+                          else { sethorarios(false); window.location = "/gestionClinica"; }
+
+                      }} className={`profile__btnProfile ${(activeBtn === "gestion") && "perfil_active"}`}>
+                          <div className='profile__titleBtn gestion_space'>Gestiona tus Veterinarios</div>
                       </button>
 
                       <button id='perfil__logout' onClick={handleLogout} className={`profile__btnProfile ${(activeBtn === "logout") && "perfil_active"}`}>
@@ -121,6 +127,18 @@ export const ClinicaProfile = () => {
                       {
                         ( activeBtn === "perfil" ) && <SectionPerfilClinica userData={clinicObjt} imgCli={imagenCli}/>
                       }
+                      
+                      {
+                        ( horarios ) && 
+                        <SimpleModal close={sethorarios} click={() => {setActiveBtn("horario")}}>
+
+                          <div className="modal_vets">
+                            <p>{"Primero registra tu horario!"}</p>
+                          </div>
+
+                        </SimpleModal>
+                      }
+
                     </div>
                     
                 </div>
