@@ -3,9 +3,10 @@ import { InputUI } from '../../../../UI/InputUI/InputUI';
 import { ButtonUI } from '../../../../UI/ButtonUI/ButtonUI';
 import {VscFiles} from 'react-icons/vsc';
 import { inicioSesionUsuario } from '../../../../../helpers/API Consumer/test';
-import { actualizacionPasswordUser, validacionActualizacionUser }  from "../../../../../helpers/validacionesInput/validacionActualizacionUser";
+import { actualizacionPasswordUser }  from "../../../../../helpers/validacionesInput/validacionActualizacionUser";
 import { useSendImage } from '../../../../../helpers/Cloudinary_Images/useSendImages';
 import { putClinica } from '../../../../../helpers/API Consumer/useClinicasConsumer';
+import { validacionActClinica } from '../../../../../helpers/validacionesInput/validacionesClinica';
 
 
 
@@ -29,6 +30,7 @@ export const SectionPerfilClinica = ( {userData , imgCli} ) => {
     const [actImage, setActImage] = useState("");
     const [actCorreo, setActCorreo] = useState("");
     const [actDireccion, setActDireccion] = useState("");
+    const [actTarifa, setactTarifa] = useState("");
     const [actPass, setActPass] = useState("");
     
     const [oldPassword, setOldPassword] = useState("");
@@ -45,6 +47,7 @@ export const SectionPerfilClinica = ( {userData , imgCli} ) => {
             setActCorreo(userData.correoCv);
             setActDireccion(userData.direccion);
             setActPass(userData.password);
+            setactTarifa(userData.tarifa)
             setActImage(imgCli);
         }
     }, [userData])
@@ -55,8 +58,9 @@ export const SectionPerfilClinica = ( {userData , imgCli} ) => {
     // console.log(monthDays( 2022, 8 ));
 
     const handleTelefono = ( e ) => { setActTele( e.target.value ) }
-    const handleDireccion = ( e ) => { setActTele( e.target.value ) }
-    const handleCorreo = ( e ) => { setActDireccion( e.target.value ) }
+    const handleDireccion = ( e ) => { setActDireccion( e.target.value ) }
+    const handleCorreo = ( e ) => { setActCorreo( e.target.value ) }
+    const handleTarifa = ( e ) => { setactTarifa( e.target.value ) }
     const handleOldPassword = ( e ) => { setOldPassword( e.target.value ) }
     const handleNewPassword = ( e ) => { setNewPassword( e.target.value ) }
 
@@ -68,21 +72,29 @@ export const SectionPerfilClinica = ( {userData , imgCli} ) => {
 
     const handleSubmitInfo = ( e ) => {
         e.preventDefault();
+        
         const formData = new FormData(form.current);
         const data = {
+            nit: userData.nit,
+            nombre: userData.nombre,
+            direccion: formData.get('direccion'),
             telefono: formData.get('telefono'),
             correoCv: formData.get('correoCv'),
-            direccion: formData.get('direccion')
+            password: userData.password,
+            imagenclinica: userData.imagenclinica,
+            estadoCli: 1,
+            tarifa: formData.get('tarifa')
         }
-        const resp = validacionActualizacionUser( data, setErrorForm, setErrorFormTxt );
+        const resp = validacionActClinica( data, setErrorForm, setErrorFormTxt );
 
         if ( resp === "ok" ) {
             data.telefono = actTele;
             data.correoCv = actCorreo;
             data.direccion = actDireccion;
-            putClinica( data, userData.nit ).then( info => {
+            data.tarifa = actTarifa
+            putClinica( data, userData.nit, token ).then( info => {
                 if ( info.status === 200 ) {
-                    window.location = "/perfil"
+                    window.location = "/tuClinica"
                 }
             });
         }
@@ -102,7 +114,7 @@ export const SectionPerfilClinica = ( {userData , imgCli} ) => {
         }
         
         const validacion = { nombreoCorreo : actCorreo , password : data.oldPassword };
-        const resp2 = validacionActualizacionUser( data, setErrorForm, setErrorFormTxt );
+        const resp2 = validacionActClinica( data, setErrorForm, setErrorFormTxt );
         const { resp, msj } = actualizacionPasswordUser( data );
 
         if ( resp2==="ok" && resp ) {
@@ -121,6 +133,7 @@ export const SectionPerfilClinica = ( {userData , imgCli} ) => {
                         correoCv : actCorreo,
                         imagenclinica : actImage,
                         estadoCli: 1,
+                        tarifa: actTarifa,
                         password : data.newPassword
                     }
 
@@ -198,8 +211,17 @@ export const SectionPerfilClinica = ( {userData , imgCli} ) => {
                                 style="inputLogin"
                                 type="text"
                                 name="correoCv"
-                                value={actTele}
+                                value={actCorreo}
                                 eventChange={handleCorreo}
+                            />
+
+                            <label htmlFor='correo' className='profile__perfil-label'>Tarifa</label>
+                            <InputUI 
+                                style="inputLogin"
+                                type="text"
+                                name="tarifa"
+                                value={actTarifa}
+                                eventChange={handleTarifa}
                             />
 
                             { errorForm && <p className='error_actualizar_usuario'>{errorFormTxt}</p> }
