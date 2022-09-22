@@ -268,3 +268,8 @@ button{
     transition: .4s;
     background-color: #0064b3;
 }
+
+button.btnLogin.disabled {
+    pointer-events: none;
+    background-color: lightgray;
+}

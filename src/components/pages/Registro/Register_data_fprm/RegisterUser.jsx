@@ -6,6 +6,8 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { postUsuario } from '../../../../helpers/API Consumer/test';
 import { imageRandom } from '../../../../helpers/RandomImages/imagenessa';
 import { VscEye,VscEyeClosed } from "react-icons/vsc";
+import { SimpleModal } from '../../../layout/Modals/SimpleModal';
+import { Link } from 'react-router-dom';
 
 export const RegisterUser = ( {change_step} ) => {
 
@@ -13,6 +15,7 @@ export const RegisterUser = ( {change_step} ) => {
     const [loading, setLoading] = useState(false);
     const [duplicatedData, setDuplicatedData] = useState(false);
     const [registered, setRegistered] = useState(false);
+    const [terminos, setTerminos] = useState(false);
 
     const [showPassword, setShowPassword] = useState("password")
 
@@ -205,9 +208,15 @@ export const RegisterUser = ( {change_step} ) => {
                                 </button>
                             </div>
                         <ErrorMessage name='passwordUs' component={() => (<p className='warn__password-user'>{errors.passwordUs}</p>)} />
+                        <div className="sameline terminos-condiciones">
+                            <input type="checkbox" onChange={ () => setTerminos( !terminos )} />
+                            <p>Acepto los <Link className='anchor' to="/terminos-condiciones">Terminos y condiciones</Link></p>
+                            
+
+                        </div>
                         <ButtonUI 
                             text="Registrar"
-                            style={`btnLogin ${( loading )? 'hidden' :( registered )? 'hidden' : ""}`}
+                            style={`btnLogin ${ !terminos && "disabled"} ${( loading )? 'hidden' :( registered )? 'hidden' : ""}`}
                             type={"submit"}
                         />
                         {
@@ -219,8 +228,6 @@ export const RegisterUser = ( {change_step} ) => {
                     </Form>
                 )}
             </Formik>
-                
-
         </>
     )
 }
