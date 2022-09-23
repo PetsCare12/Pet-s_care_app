@@ -8,6 +8,7 @@ import { NoAutenticado } from "../../NoAutenticado/NoAutenticado";
 import { SectionPerfilClinica } from "../ClinicaProfile/sectionsClinic/SectionPerfilClinica";
 import '../ClinicaProfile/ClinicaProfile.css';
 import { SimpleModal } from '../../../layout/Modals/SimpleModal';
+import { useNavigate } from 'react-router';
 
 export const ClinicaProfile = () => {
 
@@ -18,6 +19,7 @@ export const ClinicaProfile = () => {
   const [imagenCli, setimagenCli] = useState("");
   const [tokenUser, setTokenUser] = useState(JSON.parse(localStorage.getItem("usuario")));
   const [horarios, sethorarios] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
 
@@ -97,7 +99,7 @@ export const ClinicaProfile = () => {
                           setActiveBtn("gestion");
                           let horario = clinicObjt.horarios;
                           if ( horario.length === 0 ) { sethorarios(true) }
-                          else { sethorarios(false); window.location = "/gestionClinica"; }
+                          else { sethorarios(false); navigate("/gestionClinica"); }
 
                       }} className={`profile__btnProfile ${(activeBtn === "gestion") && "perfil_active"}`}>
                           <div className='profile__titleBtn gestion_space'>Gestiona tus Veterinarios</div>
