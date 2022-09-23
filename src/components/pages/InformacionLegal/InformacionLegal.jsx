@@ -8,6 +8,7 @@ export const InformacionLegal = () => {
         <div className='contentPoliticas'>
           <div className='contentText'>
               <span>Informacion Legal</span>
+              <hr className='rayita' />
               <p>Nuestro sitio puede contener enlaces a otros sitios web que no son de nuestra propiedad ni están controlados por nosotros. Ten en cuenta que no somos responsables de dichos sitios web ni de las prácticas de privacidad de terceros. Te recomendamos que estés atento cuando abandones nuestro sitio web y leas las declaraciones de privacidad de cada sitio que pueda recopilar información personal.</p>
 
              <span>Seguridad de la información:</span>
@@ -24,4 +25,5 @@ export const InformacionLegal = () => {
 
     </>
   )
+  
 }
