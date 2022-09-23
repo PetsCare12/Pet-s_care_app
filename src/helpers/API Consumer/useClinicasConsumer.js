@@ -1,10 +1,12 @@
 import axios from "axios";
 
+const URL = "https://petscareapi.uc.r.appspot.com/api";
+
 export const registroClinica = async( clinica ) => {
  
     try {
         const response = await axios({
-            url: "http://localhost:8080/api/clinicas",
+            url: `${URL}/clinicas`,
             method: "POST",
             headers: {
                 "Content-Type":"application/json"
@@ -31,7 +33,7 @@ export const getClinicaById = async( nit ) => {
     
     try {
 
-        const respuesta = await axios.get(`http://localhost:8080/api/clinicas/${nit}`);
+        const respuesta = await axios.get(`${URL}/clinicas/${nit}`);
 
         return respuesta;
         
@@ -48,7 +50,7 @@ export const putClinica = async( clinica , nit , access_token ) => {
  
     try {
         const response = await axios({
-            url: `http://localhost:8080/api/clinicas/${nit}`,
+            url: `${URL}/clinicas/${nit}`,
             method: "PUT",
             headers: {
                 "Content-Type":"application/json",
@@ -74,7 +76,7 @@ export const putClinica = async( clinica , nit , access_token ) => {
 export const getPeticionesClinicas = async() => {
 
     try {
-        const respuesta = await axios.get("http://localhost:8080/api/clinicas");
+        const respuesta = await axios.get(`${URL}/clinicas`);
 
         const peticiones = respuesta.data.filter( cli => cli.estadoCli === 3 );
 
@@ -90,7 +92,7 @@ export const peticion = async ( nit, access_token, estado ) => {
 
     try {
         const response = await axios({
-            url: "http://localhost:8080/api/clinicas/"+nit+"/estado/"+estado,
+            url: `${URL}/clinicas/${nit}/estado/`+estado,
             method: "PUT",
             headers: {
                 "Content-Type":"application/json",
@@ -115,8 +117,7 @@ export const peticion = async ( nit, access_token, estado ) => {
 export const getAllClinicas = async () => {
 
     try {
-        const response = await axios("http://localhost:8080/api/clinicas");
-
+        const response = await axios(`${URL}/clinicas`);
         return response;
     } catch (error) {
         console.log( error );
@@ -127,7 +128,7 @@ export const getAllClinicas = async () => {
 export const getClinicaByNit = async ( nit ) => {
 
     try {
-        const response = await axios("http://localhost:8080/api/clinicas/"+nit)
+        const response = await axios(URL+"/clinicas/"+nit)
         .catch( function( error ) {
 
             if ( error.response ) {
@@ -209,7 +210,7 @@ export const registroClinicaTestRe = async( clinica ) => {
  
     try {
         const response = await axios({
-            url: "http://localhost:8080/api/clinicas",
+            url: `${URL}/clinicas`,
             method: "POST",
             headers: {
                 "Content-Type":"application/json"

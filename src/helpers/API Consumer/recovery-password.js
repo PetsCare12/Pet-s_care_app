@@ -1,11 +1,12 @@
 import axios from "axios"
-const URL = "http://localhost:8080";
+
+const URL = "https://petscareapi.uc.r.appspot.com/api";
 
 export const generateCode = async( email ) => {
 
     try {
         const resp = await axios({
-            url : URL+"/api/generarkey",
+            url : URL+"/generarkey",
             method : 'POST',
             headers : {
                 "Content-Type":"application/json",
@@ -33,7 +34,7 @@ export const changePassword = async( nuevaContrasena, correo, codigo ) => {
 
     try {
         const resp = await axios({
-            url : URL+"/api/actualizar/contrasena/"+codigo,
+            url : URL+"/actualizar/contrasena/"+codigo,
             method : 'PUT',
             headers : {
                 "Content-Type":"application/json",

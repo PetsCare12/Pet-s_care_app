@@ -24,6 +24,9 @@ export const Citas = () => {
         id = user.id;
     }
 
+    const token = JSON.parse(localStorage.getItem( 'usuario' ));
+    
+
     useEffect( () => {
 
         getAgendas( id ).then( info => {

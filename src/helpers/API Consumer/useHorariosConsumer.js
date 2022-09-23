@@ -1,12 +1,12 @@
 import axios from "axios";
-const url = "http://localhost:8080/api";
+const URL = "https://petscareapi.uc.r.appspot.com/api";
 
 // Horarios Clinica Veterinaria
 export const getHorarioClinica = async( nit ) => {
 
     try {
 
-        const sendRequest = await axios.get(`${url}/clinica/${nit}/horarios`);
+        const sendRequest = await axios.get(`${URL}/clinica/${nit}/horarios`);
         
         return sendRequest.data;
 
@@ -26,7 +26,7 @@ export const setHorarioClinica = async( horario , nit , access_token ) => {
     try {
         
         const sendRequest = await axios({
-            url : `${url}/clinica/${nit}/horarios`,
+            url : `${URL}/clinica/${nit}/horarios`,
             method : 'POST',
             headers : {
                 "Content-Type":"application/json",
@@ -59,7 +59,7 @@ export const getHorarioVeterinario = async( id ) => {
 
     try {
 
-        const sendRequest = await axios.get(`${url}/veterinario/${id}/horarios`);
+        const sendRequest = await axios.get(`${URL}/veterinario/${id}/horarios`);
         
         return sendRequest.data;
 
@@ -79,7 +79,7 @@ export const setHorarioVeterinario = async( horario , id , access_token ) => {
     try {
         
         const sendRequest = await axios({
-            url : `${url}/veterinario/${id}/horarios`,
+            url : `${URL}/veterinario/${id}/horarios`,
             method : 'POST',
             headers : {
                 "Content-Type":"application/json",
@@ -114,7 +114,7 @@ export const putHorarioGeneral= async( horario , id , access_token ) => {
     try {
 
         const sendRequest = await axios({
-            url : `${url}/horarios/${id}`,
+            url : `${URL}/horarios/${id}`,
             method : 'PUT',
             headers : {
                 "Content-Type":"application/json",
@@ -148,7 +148,7 @@ export const deleteHorarioGeneral = async( id , access_token ) => {
     try {
 
         const sendRequest = await axios({
-            url : `${url}//horarios/${id}`,
+            url : `${URL}/horarios/${id}`,
             method : 'DELETE',
             headers : {
                 "Content-Type":"application/json",
@@ -180,7 +180,7 @@ export const getAgendasVeterinario  = async( idVet ) => {
 
     try {    
         
-        return await axios(`${url}/veterinario/${idVet}/agendas`);
+        return await axios(`${URL}/veterinario/${idVet}/agendas`);
 
     } catch (error) {
         console.log( error );
