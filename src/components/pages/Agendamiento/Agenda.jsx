@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
-import { getUsuario_mascotas } from '../../../helpers/API Consumer/test';
 import { getAllClinicas } from '../../../helpers/API Consumer/useClinicasConsumer';
-import { getMascotaEspecifica } from '../../../helpers/API Consumer/useMascotasConsumer';
 import { pets_images } from '../../../helpers/Pets_care_images';
 import {Header} from '../../layout/HeaderHome/HeaderHome';
 import { getVeterinarios } from '../../../helpers/API Consumer/useVeterinariosConsumer';
@@ -13,11 +11,10 @@ import { BsCheckAll } from "react-icons/bs";
 import moment from 'moment';
 import { SimpleModal } from '../../layout/Modals/SimpleModal';
 import { createAgenda } from '../../../helpers/API Consumer/useAgendaConsumer';
-import './style.css';
-import './query.css'
-import { Link } from 'react-router-dom';
 import { FooterPrincipal } from '../../layout/FooterPrincipal/FooterPrincipal';
 import { LoaderCards } from "../../UI/LoaderCards/LoaderCards";
+import './style.css';
+import './query.css'
 
 export const Agenda = () => {
     
@@ -149,7 +146,6 @@ export const Agenda = () => {
                                         if ( hora.fecha === moment().format('L') ) {
                                             
                                             horasUsadas.push( hora.horaInicio );
-                                            console.log( horasUsadas );
                                         }
                                         
                                     }
