@@ -8,6 +8,7 @@ export const PoliticasPrivacidad = () => {
         <div className='contentPoliticas'>
           <div className='contentText'>
               <span>Politicas de Pet's care</span>
+              <hr className='rayita' />
               <p>El sitio web Pet's care es propiedad de Pet's care, que es un controlador de datos de tus datos personales.</p>
 
               <p>Hemos adoptado esta Política de privacidad, que determina cómo procesamos la información recopilada por Pet's care, que también proporciona las razones por las que debemos recopilar ciertos datos personales sobre ti. Por lo tanto, debes leer esta Política de privacidad antes de usar el sitio web de Pet's care.</p>
