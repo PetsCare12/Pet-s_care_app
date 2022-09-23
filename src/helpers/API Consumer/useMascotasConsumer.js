@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 const URL = "https://petscareapi.uc.r.appspot.com/api";
 
 export const actualizarMascota = async ( update, codigoMc ) => {
@@ -37,6 +36,7 @@ export const getMascotaEspecifica = async( id, codigoMc) => {
     try {
 
         const response = await axios(`${URL}/usuario/${id}/mascota/${codigoMc}`);
+
 
         return response;
         

@@ -10,7 +10,6 @@
     align-items: center;
 }
 .cierre{
-    cursor: pointer;
     background: none;
     position: absolute;
     top: -10px;
@@ -23,13 +22,7 @@
     transition: 1s;
     z-index: 1;
 }
-.cierre:hover{
-    transition: 1s;
-    background: #00000061;
-}
 /* ------------- DELETE MODAL -------------*/
-
-
 .deleteModal{
     align-items: center;
     background-color:white ;

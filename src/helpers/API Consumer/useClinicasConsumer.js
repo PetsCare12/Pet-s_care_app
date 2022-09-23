@@ -46,14 +46,15 @@ export const getClinicaById = async( nit ) => {
     }
 }
 
-export const putClinica = async( clinica , nit ) => {
+export const putClinica = async( clinica , nit , access_token ) => {
  
     try {
         const response = await axios({
             url: `${URL}/clinicas/${nit}`,
             method: "PUT",
             headers: {
-                "Content-Type":"application/json"
+                "Content-Type":"application/json",
+                'Authorization': 'Bearer '+access_token,
             },
             data: clinica
         }).catch( function( error ) {
@@ -128,10 +129,18 @@ export const getAllClinicas = async () => {
 export const getClinicaByNit = async ( nit ) => {
 
     try {
-        const response = await axios(`${URL}/clinicas/`+nit);
+        const response = await axios(URL+"/clinicas/"+nit)
+        .catch( function( error ) {
 
-        console.log( response );
+            if ( error.response ) {
+                console.log( error );
+                return { status : error.response.status }
+            }
+
+        });
+
         return response;
+        
     } catch (error) {
         console.log( error );
     }

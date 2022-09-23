@@ -10,6 +10,7 @@ import PeticionClinica from './components/PeticionClinica';
 import { usuariosTodos } from '../../../helpers/API Consumer/test';
 import { NoAutenticado } from '../NoAutenticado/NoAutenticado';
 import { getAllVeterinarios } from '../../../helpers/API Consumer/useVeterinariosConsumer';
+import { FooterPrincipal } from '../../layout/FooterPrincipal/FooterPrincipal';
 
 const AdminScreen = () => {
 
@@ -34,6 +35,16 @@ const AdminScreen = () => {
     const [loadingData, setLoadingData] = useState(false);
     const [currentPage, setCurrentPage] = useState(0);
     const [itemsPerPage, setItemsPerPage] = useState(5);
+    const [reload, setReload] = useState(false);
+
+    useEffect( () => {
+
+        getPeticionesClinicas()
+        .then( data => {
+            setRequestCli(data);
+        })
+
+    }, [reload])
 
     const handleSelect = ( type ) => {
 
@@ -98,17 +109,9 @@ const AdminScreen = () => {
     }
 
     const handleRequest = () => {
-        getPeticionesClinicas()
-            .then( data => setRequestCli(data))
+        handleSelect( 3 );
         setSolicitudesScreen( true );
     }
-
-    const handlePaginacion = ( e ) => {
-
-        setItemsPerPage( e.target.value );
-    }
-
-    console.log( dataToShow );
 
     return (
         <>
@@ -123,52 +126,13 @@ const AdminScreen = () => {
                                 <button onClick={()=>{handleSelect(2)}} className={`btnAdmin ${userType === 2 && "active"}`}>Veterinarios</button>
                                 <button onClick={()=>{handleSelect(3)}} className={`btnAdmin ${userType === 3 && "active"}`}>Clínicas</button>
                             </div>
-                            <button onClick={handleRequest} className='btnAdmin peticiones'>Peticiones</button>
-                        </div>
-                        
-                        {
-                            <>
-                                {    userType===1 &&
-                                    <>
-                                        <form className='admin__filter' action="">
-                                            <label htmlFor="documento">N° Documento</label>
-                                            <input type="text" name='documento'/>
-                                            <button id='search' className='btnAdmin'>Buscar</button>
-                                        </form>
-                                    </>
-                                }
-                            </>
-                        }    
-                        
-                        {
-                            <>
-                            {    userType===2 &&
-                                <>
-
-                                <form className='admin__filter' action="">
-                                    <label htmlFor="documento">N° Documento</label>
-                                    <input type="text" name='documento'/>
-                                    <button id='search' className='btnAdmin'>Buscar</button>
-                                </form>
-                                </>
+                            <button onClick={handleRequest} className='btnAdmin peticiones'>Peticiones 
+                            {
+                                requestCli.length !== 0 &&
+                                <div className='number'>{requestCli.length}</div>
                             }
-                            </>
-                        }    
-                        
-                        {
-                            <>
-                            {    userType===3 &&
-                                <>
-
-                                <form className='admin__filter' action="">
-                                    <label htmlFor="documento">N° NIT</label>
-                                    <input type="text" name='documento'/>
-                                    <button id='search' className='btnAdmin'>Buscar</button>
-                                </form>
-                                </>
-                            }
-                            </>
-                        }    
+                            </button>
+                        </div>   
                         
                         {
                             loadingData && <div id='login-spin-adminScreen' className='spiner'></div>
@@ -194,18 +158,20 @@ const AdminScreen = () => {
                                             userType===1 &&
                                         
                                             dataToShow.map( (user,key) => 
+
+                                            user.correoUs !== "admin@gmail.com" &&
                                                 
                                             <InfoUser
                                                 key={key}
-                                                id={user.documentoUs} 
-                                                nombre={user.nombreUs} 
-                                                correo={user.correoUs} 
+                                                id={user.documentoUs}
+                                                nombre={user.nombreUs}
+                                                correo={user.correoUs}
                                                 img = {user.imagenUsu}
-                                                telefono={user.telefonoUs} 
-                                                estado={user.estadoUs} 
+                                                telefono={user.telefonoUs}
+                                                estado={user.estadoUs}
                                                 mascotas={user.mascotas}
                                                 data={user}
-                                            
+                                                reload={handleSelect}
                                         />
                                                 
                                                 )
@@ -302,20 +268,21 @@ const AdminScreen = () => {
                         <div onClick={()=>setSolicitudesScreen( false )} className="cancel"><p>x</p></div>
 
                         <h1 className='titulo'>Peticiones</h1>
-                        <BiRefresh onClick={handleRequest} className='peticiones__refreh' />
                         <p className='descripcion'>Las siguientes clinicas están pendientes.</p>
 
                         <div className="peticiones">
                             {
                                 ( requestCli.length > 0 ) ?
-                                requestCli.map( cli => <PeticionClinica key={cli.nit} token={token} dataCli={cli} nit={cli.nit} nombre={cli.nombre} />)
+                                requestCli.map( cli => <PeticionClinica reload={reload} setReload={setReload} key={cli.nit} token={token} dataCli={cli} nit={cli.nit} nombre={cli.nombre} />)
                                 : <p>No hay peticiones pendientes</p>
                             }
 
                         </div>
                     </div>
                 </SimpleModal>
+                
             }
+            <FooterPrincipal/>
         </>
     )
 }

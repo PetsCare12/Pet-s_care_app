@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { putVeterinario, setVeterinario } from "./API Consumer/useVeterinariosConsumer";
+import { putVeterinario } from "./API Consumer/useVeterinariosConsumer";
 
 export const useForm = (initialForm , validateForm , token , nit) => {
 

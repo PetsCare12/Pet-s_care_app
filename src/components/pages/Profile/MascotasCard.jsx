@@ -14,7 +14,7 @@ import { actualizarMascota } from '../../../helpers/API Consumer/useMascotasCons
 
 export const MascotasCard = ( props ) => {
 
-    const { codigoMc, name, age, raza, image, discapacidad, sexo, peso, tipo, color } = props;
+    const { codigoMc, name, age, raza, image, discapacidad, sexo, peso, tipo, color, setSuccess, reload, setReload } = props;
 
     const [mascotaActive, setMascotaActive] = useState(false);
     const [edit, setEdit] = useState(false);
@@ -28,7 +28,6 @@ export const MascotasCard = ( props ) => {
     const [inpColor, setInpColor] = useState(color);
     const [actImage, setActImage] = useState(image);
     const [loading, setLoading] = useState(false);
-    const [success, setSuccess] = useState(false);
 
     const [validacionForm, setValidacionForm] = useState([false,""]);
 
@@ -77,11 +76,12 @@ export const MascotasCard = ( props ) => {
 
                 if ( info.status === 200 ) {
 
-                    setTimeout(()=>{
-                        setLoading( false );
-                        setSuccess( true );
-                        window.location = "/perfil";
-                    },1000)
+                    setLoading( false );
+                    setSuccess("Tu mascota ha sido actualizada");
+                    setReload( !reload );
+                    setEdit( false );
+                    setMascotaActive( false );
+                    setTimeout( ()=>{setSuccess("")} ,5000 );
                     
                 }
             });
@@ -160,7 +160,7 @@ export const MascotasCard = ( props ) => {
                         </div>
                         <div className="specificInfo animate__animated animate__fadeIn">
                             { !validacionForm[0] && <p className='validacionForm'>{ validacionForm[1] }</p> }
-                            { success && <p className='validacionFormSuccess'>Tu mascota ha sido actualizada con exito</p> }
+
                             <form ref={formEditMascota} onSubmit={handleSubmit} style={{gap:"0px"}}>
                                 <div><label htmlFor="nombre">Nombre</label><InputUI eventChange={hadleName} name="nombre" type="text" style="inputEditMascota" value={inpNombre}/></div>
                                 <div className="sameLine">

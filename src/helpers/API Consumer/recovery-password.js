@@ -6,7 +6,9 @@ export const generateCode = async( email ) => {
 
     try {
         const resp = await axios({
+
             url : `${URL}/generarkey`,
+
             method : 'POST',
             headers : {
                 "Content-Type":"application/json",
@@ -34,7 +36,9 @@ export const changePassword = async( nuevaContrasena, correo, codigo ) => {
 
     try {
         const resp = await axios({
+
             url : `${URL}/actualizar/contrasena/`+codigo,
+
             method : 'PUT',
             headers : {
                 "Content-Type":"application/json",

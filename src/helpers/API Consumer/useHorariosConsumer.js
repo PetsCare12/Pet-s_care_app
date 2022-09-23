@@ -95,7 +95,7 @@ export const setHorarioVeterinario = async( horario , id , access_token ) => {
 
         });
                 
-        return console.log(sendRequest.data);
+        return sendRequest.data;
 
     } catch (error) {
 

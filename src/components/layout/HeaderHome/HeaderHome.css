@@ -29,7 +29,7 @@
     font-weight: 600;
     background-color: #00376c;
     color: aliceblue;
-    /* border: solid 1px #024c6e; */
+
 }
 .logIn:hover{
     transition: .7s;
@@ -76,7 +76,7 @@
     justify-content: center;
     gap: 30px;
 }
-/*//////////////////////*/
+
 .home{
     display: flex;
     flex-direction: column;
@@ -100,9 +100,10 @@
     z-index: 1001;
 }
 .home__autenticado:hover {
-    background-color: aliceblue;
-    box-shadow: 0px 0px 5px 0px #00376c;
-    transition:background-color .4s;
+    background-color: white;
+    box-shadow: 2px 3px 2px 0px #00376c;
+    transition: .5s;
+    border: 1px solid #00376c;
 }
 .home__autenticado h1 {
     color: black;

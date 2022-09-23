@@ -66,24 +66,30 @@ export const Profile = () => {
                             }} className={`profile__btnProfile ${(activeBtn === "perfil") && "perfil_active"}`}>
                             <div className='profile__titleBtn'>Perfil</div>
                         </button>
-                        <button onClick={() => {
-                            setActiveBtn("mascotas")
-                            setDesplegar( false )
+                        {
+                            user.aud === "[ROLE_USER]"
+                             &&
+                            <>
+                            <button onClick={() => {
+                                setActiveBtn("mascotas")
+                                setDesplegar( false )
                             }} className={`profile__btnProfile ${(activeBtn === "mascotas") && "perfil_active"}`}>
                             <div className='profile__titleBtn'>Mascotas</div>
-                        </button>
-                        <button onClick={() => {
-                            setActiveBtn("citas");
-                            setDesplegar( false );
-                        }} className={`profile__btnProfile ${(activeBtn === "citas") && "perfil_active"}`}>
-                            <div className='profile__titleBtn'>Citas pendientes</div>
-                        </button>
-                        <button onClick={() => {
-                                navigate("/clinicas")
-                                setActiveBtn("clinicas")
-                            }} className={`profile__btnProfile ${(activeBtn === "clinicas") && "perfil_active"}`}>
-                            <div className='profile__titleBtn'>Clínicas</div>
-                        </button>
+                            </button>
+                            <button onClick={() => {
+                                setActiveBtn("citas");
+                                setDesplegar( false );
+                            }} className={`profile__btnProfile ${(activeBtn === "citas") && "perfil_active"}`}>
+                                <div className='profile__titleBtn'>Citas pendientes</div>
+                            </button>
+                            <button onClick={() => {
+                                    navigate("/clinicas")
+                                    setActiveBtn("clinicas")
+                                }} className={`profile__btnProfile ${(activeBtn === "clinicas") && "perfil_active"}`}>
+                                <div className='profile__titleBtn'>Clínicas</div>
+                            </button></>
+                        }
+                        
 
                     </div>
                     <button id='perfil__logout' onClick={handleLogout} className={`profile__btnProfile ${(activeBtn === "logout") && "perfil_active"}`}>

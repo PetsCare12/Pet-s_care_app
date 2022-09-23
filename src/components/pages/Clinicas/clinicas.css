@@ -78,7 +78,7 @@ transform: rotate(45deg) translate(-8px, -8px);
     flex-direction: column;
     position: fixed;
     top: 12px;
-    height: 140px;
+    height: 150px;
     padding: 10px 0px;
     justify-content: flex-end;
     left: 10px;
@@ -151,7 +151,7 @@ transform: rotate(45deg) translate(-8px, -8px);
         top: 0;
     }
 }
-/* --------------  CARDS -------------- */ 
+
 .card__cli{
     color: #26272a;
     display: flex;
@@ -219,7 +219,7 @@ transform: rotate(45deg) translate(-8px, -8px);
     width: 100%;
 }
 
-/* -------------- CARTA INDIVIDUAL -------------- */
+
 .clinica__mainContainer{
     display: flex;
     align-items: center;
