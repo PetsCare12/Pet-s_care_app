@@ -6,6 +6,10 @@ import './Home.css';
 import './query.css';
 
 import kevyn from './kevyn.jpg'
+import samuel from './samuel.jpg'
+import vera from './yo.jpg'
+import andres from './andres.jpg'
+import juan from './juan.jpg'
 
 
 export const Home = () => {
@@ -64,7 +68,7 @@ export const Home = () => {
 
         <div className="home__contactUs-card">
           <div className="home__contactUs-card-img">
-            <img src="https://media.istockphoto.com/photos/cheerful-ethnic-man-with-laptop-on-bright-backdrop-picture-id1226663876?b=1&k=20&m=1226663876&s=170667a&w=0&h=qaYWoe8k6AeyLxoFxgAClJYtWx-57hCCqB_sQMVtpTM=" alt="" />
+            <img id="image-team" src={samuel} alt="" />
           </div>
           <div className="home__contactUs-card-info">
             <div className="home__contactUs-card-info-personal">
@@ -108,7 +112,7 @@ export const Home = () => {
 
         <div className="home__contactUs-card">
           <div className="home__contactUs-card-img">
-            <img src="https://img.freepik.com/foto-gratis/joven-guapo-rizado-escribiendo-telefono-sobre-aislado-pared-azul_231208-1231.jpg?w=2000" alt="" />
+          <img id="image-team" src={juan} alt="" />
           </div>
           <div className="home__contactUs-card-info">
             <div className="home__contactUs-card-info-personal">
@@ -129,7 +133,7 @@ export const Home = () => {
         
         <div className="home__contactUs-card">
           <div className="home__contactUs-card-img">
-            <img src="https://www.hovedentalclinic.co.uk/wp-content/uploads/2021/03/bigstock-Young-handsome-hispanic-man-st-403013393.jpg" alt="" />
+          <img id="image-team" src={andres} alt="" />
           </div>
           <div className="home__contactUs-card-info">
             <div className="home__contactUs-card-info-personal">
@@ -151,7 +155,7 @@ export const Home = () => {
         
         <div className="home__contactUs-card">
           <div className="home__contactUs-card-img">
-            <img src="https://t4.ftcdn.net/jpg/03/01/57/27/360_F_301572702_QOJGtwZ9an8H9oYtGcI8SFgypwVWA8TR.jpg" alt="" />
+          <img id="image-team" src={vera} alt="" />
           </div>
           <div className="home__contactUs-card-info">
             <div className="home__contactUs-card-info-personal">

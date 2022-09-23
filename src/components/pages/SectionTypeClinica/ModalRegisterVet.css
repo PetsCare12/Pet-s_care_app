@@ -39,6 +39,7 @@
     width: 75vh;
     height: 3vh;
     display: flex;
+    justify-content: flex-end;
 }
 .img_cont_1{
     display: flex;

@@ -17,6 +17,7 @@ import { ClinicaProfile } from '../components/pages/SectionTypeClinica/ClinicaPr
 import { PasswordRecovery } from '../components/pages/Password-recovery/PasswordRecovery';
 import { PoliticasPrivacidad } from '../components/pages/PoliticasPrivacidad/PoliticasPrivacidad';
 import { InformacionLegal } from '../components/pages/InformacionLegal/InformacionLegal';
+import { Terminos } from '../components/pages/Terminos/Terminos';
 
 export const AppRouter = () => {
 
@@ -48,6 +49,7 @@ export const AppRouter = () => {
                 <Route path="/agenda/:id" element={!token ? <Navigate to="/" /> : <Agenda />}/>
                 <Route path="/admin" element={(!!user && rol!=="[ROLE_ADMIN]") ? <Navigate to="/" /> : <AdminScreen/> }/>
                 <Route path="/recovery-password" element={<PasswordRecovery />}/>
+                <Route path="/terminos-condiciones" element={<Terminos />}/>
                 <Route path="/politicas" element={<PoliticasPrivacidad />}/>
                 <Route path="/informacionLegal" element={<InformacionLegal />}/>
             </Routes>
