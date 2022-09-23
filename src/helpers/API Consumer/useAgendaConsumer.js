@@ -36,14 +36,14 @@ export const createAgenda = async ( data_, idUser, idVet ) => {
 
 export const getAgendas = async ( id ) => {
 
-    const response = await axios(`${URL}/api/usuario/${id}/agendas`)
+    const response = await axios(`${URL}/usuario/${id}/agendas`)
 
     return response;
 
 };
 
 export const getAgendasVeterinario = async ( id ) => {
-    const response = await axios(`${URL}/api/veterinario/${id}/agendas`)
+    const response = await axios(`${URL}/veterinario/${id}/agendas`)
 
     return response;
 }
@@ -55,7 +55,7 @@ export const cancelarAgenda = async (codigo) => {
     try {
         
         const resp = await axios({
-            url : URL+"/api/agendas/"+codigo,
+            url : URL+"/agendas/"+codigo,
             method : 'DELETE',
             headers : {
                 "Content-Type":"application/json",

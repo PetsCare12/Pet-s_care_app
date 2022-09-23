@@ -92,7 +92,7 @@ export const peticion = async ( nit, access_token, estado ) => {
 
     try {
         const response = await axios({
-            url: `${URL}/clinicas/"+nit+"/estado/`+estado,
+            url: `${URL}/clinicas/${nit}/estado/`+estado,
             method: "PUT",
             headers: {
                 "Content-Type":"application/json",
@@ -118,7 +118,6 @@ export const getAllClinicas = async () => {
 
     try {
         const response = await axios(`${URL}/clinicas`);
-
         return response;
     } catch (error) {
         console.log( error );

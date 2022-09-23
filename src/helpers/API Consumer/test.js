@@ -5,8 +5,7 @@ const URL = "https://petscareapi.uc.r.appspot.com/api";
 export const getUsuario_mascotas = async( id ) => {
 
     try {
-
-        const respuesta = await axios.get(`${URL}/usuarios/${id}/mascotas`);
+        const respuesta = await axios.get(URL+"/usuarios/"+id+"/mascotas");
 
         return respuesta.data;
         
@@ -23,9 +22,7 @@ export const crearMascota = async( mascota, id ) => {
     try {
         
         const resp = await axios({
-
-            url : `${URL}/usuario/`+id+"/mascota",
-
+            url : URL+"/usuario/"+id+"/mascota",
             method : 'POST',
             headers : {
                 "Content-Type":"application/json",
@@ -51,9 +48,7 @@ export const crearMascota = async( mascota, id ) => {
 
 export const getUsuarioId = async ( id ) => {
     try {
-
-        const respuesta = await axios.get(`${URL}/usuarios/`+id);
-
+        const respuesta = await axios.get(URL+"/usuarios/"+id);
         
         return respuesta;
     } catch (error) {
@@ -68,9 +63,7 @@ export const postUsuario = async( user ) => {
 
     try {
         const response = await axios({
-
-            url: `${URL}/usuarios`,
-
+            url: URL+"/usuarios",
             method: "POST",
             headers: {
                 "Content-Type":"application/json"
@@ -96,9 +89,7 @@ export const inicioSesionUsuario = async ( valores ) => {
 
     try {
         const resp = await axios({
-
-            url: `${URL}/auth/iniciarSesion`,
-
+            url: URL+"/auth/iniciarSesion",
             method: "POST",
             headers: {
                 "Content-Type":"application/json"
@@ -121,9 +112,7 @@ export const inicioSesionUsuario = async ( valores ) => {
 export const usuariosTodos = async() => {
 
     try {
-
-        const respuesta = await axios.get(`${URL}/usuarios`);
-
+        const respuesta = await axios.get(URL+"/usuarios");
 
         return respuesta.data;
         
@@ -137,9 +126,7 @@ export const usuarioUpdate = async( user, id, token) => {
 
     try {
         const resp = await axios({
-
-            url: `${URL}/usuarios/`+id,
-
+            url: URL+"/usuarios/"+id,
             method: "PUT",
             headers: {
                 "Content-Type":"application/json",

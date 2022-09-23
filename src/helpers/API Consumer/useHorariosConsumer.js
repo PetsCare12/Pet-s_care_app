@@ -148,7 +148,7 @@ export const deleteHorarioGeneral = async( id , access_token ) => {
     try {
 
         const sendRequest = await axios({
-            url : `${URL}//horarios/${id}`,
+            url : `${URL}/horarios/${id}`,
             method : 'DELETE',
             headers : {
                 "Content-Type":"application/json",
