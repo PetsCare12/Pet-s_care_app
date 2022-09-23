@@ -29,15 +29,11 @@ export const Citas = () => {
 
     useEffect( () => {
 
-<<<<<<< HEAD
-        getAgendas(token.id).then( info => setCitasAll(info.data))
-=======
         getAgendas( id ).then( info => {
 
             setCitasAll( info.data.filter( cita => cita.estado === 1 ) )
             
             setLoader( false );
->>>>>>> main
 
         })
 
@@ -48,14 +44,6 @@ export const Citas = () => {
         <>
             <div className="citas__contenedor animate__animated animate__fadeIn">
                 {
-<<<<<<< HEAD
-                    citasAll.length !== 0 ?
-                    citasAll.map( cita => (
-                        <CitaCard 
-                        key={ cita.codigoA }
-                            {...cita}
-                        />
-=======
                     loader ? <LoaderCards extra="m40"/>
                     : citasAll.length !== 0 ?
                     citasAll.map( (cita) => (
@@ -70,20 +58,16 @@ export const Citas = () => {
                             />
                         }
                         </>
->>>>>>> main
                     ))
                     :
                     <p className='citasEmpty'>No hay citas pendientes</p>
                 }
             </div>
-<<<<<<< HEAD
-=======
             {
                 agendaDeleted && 
                 <p className='citaDeleted animate__animated animate__backInRight'>Tu cita ha sido eliminada <AiFillCheckCircle className='icon'/></p>
             }
 
->>>>>>> main
         </>
     )
 }

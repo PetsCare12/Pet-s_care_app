@@ -196,15 +196,7 @@ export const HorarioClinica = ( {data} ) => {
         for (let k in hoursAvalibles){
 
           let obj2 = hoursAvalibles[k];
-<<<<<<< HEAD
-          setHorarioClinica( obj2 , nit , token).then( data => {
-            setresponse_update(data);
-            console.log(data);
-          });
-          console.log(obj2);
-=======
           setHorarioClinica( obj2 , nit , token).then( data => {setresponse_update(data)});
->>>>>>> main
         }
 
         setloader(false);

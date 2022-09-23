@@ -1,36 +1,13 @@
-<<<<<<< HEAD
-import React, { useState } from 'react'
-import { useEffect } from 'react';
-=======
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { putHorarioGeneral } from '../../../../../helpers/API Consumer/useHorariosConsumer';
->>>>>>> main
 import { getVeterinarios } from '../../../../../helpers/API Consumer/useVeterinariosConsumer';
 import { ButtonUI } from '../../../../UI/ButtonUI/ButtonUI';
 import { Dias_Horario_UI } from '../../../../UI/Dias_Horario_UI/Dias_Horario_UI';
 
 export const HorarioVeterinarios = ( {data} ) => {
 
-<<<<<<< HEAD
-  const [nit, setnit] = useState("");
-  const [loader, setloader] = useState(false);
-  const [str_warn, setstr_warn] = useState("");
-
-  const [vets, setvets] = useState({});
-
-  useEffect(() => {
-    if (!!data.nit) { 
-      setnit(data.nit); 
-      getVeterinarios( data.nit ).then( data => { 
-        setvets(data);
-        console.log(vets);
-      } )
-    }
-  }, [data])
-  
-=======
   const token = localStorage.getItem('token');
 
   const [vets, setvets] = useState([]);
@@ -140,7 +117,6 @@ export const HorarioVeterinarios = ( {data} ) => {
   }, [temp_horarios])
   
   const get_horario_vet_byID = (e) => { settemp_horarios(e); }
->>>>>>> main
 
   const getDates = (e) => {
 
@@ -297,35 +273,6 @@ export const HorarioVeterinarios = ( {data} ) => {
             errors.validacion = `Hay Campos Vacios`
             setloader(false);
   
-<<<<<<< HEAD
-<div className="title_cont">
-    <h3 className='profile__editarPerfil title_hour'>{"Horario Clinica"}</h3>
-
-    { (loader) && <div id='login-spin-clinic' className='spiner'></div> }
-    { (str_warn) && <p>{ str_warn }</p> }
-
-  </div>
-  <div className="part1_horarios">
-      <Dias_Horario_UI 
-        dia={"Lunes"}
-        name_hour_in={"lunes_in"}
-        name_hour_out={"lunes_out"}
-      />
-
-      <Dias_Horario_UI 
-        dia={"Martes"}
-        name_hour_in={"martes_in"}
-        name_hour_out={"martes_out"}
-      />
-
-      <Dias_Horario_UI 
-        dia={"Miercoles"}
-        name_hour_in={"martes_in"}
-        name_hour_out={"martes_out"}
-      />
-      
-    </div>
-=======
           }else if (day.horaSalida === "") {
             
             errors.validacion = `Hay Campos Vacíos`
@@ -335,7 +282,6 @@ export const HorarioVeterinarios = ( {data} ) => {
         })
 
         if (JSON.stringify(errors) === '{}') {
->>>>>>> main
 
           hoursAvalibles.forEach(element => {
 

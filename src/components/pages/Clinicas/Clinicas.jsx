@@ -55,11 +55,7 @@ export const Clinicas = () => {
                     ))
                 }
                 {
-<<<<<<< HEAD
-                    clinicas.length === 0 &&  <div style={{ position:"revert" }} id='spiner-home' className='spiner'></div>
-=======
                     clinicas.length === 0 && <LoaderCards extra="m40"/>
->>>>>>> main
                 }
                 
             </div>
